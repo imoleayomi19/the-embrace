@@ -11,7 +11,7 @@ export function Contact() {
   return (
     <main className="w-full overflow-hidden">
       {/* PAGE HERO */}
-      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-12 overflow-hidden">
+      <section className="relative  min-h-[45vh] md:min-h-[50vh] flex items-end pb-12 overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
