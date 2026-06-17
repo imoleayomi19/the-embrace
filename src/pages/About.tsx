@@ -360,12 +360,12 @@ export function About() {
                 <div className="mb-4">
                   <value.icon
                     className={`w-12 h-12 ${idx === 0
-                        ? "text-alternativeO"
-                        : idx === 1
-                          ? "text-secondary"
-                          : idx === 2
-                            ? "text-alternativeR"
-                            : "text-alternative"
+                      ? "text-alternativeO"
+                      : idx === 1
+                        ? "text-secondary"
+                        : idx === 2
+                          ? "text-alternativeR"
+                          : "text-alternative"
                       }`}
                   />
                 </div>
@@ -377,73 +377,7 @@ export function About() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div
-            className="text-center max-w-3xl mx-auto mb-16"
-            {...fadeIn}
-          >
-            <h2 className="text-4xl md:text-5xl mb-4">What Our Clients Say</h2>
-            <p className="text-slate-600 font-montserrat text-lg">
-              Don't just take our word for it. Hear from the homeowners and
-              businesses we've helped.
-            </p>
-          </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            {[
-              {
-                name: "Adewale O.",
-                role: "CEO, A Startup — Ibadan, Oyo State",
-                quote:
-                  "Embrace Technologies really impressed me with their professionalism. From the site inspection to the final installation, everything was well explained and neatly done. My power has been stable since the installation, and I honestly wish I had done it earlier.",
-              },
-              {
-                name: "Mrs. Kemi Balogun",
-                role: "Co-Founder, HCM — Lagos",
-                quote:
-                  "I was worried about spending money on solar, but Embrace Technologies helped me choose the right system for my home without overselling. The system has been working perfectly, and their after-installation support is excellent.",
-              },
-              {
-                name: "Sadiq A.",
-                role: "Entrepreneur — Lagos",
-                quote:
-                  "My shop used to suffer from frequent power outages until Embrace Technologies upgraded my inverter setup. The difference is clear — my equipment runs smoothly now, and I no longer panic when NEPA takes light.",
-              },
-            ].map((testimonial, idx) => (
-              <motion.div
-                key={idx}
-                variants={fadeIn}
-                className="bg-white p-8 rounded-xl shadow-sm relative"
-              >
-                <Quote className="absolute top-6 right-6 w-10 h-10 text-slate-100" />
-                <div className="flex gap-1 mb-6 text-secondary">
-                  {[...Array(5)].map((_, i) => (
-                    <Sun key={i} className="w-5 h-5 fill-current" />
-                  ))}
-                </div>
-                <p className="text-slate-700 font-montserrat italic mb-8 relative z-10">
-                  "{testimonial.quote}"
-                </p>
-                <div>
-                  <h4 className="font-anton text-lg tracking-normal normal-case text-primary">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-slate-500 font-montserrat">
-                    {testimonial.role}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
       {/* ACHIEVEMENTS */}
       <section className="py-24 bg-white">
@@ -549,10 +483,10 @@ export function About() {
               <motion.div key={idx} variants={fadeIn} className="flex gap-4">
                 <CheckCircle2
                   className={`w-6 h-6 ${idx % 3 === 0
-                      ? "text-alternativeO"
-                      : idx % 3 === 1
-                        ? "text-secondary"
-                        : "text-alternativeR"
+                    ? "text-alternativeO"
+                    : idx % 3 === 1
+                      ? "text-secondary"
+                      : "text-alternativeR"
                     } shrink-0 mt-1`}
                 />
                 <div>
