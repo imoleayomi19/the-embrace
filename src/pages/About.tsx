@@ -9,6 +9,9 @@ import {
   ArrowRight,
   Quote,
   Sun,
+  Shield,
+  Lightbulb,
+  Handshake,
 } from "lucide-react";
 
 const fadeIn = {
@@ -310,194 +313,162 @@ export function About() {
         </div>
       </section>
 
-      {/* OUR VALUES */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
+      {/* OUR CORE VALUES - SOLAR STYLE */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-fixed"
+            style={{
+              backgroundImage: "url('/solar-4.jpg')",
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/90" />
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
-            <h2 className="text-4xl md:text-5xl mb-4">Our Core Values</h2>
-            <p className="text-slate-600 font-montserrat text-lg">
-              These principles guide everything we do and shape our commitment
-              to excellence.
+            <h2 className="text-4xl md:text-5xl font-montserrat font-bold mt-2 mb-4 text-white">
+              Our Core Values
+            </h2>
+            <p className="text-slate-200 font-montserrat text-lg">
+              These principles guide everything we do and shape our commitment to excellence.
             </p>
           </motion.div>
 
+          {/* SOLAR-style Vertical Panels */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 text-center"
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
           >
             {[
               {
-                icon: Award,
+                letter: "E",
                 title: "Excellence",
-                desc: "We deliver the highest quality solar solutions with meticulous attention to detail.",
+                desc: "We pursue the highest standards of engineering, quality, and professionalism in everything we do.",
+                color: "text-secondary",
+                borderColor: "border-secondary/30",
+                bgColor: "bg-secondary/10",
               },
               {
-                icon: Users,
-                title: "Customer Focus",
-                desc: "Your satisfaction and long-term success are at the heart of all we do.",
+                letter: "I",
+                title: "Integrity",
+                desc: "We conduct business with honesty, transparency, and accountability.",
+                color: "text-alternativeO",
+                borderColor: "border-alternativeO/30",
+                bgColor: "bg-alternativeO/10",
               },
               {
-                icon: Target,
+                letter: "I",
                 title: "Innovation",
-                desc: "We constantly evolve to bring the latest technology and solutions to our clients.",
+                desc: "We embrace technology and continuous improvement to deliver sustainable solutions.",
+                color: "text-alternativeR",
+                borderColor: "border-alternativeR/30",
+                bgColor: "bg-alternativeR/10",
               },
               {
-                icon: Heart,
+                letter: "C",
+                title: "Customer Success",
+                desc: "We are committed to creating lasting value and exceptional experiences for our clients.",
+                color: "text-alternative",
+                borderColor: "border-alternative/30",
+                bgColor: "bg-alternative/10",
+              },
+              {
+                letter: "C",
+                title: "Collaboration",
+                desc: "We believe strong partnerships and teamwork drive exceptional outcomes.",
+                color: "text-white",
+                borderColor: "border-white/30",
+                bgColor: "bg-white/10",
+              },
+              {
+                letter: "S",
                 title: "Sustainability",
-                desc: "Protecting our environment is our responsibility to future generations.",
+                desc: "We contribute to a cleaner and more resilient future through responsible innovation.",
+                color: "text-green-400",
+                borderColor: "border-green-400/30",
+                bgColor: "bg-green-400/10",
               },
             ].map((value, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeIn}
-                className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300"
+                className="group relative h-[400px] md:h-[500px] overflow-hidden border-t-0 border-l-0 border-r-0 border-b border-white/20 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl"
+                style={{
+                  background: `linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)`,
+                }}
               >
-                <div className="mb-4">
-                  <value.icon
-                    className={`w-12 h-12 ${idx === 0
-                      ? "text-alternativeO"
-                      : idx === 1
-                        ? "text-secondary"
-                        : idx === 2
-                          ? "text-alternativeR"
-                          : "text-alternative"
-                      }`}
-                  />
+                {/* Large Letter */}
+                <div className="absolute top-6 left-1/2 -translate-x-1/2">
+                  <span className={`text-7xl md:text-8xl font-anton font-extrabold ${value.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
+                    {value.letter}
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-slate-600 font-montserrat">{value.desc}</p>
+
+                {/* Content Container */}
+                <div className="absolute inset-0 flex flex-col justify-between p-4">
+                  {/* Icon - Aligned at top */}
+                  <div className="flex justify-center pt-8">
+                    <div className={`w-12 h-12 ${value.bgColor} border ${value.borderColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-md`}>
+                      {idx === 0 && <Award className={`w-6 h-6 ${value.color}`} />}
+                      {idx === 1 && <Shield className={`w-6 h-6 ${value.color}`} />}
+                      {idx === 2 && <Lightbulb className={`w-6 h-6 ${value.color}`} />}
+                      {idx === 3 && <Target className={`w-6 h-6 ${value.color}`} />}
+                      {idx === 4 && <Handshake className={`w-6 h-6 ${value.color}`} />}
+                      {idx === 5 && <Heart className={`w-6 h-6 ${value.color}`} />}
+                    </div>
+                  </div>
+
+                  {/* Middle Section - Title */}
+                  <div className="flex-grow flex items-center justify-center">
+                    <h3 className="text-sm md:text-base font-montserrat font-bold text-white text-center leading-tight px-2">
+                      {value.title}
+                    </h3>
+                  </div>
+
+                  {/* Bottom Section - Description */}
+                  <div className="pb-2">
+                    <p className="text-slate-200 font-montserrat text-xs text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 px-2">
+                      {value.desc}
+                    </p>
+                  </div>
+
+                  {/* Hover Indicator */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-secondary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </section>
 
-
-
-      {/* ACHIEVEMENTS */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
+          {/* Interactive Hint */}
           <motion.div
-            className="text-center max-w-3xl mx-auto mb-16"
-            {...fadeIn}
+            className="text-center mt-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1, duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl mb-4">Our Achievements</h2>
-            <p className="text-slate-600 font-montserrat text-lg">
-              Measurable impact and recognition from industry leaders.
+            <p className="text-slate-300 font-montserrat text-sm flex items-center justify-center gap-2">
+              <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
+              Hover over each value to learn more
+              <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
             </p>
           </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            {[
-              {
-                number: "5,000+",
-                label: "Homes Powered",
-                color: "text-secondary",
-              },
-              {
-                number: "25M+",
-                label: "kWh Generated",
-                color: "text-alternativeO",
-              },
-              {
-                number: "18k",
-                label: "Tons CO2 Offset",
-                color: "text-alternativeR",
-              },
-              {
-                number: "99%",
-                label: "Customer Satisfaction",
-                color: "text-alternative",
-              },
-            ].map((stat, idx) => (
-              <motion.div key={idx} variants={fadeIn}>
-                <div
-                  className={`text-4xl md:text-5xl font-anton ${stat.color} mb-2`}
-                >
-                  {stat.number}
-                </div>
-                <p className="text-slate-600 font-montserrat text-lg">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div
-            className="text-center max-w-3xl mx-auto mb-16"
-            {...fadeIn}
-          >
-            <h2 className="text-4xl md:text-5xl mb-4">Why Choose Embrace</h2>
-            <p className="text-slate-600 font-montserrat text-lg">
-              We set ourselves apart through expertise, commitment, and results.
-            </p>
-          </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            {[
-              {
-                title: "NABCEP Certified Team",
-                desc: "Our installers hold industry-leading certifications ensuring flawless execution.",
-              },
-              {
-                title: "25-Year Warranties",
-                desc: "Comprehensive coverage and ongoing support for your peace of mind.",
-              },
-              {
-                title: "Premium Components",
-                desc: "We use only tier-1 equipment from trusted global manufacturers.",
-              },
-              {
-                title: "Transparent Pricing",
-                desc: "No hidden fees—just honest, competitive pricing upfront.",
-              },
-              {
-                title: "Local Expertise",
-                desc: "Deep knowledge of Nigeria's climate and energy landscape.",
-              },
-              {
-                title: "Lifetime Support",
-                desc: "Dedicated customer service and maintenance throughout your system's life.",
-              },
-            ].map((item, idx) => (
-              <motion.div key={idx} variants={fadeIn} className="flex gap-4">
-                <CheckCircle2
-                  className={`w-6 h-6 ${idx % 3 === 0
-                    ? "text-alternativeO"
-                    : idx % 3 === 1
-                      ? "text-secondary"
-                      : "text-alternativeR"
-                    } shrink-0 mt-1`}
-                />
-                <div>
-                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                  <p className="text-slate-600 font-montserrat">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* TEAM SECTION */}
       <section className="py-24 bg-white">
@@ -506,7 +477,7 @@ export function About() {
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
-            <h2 className="text-4xl md:text-5xl mb-4">Our Team</h2>
+            <h2 className="text-4xl md:text-5xl font-montserrat font-bold mb-4 text-primary">Our Team</h2>
             <p className="text-slate-600 font-montserrat text-lg">
               Dedicated professionals committed to powering your sustainable
               future.
@@ -540,7 +511,7 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-white mb-6">
               Ready to Join the Solar Revolution?
             </h2>
             <p className="text-xl text-slate-200 font-montserrat mb-10">
@@ -548,8 +519,8 @@ export function About() {
               sustainable future.
             </p>
             <Link
-              to="/"
-              className="inline-flex items-center gap-2 bg-secondary text-primary font-bold font-poppins px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors shadow-lg"
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors shadow-lg"
             >
               Get Started Today
               <ArrowRight className="w-5 h-5" />
