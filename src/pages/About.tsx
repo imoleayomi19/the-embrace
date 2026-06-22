@@ -255,48 +255,52 @@ export function About() {
           </div>
         </div>
       </section>
-
       {/* OUR STORY */}
-      <section className="py-14 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column: Team Image */}
+      <section className="relative py-9 bg-white overflow-visible">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-start">
+            {/* Left Column: Image positioned to overlap hero section above */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[500px]"
+              transition={{ duration: 0.8 }}
+              className="relative -mt-40 lg:-mt-28 z-20"
             >
-              <img
-                src="/solar-10.jpg"
-                alt="Embrace Technologies Team"
-                className="w-full h-full object-cover"
-              />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[600px] lg:max-h-[700px]">
+                <img
+                  src="/solar-10.jpg"
+                  alt="Embrace Technologies Team"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
             </motion.div>
 
             {/* Right Column: Story & Intro */}
             <motion.div
-              initial="initial"
-              whileInView="whileInView"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-6 pt-4 lg:pt-0"
             >
               <motion.div {...fadeIn}>
-                <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight text-primary">
+
+                <h2 className="text-4xl md:text-5xl font-montserrat font-bold mt-0 mb-6 leading-tight text-primary">
                   EMBRACE TECHNOLOGIES LIMITED.
                 </h2>
               </motion.div>
 
               <motion.div {...fadeIn} className="space-y-4">
-                <h3 className="text-2xl font-bold text-slate-800">About Us</h3>
-                <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+                <h3 className="text-2xl font-montserrat font-bold text-slate-800">About Us</h3>
+                <p className="text-slate-600 font-montserrat text-base leading-relaxed">
                   Embrace Technologies Limited is a Nigerian energy and smart infrastructure engineering company delivering integrated engineering solutions for power, energy storage, digital security, and intelligent building technologies. Founded in 2019, we commenced operations as a registered business in 2021 and was incorporated as a limited liability company in February 2026. We provide end-to-end services spanning engineering, procurement, construction, commissioning, and long-term operations and maintenance (O&M) of energy and technology infrastructure.
                 </p>
-                <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+                <p className="text-slate-600 font-montserrat text-base leading-relaxed">
                   We serve residential, commercial, industrial, institutional, and public-sector clients with reliable and scalable solutions tailored to their operational requirements. Our capabilities range from backup and hybrid energy systems to large-scale solar and distributed power infrastructure, complemented by advanced security and smart technology solutions.
                 </p>
-                <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+                <p className="text-slate-600 font-montserrat text-base leading-relaxed">
                   Driven by innovation, technical excellence, and uncompromising quality standards, we are committed to helping organizations and communities achieve greater energy resilience, operational efficiency, and sustainable growth. Through strategic partnerships, professional project execution, and a customer-centric approach, we are building a future where reliable power and intelligent infrastructure enable progress across Africa.
                 </p>
               </motion.div>
