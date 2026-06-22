@@ -932,7 +932,7 @@ export function Home() {
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: isTrustedPaused ? 0 : 25,  // When paused, duration becomes 0 (stops animation)
+                  duration: isTrustedPaused ? 0 : 50,  // When paused, duration becomes 0 (stops animation)
                   ease: "linear",
                 },
               }}

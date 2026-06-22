@@ -112,7 +112,7 @@ export function About() {
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-16 md:pb-20 overflow-hidden h-[450px]">
+      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-16 md:pb-20 overflow-hidden h-[410px]">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -257,7 +257,7 @@ export function About() {
       </section>
 
       {/* OUR STORY */}
-      <section className="py-24 bg-white">
+      <section className="py-14 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column: Team Image */}
