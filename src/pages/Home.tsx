@@ -124,6 +124,7 @@ export function Home() {
 
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
+  const [isTrustedPaused, setIsTrustedPaused] = useState(false);
 
   const residentialImages = ["/", "/]"];
   const commercialImages = ["/", "/"];
@@ -907,7 +908,8 @@ export function Home() {
 
       {/* TRUSTED BY ORGANISATIONS */}
       <section className="py-16 bg-slate-50 border-t border-slate-200 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-4 md:px-6" onMouseEnter={() => setIsTrustedPaused(true)}
+          onMouseLeave={() => setIsTrustedPaused(false)}>
           <motion.div className="text-center mb-12" {...fadeIn}>
             <p className="font-montserrat font-medium text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">
               Trusted By Leading Organisations
@@ -915,7 +917,11 @@ export function Home() {
             <div className="w-16 h-0.5 bg-secondary mx-auto"></div>
           </motion.div>
 
-          <div className="relative w-full overflow-hidden">
+          <div
+            className="relative w-full overflow-hidden"
+            onMouseEnter={() => setIsTrustedPaused(true)}
+            onMouseLeave={() => setIsTrustedPaused(false)}
+          >
             <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-slate-50 to-transparent" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-slate-50 to-transparent" />
 
@@ -923,7 +929,12 @@ export function Home() {
               className="flex items-center gap-20 md:gap-28 w-max"
               animate={{ x: ["0%", "-50%"] }}
               transition={{
-                x: { repeat: Infinity, repeatType: "loop", duration: 25, ease: "linear" },
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: isTrustedPaused ? 0 : 25,  // When paused, duration becomes 0 (stops animation)
+                  ease: "linear",
+                },
               }}
             >
               {[...Array(2)].flatMap((_, dupIdx) =>

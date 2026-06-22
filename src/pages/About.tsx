@@ -283,29 +283,21 @@ export function About() {
               className="space-y-6"
             >
               <motion.div {...fadeIn}>
-                <span className="text-secondary uppercase tracking-[0.3em] text-sm font-semibold">
-                  Built to deliver
-                </span>
                 <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-6 leading-tight text-primary">
-                  Backed by power you can trust.
+                  EMBRACE TECHNOLOGIES LIMITED.
                 </h2>
               </motion.div>
 
               <motion.div {...fadeIn} className="space-y-4">
-                <h3 className="text-2xl font-bold text-slate-800">Our Story</h3>
+                <h3 className="text-2xl font-bold text-slate-800">About Us</h3>
                 <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
-                  Embrace Technologies is a trusted solar energy and security
-                  solutions company based in{" "}
-                  <span className="font-bold">Ikorodu, Lagos, Nigeria, </span>
-                  delivering reliable power and smart technology solutions to
-                  homes, offices, and businesses across Nigeria. We specialize in
-                  solar system design and installation, inverter and battery
-                  solutions, CCTV and IP camera installation, access control
-                  systems, vehicle tracking, networking, and professional
-                  technical training. Our goal is simple: to help Nigerians
-                  achieve stable power, enhanced security, and long-term energy
-                  independence in a country where power reliability remains a
-                  major challenge.
+                  Embrace Technologies Limited is a Nigerian energy and smart infrastructure engineering company delivering integrated engineering solutions for power, energy storage, digital security, and intelligent building technologies. Founded in 2019, we commenced operations as a registered business in 2021 and was incorporated as a limited liability company in February 2026. We provide end-to-end services spanning engineering, procurement, construction, commissioning, and long-term operations and maintenance (O&M) of energy and technology infrastructure.
+                </p>
+                <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+                  We serve residential, commercial, industrial, institutional, and public-sector clients with reliable and scalable solutions tailored to their operational requirements. Our capabilities range from backup and hybrid energy systems to large-scale solar and distributed power infrastructure, complemented by advanced security and smart technology solutions.
+                </p>
+                <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+                  Driven by innovation, technical excellence, and uncompromising quality standards, we are committed to helping organizations and communities achieve greater energy resilience, operational efficiency, and sustainable growth. Through strategic partnerships, professional project execution, and a customer-centric approach, we are building a future where reliable power and intelligent infrastructure enable progress across Africa.
                 </p>
               </motion.div>
             </motion.div>
@@ -466,8 +458,108 @@ export function About() {
           </motion.div>
         </div>
       </section>
+      {/* OUR COMMITMENT */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Flex container for header and cards */}
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
 
+            {/* Header Section - Left Side */}
+            <motion.div
+              className="lg:w-1/4 flex flex-col justify-center text-center"
+              {...fadeIn}
+            >
+              <h2 className="text-2xl md:text-3xl font-montserrat font-bold text-primary leading-tight">
+                our commitment
+              </h2>
+            </motion.div>
 
+            {/* Commitment Cards - Vertical Panels - Right Side */}
+            <motion.div
+              className="lg:w-3/4 flex flex-col md:flex-row gap-2"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+            >
+              {[
+                {
+                  title: "To Our Client",
+                  desc: "We deliver dependable solutions, professional service, and long-term value built on trust and excellence.",
+                  color: "bg-primary",
+                  textColor: "text-primary",
+                  image: "/solar-4.jpg",
+                },
+                {
+                  title: "To Our Employees",
+                  desc: "We foster a culture of safety, innovation, teamwork, and continuous development.",
+                  color: "bg-secondary",
+                  textColor: "text-secondary",
+                  image: "/solar-5.jpg",
+                },
+                {
+                  title: "To Our Partners",
+                  desc: "We cultivate relationships founded on integrity, transparency, and mutual success.",
+                  color: "bg-alternativeO",
+                  textColor: "text-alternativeO",
+                  image: "/solar-6.jpg",
+                },
+                {
+                  title: "To Our Shareholders",
+                  desc: "We are committed to sustainable growth, operational excellence, and long-term value creation.",
+                  color: "bg-alternativeR",
+                  textColor: "text-alternativeR",
+                  image: "/solar-7.jpg",
+                },
+                {
+                  title: "To Our Communities",
+                  desc: "We create positive impact through clean energy, technological innovation, and responsible business practices.",
+                  color: "bg-alternative",
+                  textColor: "text-alternative",
+                  image: "/solar-8.jpg",
+                },
+              ].map((commitment, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={fadeIn}
+                  className="group relative flex-1 min-h-[400px] md:min-h-[500px] overflow-hidden cursor-pointer"
+                  whileHover={{ flex: 2 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: `url('${commitment.image}')` }}
+                  />
+
+                  {/* Dark Overlay - Default */}
+                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all duration-500" />
+
+                  {/* Colored Overlay - Shows on hover */}
+                  <div className={`absolute inset-0 ${commitment.color} opacity-0 group-hover:opacity-90 transition-opacity duration-500`} />
+
+                  {/* Content Container - Centered vertically and horizontally */}
+                  <div className="absolute inset-0 flex items-center justify-center p-4">
+                    {/* Title - Centered, always visible */}
+                    <div className="w-full text-center">
+                      <h3 className="text-white font-montserrat font-bold text-xs md:text-sm leading-tight mb-2 group-hover:text-white">
+                        {commitment.title}
+                      </h3>
+
+                      {/* Description - Hidden by default, shown on hover */}
+                      <p className="text-white/90 font-montserrat text-xs md:text-sm text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 max-h-0 group-hover:max-h-48 mt-0 group-hover:mt-3">
+                        {commitment.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Top Border Accent */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${commitment.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
 
       {/* TEAM SECTION */}
@@ -496,6 +588,9 @@ export function About() {
           </motion.p>
         </div>
       </section>
+
+
+
 
       {/* CTA SECTION */}
       <section className="py-24 bg-primary relative overflow-hidden">
