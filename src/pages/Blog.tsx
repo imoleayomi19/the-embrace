@@ -154,8 +154,8 @@ export function Blog() {
               </svg>
             </motion.div>
 
-            {/* BLOG Title with letter animation */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-1 font-poppins tracking-[0.15em] relative inline-block">
+            {/* BLOG Title with letter animation - Anton ExtraBold */}
+            <h1 className="text-5xl md:text-7xl font-anton font-extrabold text-white mb-1 tracking-[0.15em] relative inline-block">
               <span className="relative">
                 {title.split("").map((letter, i) => (
                   <motion.span
@@ -184,9 +184,9 @@ export function Blog() {
               />
             </h1>
 
-            {/* Breadcrumb */}
+            {/* Breadcrumb - Montserrat Medium */}
             <motion.nav
-              className="flex items-center gap-3 text-sm md:text-base font-montserrat mt-5"
+              className="flex items-center gap-3 text-sm md:text-base font-montserrat font-medium mt-5"
               variants={breadcrumbVariants}
               initial="hidden"
               animate="visible"
@@ -238,13 +238,16 @@ export function Blog() {
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div {...fadeIn} className="max-w-3xl mx-auto text-center mb-16">
-            <span className="text-secondary uppercase tracking-[0.3em] text-sm font-semibold">
+            {/* Section Title - Montserrat Bold */}
+            <span className="text-secondary uppercase tracking-[0.3em] text-sm font-montserrat font-bold">
               Insights & Updates
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mt-2 mb-4">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-2 mb-4">
               Latest Articles
             </h2>
-            <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+            {/* Body Text - Poppins Regular */}
+            <p className="text-slate-600 font-poppins font-normal text-lg leading-relaxed">
               Explore solar energy tips, security solutions, and practical advice
               for Nigerian homes and businesses.
             </p>
@@ -278,13 +281,16 @@ export function Blog() {
                 className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
                 {...fadeIn}
               >
-                <h3 className="text-2xl font-bold mb-3">{post.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-6">
+                {/* Section Title - Montserrat Bold */}
+                <h3 className="text-2xl font-montserrat font-bold mb-3">{post.title}</h3>
+                {/* Body Text - Poppins Regular */}
+                <p className="text-slate-600 font-poppins font-normal leading-relaxed mb-6">
                   {post.description}
                 </p>
+                {/* Link - Montserrat SemiBold */}
                 <Link
                   to="/blog"
-                  className="inline-flex items-center gap-2 text-secondary font-semibold"
+                  className="inline-flex items-center gap-2 text-secondary font-montserrat font-semibold"
                 >
                   Read More
                 </Link>

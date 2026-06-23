@@ -152,8 +152,8 @@ export function Contact() {
               </svg>
             </motion.div>
 
-            {/* CONTACT US Title with letter animation */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-1 font-poppins tracking-[0.1em] relative inline-block">
+            {/* CONTACT US Title with letter animation - Anton ExtraBold */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-[0.1em] relative inline-block">
               <span className="relative">
                 {title.split("").map((letter, i) => (
                   <motion.span
@@ -182,9 +182,9 @@ export function Contact() {
               />
             </h1>
 
-            {/* Breadcrumb */}
+            {/* Breadcrumb - Montserrat Medium */}
             <motion.nav
-              className="flex items-center gap-3 text-sm md:text-base font-montserrat mt-5"
+              className="flex items-center gap-3 text-sm md:text-base font-montserrat font-medium mt-5"
               variants={breadcrumbVariants}
               initial="hidden"
               animate="visible"
@@ -237,35 +237,39 @@ export function Contact() {
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
             <motion.div {...fadeIn} className="space-y-8">
               <div className="">
-                <span className="text-secondary uppercase tracking-[0.3em] text-sm font-semibold">
+                <span className="text-secondary uppercase tracking-[0.3em] text-sm font-montserrat font-semibold">
                   Reach out
                 </span>
-                <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-4">
+                {/* Main Headline - Anton ExtraBold */}
+                <h2 className="text-3xl md:text-4xl font-anton font-extrabold mt-4 mb-4">
                   Let's start your solar or security project with the right partner.
                 </h2>
-                <p className="text-slate-600 font-montserrat leading-relaxed">
+                {/* Body Text - Poppins Regular */}
+                <p className="text-slate-600 font-poppins font-normal leading-relaxed">
                   Reach out for a free consultation, customized proposal, or professional site inspection. Our team specializes in solar power systems, CCTV surveillance, and smart energy solutions for homes and businesses.
                 </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
-                  <h3 className="text-lg font-semibold mb-2">Office Address</h3>
-                  <p className="text-slate-600">
+                  {/* Section Title - Montserrat Bold */}
+                  <h3 className="text-lg font-montserrat font-bold mb-2">Office Address</h3>
+                  {/* Body Text - Poppins Regular */}
+                  <p className="text-slate-600 font-poppins font-normal">
                     116 Ikorodu-Lagos Road, Haruna Bustop, Ikorodu, Lagos,
                     Nigeria
                   </p>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
-                  <h3 className="text-lg font-semibold mb-2">Call Us</h3>
-                  <p className="text-slate-600">+234 706 145 1583</p>
-                  <p className="text-slate-600">+234 807 895 4388</p>
-                  <p className="text-slate-600">+234 911 015 2566</p>
+                  <h3 className="text-lg font-montserrat font-bold mb-2">Call Us</h3>
+                  <p className="text-slate-600 font-poppins font-normal">+234 706 145 1583</p>
+                  <p className="text-slate-600 font-poppins font-normal">+234 807 895 4388</p>
+                  <p className="text-slate-600 font-poppins font-normal">+234 911 015 2566</p>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold mb-2">WhatsApp Us</h3>
-                    <p className="text-slate-600 mb-4">
+                    <h3 className="text-lg font-montserrat font-bold mb-2">WhatsApp Us</h3>
+                    <p className="text-slate-600 font-poppins font-normal mb-4">
                       Chat directly with our support team for quick assistance and consultations.
                     </p>
                   </div>
@@ -273,21 +277,21 @@ export function Contact() {
                     href="https://wa.me/2347061451583?text=Hello%20Embrace%20Technologies%2C%20I%20am%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20more%20information."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold rounded-2xl py-3 px-4 hover:bg-[#20ba59] transition-colors w-full text-center shadow-md shadow-[#25D366]/20 font-montserrat"
+                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-montserrat font-semibold rounded-2xl py-3 px-4 hover:bg-[#20ba59] transition-colors w-full text-center shadow-md shadow-[#25D366]/20"
                   >
                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436.002 9.858-4.419 9.86-9.86.001-2.636-1.02-5.115-2.873-6.97C16.593 1.91 14.121.89 11.493.89 6.058.89 1.636 5.313 1.634 10.754c0 1.684.449 3.325 1.302 4.773L1.93 21.02l5.703-1.496L6.647 19.16zM17.487 14.4c-.326-.163-1.934-.955-2.232-1.063-.297-.11-.514-.163-.73.163-.217.326-.84.84-.972.95-.13.11-.26.13-.586-.033-1.349-.67-2.155-1.047-3.018-2.527-.228-.39.227-.363.652-1.213.076-.15.038-.283-.019-.39-.057-.11-.514-1.238-.705-1.696-.186-.446-.372-.385-.511-.392l-.436-.01c-.15 0-.39.056-.595.28-.205.223-.782.763-.782 1.86 0 1.096.8 2.155.91 2.302.112.146 1.576 2.405 3.82 3.374.533.23 1.02.378 1.369.489.605.192 1.155.165 1.59.1.484-.073 1.934-.79 2.207-1.516.273-.727.273-1.353.192-1.482-.081-.13-.298-.21-.624-.373z"/>
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436.002 9.858-4.419 9.86-9.86.001-2.636-1.02-5.115-2.873-6.97C16.593 1.91 14.121.89 11.493.89 6.058.89 1.636 5.313 1.634 10.754c0 1.684.449 3.325 1.302 4.773L1.93 21.02l5.703-1.496L6.647 19.16zM17.487 14.4c-.326-.163-1.934-.955-2.232-1.063-.297-.11-.514-.163-.73.163-.217.326-.84.84-.972.95-.13.11-.26.13-.586-.033-1.349-.67-2.155-1.047-3.018-2.527-.228-.39.227-.363.652-1.213.076-.15.038-.283-.019-.39-.057-.11-.514-1.238-.705-1.696-.186-.446-.372-.385-.511-.392l-.436-.01c-.15 0-.39.056-.595.28-.205.223-.782.763-.782 1.86 0 1.096.8 2.155.91 2.302.112.146 1.576 2.405 3.82 3.374.533.23 1.02.378 1.369.489.605.192 1.155.165 1.59.1.484-.073 1.934-.79 2.207-1.516.273-.727.273-1.353.192-1.482-.081-.13-.298-.21-.624-.373z" />
                     </svg>
                     Chat on WhatsApp
                   </a>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
-                  <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <p className="text-slate-600">info@embracetechng.com</p>
+                  <h3 className="text-lg font-montserrat font-bold mb-2">Email</h3>
+                  <p className="text-slate-600 font-poppins font-normal">info@embracetechng.com</p>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 sm:col-span-2">
-                  <h3 className="text-lg font-semibold mb-2">Working Hours</h3>
-                  <p className="text-slate-600">Mon – Fri: 8AM – 5PM</p>
+                  <h3 className="text-lg font-montserrat font-bold mb-2">Working Hours</h3>
+                  <p className="text-slate-600 font-poppins font-normal">Mon – Fri: 8AM – 5PM</p>
                 </div>
               </div>
 
@@ -306,41 +310,42 @@ export function Contact() {
               className="space-y-6 bg-white rounded-[2rem] p-8 shadow-xl border border-slate-200"
             >
               <div>
-                <label className="block text-slate-700 mb-2 font-semibold">
+                {/* Form Label - Montserrat SemiBold */}
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Full Name
                 </label>
                 <input
                   type="text"
                   placeholder="Your full name"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-semibold">
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Email Address
                 </label>
                 <input
                   type="email"
                   placeholder="you@example.com"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-semibold">
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Phone Number
                 </label>
                 <input
                   type="tel"
                   placeholder="+234 000 000 0000"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-semibold">
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Enquiring About
                 </label>
                 <select
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
                 >
                   <option value="solar">Solar</option>
                   <option value="cctv">CCTV</option>
@@ -348,17 +353,18 @@ export function Contact() {
                 </select>
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-semibold">
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Message
                 </label>
                 <textarea
                   placeholder="Tell us about your project"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none font-poppins font-normal"
                 />
               </div>
+              {/* Button - Montserrat SemiBold */}
               <button
                 type="submit"
-                className="inline-flex items-center justify-center w-full bg-secondary text-primary font-bold rounded-full px-8 py-4 hover:bg-yellow-400 transition-colors"
+                className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-full px-8 py-4 hover:bg-yellow-400 transition-colors"
               >
                 Send Message
               </button>

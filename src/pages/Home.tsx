@@ -317,18 +317,6 @@ export function Home() {
                   Request a Quote
                   <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link
-                  to="/services"
-                  className="w-full sm:w-auto bg-white/10 backdrop-blur-md text-white border border-white/30 font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-white/20 transition-colors text-center text-sm sm:text-lg"
-                >
-                  Our Services
-                </Link>
-                <Link
-                  to="/contact"
-                  className="w-full sm:w-auto bg-white/10 backdrop-blur-md text-white border border-white/30 font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-white/20 transition-colors text-center text-sm sm:text-lg"
-                >
-                  Book a Site Inspection
-                </Link>
               </div>
             </motion.div>
           </div>

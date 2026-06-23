@@ -112,7 +112,7 @@ export function About() {
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-16 md:pb-20 overflow-hidden h-[410px]">
+      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-16 md:pb-20 overflow-hidden h-[450px]">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -176,8 +176,8 @@ export function About() {
               </svg>
             </motion.div>
 
-            {/* ABOUT US Title with letter animation */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-1 font-poppins tracking-[0.1em] relative inline-block">
+            {/* ABOUT US Title with letter animation - Anton ExtraBold */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-[0.1em] relative inline-block">
               <span className="relative">
                 {title.split("").map((letter, i) => (
                   <motion.span
@@ -206,9 +206,9 @@ export function About() {
               />
             </h1>
 
-            {/* Breadcrumb */}
+            {/* Breadcrumb - Montserrat Medium */}
             <motion.nav
-              className="flex items-center gap-3 text-sm md:text-base font-montserrat mt-5"
+              className="flex items-center gap-3 text-sm md:text-base font-montserrat font-medium mt-5"
               variants={breadcrumbVariants}
               initial="hidden"
               animate="visible"
@@ -286,29 +286,141 @@ export function About() {
               className="space-y-6 pt-4 lg:pt-0"
             >
               <motion.div {...fadeIn}>
-
-                <h2 className="text-4xl md:text-5xl font-montserrat font-bold mt-0 mb-6 leading-tight text-primary">
+                {/* Main Headline - Anton ExtraBold */}
+                <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-1 mb-6 leading-tight text-primary">
                   EMBRACE TECHNOLOGIES LIMITED.
                 </h2>
               </motion.div>
 
               <motion.div {...fadeIn} className="space-y-4">
+                {/* Section Title - Montserrat Bold */}
                 <h3 className="text-2xl font-montserrat font-bold text-slate-800">About Us</h3>
-                <p className="text-slate-600 font-montserrat text-base leading-relaxed">
+                {/* Body Text - Source Sans Pro/Poppins Regular */}
+                <p className="text-slate-600 font-poppins font-normal text-base leading-relaxed">
                   Embrace Technologies Limited is a Nigerian energy and smart infrastructure engineering company delivering integrated engineering solutions for power, energy storage, digital security, and intelligent building technologies. Founded in 2019, we commenced operations as a registered business in 2021 and was incorporated as a limited liability company in February 2026. We provide end-to-end services spanning engineering, procurement, construction, commissioning, and long-term operations and maintenance (O&M) of energy and technology infrastructure.
                 </p>
-                <p className="text-slate-600 font-montserrat text-base leading-relaxed">
+                <p className="text-slate-600 font-poppins font-normal text-base leading-relaxed">
                   We serve residential, commercial, industrial, institutional, and public-sector clients with reliable and scalable solutions tailored to their operational requirements. Our capabilities range from backup and hybrid energy systems to large-scale solar and distributed power infrastructure, complemented by advanced security and smart technology solutions.
                 </p>
-                <p className="text-slate-600 font-montserrat text-base leading-relaxed">
+                <p className="text-slate-600 font-poppins font-normal text-base leading-relaxed">
                   Driven by innovation, technical excellence, and uncompromising quality standards, we are committed to helping organizations and communities achieve greater energy resilience, operational efficiency, and sustainable growth. Through strategic partnerships, professional project execution, and a customer-centric approach, we are building a future where reliable power and intelligent infrastructure enable progress across Africa.
                 </p>
               </motion.div>
             </motion.div>
           </div>
         </div>
-      </section>
+        {/* Vision, Mission, Tagline Cards */}
+        <div className="container mx-auto px-4 md:px-6 mt-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 gap-2">
+              {/* Tagline Card - Top Full Width */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="relative h-[200px] md:h-[240px] overflow-hidden group cursor-pointer"
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                  style={{ backgroundImage: "url('/solar-6.jpg')" }}
+                />
 
+                {/* Title visible always */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                    Tagline
+                  </h3>
+                </div>
+
+                {/* Hover overlay - swipes up from bottom */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                    <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white mb-3">
+                      Tagline
+                    </h3>
+                    <p className="text-white font-poppins font-normal text-base md:text-lg text-center max-w-2xl leading-relaxed font-semibold">
+                      Reliable Power Begins with The Right Partner.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Vision and Mission Cards - Bottom Side by Side */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {/* Vision Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="relative h-[240px] md:h-[280px] overflow-hidden group cursor-pointer"
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: "url('/solar-4.jpg')" }}
+                  />
+
+                  {/* Title visible always */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                      Vision
+                    </h3>
+                  </div>
+
+                  {/* Hover overlay - swipes up from bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                      <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white mb-3">
+                        Vision
+                      </h3>
+                      <p className="text-slate-100 font-poppins font-normal text-xs md:text-sm text-center leading-relaxed">
+                        Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Mission Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="relative h-[240px] md:h-[280px] overflow-hidden group cursor-pointer"
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                    style={{ backgroundImage: "url('/solar-5.jpg')" }}
+                  />
+
+                  {/* Title visible always */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                      Mission
+                    </h3>
+                  </div>
+
+                  {/* Hover overlay - swipes up from bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
+                      <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white mb-3">
+                        Mission
+                      </h3>
+                      <p className="text-white font-poppins font-normal text-xs md:text-sm text-center leading-relaxed">
+                        To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </section>
       {/* OUR CORE VALUES - SOLAR STYLE */}
       <section className="py-24 relative overflow-hidden">
         {/* Background Image with Overlay */}
@@ -327,10 +439,12 @@ export function About() {
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
-            <h2 className="text-4xl md:text-5xl font-montserrat font-bold mt-2 mb-4 text-white">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-2 mb-4 text-white">
               Our Core Values
             </h2>
-            <p className="text-slate-200 font-montserrat text-lg">
+            {/* Body Text - Source Sans Pro/Poppins Regular */}
+            <p className="text-slate-200 font-poppins font-normal text-lg">
               These principles guide everything we do and shape our commitment to excellence.
             </p>
           </motion.div>
@@ -401,7 +515,7 @@ export function About() {
                   background: `linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)`,
                 }}
               >
-                {/* Large Letter */}
+                {/* Large Letter - Anton ExtraBold */}
                 <div className="absolute top-6 left-1/2 -translate-x-1/2">
                   <span className={`text-7xl md:text-8xl font-anton font-extrabold ${value.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
                     {value.letter}
@@ -422,16 +536,16 @@ export function About() {
                     </div>
                   </div>
 
-                  {/* Middle Section - Title */}
+                  {/* Middle Section - Title (Montserrat Bold) */}
                   <div className="flex-grow flex items-center justify-center">
                     <h3 className="text-sm md:text-base font-montserrat font-bold text-white text-center leading-tight px-2">
                       {value.title}
                     </h3>
                   </div>
 
-                  {/* Bottom Section - Description */}
+                  {/* Bottom Section - Description (Source Sans Pro/Poppins Regular) */}
                   <div className="pb-2">
-                    <p className="text-slate-200 font-montserrat text-xs text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 px-2">
+                    <p className="text-slate-200 font-poppins font-normal text-xs text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 px-2">
                       {value.desc}
                     </p>
                   </div>
@@ -454,7 +568,7 @@ export function About() {
             viewport={{ once: true }}
             transition={{ delay: 1, duration: 0.8 }}
           >
-            <p className="text-slate-300 font-montserrat text-sm flex items-center justify-center gap-2">
+            <p className="text-slate-300 font-poppins font-normal text-sm flex items-center justify-center gap-2">
               <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
               Hover over each value to learn more
               <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
@@ -473,7 +587,8 @@ export function About() {
               className="lg:w-1/4 flex flex-col justify-center text-center"
               {...fadeIn}
             >
-              <h2 className="text-2xl md:text-3xl font-montserrat font-bold text-primary leading-tight">
+              {/* Main Headline - Anton ExtraBold */}
+              <h2 className="text-2xl md:text-3xl font-anton font-extrabold text-primary leading-tight">
                 our commitment
               </h2>
             </motion.div>
@@ -543,14 +658,14 @@ export function About() {
 
                   {/* Content Container - Centered vertically and horizontally */}
                   <div className="absolute inset-0 flex items-center justify-center p-4">
-                    {/* Title - Centered, always visible */}
+                    {/* Title - Centered, always visible (Montserrat Bold) */}
                     <div className="w-full text-center">
                       <h3 className="text-white font-montserrat font-bold text-xs md:text-sm leading-tight mb-2 group-hover:text-white">
                         {commitment.title}
                       </h3>
 
-                      {/* Description - Hidden by default, shown on hover */}
-                      <p className="text-white/90 font-montserrat text-xs md:text-sm text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 max-h-0 group-hover:max-h-48 mt-0 group-hover:mt-3">
+                      {/* Description - Hidden by default, shown on hover (Source Sans Pro/Poppins Regular) */}
+                      <p className="text-white/90 font-poppins font-normal text-xs md:text-sm text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 max-h-0 group-hover:max-h-48 mt-0 group-hover:mt-3">
                         {commitment.desc}
                       </p>
                     </div>
@@ -573,15 +688,17 @@ export function About() {
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
-            <h2 className="text-4xl md:text-5xl font-montserrat font-bold mb-4 text-primary">Our Team</h2>
-            <p className="text-slate-600 font-montserrat text-lg">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-4 text-primary">Our Team</h2>
+            {/* Body Text - Source Sans Pro/Poppins Regular */}
+            <p className="text-slate-600 font-poppins font-normal text-lg">
               Dedicated professionals committed to powering your sustainable
               future.
             </p>
           </motion.div>
 
           <motion.p
-            className="text-center text-slate-600 font-montserrat text-lg max-w-2xl mx-auto"
+            className="text-center text-slate-600 font-poppins font-normal text-lg max-w-2xl mx-auto"
             {...fadeIn}
           >
             Our team of experienced engineers, installers, and support
@@ -610,13 +727,16 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-white mb-6">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold text-white mb-6">
               Ready to Join the Solar Revolution?
             </h2>
-            <p className="text-xl text-slate-200 font-montserrat mb-10">
+            {/* Body Text - Source Sans Pro/Poppins Regular */}
+            <p className="text-xl text-slate-200 font-poppins font-normal mb-10">
               Let's help you harness the power of the sun and build a
               sustainable future.
             </p>
+            {/* Button - Montserrat SemiBold */}
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors shadow-lg"

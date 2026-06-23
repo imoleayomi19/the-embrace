@@ -283,8 +283,8 @@ export function Services() {
               <Settings className="w-6 h-6 text-white" />
             </motion.div>
 
-            {/* OUR SERVICES Title with letter animation */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-1 font-poppins tracking-[0.1em] relative inline-block">
+            {/* OUR SERVICES Title with letter animation - Anton ExtraBold */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-[0.1em] relative inline-block">
               <span className="relative">
                 {title.split("").map((letter, i) => (
                   <motion.span
@@ -313,9 +313,9 @@ export function Services() {
               />
             </h1>
 
-            {/* Breadcrumb */}
+            {/* Breadcrumb - Montserrat Medium */}
             <motion.nav
-              className="flex items-center gap-3 text-sm md:text-base font-montserrat mt-5"
+              className="flex items-center gap-3 text-sm md:text-base font-montserrat font-medium mt-5"
               variants={breadcrumbVariants}
               initial="hidden"
               animate="visible"
@@ -370,8 +370,12 @@ export function Services() {
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
-            <h2 className="text-4xl md:text-5xl mb-4">Our Solutions</h2>
-            <p className="text-slate-600 font-montserrat text-lg">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-4">
+              Our Solutions
+            </h2>
+            {/* Body Text - Poppins Regular */}
+            <p className="text-slate-600 font-poppins font-normal text-lg">
               Comprehensive clean energy solutions tailored to your needs. From
               initial design to lifetime maintenance, we handle everything.
             </p>
@@ -392,8 +396,10 @@ export function Services() {
                 <div className="w-16 h-16 bg-slate-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary transition-colors duration-300">
                   <service.icon className="w-8 h-8 text-primary group-hover:text-secondary transition-colors duration-300" />
                 </div>
-                <h3 className="text-2xl mb-4">{service.title}</h3>
-                <p className="text-slate-600 font-montserrat mb-8 flex-grow">
+                {/* Section Title - Montserrat Bold */}
+                <h3 className="text-2xl font-montserrat font-bold mb-4">{service.title}</h3>
+                {/* Body Text - Poppins Regular */}
+                <p className="text-slate-600 font-poppins font-normal mb-8 flex-grow">
                   {service.desc}
                 </p>
 
@@ -401,7 +407,7 @@ export function Services() {
                   {service.features.map((feature, fIdx) => (
                     <li
                       key={fIdx}
-                      className="flex items-start gap-3 font-montserrat text-sm text-slate-700"
+                      className="flex items-start gap-3 font-poppins font-normal text-sm text-slate-700"
                     >
                       <CheckCircle2 className="w-5 h-5 text-alternativeO shrink-0" />
                       <span>{feature}</span>
@@ -409,9 +415,10 @@ export function Services() {
                   ))}
                 </ul>
 
+                {/* Button - Montserrat SemiBold */}
                 <Link
                   to="/"
-                  className="inline-flex items-center gap-2 font-poppins font-bold text-primary group-hover:text-secondary transition-colors mt-auto pt-6 border-t border-slate-100"
+                  className="inline-flex items-center gap-2 font-montserrat font-semibold text-primary group-hover:text-secondary transition-colors mt-auto pt-6 border-t border-slate-100"
                 >
                   Get a Quote <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -426,8 +433,12 @@ export function Services() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <motion.div className="lg:w-1/2" {...fadeIn}>
-              <h2 className="text-4xl md:text-5xl mb-6">The Embrace Process</h2>
-              <p className="text-slate-600 font-montserrat text-lg mb-10">
+              {/* Main Headline - Anton ExtraBold */}
+              <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-6">
+                The Embrace Process
+              </h2>
+              {/* Body Text - Poppins Regular */}
+              <p className="text-slate-600 font-poppins font-normal text-lg mb-10">
                 Going solar shouldn't be complicated. We've streamlined our
                 process to make your transition to clean energy as smooth and
                 hands-off as possible.
@@ -471,8 +482,10 @@ export function Services() {
                       )}
                     </div>
                     <div className="pb-8">
-                      <h4 className="text-xl mb-2">{step.title}</h4>
-                      <p className="text-slate-600 font-montserrat text-sm leading-relaxed">
+                      {/* Section Title - Montserrat Bold */}
+                      <h4 className="text-xl font-montserrat font-bold mb-2">{step.title}</h4>
+                      {/* Body Text - Poppins Regular */}
+                      <p className="text-slate-600 font-poppins font-normal text-sm leading-relaxed">
                         {step.desc}
                       </p>
                     </div>
@@ -491,10 +504,12 @@ export function Services() {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-10">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl text-white">
-                    <div className="font-anton text-4xl text-secondary mb-2">
+                    {/* Data Font - Anton ExtraBold */}
+                    <div className="font-anton font-extrabold text-4xl text-secondary mb-2">
                       100%
                     </div>
-                    <div className="font-poppins font-medium uppercase tracking-wider text-sm">
+                    {/* Navigation Menu - Montserrat Medium */}
+                    <div className="font-montserrat font-medium uppercase tracking-wider text-sm">
                       Turnkey Solution
                     </div>
                   </div>
@@ -509,10 +524,12 @@ export function Services() {
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.div className="text-center mb-16" {...fadeIn}>
-            <h2 className="text-4xl md:text-5xl mb-4">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-slate-600 font-montserrat text-lg">
+            {/* Body Text - Poppins Regular */}
+            <p className="text-slate-600 font-poppins font-normal text-lg">
               Everything you need to know about switching to solar.
             </p>
           </motion.div>
@@ -533,7 +550,8 @@ export function Services() {
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
                 >
-                  <span className="font-anton text-lg text-primary tracking-normal normal-case">
+                  {/* Section Title - Montserrat Bold */}
+                  <span className="font-montserrat font-bold text-lg text-primary">
                     {faq.q}
                   </span>
                   <div
@@ -568,7 +586,8 @@ export function Services() {
                         duration: 0.3,
                       }}
                     >
-                      <div className="px-6 pb-6 pt-2 text-slate-600 font-montserrat leading-relaxed border-t border-slate-50">
+                      {/* Body Text - Poppins Regular */}
+                      <div className="px-6 pb-6 pt-2 text-slate-600 font-poppins font-normal leading-relaxed border-t border-slate-50">
                         {faq.a}
                       </div>
                     </motion.div>
@@ -588,17 +607,20 @@ export function Services() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl">
             <div className="max-w-2xl">
-              <h2 className="text-3xl md:text-5xl text-white mb-4">
+              {/* Main Headline - Anton ExtraBold */}
+              <h2 className="text-3xl md:text-5xl font-anton font-extrabold text-white mb-4">
                 Ready to start your solar journey?
               </h2>
-              <p className="text-slate-300 font-montserrat text-lg">
+              {/* Body Text - Poppins Regular */}
+              <p className="text-slate-300 font-poppins font-normal text-lg">
                 Schedule a free site assessment and discover your property's
                 solar potential.
               </p>
             </div>
+            {/* Button - Montserrat SemiBold */}
             <Link
               to="/"
-              className="shrink-0 bg-secondary text-primary font-bold font-poppins px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors text-lg shadow-lg flex items-center gap-2"
+              className="shrink-0 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors text-lg shadow-lg flex items-center gap-2"
             >
               Schedule Assessment <ArrowRight className="w-5 h-5" />
             </Link>
