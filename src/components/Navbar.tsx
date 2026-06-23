@@ -38,11 +38,15 @@ export function Navbar() {
 
   const navLinks: NavLink[] = [
     {
-      name: "About",
+      name: "Home",
+      path: "/",
+    },
+    {
+      name: "About Embrace",
       path: "/about",
     },
     {
-      name: "Services",
+      name: "Solutions",
       path: "/services",
       children: [
         {
@@ -68,7 +72,7 @@ export function Navbar() {
       ],
     },
     {
-      name: "Shop",
+      name: "Products",
       path: "/shop",
       children: [
         {
@@ -108,10 +112,6 @@ export function Navbar() {
       ],
     },
     {
-      name: "Blog",
-      path: "/blog",
-    },
-    {
       name: "Contact Us",
       path: "/contact",
     },
@@ -123,134 +123,153 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-2 text-primary" : "py-6 text-white"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-2 text-primary" : "py-0 text-white"
         }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        {/* Logo - White when not scrolled, Blue when scrolled */}
-        <Link to="/" className="group">
-          <img
-            src={isScrolled ? "./embrace-logo.jpg" : "./embracewhite.png"}
-            alt="Embrace Technologies"
-            className={`
-              rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105
-              ${isScrolled ? "h-12 md:h-14 w-36 md:w-44" : "h-24 md:h-28 w-60 md:w-72"}
-            `}
-          />
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-7">
-          {navLinks.map((link) => {
-            const hasChildren = !!link.children?.length;
-            const active = isActive(link);
-            if (!hasChildren) {
-              return (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className={`font-montserrat font-bold text-sm transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all after:duration-300 hover:after:w-full hover:text-secondary ${active
-                    ? "text-secondary"
-                    : isScrolled
-                      ? "text-primary"
-                      : "text-white/90"
-                    }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            }
-            return (
-              <div
-                key={link.name}
-                className="relative"
-                onMouseEnter={() => setOpenDropdown(link.name)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button
-                  type="button"
-                  onClick={() =>
-                    setOpenDropdown(openDropdown === link.name ? null : link.name)
-                  }
-                  className={`flex items-center gap-1 font-montserrat font-bold text-sm transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all after:duration-300 hover:after:w-full hover:text-secondary ${active
-                    ? "text-secondary"
-                    : isScrolled
-                      ? "text-primary"
-                      : "text-white/90"
-                    }`}
-                  aria-haspopup="true"
-                  aria-expanded={openDropdown === link.name}
-                >
-                  {link.name}
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${openDropdown === link.name ? "rotate-180" : ""
-                      }`}
-                  />
-                </button>
-
-                <AnimatePresence>
-                  {openDropdown === link.name && (
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                        y: 8,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        y: 0,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        y: 8,
-                      }}
-                      transition={{
-                        duration: 0.18,
-                      }}
-                      className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72"
-                    >
-                      <div className="bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
-                        <div className="h-1 bg-secondary" />
-                        <ul className="py-2">
-                          {link.children!.map((child) => (
-                            <li key={child.name}>
-                              <Link
-                                to={child.path}
-                                className="block px-5 py-3 font-montserrat text-sm text-primary relative pb-2 after:absolute after:bottom-1 after:left-5 after:w-0 after:h-0.5 after:bg-secondary after:transition-all after:duration-300 hover:after:w-[calc(100%-40px)] hover:bg-slate-50 hover:text-secondary transition-colors"
-                              >
-                                {child.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-
-          <Link
-            to="/contact"
-            className="bg-secondary text-primary font-bold font-poppins px-6 py-2.5 rounded-sm hover:bg-yellow-400 transition-colors shadow-sm"
-          >
-            Get a Quote
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between">
+          {/* Logo - Far Left */}
+          <Link to="/" className="group flex-shrink-0">
+            <img
+              src={isScrolled ? "./embrace-logo.jpg" : "./embrace-logo.jpg"}
+              alt="Embrace Technologies"
+              className={`
+                rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105
+                ${isScrolled ? "h-12 md:h-14 w-36 md:w-44" : "h-24 md:h-28 w-50 md:w-52"}
+              `}
+            />
           </Link>
-        </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className={`lg:hidden p-2 transition-colors ${isScrolled ? "text-primary" : "text-white"
-            }`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle menu"
-        >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
-        </button>
+          {/* Desktop Nav - Center */}
+          <nav className="hidden lg:flex items-center justify-center flex-1">
+            <div className="flex items-center gap-8">
+              {navLinks.map((link) => {
+                const hasChildren = !!link.children?.length;
+                const active = isActive(link);
+                if (!hasChildren) {
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.path}
+                      className={`relative font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                        ? "text-secondary"
+                        : isScrolled
+                          ? "text-primary"
+                          : "text-white/90"
+                        }`}
+                    >
+                      <span className="relative z-10">{link.name}</span>
+                      <motion.div
+                        className="absolute inset-0 bg-secondary/10 rounded-md"
+                        initial={{ opacity: 0, y: "100%", scaleY: 0.8 }}
+                        whileHover={{ opacity: 1, y: 0, scaleY: 1 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                    </Link>
+                  );
+                }
+                return (
+                  <div
+                    key={link.name}
+                    className="relative"
+                    onMouseEnter={() => setOpenDropdown(link.name)}
+                    onMouseLeave={() => setOpenDropdown(null)}
+                  >
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === link.name ? null : link.name)
+                      }
+                      className={`relative flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                        ? "text-secondary"
+                        : isScrolled
+                          ? "text-primary"
+                          : "text-white/90"
+                        }`}
+                      aria-haspopup="true"
+                      aria-expanded={openDropdown === link.name}
+                    >
+                      <span className="relative z-10">{link.name}</span>
+                      <motion.div
+                        className="absolute inset-0 bg-secondary/10 rounded-md"
+                        initial={{ opacity: 0, y: "100%", scaleY: 0.8 }}
+                        whileHover={{ opacity: 1, y: 0, scaleY: 1 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 relative z-10 ${openDropdown === link.name ? "rotate-180" : ""
+                          }`}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {openDropdown === link.name && (
+                        <motion.div
+                          initial={{
+                            opacity: 0,
+                            y: 8,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            y: 8,
+                          }}
+                          transition={{
+                            duration: 0.18,
+                          }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72"
+                        >
+                          <div className="bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
+                            <div className="h-1 bg-secondary" />
+                            <ul className="py-2">
+                              {link.children!.map((child) => (
+                                <li key={child.name}>
+                                  <Link
+                                    to={child.path}
+                                    className="block px-5 py-3 font-montserrat text-sm text-primary hover:bg-slate-50 transition-colors"
+                                  >
+                                    {child.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </nav>
+
+          {/* Get a Quote Button - Far Right */}
+          <div className="hidden lg:block flex-shrink-0">
+            <Link
+              to="/contact"
+              className="bg-secondary text-primary font-bold font-poppins px-6 py-2.5 rounded-sm hover:bg-yellow-400 transition-colors shadow-sm uppercase text-sm tracking-wide"
+            >
+              Get a Quote
+            </Link>
+          </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className={`lg:hidden p-2 transition-colors flex-shrink-0 ${isScrolled ? "text-primary" : "text-white"
+              }`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -282,7 +301,7 @@ export function Navbar() {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`font-montserrat font-medium text-lg py-3 relative pb-1 after:absolute after:bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all after:duration-300 hover:after:w-full hover:text-secondary transition-colors ${isScrolled
+                      className={`font-montserrat font-medium text-lg py-3 uppercase tracking-wide transition-colors ${isScrolled
                         ? "text-primary border-b border-slate-50"
                         : "text-white border-b border-primary/30"
                         }`}
@@ -301,7 +320,7 @@ export function Navbar() {
                     <button
                       type="button"
                       onClick={() => setOpenMobileSub(isOpen ? null : link.name)}
-                      className={`w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all after:duration-300 hover:after:w-full hover:text-secondary transition-colors ${isScrolled ? "text-primary" : "text-white"
+                      className={`w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 uppercase tracking-wide transition-colors ${isScrolled ? "text-primary" : "text-white"
                         }`}
                       aria-expanded={isOpen}
                     >
@@ -335,7 +354,7 @@ export function Navbar() {
                             <li key={child.name}>
                               <Link
                                 to={child.path}
-                                className={`block font-montserrat text-sm py-2 relative pb-0.5 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-secondary after:transition-all after:duration-300 hover:after:w-full hover:text-secondary transition-colors ${isScrolled ? "text-slate-600" : "text-white/80"
+                                className={`block font-montserrat text-sm py-2 transition-colors ${isScrolled ? "text-slate-600" : "text-white/80"
                                   }`}
                               >
                                 {child.name}
@@ -351,7 +370,7 @@ export function Navbar() {
 
               <Link
                 to="/contact"
-                className="bg-secondary text-primary font-bold font-poppins px-6 py-3 rounded-sm text-center mt-4"
+                className="bg-secondary text-primary font-bold font-poppins px-6 py-3 rounded-sm text-center mt-4 uppercase tracking-wide"
               >
                 Get a Quote
               </Link>

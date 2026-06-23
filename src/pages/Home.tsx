@@ -400,10 +400,6 @@ export function Home() {
               <h2 className="font-montserrat font-bold text-4xl md:text-5xl lg:text-6xl text-primary leading-tight mb-6">
                 Why Choose <span className="text-secondary italic">Embrace</span>
               </h2>
-              <p className="text-primary/70 font-montserrat text-base leading-relaxed max-w-lg">
-                We combine industry-leading technology with expert installation to
-                deliver solar systems that perform better and last longer.
-              </p>
             </motion.div>
 
             <div className="grid grid-cols-2 gap-6">
@@ -456,7 +452,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
       {/* SERVICES PREVIEW */}
       <section className="pt-12 pb-24 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -976,14 +971,16 @@ export function Home() {
               Ready to Embrace Clean Energy?
             </h2>
             <p className="text-xl text-slate-200 font-montserrat mb-10 max-w-2xl mx-auto">
-              Get a free, no-obligation quote and see how much you could save by
-              switching to solar today.
+              Call To Action
+              Ready To Power Your Home or Business?
             </p>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-10 py-5 rounded-sm hover:bg-yellow-400 transition-colors text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"
             >
-              Schedule Free Assessment
+
+              Request Free Consultation
+
               <ArrowRight className="w-6 h-6" />
             </Link>
           </motion.div>

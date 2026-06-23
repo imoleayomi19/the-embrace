@@ -417,10 +417,121 @@ export function About() {
             </div>
           </div>
         </div>
-
-
-
       </section>
+
+      {/* WHY EMBRACE TECHNOLOGIES LIMITED */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div className="text-center mb-12" {...fadeIn}>
+            <h2 className="text-3xl md:text-4xl font-anton font-extrabold mb-6 text-primary">
+              Why Embrace Technologies Limited
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-6xl mx-auto">
+            {[
+              "Engineering expertise",
+              "End-to-end project delivery",
+              "Quality products",
+              "Professional Installation",
+              "After-sales support",
+              "Technical training",
+              "Strategic partnerships",
+              "Nationwide project execution",
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="bg-slate-900 rounded-lg p-6 flex items-center gap-4 hover:bg-slate-800 transition-colors cursor-pointer group"
+              >
+                <svg
+                  className="w-4 h-4 text-secondary flex-shrink-0 group-hover:translate-x-1 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <span className="text-white font-montserrat font-bold text-sm uppercase tracking-wide">
+                  {item}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MILESTONES & CERTIFICATIONS */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Milestones Timeline */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center lg:text-left"
+            >
+              <h3 className="text-2xl md:text-3xl font-anton font-extrabold mb-8 text-primary">
+                Milestones Timeline
+              </h3>
+              <div className="space-y-6">
+                {[
+                  { year: "2019", event: "Founded" },
+                  { year: "2021", event: "Registered as Business Name (CAC)" },
+                  { year: "2026", event: "Incorporated as Limited Liability Company" },
+                ].map((milestone, idx) => (
+                  <div key={idx} className="flex items-center gap-4">
+                    <div className="flex-shrink-0 w-20 h-20 bg-primary rounded-full flex items-center justify-center">
+                      <span className="text-2xl font-anton font-extrabold text-white">
+                        {milestone.year}
+                      </span>
+                    </div>
+                    <div className="flex-grow border-b border-slate-200 pb-4">
+                      <p className="text-slate-700 font-poppins font-normal text-base">
+                        {milestone.event}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Certifications & Compliance */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center lg:text-left"
+            >
+              <h3 className="text-2xl md:text-3xl font-anton font-extrabold mb-8 text-primary">
+                Certifications & Compliance
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {["CAC", "NEMSA", "COREN", "HSE"].map((cert, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    className="bg-slate-50 rounded-xl p-6 border-2 border-slate-200 hover:border-secondary hover:shadow-lg transition-all duration-300"
+                  >
+                    <span className="text-xl font-montserrat font-bold text-primary">
+                      {cert}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* OUR CORE VALUES - SOLAR STYLE */}
       <section className="py-24 relative overflow-hidden">
         {/* Background Image with Overlay */}
