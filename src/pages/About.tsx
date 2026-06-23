@@ -288,7 +288,7 @@ export function About() {
               <motion.div {...fadeIn}>
                 {/* Main Headline - Anton ExtraBold */}
                 <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-1 mb-6 leading-tight text-primary">
-                  EMBRACE TECHNOLOGIES LIMITED.
+                  EMBRACE TECHNOLOGIES LIMITED
                 </h2>
               </motion.div>
 
