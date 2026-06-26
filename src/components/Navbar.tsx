@@ -28,34 +28,89 @@ type ProductItem = {
   path: string;
 };
 
-type ProductTab = "Residential" | "Commercial & Industrial";
-
-const productCategories: ProductCategory[] = [
-  { name: "Off Grid Inverter", path: "/shop/off-grid-inverter" },
-  { name: "Hybrid Inverter", path: "/shop/hybrid-inverter" },
-  { name: "Micro Inverter", path: "/shop/micro-inverter" },
-  { name: "Lithium Battery", path: "/shop/lithium-battery" },
-  { name: "All in One ESS", path: "/shop/all-in-one-ess" },
-  { name: "Gel Battery", path: "/shop/gel-battery" },
-  { name: "Key Components", path: "/shop/key-components" },
+// Per-category product lists — different counts per category
+const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
+  {
+    name: "Off Grid Inverter",
+    path: "/shop/off-grid-inverter",
+    products: [
+      { name: "IVPS3.5~10kVA", image: "/solar-4.jpg", path: "/shop" },
+      { name: "IVPS0712-1512", image: "/solar-5.jpg", path: "/shop" },
+      { name: "IVEM8~12kW", image: "/solar-6.jpg", path: "/shop" },
+      { name: "IVCM1012-LV", image: "/solar-7.jpg", path: "/shop" },
+      { name: "IVPA-Pro", image: "/solar-8.jpg", path: "/shop" },
+      { name: "IVPS-Mini", image: "/solar-4.jpg", path: "/shop" },
+    ],
+  },
+  {
+    name: "Hybrid Inverter",
+    path: "/shop/hybrid-inverter",
+    products: [
+      { name: "IVCM1/2/3kW-PRO", image: "/solar-5.jpg", path: "/shop" },
+      { name: "IVCM5kW-Lite", image: "/solar-6.jpg", path: "/shop" },
+      { name: "IVHG-30kW", image: "/solar-7.jpg", path: "/shop" },
+      { name: "IVHG-50kW", image: "/solar-8.jpg", path: "/shop" },
+      { name: "IVHG-100kW", image: "/solar-4.jpg", path: "/shop" },
+    ],
+  },
+  {
+    name: "Micro Inverter",
+    path: "/shop/micro-inverter",
+    products: [
+      { name: "IVEM8~12kW-II", image: "/solar-6.jpg", path: "/shop" },
+      { name: "IVEM-400W", image: "/solar-7.jpg", path: "/shop" },
+      { name: "IVEM-800W", image: "/solar-8.jpg", path: "/shop" },
+    ],
+  },
+  {
+    name: "Lithium Battery",
+    path: "/shop/lithium-battery",
+    products: [
+      { name: "IVLI-100AH", image: "/solar-7.jpg", path: "/shop" },
+      { name: "IVLI-200AH", image: "/solar-8.jpg", path: "/shop" },
+      { name: "IVLI-300AH", image: "/solar-4.jpg", path: "/shop" },
+      { name: "IVLI-Stack", image: "/solar-5.jpg", path: "/shop" },
+      { name: "IVLI-Rack", image: "/solar-6.jpg", path: "/shop" },
+      { name: "IVLI-Wall", image: "/solar-7.jpg", path: "/shop" },
+    ],
+  },
+  {
+    name: "All in One ESS",
+    path: "/shop/all-in-one-ess",
+    products: [
+      { name: "IVCS-50kW", image: "/solar-8.jpg", path: "/shop" },
+      { name: "IVCS-100kW", image: "/solar-4.jpg", path: "/shop" },
+    ],
+  },
+  {
+    name: "Gel Battery",
+    path: "/shop/gel-battery",
+    products: [
+      { name: "GEL-100AH", image: "/solar-5.jpg", path: "/shop" },
+      { name: "GEL-150AH", image: "/solar-6.jpg", path: "/shop" },
+      { name: "GEL-200AH", image: "/solar-7.jpg", path: "/shop" },
+    ],
+  },
+  {
+    name: "Key Components",
+    path: "/shop/key-components",
+    products: [
+      { name: "MPPT Controller", image: "/solar-8.jpg", path: "/shop" },
+      { name: "Solar Cables", image: "/solar-4.jpg", path: "/shop" },
+      { name: "MC4 Connectors", image: "/solar-5.jpg", path: "/shop" },
+      { name: "Mounting Frames", image: "/solar-6.jpg", path: "/shop" },
+      { name: "Protection Switch", image: "/solar-7.jpg", path: "/shop" },
+    ],
+  },
 ];
 
-const productsByTab: Record<ProductTab, ProductItem[]> = {
-  Residential: [
-    { name: "IVPS3.5~10kVA-US", image: "/solar-4.jpg", path: "/shop" },
-    { name: "IVCM1012-LV", image: "/solar-5.jpg", path: "/shop" },
-    { name: "IVEM8~12kW-II", image: "/solar-6.jpg", path: "/shop" },
-    { name: "IVCM1/2/3kW-PRO", image: "/solar-7.jpg", path: "/shop" },
-    { name: "IVPS0712-1512", image: "/solar-8.jpg", path: "/shop" },
-  ],
-  "Commercial & Industrial": [
-    { name: "IVHG 30-100kW", image: "/solar-5.jpg", path: "/shop" },
-    { name: "IVCS 50kW ESS", image: "/solar-6.jpg", path: "/shop" },
-    { name: "IVMG 3-Phase", image: "/solar-7.jpg", path: "/shop" },
-    { name: "IVLI-200AH", image: "/solar-8.jpg", path: "/shop" },
-    { name: "IVCA-Stack", image: "/solar-4.jpg", path: "/shop" },
-  ],
-};
+// Grid column class based on product count
+function colsClass(count: number): string {
+  if (count <= 2) return "grid-cols-2";
+  if (count <= 3) return "grid-cols-3";
+  if (count <= 5) return "grid-cols-5";
+  return "grid-cols-6";
+}
 
 const productSeries = [
   { label: "IVEM Series", path: "/shop" },
@@ -76,8 +131,8 @@ function ProductsMegaMenu({
   activeCategory: string;
   setActiveCategory: (c: string) => void;
 }) {
-  const [activeTab, setActiveTab] = useState<ProductTab>("Residential");
-  const products = productsByTab[activeTab];
+  const activeCat = productCategories.find((c) => c.name === activeCategory) ?? productCategories[0];
+  const products = activeCat.products;
 
   return (
     <motion.div
@@ -89,7 +144,7 @@ function ProductsMegaMenu({
       className="fixed left-0 right-0 z-[100] shadow-2xl"
     >
       <div className="bg-white border-t border-slate-100">
-        <div className="max-w-[1400px] mx-auto flex" style={{ minHeight: 340 }}>
+        <div className="max-w-[1400px] mx-auto flex" style={{ minHeight: 320 }}>
 
           {/* ── Left sidebar: categories ── */}
           <aside className="w-52 flex-shrink-0 border-r border-slate-100 py-4">
@@ -116,52 +171,55 @@ function ProductsMegaMenu({
             })}
           </aside>
 
-          {/* ── Right: tabs + product grid + series ── */}
-          <div className="flex-1 px-6 py-4 flex flex-col gap-4">
+          {/* ── Right: product grid + series ── */}
+          <div className="flex-1 px-6 py-5 flex flex-col gap-4">
 
-            {/* Top tabs */}
-            <div className="flex items-center gap-6 border-b border-slate-100 pb-3">
-              {(["Residential", "Commercial & Industrial"] as ProductTab[]).map((tab) => (
-                <button
-                  key={tab}
-                  type="button"
-                  onClick={() => setActiveTab(tab)}
-                  className={`font-montserrat font-semibold text-sm pb-1 border-b-2 transition-colors
-                    ${activeTab === tab
-                      ? "text-secondary border-secondary"
-                      : "text-slate-500 border-transparent hover:text-primary"
-                    }`}
-                >
-                  {tab}
-                  <ChevronRight className="inline w-3 h-3 ml-1 opacity-60" />
-                </button>
-              ))}
+            {/* Category title + link */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h4 className="font-montserrat font-bold text-primary text-sm uppercase tracking-wide">
+                {activeCat.name}
+              </h4>
+              <Link
+                to={activeCat.path}
+                className="font-montserrat text-xs font-semibold text-secondary hover:underline flex items-center gap-1"
+              >
+                View All <ChevronRight className="w-3 h-3" />
+              </Link>
             </div>
 
-            {/* Product image grid */}
-            <div className="grid grid-cols-5 gap-4 flex-1">
-              {products.map((product) => (
-                <Link
-                  key={product.name}
-                  to={product.path}
-                  className="group flex flex-col items-center gap-2"
-                >
-                  <div className="w-full aspect-square bg-slate-50 border border-slate-100 rounded-lg overflow-hidden flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = "none";
-                      }}
-                    />
-                  </div>
-                  <span className="font-montserrat text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
-                    {product.name}
-                  </span>
-                </Link>
-              ))}
-            </div>
+            {/* Product image grid — columns adapt to count */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCat.name}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className={`grid ${colsClass(products.length)} gap-4 flex-1`}
+              >
+                {products.map((product) => (
+                  <Link
+                    key={product.name}
+                    to={product.path}
+                    className="group flex flex-col items-center gap-2"
+                  >
+                    <div className="w-full aspect-square bg-slate-50 border border-slate-100 rounded-lg overflow-hidden flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = "none";
+                        }}
+                      />
+                    </div>
+                    <span className="font-montserrat text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
+                      {product.name}
+                    </span>
+                  </Link>
+                ))}
+              </motion.div>
+            </AnimatePresence>
 
             {/* Series links row */}
             <div className="flex items-center gap-1 flex-wrap border-t border-slate-100 pt-3">
@@ -305,10 +363,10 @@ export function Navbar() {
                       key={link.name}
                       to={link.path}
                       className={`relative font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
-                          ? "text-secondary"
-                          : isScrolled
-                            ? "text-primary"
-                            : "text-white/90"
+                        ? "text-secondary"
+                        : isScrolled
+                          ? "text-primary"
+                          : "text-white/90"
                         }`}
                     >
                       <span className="relative z-10">{link.name}</span>
@@ -334,10 +392,10 @@ export function Navbar() {
                       <button
                         type="button"
                         className={`relative flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
-                            ? "text-secondary"
-                            : isScrolled
-                              ? "text-primary"
-                              : "text-white/90"
+                          ? "text-secondary"
+                          : isScrolled
+                            ? "text-primary"
+                            : "text-white/90"
                           }`}
                         aria-haspopup="true"
                         aria-expanded={openDropdown === "Products"}
@@ -382,10 +440,10 @@ export function Navbar() {
                         setOpenDropdown(openDropdown === link.name ? null : link.name)
                       }
                       className={`relative flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
-                          ? "text-secondary"
-                          : isScrolled
-                            ? "text-primary"
-                            : "text-white/90"
+                        ? "text-secondary"
+                        : isScrolled
+                          ? "text-primary"
+                          : "text-white/90"
                         }`}
                       aria-haspopup="true"
                       aria-expanded={openDropdown === link.name}
@@ -529,8 +587,8 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className={`lg:hidden overflow-hidden transition-colors ${isScrolled
-                ? "bg-white border-t border-slate-100"
-                : "bg-primary/95 backdrop-blur-md border-t border-primary/50"
+              ? "bg-white border-t border-slate-100"
+              : "bg-primary/95 backdrop-blur-md border-t border-primary/50"
               }`}
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
@@ -544,8 +602,8 @@ export function Navbar() {
                     <div
                       key="Products"
                       className={`transition-colors ${isScrolled
-                          ? "border-b border-slate-50"
-                          : "border-b border-primary/30"
+                        ? "border-b border-slate-50"
+                        : "border-b border-primary/30"
                         }`}
                     >
                       <button
@@ -595,8 +653,8 @@ export function Navbar() {
                       key={link.name}
                       to={link.path}
                       className={`font-montserrat font-medium text-lg py-3 uppercase tracking-wide transition-colors ${isScrolled
-                          ? "text-primary border-b border-slate-50"
-                          : "text-white border-b border-primary/30"
+                        ? "text-primary border-b border-slate-50"
+                        : "text-white border-b border-primary/30"
                         }`}
                     >
                       {link.name}
@@ -609,8 +667,8 @@ export function Navbar() {
                   <div
                     key={link.name}
                     className={`transition-colors ${isScrolled
-                        ? "border-b border-slate-50"
-                        : "border-b border-primary/30"
+                      ? "border-b border-slate-50"
+                      : "border-b border-primary/30"
                       }`}
                   >
                     <button
