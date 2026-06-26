@@ -392,64 +392,127 @@ export function Home() {
         </motion.div>
       </section>
 
-      {/* WHY CHOOSE US */}
+      {/* QUICK SERVICE SECTION */}
       <section className="py-24 bg-slate-50 overflow-hidden">
-        <div className="container mx-auto px-8 md:px-16 lg:px-24">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-            <motion.div {...fadeIn} className="lg:sticky lg:top-32">
-              <h2 className="font-montserrat font-bold text-4xl md:text-5xl lg:text-6xl text-primary leading-tight mb-6">
-                Why Choose <span className="text-secondary italic">Embrace</span>
-              </h2>
-            </motion.div>
+        <div className="container mx-auto px-4 md:px-8 lg:px-16">
+          {/* Section Header */}
+          <motion.div className="text-center max-w-3xl mx-auto mb-16" {...fadeIn}>
+            <span className="inline-block bg-secondary/20 text-primary font-montserrat font-semibold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
+              Quick Services
+            </span>
+            <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-primary leading-tight mb-4">
+              Everything You Need,{" "}
+              <span className="text-secondary italic">All In One Place</span>
+            </h2>
+            <p className="text-slate-500 font-montserrat text-base md:text-lg leading-relaxed">
+              From consultation to commissioning — our expert team delivers reliable energy solutions tailored to your needs.
+            </p>
+          </motion.div>
 
-            <div className="grid grid-cols-2 gap-6">
-              <motion.div
-                className="flex flex-col gap-6"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="whileInView"
-              >
-                <motion.div variants={fadeIn} className="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div className="font-anton font-extrabold text-alternativeO text-5xl md:text-6xl mb-4 leading-none">01</div>
-                  <h3 className="font-montserrat font-bold text-primary text-lg mb-2">Certified Installers</h3>
-                  <p className="text-primary/70 font-montserrat text-sm leading-relaxed">
-                    Our team of NEMCA and current certified professionals ensures flawless execution.
-                  </p>
-                </motion.div>
+          {/* 6 Cards Grid */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+          >
+            {[
+              {
+                number: "01",
+                accent: "text-primary",
+                border: "border-primary/30",
+                icon: Sun,
+                title: "Solar Installation",
+                desc: "End-to-end residential and commercial solar PV system design, supply, and professional installation.",
+                link: "/services",
+              },
+              {
+                number: "02",
+                accent: "text-secondary",
+                border: "border-secondary/40",
+                icon: Battery,
+                title: "Energy Storage",
+                desc: "High-capacity lithium battery systems and inverter solutions for 24/7 uninterrupted power supply.",
+                link: "/services",
+              },
+              {
+                number: "03",
+                accent: "text-alternativeO",
+                border: "border-alternativeO/30",
+                icon: ShieldCheck,
+                title: "System Maintenance",
+                desc: "Scheduled inspections, performance monitoring, and rapid-response after-sales support.",
+                link: "/services",
+              },
+              {
+                number: "04",
+                accent: "text-alternativeR",
+                border: "border-alternativeR/30",
+                icon: Building2,
+                title: "Commercial Projects",
+                desc: "Scalable solar solutions for factories, office complexes, schools, and government facilities.",
+                link: "/services",
+              },
+              {
+                number: "05",
+                accent: "text-primary",
+                border: "border-primary/30",
+                icon: HomeIcon,
+                title: "Smart Home Energy",
+                desc: "Intelligent energy management systems that optimise usage and reduce electricity bills.",
+                link: "/services",
+              },
+              {
+                number: "06",
+                accent: "text-secondary",
+                border: "border-secondary/40",
+                icon: Leaf,
+                title: "Eco Consultation",
+                desc: "Expert energy audits and sustainability road-maps aligned with your green-energy goals.",
+                link: "/services",
+              },
+            ].map((card, idx) => {
+              const CardIcon = card.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  variants={fadeIn}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className={`bg-white rounded-2xl p-7 shadow-lg hover:shadow-2xl transition-shadow duration-300 border-t-4 ${card.border} flex flex-col gap-4 group`}
+                >
+                  {/* Number + Icon row */}
+                  <div className="flex items-center justify-between">
+                    <span className={`font-anton font-extrabold text-5xl leading-none ${card.accent} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}>
+                      {card.number}
+                    </span>
+                    <div className={`w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center shadow-sm`}>
+                      <CardIcon className={`w-6 h-6 ${card.accent}`} strokeWidth={1.8} />
+                    </div>
+                  </div>
 
-                <motion.div variants={fadeIn} className="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div className="font-anton font-extrabold text-alternativeR text-5xl md:text-6xl mb-4 leading-none">03</div>
-                  <h3 className="font-montserrat font-bold text-primary text-lg mb-2">Lifetime Support</h3>
-                  <p className="text-primary/70 font-montserrat text-sm leading-relaxed">
-                    25-year comprehensive lifetime and ongoing maintenance support.
-                  </p>
-                </motion.div>
-              </motion.div>
+                  {/* Text */}
+                  <div>
+                    <h3 className="font-montserrat font-bold text-primary text-lg mb-2 group-hover:text-secondary transition-colors duration-300">
+                      {card.title}
+                    </h3>
+                    <p className="text-slate-500 font-montserrat text-sm leading-relaxed">
+                      {card.desc}
+                    </p>
+                  </div>
 
-              <motion.div
-                className="flex flex-col gap-6 mt-12 lg:mt-16"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="whileInView"
-              >
-                <motion.div variants={fadeIn} className="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div className="font-anton font-extrabold text-secondary text-5xl md:text-6xl mb-4 leading-none">02</div>
-                  <h3 className="font-montserrat font-bold text-primary text-lg mb-2">Premium Panels</h3>
-                  <p className="text-primary/70 font-montserrat text-sm leading-relaxed">
-                    We use tier-1 monocrystalline panels with industry-leading efficiency.
-                  </p>
+                  {/* CTA */}
+                  <Link
+                    to={card.link}
+                    className={`inline-flex items-center gap-1.5 font-montserrat font-semibold text-sm ${card.accent} mt-auto group-hover:gap-3 transition-all duration-300`}
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </motion.div>
-
-                <motion.div variants={fadeIn} className="bg-white rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div className="font-anton font-extrabold text-alternative text-5xl md:text-6xl mb-4 leading-none">04</div>
-                  <h3 className="font-montserrat font-bold text-primary text-lg mb-2">Eco-Friendly</h3>
-                  <p className="text-primary/70 font-montserrat text-sm leading-relaxed">
-                    Reduce your carbon footprint and contribute to a sustainable future.
-                  </p>
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
       {/* SERVICES PREVIEW */}
