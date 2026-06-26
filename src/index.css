@@ -12,20 +12,44 @@
   body {
     @apply font-montserrat text-slate-800 bg-slate-50 antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-anton tracking-wide uppercase text-primary;
   }
 }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
   .gpu-accelerate {
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
   }
+
   .will-change-transform {
     will-change: transform;
   }
 }
+
+/* Custom cursor CSS rule to hide default cursor on pointer devices */
+/* @media (hover: hover) and (pointer: fine) {
+
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
+  }
+} */
+/* 
+@media (hover: hover) and (pointer: fine) {
+  .has-custom-cursor {
+    cursor: none !important;
+  }
+} */

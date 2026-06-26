@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 type NavChild = {
   name: string;
   path: string;
+  image?: string;
 };
 
 type NavLink = {
@@ -44,30 +45,51 @@ export function Navbar() {
     {
       name: "About Embrace",
       path: "/about",
+      children: [
+        {
+          name: "Projects",
+          path: "/projects",
+        },
+      ],
     },
     {
       name: "Solutions",
       path: "/services",
       children: [
         {
-          name: "Hybrid Solar Systems",
+          name: "Balcony",
           path: "/services",
+          image: "/solar-4.jpg",
         },
         {
-          name: "CCTV Surveillance systems",
+          name: "Residential",
           path: "/services",
+          image: "/solar-5.jpg",
         },
         {
-          name: "Mini Grid Solution",
+          name: "Commercial",
           path: "/services",
+          image: "/solar-6.jpg",
         },
         {
-          name: "Project Management & Partnership",
+          name: "C&I ESS Cabinet",
           path: "/services",
+          image: "/solar-7.jpg",
         },
         {
-          name: "Equipment Sales, Supply & Installation",
+          name: "Project Cases",
           path: "/services",
+          image: "/solar-8.jpg",
+        },
+        {
+          name: "Esolar Platform",
+          path: "/services",
+          image: "/solar-4.jpg",
+        },
+        {
+          name: "System Config Plan",
+          path: "/services",
+          image: "/solar-5.jpg",
         },
       ],
     },
@@ -90,7 +112,7 @@ export function Navbar() {
       ],
     },
     {
-      name: "Academy",
+      name: "Training Academy",
       path: "/academy",
       children: [
         {
@@ -135,7 +157,7 @@ export function Navbar() {
               alt="Embrace Technologies"
               className={`
                 rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105
-                ${isScrolled ? "h-12 md:h-14 w-36 md:w-44" : "h-24 md:h-28 w-50 md:w-52"}
+                ${isScrolled ? "h-12 md:h-14 w-36 md:w-44" : "h-24 md:h-25 w-50 md:w-32"}
               `}
             />
           </Link>
@@ -202,8 +224,83 @@ export function Navbar() {
                       />
                     </button>
 
+                    {/* Mega Menu for Solutions - Full Width */}
                     <AnimatePresence>
-                      {openDropdown === link.name && (
+                      {openDropdown === link.name && link.name === "Solutions" && (
+                        <motion.div
+                          initial={{
+                            opacity: 0,
+                            y: 20,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            y: 0,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            y: 20,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                          style={{
+                            top: isScrolled ? "48px" : "72px",
+                            height: isScrolled ? "calc(100vh - 88px)" : "calc(100vh - 112px)",
+                          }}
+                          className="fixed left-0 right-0 z-[100]"
+                        >
+                          <div className="bg-white shadow-2xl w-full h-full overflow-y-auto">
+                            <div className="px-4 py-6">
+                              <h3 className="text-2xl font-anton font-extrabold text-primary mb-6 uppercase tracking-wide text-center">
+                                Our Solutions
+                              </h3>
+
+                              <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                {link.children!.map((child, idx) => (
+                                  <Link
+                                    key={idx}
+                                    to={child.path}
+                                    className="group block"
+                                  >
+                                    <div className="relative overflow-hidden rounded-lg aspect-[4/3] mb-2 bg-gradient-to-br from-slate-100 to-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                                      {child.image ? (
+                                        <>
+                                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                                          <img
+                                            src={child.image}
+                                            alt={child.name}
+                                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                                            onError={(e) => {
+                                              (e.target as HTMLImageElement).style.display = 'none';
+                                              const parent = (e.target as HTMLImageElement).parentElement;
+                                              if (parent) {
+                                                parent.classList.add('bg-gradient-to-br', 'from-slate-300', 'to-slate-400');
+                                                parent.innerHTML = '<div class="flex items-center justify-center h-full"><span class="text-slate-600 font-semibold text-xs">View Details</span></div>';
+                                              }
+                                            }}
+                                          />
+                                        </>
+                                      ) : (
+                                        <div className="w-full h-full bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center">
+                                          <span className="text-slate-600 font-semibold text-xs">View Details</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                    <div className="text-center">
+                                      <span className="inline-block font-montserrat font-bold text-primary text-xs uppercase tracking-wide group-hover:text-secondary transition-colors duration-300">
+                                        {child.name}
+                                      </span>
+                                    </div>
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                      {/* Regular dropdown for other menus */}
+                      {openDropdown === link.name && link.name !== "Solutions" && (
                         <motion.div
                           initial={{
                             opacity: 0,
@@ -220,7 +317,7 @@ export function Navbar() {
                           transition={{
                             duration: 0.18,
                           }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72"
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 z-50"
                         >
                           <div className="bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
                             <div className="h-1 bg-secondary" />
