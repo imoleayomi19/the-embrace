@@ -28,11 +28,16 @@ type ProductItem = {
   path: string;
 };
 
-// Per-category product lists — different counts per category
-const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
+// Per-category product lists — different counts + series links per category
+const productCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
   {
     name: "Off Grid Inverter",
     path: "/shop/off-grid-inverter",
+    series: [
+      { label: "IVPS Series", path: "/shop" },
+      { label: "IVEM Series", path: "/shop" },
+      { label: "IVPA Series", path: "/shop" },
+    ],
     products: [
       { name: "IVPS3.5~10kVA", image: "/solar-4.jpg", path: "/shop" },
       { name: "IVPS0712-1512", image: "/solar-5.jpg", path: "/shop" },
@@ -45,6 +50,11 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
   {
     name: "Hybrid Inverter",
     path: "/shop/hybrid-inverter",
+    series: [
+      { label: "IVCM Series", path: "/shop" },
+      { label: "IVHG Series", path: "/shop" },
+      { label: "IVPM Series", path: "/shop" },
+    ],
     products: [
       { name: "IVCM1/2/3kW-PRO", image: "/solar-5.jpg", path: "/shop" },
       { name: "IVCM5kW-Lite", image: "/solar-6.jpg", path: "/shop" },
@@ -56,6 +66,10 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
   {
     name: "Micro Inverter",
     path: "/shop/micro-inverter",
+    series: [
+      { label: "IVEM Series", path: "/shop" },
+      { label: "Micro-400W Series", path: "/shop" },
+    ],
     products: [
       { name: "IVEM8~12kW-II", image: "/solar-6.jpg", path: "/shop" },
       { name: "IVEM-400W", image: "/solar-7.jpg", path: "/shop" },
@@ -65,6 +79,11 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
   {
     name: "Lithium Battery",
     path: "/shop/lithium-battery",
+    series: [
+      { label: "Wall-Mount Series", path: "/shop" },
+      { label: "Rack Series", path: "/shop" },
+      { label: "Stackable Series", path: "/shop" },
+    ],
     products: [
       { name: "IVLI-100AH", image: "/solar-7.jpg", path: "/shop" },
       { name: "IVLI-200AH", image: "/solar-8.jpg", path: "/shop" },
@@ -77,6 +96,10 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
   {
     name: "All in One ESS",
     path: "/shop/all-in-one-ess",
+    series: [
+      { label: "Liquid Cooling Series", path: "/shop" },
+      { label: "Air Cooling Series", path: "/shop" },
+    ],
     products: [
       { name: "IVCS-50kW", image: "/solar-8.jpg", path: "/shop" },
       { name: "IVCS-100kW", image: "/solar-4.jpg", path: "/shop" },
@@ -85,6 +108,10 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
   {
     name: "Gel Battery",
     path: "/shop/gel-battery",
+    series: [
+      { label: "Deep Cycle Series", path: "/shop" },
+      { label: "Solar Gel Series", path: "/shop" },
+    ],
     products: [
       { name: "GEL-100AH", image: "/solar-5.jpg", path: "/shop" },
       { name: "GEL-150AH", image: "/solar-6.jpg", path: "/shop" },
@@ -94,6 +121,11 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
   {
     name: "Key Components",
     path: "/shop/key-components",
+    series: [
+      { label: "MPPT Series", path: "/shop" },
+      { label: "Protection Series", path: "/shop" },
+      { label: "Accessory Series", path: "/shop" },
+    ],
     products: [
       { name: "MPPT Controller", image: "/solar-8.jpg", path: "/shop" },
       { name: "Solar Cables", image: "/solar-4.jpg", path: "/shop" },
@@ -102,22 +134,6 @@ const productCategories: (ProductCategory & { products: ProductItem[] })[] = [
       { name: "Protection Switch", image: "/solar-7.jpg", path: "/shop" },
     ],
   },
-];
-
-// Grid column class based on product count
-function colsClass(count: number): string {
-  if (count <= 2) return "grid-cols-2";
-  if (count <= 3) return "grid-cols-3";
-  if (count <= 5) return "grid-cols-5";
-  return "grid-cols-6";
-}
-
-const productSeries = [
-  { label: "IVEM Series", path: "/shop" },
-  { label: "IVCM Series", path: "/shop" },
-  { label: "IVPM Series", path: "/shop" },
-  { label: "IVPS Series", path: "/shop" },
-  { label: "IVPA Series", path: "/shop" },
 ];
 
 // ─── Products Mega Menu Component ────────────────────────────────────────────
@@ -143,7 +159,7 @@ function ProductsMegaMenu({
       style={{ top: isScrolled ? "56px" : "80px" }}
       className="fixed left-0 right-0 z-[100] shadow-2xl"
     >
-      <div className="bg-white border-t border-slate-100">
+      <div className="bg-white border-t border-slate-100 mt-4">
         <div className="max-w-[1400px] mx-auto flex" style={{ minHeight: 320 }}>
 
           {/* ── Left sidebar: categories ── */}
@@ -195,7 +211,8 @@ function ProductsMegaMenu({
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.18 }}
-                className={`grid ${colsClass(products.length)} gap-4 flex-1`}
+                // className={`grid ${colsClass(products.length)} gap-4 flex-1`}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 flex-1"
               >
                 {products.map((product) => (
                   <Link
@@ -221,22 +238,22 @@ function ProductsMegaMenu({
               </motion.div>
             </AnimatePresence>
 
-            {/* Series links row */}
-            <div className="flex items-center gap-1 flex-wrap border-t border-slate-100 pt-3">
-              {productSeries.map((s) => (
+            {/* Series links row — unique per category */}
+            <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3">
+              {activeCat.series.map((s) => (
                 <Link
                   key={s.label}
                   to={s.path}
-                  className="font-montserrat text-xs text-slate-500 hover:text-primary transition-colors px-1"
+                  className="font-montserrat text-xs text-slate-500 hover:text-secondary transition-colors"
                 >
                   {s.label} &gt;
                 </Link>
               ))}
               <Link
-                to="/shop"
+                to={activeCat.path}
                 className="ml-auto font-montserrat text-xs font-semibold text-secondary hover:underline"
               >
-                All Products &gt;
+                All {activeCat.name} &gt;
               </Link>
             </div>
 
@@ -362,20 +379,14 @@ export function Navbar() {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`relative font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                      className={`font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
                         ? "text-secondary"
                         : isScrolled
-                          ? "text-primary"
-                          : "text-white/90"
+                          ? "text-primary hover:text-secondary"
+                          : "text-white/90 hover:text-secondary"
                         }`}
                     >
-                      <span className="relative z-10">{link.name}</span>
-                      <motion.div
-                        className="absolute inset-0 bg-secondary/10 rounded-md"
-                        initial={{ opacity: 0, y: "100%", scaleY: 0.8 }}
-                        whileHover={{ opacity: 1, y: 0, scaleY: 1 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      />
+                      {link.name}
                     </Link>
                   );
                 }
@@ -391,24 +402,18 @@ export function Navbar() {
                     >
                       <button
                         type="button"
-                        className={`relative flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                        className={`flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
                           ? "text-secondary"
                           : isScrolled
-                            ? "text-primary"
-                            : "text-white/90"
+                            ? "text-primary hover:text-secondary"
+                            : "text-white/90 hover:text-secondary"
                           }`}
                         aria-haspopup="true"
                         aria-expanded={openDropdown === "Products"}
                       >
-                        <span className="relative z-10">Products</span>
-                        <motion.div
-                          className="absolute inset-0 bg-secondary/10 rounded-md"
-                          initial={{ opacity: 0, y: "100%", scaleY: 0.8 }}
-                          whileHover={{ opacity: 1, y: 0, scaleY: 1 }}
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        />
+                        <span>Products</span>
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 relative z-10 ${openDropdown === "Products" ? "rotate-180" : ""
+                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === "Products" ? "rotate-180" : ""
                             }`}
                         />
                       </button>
@@ -439,24 +444,18 @@ export function Navbar() {
                       onClick={() =>
                         setOpenDropdown(openDropdown === link.name ? null : link.name)
                       }
-                      className={`relative flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                      className={`flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
                         ? "text-secondary"
                         : isScrolled
-                          ? "text-primary"
-                          : "text-white/90"
+                          ? "text-primary hover:text-secondary"
+                          : "text-white/90 hover:text-secondary"
                         }`}
                       aria-haspopup="true"
                       aria-expanded={openDropdown === link.name}
                     >
-                      <span className="relative z-10">{link.name}</span>
-                      <motion.div
-                        className="absolute inset-0 bg-secondary/10 rounded-md"
-                        initial={{ opacity: 0, y: "100%", scaleY: 0.8 }}
-                        whileHover={{ opacity: 1, y: 0, scaleY: 1 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      />
+                      <span>{link.name}</span>
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 relative z-10 ${openDropdown === link.name ? "rotate-180" : ""
+                        className={`w-4 h-4 transition-transform duration-200 ${openDropdown === link.name ? "rotate-180" : ""
                           }`}
                       />
                     </button>
@@ -477,7 +476,7 @@ export function Navbar() {
                           }}
                           className="fixed left-0 right-0 z-[100]"
                         >
-                          <div className="bg-white shadow-2xl w-full h-full overflow-y-auto">
+                          <div className="bg-white shadow-2xl w-full h-full overflow-y-auto mt-5">
                             <div className="px-4 py-6">
                               <h3 className="text-2xl font-anton font-extrabold text-primary mb-6 uppercase tracking-wide text-center">
                                 Our Solutions
@@ -526,17 +525,18 @@ export function Navbar() {
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.18 }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-72 z-50"
+                          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute top-full left-2/2 -translate-x-1/2 pt-2 w-64 z-50 mt-5"
                         >
-                          <div className="bg-white rounded-xl shadow-xl border border-slate-100 overflow-hidden">
-                            <div className="h-1 bg-secondary" />
-                            <ul className="py-2">
-                              {link.children!.map((child) => (
+                          <div className="bg-white shadow-2xl border border-slate-100 overflow-hidden">
+                            <ul className="py-1">
+                              {link.children!.map((child, index) => (
                                 <li key={child.name}>
                                   <Link
                                     to={child.path}
-                                    className="block px-5 py-3 font-montserrat text-sm text-primary hover:bg-slate-50 transition-colors"
+                                    className={`block px-5 py-3 font-montserrat text-sm text-slate-700 hover:text-secondary hover:bg-slate-50 transition-all duration-200
+                ${index !== link.children!.length - 1 ? "border-b border-slate-300" : ""}
+              `}
                                   >
                                     {child.name}
                                   </Link>
