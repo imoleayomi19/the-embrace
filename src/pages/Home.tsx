@@ -43,11 +43,11 @@ const heroPhrases = [
 ];
 
 const heroImages = [
-  "/solar-4.jpg",
-  "/solar-5.jpg",
-  "/solar-6.jpg",
-  "/solar-7.jpg",
-  "/solar-8.jpg",
+  "./solar-4.jpg",
+  "./solar-5.jpg",
+  "./solar-6.jpg",
+  "./solar-7.jpg",
+  "./solar-8.jpg",
 ];
 
 function CountUp({
@@ -521,7 +521,7 @@ export function Home() {
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/solar-4.jpg')" }}
+              style={{ backgroundImage: "url('./solar-4.jpg')" }}
             />
             <div className="absolute inset-0 bg-black/40" />
 
@@ -613,7 +613,7 @@ export function Home() {
             {[
               {
                 title: "Residential Solar Solution",
-                image: "/solar-4.jpg",
+                image: "./solar-4.jpg",
                 features: [
                   "Power your home with clean energy",
                   "Reduce utility bills",
@@ -622,7 +622,7 @@ export function Home() {
               },
               {
                 title: "Commercial Solar Solution",
-                image: "/solar-5.jpg",
+                image: "./solar-5.jpg",
                 features: [
                   "Maximize ROI",
                   "Take advantage of tax incentives",
@@ -631,7 +631,7 @@ export function Home() {
               },
               {
                 title: "Solar Maintenance Service",
-                image: "/solar-6.jpg",
+                image: "./solar-6.jpg",
                 features: [
                   "Keep your system running at peak efficiency",
                   "Comprehensive maintenance plans",
@@ -857,7 +857,7 @@ export function Home() {
               className="relative h-[300px] lg:h-[450px]"
             >
               <img
-                src="/solar-4.jpg"
+                src="./solar-4.jpg"
                 alt="Solar panel installation team at work"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -985,22 +985,22 @@ export function Home() {
             >
               {[...Array(2)].flatMap((_, dupIdx) =>
                 [
-                  { name: "Deye", src: "/embrace-trusted.png" },
-                  { name: "Lado Oil", src: "/embrace-trusted1.png" },
-                  { name: "Felicity Solar", src: "/embrace-trusted2.jpg" },
-                  { name: "luxsun energy", src: "/luxsun logo.png" },
-                  { name: "growatt", src: "/Growatt-logo.png" },
-                  { name: "Prado Power", src: "/embrace-trusted3.png" },
-                  { name: "Chint Power", src: "/Chint-logo.png" },
-                  { name: "Coleman Power", src: "/Coleman-logo.png" },
-                  { name: "Dahua Power", src: "/Dahua logo.png" },
-                  { name: "Hikvision Power", src: "/Hikvision-logo.png" },
-                  { name: "Huawei Power", src: "/huawei_logo.png" },
-                  { name: "ja-solar", src: "/ja-solar.png" },
-                  { name: "jinko Power", src: "/jinko solar.png" },
-                  { name: "longi Power", src: "/longi-logo.png" },
-                  { name: "Suntree Power", src: "/Suntree-logo.png" },
-                  { name: "Trina Power", src: "/Trina logo.png" },
+                  { name: "Deye", src: "./embrace-trusted.png" },
+                  { name: "Lado Oil", src: "./embrace-trusted1.png" },
+                  { name: "Felicity Solar", src: "./embrace-trusted2.jpg" },
+                  { name: "luxsun energy", src: "./luxsun logo.png" },
+                  { name: "growatt", src: "./Growatt-logo.png" },
+                  { name: "Prado Power", src: "./embrace-trusted3.png" },
+                  { name: "Chint Power", src: "./Chint-logo.png" },
+                  { name: "Coleman Power", src: "./Coleman-logo.png" },
+                  { name: "Dahua Power", src: "./Dahua logo.png" },
+                  { name: "Hikvision Power", src: "./Hikvision-logo.png" },
+                  { name: "Huawei Power", src: "./huawei_logo.png" },
+                  { name: "ja-solar", src: "./ja-solar.png" },
+                  { name: "jinko Power", src: "./jinko solar.png" },
+                  { name: "longi Power", src: "./longi-logo.png" },
+                  { name: "Suntree Power", src: "./Suntree-logo.png" },
+                  { name: "Trina Power", src: "./Trina logo.png" },
                 ].map((org, idx) => (
                   <div
                     key={`${dupIdx}-${idx}`}

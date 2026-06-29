@@ -117,7 +117,7 @@ export function About() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/embrace-about.jpg')",
+              backgroundImage: "url('./embrace-about.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -269,7 +269,7 @@ export function About() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[600px] lg:max-h-[700px]">
                 <img
-                  src="/solar-10.jpg"
+                  src="./solar-10.jpg"
                   alt="Embrace Technologies Team"
                   className="w-full h-full object-cover"
                 />
@@ -323,7 +323,7 @@ export function About() {
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: "url('/solar-6.jpg')" }}
+                  style={{ backgroundImage: "url('./solar-6.jpg')" }}
                 />
 
                 {/* Title visible always */}
@@ -358,7 +358,7 @@ export function About() {
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: "url('/solar-4.jpg')" }}
+                    style={{ backgroundImage: "url('./solar-4.jpg')" }}
                   />
 
                   {/* Title visible always */}
@@ -391,7 +391,7 @@ export function About() {
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: "url('/solar-5.jpg')" }}
+                    style={{ backgroundImage: "url('./solar-5.jpg')" }}
                   />
 
                   {/* Title visible always */}
@@ -539,7 +539,7 @@ export function About() {
           <div
             className="absolute inset-0 bg-cover bg-center bg-fixed"
             style={{
-              backgroundImage: "url('/solar-4.jpg')",
+              backgroundImage: "url('./solar-4.jpg')",
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/90" />
@@ -717,35 +717,35 @@ export function About() {
                   desc: "We deliver dependable solutions, professional service, and long-term value built on trust and excellence.",
                   color: "bg-primary",
                   textColor: "text-primary",
-                  image: "/solar-4.jpg",
+                  image: "./solar-4.jpg",
                 },
                 {
                   title: "To Our Employees",
                   desc: "We foster a culture of safety, innovation, teamwork, and continuous development.",
                   color: "bg-secondary",
                   textColor: "text-secondary",
-                  image: "/solar-5.jpg",
+                  image: "./solar-5.jpg",
                 },
                 {
                   title: "To Our Partners",
                   desc: "We cultivate relationships founded on integrity, transparency, and mutual success.",
                   color: "bg-alternativeO",
                   textColor: "text-alternativeO",
-                  image: "/solar-6.jpg",
+                  image: "./solar-6.jpg",
                 },
                 {
                   title: "To Our Shareholders",
                   desc: "We are committed to sustainable growth, operational excellence, and long-term value creation.",
                   color: "bg-alternativeR",
                   textColor: "text-alternativeR",
-                  image: "/solar-7.jpg",
+                  image: "./solar-7.jpg",
                 },
                 {
                   title: "To Our Communities",
                   desc: "We create positive impact through clean energy, technological innovation, and responsible business practices.",
                   color: "bg-alternative",
                   textColor: "text-alternative",
-                  image: "/solar-8.jpg",
+                  image: "./solar-8.jpg",
                 },
               ].map((commitment, idx) => (
                 <motion.div

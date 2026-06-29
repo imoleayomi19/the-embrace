@@ -72,7 +72,7 @@ export function Footer() {
                 aria-label="Embrace Technologies TikTok profile"
               >
                 <img
-                  src="/tiktok-icon.png"
+                  src="./tiktok-icon.png"
                   alt="TikTok"
                   className="w-4 h-4 object-contain"
                 />

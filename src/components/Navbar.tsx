@@ -28,8 +28,8 @@ type ProductItem = {
   path: string;
 };
 
-// Per-category product lists — different counts + series links per category
-const productCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
+// Residential product categories
+const residentialCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
   {
     name: "Off Grid Inverter",
     path: "/shop/off-grid-inverter",
@@ -39,12 +39,12 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "IVPA Series", path: "/shop" },
     ],
     products: [
-      { name: "IVPS3.5~10kVA", image: "/solar-4.jpg", path: "/shop" },
-      { name: "IVPS0712-1512", image: "/solar-5.jpg", path: "/shop" },
-      { name: "IVEM8~12kW", image: "/solar-6.jpg", path: "/shop" },
-      { name: "IVCM1012-LV", image: "/solar-7.jpg", path: "/shop" },
-      { name: "IVPA-Pro", image: "/solar-8.jpg", path: "/shop" },
-      { name: "IVPS-Mini", image: "/solar-4.jpg", path: "/shop" },
+      { name: "IVPS3.5~10kVA", image: "./solar-4.jpg", path: "/shop" },
+      { name: "IVPS0712-1512", image: "./solar-5.jpg", path: "/shop" },
+      { name: "IVEM8~12kW", image: "./solar-6.jpg", path: "/shop" },
+      { name: "IVCM1012-LV", image: "./solar-7.jpg", path: "/shop" },
+      { name: "IVPA-Pro", image: "./solar-8.jpg", path: "/shop" },
+      { name: "IVPS-Mini", image: "./solar-4.jpg", path: "/shop" },
     ],
   },
   {
@@ -56,11 +56,11 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "IVPM Series", path: "/shop" },
     ],
     products: [
-      { name: "IVCM1/2/3kW-PRO", image: "/solar-5.jpg", path: "/shop" },
-      { name: "IVCM5kW-Lite", image: "/solar-6.jpg", path: "/shop" },
-      { name: "IVHG-30kW", image: "/solar-7.jpg", path: "/shop" },
-      { name: "IVHG-50kW", image: "/solar-8.jpg", path: "/shop" },
-      { name: "IVHG-100kW", image: "/solar-4.jpg", path: "/shop" },
+      { name: "IVCM1/2/3kW-PRO", image: "./solar-5.jpg", path: "/shop" },
+      { name: "IVCM5kW-Lite", image: "./solar-6.jpg", path: "/shop" },
+      { name: "IVHG-30kW", image: "./solar-7.jpg", path: "/shop" },
+      { name: "IVHG-50kW", image: "./solar-8.jpg", path: "/shop" },
+      { name: "IVHG-100kW", image: "./solar-4.jpg", path: "/shop" },
     ],
   },
   {
@@ -71,9 +71,9 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "Micro-400W Series", path: "/shop" },
     ],
     products: [
-      { name: "IVEM8~12kW-II", image: "/solar-6.jpg", path: "/shop" },
-      { name: "IVEM-400W", image: "/solar-7.jpg", path: "/shop" },
-      { name: "IVEM-800W", image: "/solar-8.jpg", path: "/shop" },
+      { name: "IVEM8~12kW-II", image: "./solar-6.jpg", path: "/shop" },
+      { name: "IVEM-400W", image: "./solar-7.jpg", path: "/shop" },
+      { name: "IVEM-800W", image: "./solar-8.jpg", path: "/shop" },
     ],
   },
   {
@@ -85,12 +85,12 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "Stackable Series", path: "/shop" },
     ],
     products: [
-      { name: "IVLI-100AH", image: "/solar-7.jpg", path: "/shop" },
-      { name: "IVLI-200AH", image: "/solar-8.jpg", path: "/shop" },
-      { name: "IVLI-300AH", image: "/solar-4.jpg", path: "/shop" },
-      { name: "IVLI-Stack", image: "/solar-5.jpg", path: "/shop" },
-      { name: "IVLI-Rack", image: "/solar-6.jpg", path: "/shop" },
-      { name: "IVLI-Wall", image: "/solar-7.jpg", path: "/shop" },
+      { name: "IVLI-100AH", image: "./solar-7.jpg", path: "/shop" },
+      { name: "IVLI-200AH", image: "./solar-8.jpg", path: "/shop" },
+      { name: "IVLI-300AH", image: "./solar-4.jpg", path: "/shop" },
+      { name: "IVLI-Stack", image: "./solar-5.jpg", path: "/shop" },
+      { name: "IVLI-Rack", image: "./solar-6.jpg", path: "/shop" },
+      { name: "IVLI-Wall", image: "./solar-7.jpg", path: "/shop" },
     ],
   },
   {
@@ -101,8 +101,8 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "Air Cooling Series", path: "/shop" },
     ],
     products: [
-      { name: "IVCS-50kW", image: "/solar-8.jpg", path: "/shop" },
-      { name: "IVCS-100kW", image: "/solar-4.jpg", path: "/shop" },
+      { name: "IVCS-50kW", image: "./solar-8.jpg", path: "/shop" },
+      { name: "IVCS-100kW", image: "./solar-4.jpg", path: "/shop" },
     ],
   },
   {
@@ -113,9 +113,9 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "Solar Gel Series", path: "/shop" },
     ],
     products: [
-      { name: "GEL-100AH", image: "/solar-5.jpg", path: "/shop" },
-      { name: "GEL-150AH", image: "/solar-6.jpg", path: "/shop" },
-      { name: "GEL-200AH", image: "/solar-7.jpg", path: "/shop" },
+      { name: "GEL-100AH", image: "./solar-5.jpg", path: "/shop" },
+      { name: "GEL-150AH", image: "./solar-6.jpg", path: "/shop" },
+      { name: "GEL-200AH", image: "./solar-7.jpg", path: "/shop" },
     ],
   },
   {
@@ -127,11 +127,29 @@ const productCategories: (ProductCategory & { products: ProductItem[]; series: {
       { label: "Accessory Series", path: "/shop" },
     ],
     products: [
-      { name: "MPPT Controller", image: "/solar-8.jpg", path: "/shop" },
-      { name: "Solar Cables", image: "/solar-4.jpg", path: "/shop" },
-      { name: "MC4 Connectors", image: "/solar-5.jpg", path: "/shop" },
-      { name: "Mounting Frames", image: "/solar-6.jpg", path: "/shop" },
-      { name: "Protection Switch", image: "/solar-7.jpg", path: "/shop" },
+      { name: "MPPT Controller", image: "./solar-8.jpg", path: "/shop" },
+      { name: "Solar Cables", image: "./solar-4.jpg", path: "/shop" },
+      { name: "MC4 Connectors", image: "./solar-5.jpg", path: "/shop" },
+      { name: "Mounting Frames", image: "./solar-6.jpg", path: "/shop" },
+      { name: "Protection Switch", image: "./solar-7.jpg", path: "/shop" },
+    ],
+  },
+];
+
+// Commercial product categories
+const commercialCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
+  {
+    name: "Cabinet ESS",
+    path: "/shop/cabinet-ess",
+    series: [
+      { label: "Liquid Cooling Series", path: "/shop" },
+      { label: "Air Cooling Series", path: "/shop" },
+    ],
+    products: [
+      { name: "FLM500-125/261", image: "./solar-4.jpg", path: "/shop" },
+      { name: "FLH-E60", image: "./solar-5.jpg", path: "/shop" },
+      { name: "FLS-MES215AF-S", image: "./solar-6.jpg", path: "/shop" },
+      { name: "FLS-ES232LC-S", image: "./solar-7.jpg", path: "/shop" },
     ],
   },
 ];
@@ -142,12 +160,17 @@ function ProductsMegaMenu({
   isScrolled,
   activeCategory,
   setActiveCategory,
+  productType,
+  setProductType,
 }: {
   isScrolled: boolean;
   activeCategory: string;
   setActiveCategory: (c: string) => void;
+  productType: "residential" | "commercial";
+  setProductType: (type: "residential" | "commercial") => void;
 }) {
-  const activeCat = productCategories.find((c) => c.name === activeCategory) ?? productCategories[0];
+  const categories = productType === "residential" ? residentialCategories : commercialCategories;
+  const activeCat = categories.find((c) => c.name === activeCategory) ?? categories[0];
   const products = activeCat.products;
 
   return (
@@ -159,104 +182,115 @@ function ProductsMegaMenu({
       style={{ top: isScrolled ? "56px" : "80px" }}
       className="fixed left-0 right-0 z-[100] shadow-2xl"
     >
-      <div className="bg-white border-t border-slate-100 mt-4">
-        <div className="max-w-[1400px] mx-auto flex" style={{ minHeight: 320 }}>
+      <div className="bg-white border-t border-slate-100 mt-4 mb-2">
+        <div className="max-w-[1400px] mx-auto">
 
-          {/* ── Left sidebar: categories ── */}
-          <aside className="w-52 flex-shrink-0 border-r border-slate-100 py-4">
-            {productCategories.map((cat) => {
-              const active = activeCategory === cat.name;
-              return (
-                <button
-                  key={cat.name}
-                  type="button"
-                  onMouseEnter={() => setActiveCategory(cat.name)}
-                  onClick={() => setActiveCategory(cat.name)}
-                  className={`w-full flex items-center justify-between px-5 py-2.5 font-montserrat text-sm font-medium transition-colors group
-                    ${active
-                      ? "text-secondary font-semibold"
-                      : "text-slate-700 hover:text-secondary"
-                    }`}
-                >
-                  <span>{cat.name}</span>
-                  <ChevronRight
-                    className={`w-3.5 h-3.5 transition-colors ${active ? "text-secondary" : "text-slate-300 group-hover:text-secondary"}`}
-                  />
-                </button>
-              );
-            })}
-          </aside>
+          {/* Product Type Tabs - Header above sidebar and products */}
+          <div className="flex items-center justify-center gap-12 py-5 border-b border-slate-100">
+            <button
+              onClick={() => setProductType("residential")}
+              className={`font-montserrat font-semibold text-base transition-colors flex items-center gap-1 ${productType === "residential"
+                ? "text-secondary"
+                : "text-slate-700 hover:text-secondary"
+                }`}
+            >
+              Residential <ChevronRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => setProductType("commercial")}
+              className={`font-montserrat font-semibold text-base transition-colors flex items-center gap-1 ${productType === "commercial"
+                ? "text-secondary"
+                : "text-slate-700 hover:text-secondary"
+                }`}
+            >
+              Commercial & Industrial <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
 
-          {/* ── Right: product grid + series ── */}
-          <div className="flex-1 px-6 py-5 flex flex-col gap-4">
-
-            {/* Category title + link */}
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h4 className="font-montserrat font-bold text-primary text-sm uppercase tracking-wide">
-                {activeCat.name}
-              </h4>
-              <Link
-                to={activeCat.path}
-                className="font-montserrat text-xs font-semibold text-secondary hover:underline flex items-center gap-1"
-              >
-                View All <ChevronRight className="w-3 h-3" />
-              </Link>
-            </div>
-
-            {/* Product image grid — columns adapt to count */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCat.name}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.18 }}
-                // className={`grid ${colsClass(products.length)} gap-4 flex-1`}
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 flex-1"
-              >
-                {products.map((product) => (
-                  <Link
-                    key={product.name}
-                    to={product.path}
-                    className="group flex flex-col items-center gap-2"
+          {/* Sidebar and Products side by side */}
+          <div className="flex" style={{ height: "calc(100vh - 180px)" }}>
+            {/* ── Left sidebar: categories ── */}
+            <aside className="w-52 flex-shrink-0 border-r border-slate-100 py-4">
+              {categories.map((cat) => {
+                const active = activeCategory === cat.name;
+                return (
+                  <button
+                    key={cat.name}
+                    type="button"
+                    onMouseEnter={() => setActiveCategory(cat.name)}
+                    onClick={() => setActiveCategory(cat.name)}
+                    className={`w-full flex items-center justify-between px-5 py-3 font-montserrat text-sm font-medium transition-colors group
+                      ${active
+                        ? "text-secondary font-semibold"
+                        : "text-slate-700 hover:text-secondary"
+                      }`}
                   >
-                    <div className="w-full aspect-square bg-slate-50 border border-slate-100 rounded-lg overflow-hidden flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    </div>
-                    <span className="font-montserrat text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
-                      {product.name}
-                    </span>
+                    <span>{cat.name}</span>
+                    <ChevronRight
+                      className={`w-3.5 h-3.5 transition-colors ${active ? "text-secondary" : "text-slate-300 group-hover:text-secondary"}`}
+                    />
+                  </button>
+                );
+              })}
+            </aside>
+
+            {/* ── Right: product grid + series ── */}
+            <div className="flex-1 px-6 py-5 flex flex-col">
+              {/* Product image grid — columns adapt to count */}
+              <div className="flex-1 overflow-y-auto">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeCat.name}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.18 }}
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
+                  >
+                    {products.map((product) => (
+                      <Link
+                        key={product.name}
+                        to={product.path}
+                        className="group flex flex-col items-center gap-2"
+                      >
+                        <div className="w-full aspect-square bg-slate-50 border border-slate-100 rounded-lg overflow-hidden flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display = "none";
+                            }}
+                          />
+                        </div>
+                        <span className="font-montserrat text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
+                          {product.name}
+                        </span>
+                      </Link>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Series links row — unique per category */}
+              <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3 mt-4">
+                {activeCat.series.map((s) => (
+                  <Link
+                    key={s.label}
+                    to={s.path}
+                    className="font-montserrat text-xs text-slate-500 hover:text-secondary transition-colors"
+                  >
+                    {s.label} &gt;
                   </Link>
                 ))}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Series links row — unique per category */}
-            <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3">
-              {activeCat.series.map((s) => (
                 <Link
-                  key={s.label}
-                  to={s.path}
-                  className="font-montserrat text-xs text-slate-500 hover:text-secondary transition-colors"
+                  to={activeCat.path}
+                  className="ml-auto font-montserrat text-xs font-semibold text-secondary hover:underline"
                 >
-                  {s.label} &gt;
+                  All {activeCat.name} &gt;
                 </Link>
-              ))}
-              <Link
-                to={activeCat.path}
-                className="ml-auto font-montserrat text-xs font-semibold text-secondary hover:underline"
-              >
-                All {activeCat.name} &gt;
-              </Link>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -272,8 +306,9 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
   const [activeProductCategory, setActiveProductCategory] = useState(
-    productCategories[0].name
+    residentialCategories[0].name
   );
+  const [productType, setProductType] = useState<"residential" | "commercial">("residential");
   const location = useLocation();
 
   useEffect(() => {
@@ -310,13 +345,13 @@ export function Navbar() {
       name: "Solutions",
       path: "/services",
       children: [
-        { name: "Balcony", path: "/services", image: "/solar-4.jpg" },
-        { name: "Residential", path: "/services", image: "/solar-5.jpg" },
-        { name: "Commercial", path: "/services", image: "/solar-6.jpg" },
-        { name: "C&I ESS Cabinet", path: "/services", image: "/solar-7.jpg" },
-        { name: "Project Cases", path: "/services", image: "/solar-8.jpg" },
-        { name: "Esolar Platform", path: "/services", image: "/solar-4.jpg" },
-        { name: "System Config Plan", path: "/services", image: "/solar-5.jpg" },
+        { name: "Balcony", path: "/services", image: "./solar-4.jpg" },
+        { name: "Residential", path: "/services", image: "./solar-5.jpg" },
+        { name: "Commercial", path: "/services", image: "./solar-6.jpg" },
+        { name: "C&I ESS Cabinet", path: "/services", image: "./solar-7.jpg" },
+        { name: "Project Cases", path: "/services", image: "./solar-8.jpg" },
+        { name: "Esolar Platform", path: "/services", image: "./solar-4.jpg" },
+        { name: "System Config Plan", path: "/services", image: "./solar-5.jpg" },
       ],
     },
     {
@@ -424,6 +459,8 @@ export function Navbar() {
                             isScrolled={isScrolled}
                             activeCategory={activeProductCategory}
                             setActiveCategory={setActiveProductCategory}
+                            productType={productType}
+                            setProductType={setProductType}
                           />
                         )}
                       </AnimatePresence>
@@ -628,7 +665,7 @@ export function Navbar() {
                             transition={{ duration: 0.2 }}
                             className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
                           >
-                            {productCategories.map((cat) => (
+                            {residentialCategories.map((cat) => (
                               <li key={cat.name}>
                                 <Link
                                   to={cat.path}

@@ -230,7 +230,7 @@ export function Services() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/embrace-about.jpg')",
+              backgroundImage: "url('./embrace-about.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -497,7 +497,7 @@ export function Services() {
             <motion.div className="lg:w-1/2 w-full" {...fadeIn}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/services3.jpeg"
+                  src="./services3.jpeg"
                   alt="Solar Installation Process"
                   className="w-full h-[600px] object-cover"
                 />

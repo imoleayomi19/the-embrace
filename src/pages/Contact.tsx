@@ -93,7 +93,7 @@ export function Contact() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/embrace-about.jpg')",
+              backgroundImage: "url('./embrace-about.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
