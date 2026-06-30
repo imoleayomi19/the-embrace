@@ -225,7 +225,7 @@ export function Services() {
   return (
     <main className="w-full overflow-hidden">
       {/* PAGE HERO */}
-      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-16 md:pb-20 overflow-hidden h-[450px]">
+      <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -284,7 +284,7 @@ export function Services() {
             </motion.div>
 
             {/* OUR SERVICES Title with letter animation - Anton ExtraBold */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-[0.1em] relative inline-block">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-wide sm:tracking-[0.1em] relative inline-block">
               <span className="relative">
                 {title.split("").map((letter, i) => (
                   <motion.span
@@ -371,7 +371,7 @@ export function Services() {
             {...fadeIn}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
               Our Solutions
             </h2>
             {/* Body Text - Poppins Regular */}
@@ -434,7 +434,7 @@ export function Services() {
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <motion.div className="lg:w-1/2" {...fadeIn}>
               {/* Main Headline - Anton ExtraBold */}
-              <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-6">
                 The Embrace Process
               </h2>
               {/* Body Text - Poppins Regular */}
@@ -525,7 +525,7 @@ export function Services() {
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.div className="text-center mb-16" {...fadeIn}>
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
               Frequently Asked Questions
             </h2>
             {/* Body Text - Poppins Regular */}
@@ -608,7 +608,7 @@ export function Services() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl">
             <div className="max-w-2xl">
               {/* Main Headline - Anton ExtraBold */}
-              <h2 className="text-3xl md:text-5xl font-anton font-extrabold text-white mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold text-white mb-4">
                 Ready to start your solar journey?
               </h2>
               {/* Body Text - Poppins Regular */}

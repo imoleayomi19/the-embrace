@@ -38,7 +38,7 @@ export function Projects() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-3 font-poppins">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-3 font-poppins">
               Projects
             </h1>
             <div className="flex items-center gap-2 text-sm md:text-base text-white/80 font-montserrat justify-end">

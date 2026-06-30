@@ -270,8 +270,8 @@ export function Home() {
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center pt-28 md:pt-32 pb-72 md:pb-44 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden min-h-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={heroSlide}
@@ -290,22 +290,24 @@ export function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-primary/80" />
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-3xl gpu-accelerate will-change-transform">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
-              className="gpu-accelerate"
-            >
+        <div className="relative z-10 flex flex-col min-h-[calc(100dvh-4rem)] md:min-h-[90vh]">
+          {/* Hero content */}
+          <div className="container mx-auto px-4 md:px-6 pt-24 sm:pt-28 md:pt-32 pb-6 md:pb-44 flex-1 flex items-start md:items-center">
+            <div className="max-w-3xl gpu-accelerate will-change-transform w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
+                className="gpu-accelerate"
+              >
 
-              <div className="h-[4rem] md:h-[6rem] lg:h-[7rem] overflow-hidden flex items-center mb-6">
-                <h3 className="text-5xl md:text-7xl lg:text-5xl text-white leading-[1.1] text-balance w-full font-anton font-extrabold">
+              <div className="mb-4 sm:mb-6">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.15] text-balance w-full font-anton font-extrabold">
                   <span className="text-secondary">{heroText}</span>
-                  <span className="ml-2 inline-block animate-pulse text-white">|</span>
+                  <span className="ml-1 sm:ml-2 inline-block animate-pulse text-white">|</span>
                 </h3>
               </div>
-              <p className="text-lg md:text-xl text-slate-200 font-montserrat mb-10 max-w-2xl leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 font-montserrat mb-6 sm:mb-8 max-w-2xl leading-relaxed">
                 Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
               </p>
 
@@ -319,35 +321,32 @@ export function Home() {
                 </Link>
               </div>
             </motion.div>
+            </div>
           </div>
-        </div>
 
-        {/* Trust Strip */}
+        {/* Trust Strip — in document flow on mobile, pinned to bottom on desktop */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
-          className="absolute bottom-0 left-0 right-0 bg-primary/95 backdrop-blur-md border-t border-white/10 py-6 gpu-accelerate"
+          className="relative md:absolute md:bottom-0 md:left-0 md:right-0 bg-primary/95 backdrop-blur-md border-t border-white/10 py-4 sm:py-5 md:py-6 gpu-accelerate shrink-0"
         >
           <div className="container mx-auto px-4 md:px-6">
-            <div className="flex flex-col md:flex-row justify-center md:justify-between items-center gap-5 md:gap-12">
-              <div className="w-full md:w-auto flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-3">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-6 md:flex md:flex-row md:justify-between md:items-center md:gap-12">
+              <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
                 <CountUp
                   target={yearsOfExperience}
                   duration={1200}
                   suffix="+"
-                  className="text-secondary font-anton font-extrabold text-3xl"
+                  className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
                 />
-                <span className="text-slate-300 font-montserrat font-medium text-sm uppercase leading-tight">
-                  years of installation
-                  <br />
-                  experience
+                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                  years of installation experience
                 </span>
               </div>
-              <div className="hidden md:block w-px h-10 bg-white/20"></div>
               <Link
                 to="/projects"
-                className="w-full md:w-auto flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-3 group transition-colors hover:text-white"
+                className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left group transition-colors hover:text-white"
               >
                 <CountUp
                   target={10000}
@@ -356,51 +355,44 @@ export function Home() {
                   format={(value) =>
                     value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString()
                   }
-                  className="text-secondary font-anton font-extrabold text-3xl group-hover:text-secondary"
+                  className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0 group-hover:text-secondary"
                 />
-                <span className="text-slate-300 font-montserrat font-medium text-sm uppercase leading-tight">
-                  installations
-                  <br />
-                  delivered
+                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                  installations delivered
                 </span>
               </Link>
-              <div className="hidden md:block w-px h-10 bg-white/20"></div>
-              <div className="w-full md:w-auto flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-3">
-                <span className="text-secondary font-anton font-extrabold text-3xl">1MW</span>
-                <span className="text-slate-300 font-montserrat font-medium text-sm uppercase leading-tight">
-                  commercial
-                  <br />
-                  solar capacity
+              <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
+                <span className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0">1MW</span>
+                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                  commercial solar capacity
                 </span>
               </div>
-              <div className="hidden md:block w-px h-10 bg-white/20"></div>
-              <div className="w-full md:w-auto flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-3">
+              <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
                 <CountUp
                   target={25}
                   duration={1200}
                   suffix="+"
-                  className="text-secondary font-anton font-extrabold text-3xl"
+                  className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
                 />
-                <span className="text-slate-300 font-montserrat font-medium text-sm uppercase leading-tight">
-                  training programs
-                  <br />
-                  delivered
+                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                  training programs delivered
                 </span>
               </div>
             </div>
           </div>
         </motion.div>
+        </div>
       </section>
 
       {/* QUICK SERVICE SECTION */}
-      <section className="py-24 bg-slate-50 overflow-hidden">
+      <section className="py-16 md:py-24 bg-slate-50 overflow-hidden">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
           {/* Section Header */}
           <motion.div className="text-center max-w-3xl mx-auto mb-16" {...fadeIn}>
             <span className="inline-block bg-secondary/20 text-primary font-montserrat font-semibold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
               Quick Services
             </span>
-            <h2 className="font-montserrat font-bold text-4xl md:text-5xl text-primary leading-tight mb-4">
+            <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl text-primary leading-tight mb-4">
               Everything You Need,{" "}
               <span className="text-secondary italic">All In One Place</span>
             </h2>
@@ -525,10 +517,10 @@ export function Home() {
             />
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative z-10 px-8 md:px-16 lg:px-24 py-12 md:py-16">
+            <div className="relative z-10 px-4 sm:px-8 md:px-16 lg:px-24 py-10 sm:py-12 md:py-16">
               <div className="max-w-5xl mx-auto">
                 <div
-                  className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 mb-8 overflow-y-auto"
+                  className="bg-black/50 backdrop-blur-sm rounded-2xl p-5 sm:p-8 md:p-12 mb-6 sm:mb-8 overflow-y-auto"
                   style={{
                     maxHeight: "400px",
                     scrollbarWidth: "thin",
@@ -537,7 +529,7 @@ export function Home() {
                 >
                   <div className="pr-4">
                     <motion.h2
-                      className="text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-6 leading-tight"
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4 sm:mb-6 leading-tight"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -553,7 +545,7 @@ export function Home() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: 0.2 }}
                     >
-                      <p className="text-white/90 font-montserrat text-lg md:text-xl leading-relaxed">
+                      <p className="text-white/90 font-montserrat text-base sm:text-lg md:text-xl leading-relaxed">
                         As a leading solar installation and energy solutions company in
                         Nigeria, Embrace Technologies Limited delivers innovative,
                         customized solar solutions designed to stand out and perform
@@ -562,7 +554,7 @@ export function Home() {
                         design, install, and maintain efficient power systems built for
                         Nigerian conditions.
                       </p>
-                      <p className="text-white/90 font-montserrat text-lg md:text-xl leading-relaxed">
+                      <p className="text-white/90 font-montserrat text-base sm:text-lg md:text-xl leading-relaxed">
                         From system design and execution to professional installation and
                         ongoing maintenance, we provide end-to-end solar solutions that
                         help homes and businesses enjoy stable, cost-effective, and
@@ -571,7 +563,7 @@ export function Home() {
                         to deliver maximum value and reliability in every project we
                         undertake.
                       </p>
-                      <p className="text-white/90 font-montserrat text-lg md:text-xl leading-relaxed">
+                      <p className="text-white/90 font-montserrat text-base sm:text-lg md:text-xl leading-relaxed">
                         Our commitment to excellence extends beyond installation. We provide
                         comprehensive after-sales support, regular maintenance services,
                         and performance monitoring to ensure your solar system continues to
@@ -686,14 +678,14 @@ export function Home() {
       </section>
 
       {/* HOW IT WORKS — ENHANCED */}
-      <section className="py-24 bg-slate-50 overflow-hidden relative">
+      <section className="py-16 md:py-24 bg-slate-50 overflow-hidden relative">
         {/* Subtle background decoration */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Section Header - Removed "Our Process" badge */}
           <motion.div className="text-center max-w-3xl mx-auto mb-20" {...fadeIn}>
-            <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">
               How It Works
             </h2>
             <p className="text-slate-600 font-montserrat text-lg">
@@ -1021,25 +1013,25 @@ export function Home() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 bg-cta-pattern bg-cover bg-center relative">
+      <section className="py-16 md:py-24 bg-cta-pattern bg-cover bg-center relative">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
-            className="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-md p-10 md:p-16 rounded-2xl border border-white/20 shadow-2xl"
+            className="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-md p-6 sm:p-10 md:p-16 rounded-2xl border border-white/20 shadow-2xl"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-6xl font-montserrat font-bold text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-montserrat font-bold text-white mb-4 sm:mb-6">
               Ready to Embrace Clean Energy?
             </h2>
-            <p className="text-xl text-slate-200 font-montserrat mb-10 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-slate-200 font-montserrat mb-8 sm:mb-10 max-w-2xl mx-auto">
               Call To Action
               Ready To Power Your Home or Business?
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-10 py-5 rounded-sm hover:bg-yellow-400 transition-colors text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"
+              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-yellow-400 transition-colors text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"
             >
 
               Request Free Consultation

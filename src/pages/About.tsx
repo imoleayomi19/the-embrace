@@ -112,7 +112,7 @@ export function About() {
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-[45vh] md:min-h-[50vh] flex items-end pb-16 md:pb-20 overflow-hidden h-[450px]">
+      <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -177,7 +177,7 @@ export function About() {
             </motion.div>
 
             {/* ABOUT US Title with letter animation - Anton ExtraBold */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-[0.1em] relative inline-block">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-anton font-extrabold text-white mb-1 tracking-wide sm:tracking-[0.1em] relative inline-block">
               <span className="relative">
                 {title.split("").map((letter, i) => (
                   <motion.span
@@ -287,7 +287,7 @@ export function About() {
             >
               <motion.div {...fadeIn}>
                 {/* Main Headline - Anton ExtraBold */}
-                <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-1 mb-6 leading-tight text-primary">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mt-1 mb-6 leading-tight text-primary">
                   EMBRACE TECHNOLOGIES LIMITED
                 </h2>
               </motion.div>
@@ -328,7 +328,7 @@ export function About() {
 
                 {/* Title visible always */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
                     Tagline
                   </h3>
                 </div>
@@ -336,7 +336,7 @@ export function About() {
                 {/* Hover overlay - swipes up from bottom */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                    <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white mb-3">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-3">
                       Tagline
                     </h3>
                     <p className="text-white font-poppins font-normal text-base md:text-lg text-center max-w-2xl leading-relaxed font-semibold">
@@ -363,7 +363,7 @@ export function About() {
 
                   {/* Title visible always */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
                       Vision
                     </h3>
                   </div>
@@ -371,7 +371,7 @@ export function About() {
                   {/* Hover overlay - swipes up from bottom */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                      <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white mb-3">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-3">
                         Vision
                       </h3>
                       <p className="text-slate-100 font-poppins font-normal text-xs md:text-sm text-center leading-relaxed">
@@ -396,7 +396,7 @@ export function About() {
 
                   {/* Title visible always */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
                       Mission
                     </h3>
                   </div>
@@ -404,7 +404,7 @@ export function About() {
                   {/* Hover overlay - swipes up from bottom */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                      <h3 className="text-3xl md:text-4xl font-anton font-extrabold text-white mb-3">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-3">
                         Mission
                       </h3>
                       <p className="text-white font-poppins font-normal text-xs md:text-sm text-center leading-relaxed">
@@ -423,7 +423,7 @@ export function About() {
       <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div className="text-center mb-12" {...fadeIn}>
-            <h2 className="text-3xl md:text-4xl font-anton font-extrabold mb-6 text-primary">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-anton font-extrabold mb-6 text-primary">
               Why Embrace Technologies Limited
             </h2>
           </motion.div>
@@ -551,7 +551,7 @@ export function About() {
             {...fadeIn}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-2 mb-4 text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mt-2 mb-4 text-white">
               Our Core Values
             </h2>
             {/* Body Text - Source Sans Pro/Poppins Regular */}
@@ -628,7 +628,7 @@ export function About() {
               >
                 {/* Large Letter - Anton ExtraBold */}
                 <div className="absolute top-6 left-1/2 -translate-x-1/2">
-                  <span className={`text-7xl md:text-8xl font-anton font-extrabold ${value.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
+                  <span className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-anton font-extrabold ${value.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
                     {value.letter}
                   </span>
                 </div>
@@ -800,7 +800,7 @@ export function About() {
             {...fadeIn}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mb-4 text-primary">Our Team</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4 text-primary">Our Team</h2>
             {/* Body Text - Source Sans Pro/Poppins Regular */}
             <p className="text-slate-600 font-poppins font-normal text-lg">
               Dedicated professionals committed to powering your sustainable
@@ -839,7 +839,7 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold text-white mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold text-white mb-4 sm:mb-6">
               Ready to Join the Solar Revolution?
             </h2>
             {/* Body Text - Source Sans Pro/Poppins Regular */}

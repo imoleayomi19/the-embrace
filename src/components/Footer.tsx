@@ -29,7 +29,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-950 text-slate-100 min-h-[calc(100vh-80px)] flex flex-col justify-between pt-20 pb-10 relative overflow-hidden">
+    <footer className="bg-slate-950 text-slate-100 flex flex-col justify-between pt-16 md:pt-20 pb-10 relative overflow-hidden">
       {/* Subtle background gradient for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 to-slate-950 pointer-events-none"></div>
 
@@ -46,7 +46,7 @@ export function Footer() {
               <img
                 src="./embracewhite.png"
                 alt="Embrace Technologies"
-                className="h-39 w-auto object-contain"
+                className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain"
               />
             </Link>
             {/* Body Text - Poppins Regular */}
