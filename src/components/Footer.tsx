@@ -81,7 +81,7 @@ export function Footer() {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 text-center lg:text-left flex flex-col items-center lg:items-start">
             {/* Section Title - Montserrat Bold */}
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Quick Links
@@ -102,7 +102,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Our Services */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start">
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Our Services
             </h4>
@@ -121,20 +121,20 @@ export function Footer() {
           </div>
 
           {/* Column 4: Contact Info */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start">
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Get In Touch
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400 font-montserrat font-medium">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+            <ul className="space-y-3 text-sm text-slate-400 font-montserrat font-medium items-center lg:items-start flex flex-col">
+              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+                <MapPin className="w-5 h-5 text-secondary shrink-0" />
                 {/* Body Text - Poppins Regular */}
                 <span className="leading-relaxed font-poppins font-normal">
                   116 Ikorodu-Lagos Road, Haruna Bustop, <br /> Ikorodu, Lagos, Nigeria
                 </span>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+                <Phone className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a href="tel:+2347061451583" className="transition-colors hover:text-secondary block font-poppins font-normal">
                     +234 706 145 1583
@@ -142,8 +142,8 @@ export function Footer() {
                 </div>
               </li>
 
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-secondary shrink-0 mt-1" />
+              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+                <Mail className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a
                     href="mailto:Info@embracetechng.com"
@@ -153,8 +153,8 @@ export function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-secondary shrink-0 mt-1" />
+              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+                <Mail className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a
                     href="mailto:embracetechnologiesltd@gmail.com"
@@ -164,7 +164,7 @@ export function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-center gap-3 flex-col lg:flex-row">
                 <Globe className="w-5 h-5 text-secondary shrink-0" />
                 <a
                   href="https://www.embracetechng.com"
@@ -189,9 +189,9 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-slate-500 text-xs font-poppins font-normal">
+        <div className="pt-4 flex flex-col gap-3 items-center md:flex-row md:items-center md:justify-between text-slate-500 text-xs font-poppins font-normal text-center md:text-left">
           <p>© {new Date().getFullYear()} Embrace Technologies Ltd. All rights reserved.</p>
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-4">
             <Link to="/privacy-policy" className="transition-colors hover:text-white font-montserrat font-medium">
               Privacy Policy
             </Link>
