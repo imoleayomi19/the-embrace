@@ -301,86 +301,86 @@ export function Home() {
                 className="gpu-accelerate"
               >
 
-              <div className="mb-4 sm:mb-6">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.15] text-balance w-full font-anton font-extrabold">
-                  <span className="text-secondary">{heroText}</span>
-                  <span className="ml-1 sm:ml-2 inline-block animate-pulse text-white">|</span>
-                </h3>
-              </div>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 font-montserrat mb-6 sm:mb-8 max-w-2xl leading-relaxed">
-                Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
-              </p>
+                <div className="mb-4 sm:mb-6">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.15] text-balance w-full font-anton font-extrabold">
+                    <span className="text-secondary">{heroText}</span>
+                    <span className="ml-1 sm:ml-2 inline-block animate-pulse text-white">|</span>
+                  </h3>
+                </div>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 font-montserrat mb-6 sm:mb-8 max-w-2xl leading-relaxed">
+                  Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
+                </p>
 
-              <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row">
+                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row">
+                  <Link
+                    to="/contact"
+                    className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center text-sm sm:text-lg shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
+                  >
+                    Request a Quote
+                    <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Trust Strip — in document flow on mobile, pinned to bottom on desktop */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
+            className="relative md:absolute md:bottom-0 md:left-0 md:right-0 bg-primary/95 backdrop-blur-md border-t border-white/10 py-4 sm:py-5 md:py-6 gpu-accelerate shrink-0"
+          >
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-6 md:flex md:flex-row md:justify-between md:items-center md:gap-12">
+                <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
+                  <CountUp
+                    target={yearsOfExperience}
+                    duration={1200}
+                    suffix="+"
+                    className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
+                  />
+                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                    years of installation experience
+                  </span>
+                </div>
                 <Link
-                  to="/contact"
-                  className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center text-sm sm:text-lg shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
+                  to="/projects"
+                  className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left group transition-colors hover:text-white"
                 >
-                  Request a Quote
-                  <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <CountUp
+                    target={10000}
+                    duration={1300}
+                    suffix="+"
+                    format={(value) =>
+                      value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString()
+                    }
+                    className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0 group-hover:text-secondary"
+                  />
+                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                    installations delivered
+                  </span>
                 </Link>
-              </div>
-            </motion.div>
-            </div>
-          </div>
-
-        {/* Trust Strip — in document flow on mobile, pinned to bottom on desktop */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
-          className="relative md:absolute md:bottom-0 md:left-0 md:right-0 bg-primary/95 backdrop-blur-md border-t border-white/10 py-4 sm:py-5 md:py-6 gpu-accelerate shrink-0"
-        >
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-6 md:flex md:flex-row md:justify-between md:items-center md:gap-12">
-              <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
-                <CountUp
-                  target={yearsOfExperience}
-                  duration={1200}
-                  suffix="+"
-                  className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
-                />
-                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                  years of installation experience
-                </span>
-              </div>
-              <Link
-                to="/projects"
-                className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left group transition-colors hover:text-white"
-              >
-                <CountUp
-                  target={10000}
-                  duration={1300}
-                  suffix="+"
-                  format={(value) =>
-                    value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString()
-                  }
-                  className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0 group-hover:text-secondary"
-                />
-                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                  installations delivered
-                </span>
-              </Link>
-              <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
-                <span className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0">1MW</span>
-                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                  commercial solar capacity
-                </span>
-              </div>
-              <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
-                <CountUp
-                  target={25}
-                  duration={1200}
-                  suffix="+"
-                  className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
-                />
-                <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                  training programs delivered
-                </span>
+                <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
+                  <span className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0">1MW</span>
+                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                    commercial solar capacity
+                  </span>
+                </div>
+                <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
+                  <CountUp
+                    target={25}
+                    duration={1200}
+                    suffix="+"
+                    className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
+                  />
+                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
+                    training programs delivered
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -862,7 +862,7 @@ export function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative bg-primary p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[350px] lg:min-h-[450px] group/card"
+              className="relative bg-primary p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[auto] lg:min-h-[450px] group/card"
               style={{
                 backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)`,
                 backgroundSize: '40px 40px'
@@ -879,7 +879,7 @@ export function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="text-2xl md:text-3xl font-montserrat font-bold text-white mb-6 text-center"
+                  className="text-2xl sm:text-3xl md:text-3xl font-montserrat font-bold text-white mb-6 text-center leading-tight"
                 >
                   What Client Say About Us
                 </motion.h3>
@@ -894,7 +894,7 @@ export function Home() {
                     {testimonials.map((testimonial, idx) => (
                       <motion.div
                         key={idx}
-                        className="w-full flex-shrink-0 px-4"
+                        className="w-full flex-shrink-0 px-2 sm:px-4"
                       >
                         <div className="text-center">
                           {/* Quote */}
@@ -902,15 +902,15 @@ export function Home() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2, duration: 0.6 }}
-                            className="text-white/90 font-montserrat text-base md:text-lg italic leading-relaxed mb-6"
+                            className="text-white font-montserrat text-base sm:text-lg md:text-lg italic leading-relaxed mb-6"
                           >
                             "{testimonial.quote}"
                           </motion.p>
 
                           {/* Stars */}
-                          <div className="flex justify-center gap-2 mb-6">
+                          <div className="flex justify-center gap-1.5 sm:gap-2 mb-6">
                             {[...Array(5)].map((_, i) => (
-                              <Sun key={i} className="w-4 h-4 fill-current text-secondary" />
+                              <Sun key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-secondary" />
                             ))}
                           </div>
 
@@ -921,7 +921,7 @@ export function Home() {
                             transition={{ delay: 0.4 }}
                             className="cursor-default"
                           >
-                            <h4 className="text-white font-montserrat font-semibold text-base md:text-lg mb-1">
+                            <h4 className="text-white font-montserrat font-semibold text-base sm:text-lg md:text-lg mb-1">
                               {testimonial.name}
                             </h4>
                             <p className="text-white/70 font-montserrat text-sm">
@@ -982,7 +982,7 @@ export function Home() {
                   { name: "Felicity Solar", src: "./embrace-trusted2.jpg" },
                   { name: "luxsun energy", src: "./luxsun logo.png" },
                   { name: "growatt", src: "./Growatt-logo.png" },
-                  { name: "Prado Power", src: "./embrace-trusted3.png" },
+                  { name: "Prado Power", src: "./prado-logo.png" },
                   { name: "Chint Power", src: "./Chint-logo.png" },
                   { name: "Coleman Power", src: "./Coleman-logo.png" },
                   { name: "Dahua Power", src: "./Dahua logo.png" },

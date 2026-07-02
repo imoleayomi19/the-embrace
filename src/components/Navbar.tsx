@@ -336,8 +336,20 @@ export function Navbar() {
       path: "/about",
       children: [
         {
-          name: "Projects",
+          name: "Our Company",
+          path: "/about",
+        },
+        {
+          name: "Project",
           path: "/projects",
+        },
+        {
+          name: "Team",
+          path: "/team",
+        },
+        {
+          name: "Contact Us",
+          path: "/contact",
         },
       ],
     },

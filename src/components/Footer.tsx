@@ -11,6 +11,22 @@ import {
   Globe,
 } from 'lucide-react';
 
+// TikTok Icon Component
+const TikTok = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
 export function Footer() {
   const quickLinks = [
     { name: 'Home', to: '/' },
@@ -56,7 +72,7 @@ export function Footer() {
                 { icon: Twitter, href: '#' },
                 { icon: Instagram, href: '#' },
                 { icon: Linkedin, href: '#' },
-
+                { icon: TikTok, href: '#' },
               ].map((social, idx) => (
                 <a
                   key={idx}
@@ -66,17 +82,6 @@ export function Footer() {
                   <social.icon className="w-4 h-4" />
                 </a>
               ))}
-              <a
-                href="#"
-                className="flex items-center justify-center w-9 h-9 rounded-full bg-white/5 text-slate-400 transition-all hover:bg-secondary hover:text-white hover:scale-110"
-                aria-label="Embrace Technologies TikTok profile"
-              >
-                <img
-                  src="./tiktok-icon.png"
-                  alt="TikTok"
-                  className="w-4 h-4 object-contain"
-                />
-              </a>
             </div>
           </div>
 

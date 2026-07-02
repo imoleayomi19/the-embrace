@@ -289,10 +289,10 @@ export function Contact() {
                   <h3 className="text-lg font-montserrat font-bold mb-2">Email</h3>
                   <p className="text-slate-600 font-poppins font-normal">info@embracetechng.com</p>
                 </div>
-                <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 sm:col-span-2">
+                {/* <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 sm:col-span-2">
                   <h3 className="text-lg font-montserrat font-bold mb-2">Working Hours</h3>
                   <p className="text-slate-600 font-poppins font-normal">Mon – Fri: 8AM – 5PM</p>
-                </div>
+                </div> */}
               </div>
 
               <div className="rounded-[2rem] overflow-hidden shadow-xl border border-slate-200">
