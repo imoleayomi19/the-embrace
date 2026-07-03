@@ -68,11 +68,11 @@ export function Footer() {
             {/* Body Text - Poppins Regular */}
             <div className="flex items-center gap-3 pt-2">
               {[
-                { icon: Facebook, href: '#' },
+                { icon: Facebook, href: 'https://www.tiktok.com/@embracetechnologies?_r=1&_t=ZS-97ivVXzhWSq' },
                 { icon: Twitter, href: '#' },
-                { icon: Instagram, href: '#' },
+                { icon: Instagram, href: 'https://www.instagram.com/embracetechnologieslimited?igsh=bGNua2QzYTc4OTVz' },
                 { icon: Linkedin, href: '#' },
-                { icon: TikTok, href: '#' },
+                { icon: TikTok, href: 'https://www.tiktok.com/@embracetechnologies?_r=1&_t=ZS-97ivVXzhWSq' },
               ].map((social, idx) => (
                 <a
                   key={idx}

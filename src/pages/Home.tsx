@@ -862,14 +862,14 @@ export function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative bg-primary p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[auto] lg:min-h-[450px] group/card"
+              className="relative bg-primary p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center min-h-[auto] lg:min-h-[450px] group/card overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)`,
                 backgroundSize: '40px 40px'
               }}
             >
               <div
-                className="relative z-10 flex flex-col justify-between h-full"
+                className="relative z-10 flex flex-col justify-between h-full w-full"
                 onMouseEnter={() => setIsTestimonialPaused(true)}
                 onMouseLeave={() => setIsTestimonialPaused(false)}
               >
@@ -879,13 +879,13 @@ export function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="text-2xl sm:text-3xl md:text-3xl font-montserrat font-bold text-white mb-6 text-center leading-tight"
+                  className="text-xl sm:text-2xl md:text-3xl font-montserrat font-bold text-white mb-4 sm:mb-6 text-center leading-tight px-2"
                 >
                   What Client Say About Us
                 </motion.h3>
 
                 {/* Testimonial Slider */}
-                <div className="overflow-hidden flex-grow flex items-center">
+                <div className="overflow-hidden flex-grow flex items-center w-full">
                   <motion.div
                     className="flex"
                     animate={{ x: `-${testimonialIndex * 100}%` }}
@@ -895,22 +895,27 @@ export function Home() {
                       <motion.div
                         key={idx}
                         className="w-full flex-shrink-0 px-2 sm:px-4"
+                        style={{ minWidth: '100%' }}
                       >
-                        <div className="text-center">
+                        <div className="text-center w-full">
                           {/* Quote */}
                           <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2, duration: 0.6 }}
-                            className="text-white font-montserrat text-base sm:text-lg md:text-lg italic leading-relaxed mb-6"
+                            className="text-white font-montserrat text-xs sm:text-sm md:text-base italic leading-relaxed mb-4 sm:mb-6 break-words hyphens-auto"
+                            style={{
+                              wordBreak: 'break-word',
+                              overflowWrap: 'break-word'
+                            }}
                           >
                             "{testimonial.quote}"
                           </motion.p>
 
                           {/* Stars */}
-                          <div className="flex justify-center gap-1.5 sm:gap-2 mb-6">
+                          <div className="flex justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                             {[...Array(5)].map((_, i) => (
-                              <Sun key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-secondary" />
+                              <Sun key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-current text-secondary flex-shrink-0" />
                             ))}
                           </div>
 
@@ -919,12 +924,16 @@ export function Home() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.4 }}
-                            className="cursor-default"
+                            className="cursor-default px-2"
                           >
-                            <h4 className="text-white font-montserrat font-semibold text-base sm:text-lg md:text-lg mb-1">
+                            <h4 className="text-white font-montserrat font-semibold text-sm sm:text-base md:text-lg mb-1 break-words"
+                              style={{
+                                wordBreak: 'break-word',
+                                overflowWrap: 'break-word'
+                              }}>
                               {testimonial.name}
                             </h4>
-                            <p className="text-white/70 font-montserrat text-sm">
+                            <p className="text-white/70 font-montserrat text-xs sm:text-sm">
                               {testimonial.role || ""}
                             </p>
                           </motion.div>
@@ -935,7 +944,7 @@ export function Home() {
                 </div>
 
                 {/* Animated underline - visible on hover of entire card */}
-                <div className="mt-6 flex justify-center">
+                <div className="mt-4 sm:mt-6 flex justify-center">
                   <div className="h-0.5 bg-secondary w-0 group-hover/card:w-56 transition-all duration-500" />
                 </div>
               </div>
