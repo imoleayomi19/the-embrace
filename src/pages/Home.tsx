@@ -977,7 +977,7 @@ export function Home() {
             >
               {[...Array(2)].flatMap((_, dupIdx) =>
                 [
-                  { name: "Deye", src: "./embrace-trusted.png" },
+                  { name: "Deye", src: "./embrace-trusted3.png" },
                   { name: "Lado Oil", src: "./embrace-trusted1.png" },
                   { name: "Felicity Solar", src: "./embrace-trusted2.jpg" },
                   { name: "luxsun energy", src: "./luxsun logo.png" },
