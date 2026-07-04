@@ -37,9 +37,9 @@ const INSTALLATION_START_YEAR = 2019;
 const yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
 
 const heroPhrases = [
-  "Power Your Future With The Sun",
-  "RELIABLE POWER BEGINS WITH THE RIGHT PARTNER",
-  "SECURING YOUR HOME WITH THE BEST SURVEILLANCE SYSTEM",
+  "power your future with the sun",
+  "reliable power begins with the right partner",
+  "securing your home with the best surveillance system",
 ];
 
 const heroImages = [
@@ -49,6 +49,51 @@ const heroImages = [
   "./solar-7.jpg",
   "./solar-8.jpg",
 ];
+
+// Word-by-word stagger animation variants
+const phraseContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.1,
+    },
+  },
+  exit: {
+    transition: {
+      staggerChildren: 0.04,
+      staggerDirection: -1,
+    },
+  },
+};
+
+const wordVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    rotateX: -45,
+    filter: "blur(8px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    filter: "blur(6px)",
+    transition: {
+      duration: 0.3,
+      ease: "easeIn",
+    },
+  },
+};
 
 function CountUp({
   target,
@@ -106,9 +151,7 @@ function CountUp({
 }
 
 export function Home() {
-  const [heroText, setHeroText] = useState(heroPhrases[0]);
   const [phraseIndex, setPhraseIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   const [residentialSlide, setResidentialSlide] = useState(0);
   const [isResidentialPaused, setIsResidentialPaused] = useState(false);
@@ -191,29 +234,13 @@ export function Home() {
     return () => window.clearInterval(heroInterval);
   }, []);
 
+  // Hero phrase rotation - each phrase stays for 5 seconds
   useEffect(() => {
-    const currentPhrase = heroPhrases[phraseIndex];
-
-    if (!isDeleting && heroText === currentPhrase) {
-      const pauseId = window.setTimeout(() => setIsDeleting(true), 1200);
-      return () => window.clearTimeout(pauseId);
-    }
-
-    if (isDeleting && heroText === "") {
-      setIsDeleting(false);
+    const phraseInterval = window.setInterval(() => {
       setPhraseIndex((current) => (current + 1) % heroPhrases.length);
-      return;
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      setHeroText((current) => {
-        if (isDeleting) return currentPhrase.slice(0, current.length - 1);
-        return currentPhrase.slice(0, current.length + 1);
-      });
-    }, isDeleting ? 100 : 180);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [heroText, isDeleting, phraseIndex]);
+    }, 5000);
+    return () => window.clearInterval(phraseInterval);
+  }, []);
 
   const nextTestimonial = () =>
     setTestimonialIndex((current) => (current + 1) % testimonials.length);
@@ -291,27 +318,49 @@ export function Home() {
         </div>
 
         <div className="relative z-10 flex flex-col min-h-[calc(100dvh-4rem)] md:min-h-[90vh]">
-          {/* Hero content */}
-          <div className="container mx-auto px-4 md:px-6 pt-24 sm:pt-28 md:pt-32 pb-6 md:pb-44 flex-1 flex items-start md:items-center">
-            <div className="max-w-3xl gpu-accelerate will-change-transform w-full">
+          {/* Full-width phrase banner - FIXED HEIGHT to prevent jumping */}
+          <div className="w-full px-4 md:px-6 pt-32 sm:pt-40 md:pt-48 pb-4">
+            <h3 className="text-[32pt] text-white leading-[1.2] w-full font-montserrat font-extrabold text-center h-[140px] sm:h-[110px] md:h-[120px] flex items-center justify-center capitalize">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={phraseIndex}
+                  className="inline-flex flex-wrap justify-center items-center text-center gap-x-3"
+                  variants={phraseContainerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  {heroPhrases[phraseIndex].split(" ").map((word, wordIdx) => (
+                    <motion.span
+                      key={`${phraseIndex}-${wordIdx}`}
+                      className="inline-block text-white"
+                      variants={wordVariants}
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </motion.span>
+              </AnimatePresence>
+            </h3>
+          </div>
+
+          {/* Hero content - centered below the phrase */}
+          <div className="container mx-auto px-4 md:px-6 pb-6 md:pb-44 flex-1 flex items-start md:items-center">
+            <div className="w-full mx-auto text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
-                className="gpu-accelerate"
+                className="gpu-accelerate flex flex-col items-center"
               >
-
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.15] text-balance w-full font-anton font-extrabold">
-                    <span className="text-secondary">{heroText}</span>
-                    <span className="ml-1 sm:ml-2 inline-block animate-pulse text-white">|</span>
-                  </h3>
-                </div>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-200 font-montserrat mb-6 sm:mb-8 max-w-2xl leading-relaxed">
+                <p
+                  className="text-[14pt] text-slate-200 font-semibold mb-6 sm:mb-8 max-w-4xl leading-relaxed text-center mx-auto"
+                  style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+                >
                   Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
                 </p>
 
-                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row">
+                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row items-center justify-center">
                   <Link
                     to="/contact"
                     className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center text-sm sm:text-lg shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
@@ -389,9 +438,6 @@ export function Home() {
         <div className="container mx-auto px-4 md:px-8 lg:px-16">
           {/* Section Header */}
           <motion.div className="text-center max-w-3xl mx-auto mb-16" {...fadeIn}>
-            <span className="inline-block bg-secondary/20 text-primary font-montserrat font-semibold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">
-              Quick Services
-            </span>
             <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl text-primary leading-tight mb-4">
               Everything You Need,{" "}
               <span className="text-secondary italic">All In One Place</span>
@@ -516,84 +562,7 @@ export function Home() {
               style={{ backgroundImage: "url('./solar-4.jpg')" }}
             />
             <div className="absolute inset-0 bg-black/40" />
-
-            <div className="relative z-10 px-4 sm:px-8 md:px-16 lg:px-24 py-10 sm:py-12 md:py-16">
-              <div className="max-w-5xl mx-auto">
-                <div
-                  className="bg-black/50 backdrop-blur-sm rounded-2xl p-5 sm:p-8 md:p-12 mb-6 sm:mb-8 overflow-y-auto"
-                  style={{
-                    maxHeight: "400px",
-                    scrollbarWidth: "thin",
-                    scrollbarColor: "rgba(255, 199, 89, 0.5) rgba(255, 255, 255, 0.1)",
-                  }}
-                >
-                  <div className="pr-4">
-                    <motion.h2
-                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold text-white mb-4 sm:mb-6 leading-tight"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      Our Solutions
-                    </motion.h2>
-
-                    <motion.div
-                      className="space-y-6"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                      <p className="text-white/90 font-montserrat text-base sm:text-lg md:text-xl leading-relaxed">
-                        As a leading solar installation and energy solutions company in
-                        Nigeria, Embrace Technologies Limited delivers innovative,
-                        customized solar solutions designed to stand out and perform
-                        reliably. Our experienced technical team combines deep industry
-                        knowledge with practical expertise in the solar PV space to
-                        design, install, and maintain efficient power systems built for
-                        Nigerian conditions.
-                      </p>
-                      <p className="text-white/90 font-montserrat text-base sm:text-lg md:text-xl leading-relaxed">
-                        From system design and execution to professional installation and
-                        ongoing maintenance, we provide end-to-end solar solutions that
-                        help homes and businesses enjoy stable, cost-effective, and
-                        long-lasting energy. We understand the unique challenges faced by
-                        Nigerian consumers and businesses, and we've tailored our approach
-                        to deliver maximum value and reliability in every project we
-                        undertake.
-                      </p>
-                      <p className="text-white/90 font-montserrat text-base sm:text-lg md:text-xl leading-relaxed">
-                        Our commitment to excellence extends beyond installation. We provide
-                        comprehensive after-sales support, regular maintenance services,
-                        and performance monitoring to ensure your solar system continues to
-                        deliver optimal results for years to come. With Embrace
-                        Technologies, you're not just getting a solar system – you're
-                        gaining a long-term partner in your energy independence journey.
-                      </p>
-                    </motion.div>
-                  </div>
-                </div>
-
-                <motion.div
-                  className="text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  <Link
-                    to="/services"
-                    className="inline-flex items-center gap-3 bg-white text-primary font-montserrat font-semibold px-8 py-4 rounded-full hover:bg-secondary transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 group"
-                  >
-                    View All Services
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
           </div>
-
 
           {/* Service Cards Grid */}
           <motion.div
@@ -686,7 +655,7 @@ export function Home() {
           {/* Section Header - Removed "Our Process" badge */}
           <motion.div className="text-center max-w-3xl mx-auto mb-20" {...fadeIn}>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">
-              How It Works
+              How we work
             </h2>
             <p className="text-slate-600 font-montserrat text-lg">
               A simple, transparent process from your first consultation to

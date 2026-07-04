@@ -394,8 +394,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-1.5 sm:py-2 text-primary" : "py-1.5 sm:py-2 text-white"
-        }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-md py-1.5 sm:py-2 text-primary"
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between gap-3">
@@ -428,11 +427,9 @@ export function Navbar() {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                      className={`font-montserrat font-bold text-sm capitalize tracking-wide transition-colors py-2 px-1 ${active
                         ? "text-secondary"
-                        : isScrolled
-                          ? "text-primary hover:text-secondary"
-                          : "text-white/90 hover:text-secondary"
+                        : "text-primary hover:text-secondary"
                         }`}
                     >
                       {link.name}
@@ -451,11 +448,9 @@ export function Navbar() {
                     >
                       <button
                         type="button"
-                        className={`flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                        className={`flex items-center gap-1 font-montserrat font-bold text-sm capitalize tracking-wide transition-colors py-2 px-1 ${active
                           ? "text-secondary"
-                          : isScrolled
-                            ? "text-primary hover:text-secondary"
-                            : "text-white/90 hover:text-secondary"
+                          : "text-primary hover:text-secondary"
                           }`}
                         aria-haspopup="true"
                         aria-expanded={openDropdown === "Products"}
@@ -495,11 +490,9 @@ export function Navbar() {
                       onClick={() =>
                         setOpenDropdown(openDropdown === link.name ? null : link.name)
                       }
-                      className={`flex items-center gap-1 font-montserrat font-bold text-sm uppercase tracking-wide transition-colors py-2 px-1 ${active
+                      className={`flex items-center gap-1 font-montserrat font-bold text-sm capitalize tracking-wide transition-colors py-2 px-1 ${active
                         ? "text-secondary"
-                        : isScrolled
-                          ? "text-primary hover:text-secondary"
-                          : "text-white/90 hover:text-secondary"
+                        : "text-primary hover:text-secondary"
                         }`}
                       aria-haspopup="true"
                       aria-expanded={openDropdown === link.name}
@@ -558,7 +551,7 @@ export function Navbar() {
                                       )}
                                     </div>
                                     <div className="text-center">
-                                      <span className="inline-block font-montserrat font-bold text-primary text-xs uppercase tracking-wide group-hover:text-secondary transition-colors duration-300">
+                                      <span className="inline-block font-montserrat font-bold text-primary text-xs capitalize tracking-wide group-hover:text-secondary transition-colors duration-300">
                                         {child.name}
                                       </span>
                                     </div>
@@ -616,8 +609,7 @@ export function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className={`lg:hidden p-2 transition-colors flex-shrink-0 ${isScrolled ? "text-primary" : "text-white"
-              }`}
+            className="lg:hidden p-2 transition-colors flex-shrink-0 text-primary"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -637,10 +629,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className={`lg:hidden overflow-hidden transition-colors ${isScrolled
-              ? "bg-white border-t border-slate-100"
-              : "bg-primary/95 backdrop-blur-md border-t border-primary/50"
-              }`}
+            className="lg:hidden overflow-hidden transition-colors bg-white border-t border-slate-100"
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link) => {
@@ -652,16 +641,12 @@ export function Navbar() {
                   return (
                     <div
                       key="Products"
-                      className={`transition-colors ${isScrolled
-                        ? "border-b border-slate-50"
-                        : "border-b border-primary/30"
-                        }`}
+                      className="transition-colors border-b border-slate-50"
                     >
                       <button
                         type="button"
                         onClick={() => setOpenMobileSub(isOpen ? null : "Products")}
-                        className={`w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 uppercase tracking-wide transition-colors ${isScrolled ? "text-primary" : "text-white"
-                          }`}
+                        className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
                         aria-expanded={isOpen}
                       >
                         <span>Products</span>
@@ -683,8 +668,7 @@ export function Navbar() {
                               <li key={cat.name}>
                                 <Link
                                   to={cat.path}
-                                  className={`block font-montserrat text-sm py-2 transition-colors ${isScrolled ? "text-slate-600" : "text-white/80"
-                                    }`}
+                                  className="block font-montserrat text-sm py-2 transition-colors text-slate-600"
                                 >
                                   {cat.name}
                                 </Link>
@@ -703,10 +687,7 @@ export function Navbar() {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`font-montserrat font-medium text-lg py-3 uppercase tracking-wide transition-colors ${isScrolled
-                        ? "text-primary border-b border-slate-50"
-                        : "text-white border-b border-primary/30"
-                        }`}
+                      className="font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary border-b border-slate-50"
                     >
                       {link.name}
                     </Link>
@@ -717,18 +698,14 @@ export function Navbar() {
                 return (
                   <div
                     key={link.name}
-                    className={`transition-colors ${isScrolled
-                      ? "border-b border-slate-50"
-                      : "border-b border-primary/30"
-                      }`}
+                    className="transition-colors border-b border-slate-50"
                   >
                     <button
                       type="button"
                       onClick={() =>
                         setOpenMobileSub(isOpen ? null : link.name)
                       }
-                      className={`w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 uppercase tracking-wide transition-colors ${isScrolled ? "text-primary" : "text-white"
-                        }`}
+                      className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
                       aria-expanded={isOpen}
                     >
                       <span>{link.name}</span>
@@ -750,8 +727,7 @@ export function Navbar() {
                             <li key={child.name}>
                               <Link
                                 to={child.path}
-                                className={`block font-montserrat text-sm py-2 transition-colors ${isScrolled ? "text-slate-600" : "text-white/80"
-                                  }`}
+                                className="block font-montserrat text-sm py-2 transition-colors text-slate-600"
                               >
                                 {child.name}
                               </Link>

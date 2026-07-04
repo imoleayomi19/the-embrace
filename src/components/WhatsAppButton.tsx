@@ -32,8 +32,7 @@ export function WhatsAppButton() {
             <div className="absolute right-6 -bottom-1.5 w-3 h-3 bg-white border-r border-b border-slate-100 rotate-45" />
 
             <div className="flex-1 text-xs md:text-sm font-medium leading-relaxed">
-              <p className="font-bold text-primary mb-0.5">Need expert help?</p>
-              <p className="text-slate-500">Chat with us on WhatsApp for free solar & security consultations!</p>
+              <p className="font-bold text-primary mb-0.5">Chat with us</p>
             </div>
 
             <button

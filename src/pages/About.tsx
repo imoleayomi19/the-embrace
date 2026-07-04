@@ -323,7 +323,7 @@ export function About() {
               >
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: "url('./solar-6.jpg')" }}
+                  style={{ backgroundImage: "url('./tagline.png')" }}
                 />
 
                 {/* Title visible always */}
@@ -358,7 +358,7 @@ export function About() {
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: "url('./solar-4.jpg')" }}
+                    style={{ backgroundImage: "url('./vision.png')" }}
                   />
 
                   {/* Title visible always */}
@@ -391,7 +391,7 @@ export function About() {
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: "url('./solar-5.jpg')" }}
+                    style={{ backgroundImage: "url('./mission.png')" }}
                   />
 
                   {/* Title visible always */}
@@ -533,7 +533,7 @@ export function About() {
       </section>
 
       {/* OUR CORE VALUES - SOLAR STYLE */}
-      <section className="py-24 relative overflow-hidden">
+      <section className=" relative overflow-hidden ml-2 mr-2">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <div
@@ -545,7 +545,7 @@ export function About() {
           <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/90" />
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 pt-10 relative z-10">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
@@ -636,7 +636,7 @@ export function About() {
                 {/* Content Container */}
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
                   {/* Icon - Aligned at top */}
-                  <div className="flex justify-center pt-8">
+                  {/* <div className="flex justify-center pt-8">
                     <div className={`w-12 h-12 ${value.bgColor} border ${value.borderColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-md`}>
                       {idx === 0 && <Award className={`w-6 h-6 ${value.color}`} />}
                       {idx === 1 && <Shield className={`w-6 h-6 ${value.color}`} />}
@@ -645,7 +645,7 @@ export function About() {
                       {idx === 4 && <Handshake className={`w-6 h-6 ${value.color}`} />}
                       {idx === 5 && <Heart className={`w-6 h-6 ${value.color}`} />}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Middle Section - Title (Montserrat Bold) */}
                   <div className="flex-grow flex items-center justify-center">
@@ -672,7 +672,7 @@ export function About() {
           </motion.div>
 
           {/* Interactive Hint */}
-          <motion.div
+          {/* <motion.div
             className="text-center mt-12"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -684,7 +684,7 @@ export function About() {
               Hover over each value to learn more
               <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
             </p>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>
       {/* OUR COMMITMENT */}
@@ -736,14 +736,14 @@ export function About() {
                 {
                   title: "To Our Shareholders",
                   desc: "We are committed to sustainable growth, operational excellence, and long-term value creation.",
-                  color: "bg-alternativeR",
+                  color: "bg-secondary",
                   textColor: "text-alternativeR",
                   image: "./solar-7.jpg",
                 },
                 {
                   title: "To Our Communities",
                   desc: "We create positive impact through clean energy, technological innovation, and responsible business practices.",
-                  color: "bg-alternative",
+                  color: "bg-primary",
                   textColor: "text-alternative",
                   image: "./solar-8.jpg",
                 },

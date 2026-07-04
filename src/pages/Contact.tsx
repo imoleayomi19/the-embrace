@@ -237,9 +237,6 @@ export function Contact() {
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
             <motion.div {...fadeIn} className="space-y-8">
               <div className="">
-                <span className="text-secondary uppercase tracking-[0.3em] text-sm font-montserrat font-semibold">
-                  Reach out
-                </span>
                 {/* Main Headline - Anton ExtraBold */}
                 <h2 className="text-3xl md:text-4xl font-anton font-extrabold mt-4 mb-4">
                   Let's start your solar or security project with the right partner.
