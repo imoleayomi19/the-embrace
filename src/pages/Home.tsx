@@ -319,12 +319,12 @@ export function Home() {
 
         <div className="relative z-10 flex flex-col min-h-[calc(100dvh-4rem)] md:min-h-[90vh]">
           {/* Full-width phrase banner - FIXED HEIGHT to prevent jumping */}
-          <div className="w-full px-4 md:px-6 pt-32 sm:pt-40 md:pt-48 pb-4">
-            <h3 className="text-[32pt] text-white leading-[1.2] w-full font-montserrat font-extrabold text-center h-[140px] sm:h-[110px] md:h-[120px] flex items-center justify-center capitalize">
+          <div className="w-full px-4 md:px-6 pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-2 sm:pb-4">
+            <h3 className="text-2xl sm:text-3xl md:text-[32pt] text-white leading-[1.2] w-full font-montserrat font-extrabold text-center h-auto sm:h-[110px] md:h-[120px] lg:h-[140px] flex items-center justify-center capitalize min-h-[80px] sm:min-h-[90px]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={phraseIndex}
-                  className="inline-flex flex-wrap justify-center items-center text-center gap-x-3"
+                  className="inline-flex flex-wrap justify-center items-center text-center gap-x-2 sm:gap-x-3"
                   variants={phraseContainerVariants}
                   initial="hidden"
                   animate="visible"
@@ -354,13 +354,13 @@ export function Home() {
                 className="gpu-accelerate flex flex-col items-center"
               >
                 <p
-                  className="text-[14pt] text-slate-200 font-semibold mb-6 sm:mb-8 max-w-4xl leading-relaxed text-center mx-auto"
+                  className="text-sm sm:text-base md:text-[14pt] text-slate-200 font-semibold mb-4 sm:mb-6 md:mb-8 max-w-4xl leading-relaxed text-center mx-auto px-2"
                   style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
                 >
                   Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
                 </p>
 
-                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row items-center justify-center">
+                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row items-center justify-center w-full px-2">
                   <Link
                     to="/contact"
                     className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center text-sm sm:text-lg shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
@@ -433,126 +433,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* QUICK SERVICE SECTION */}
-      <section className="py-16 md:py-24 bg-slate-50 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-8 lg:px-16">
-          {/* Section Header */}
-          <motion.div className="text-center max-w-3xl mx-auto mb-16" {...fadeIn}>
-            <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl text-primary leading-tight mb-4">
-              Everything You Need,{" "}
-              <span className="text-secondary italic">All In One Place</span>
-            </h2>
-            <p className="text-slate-500 font-montserrat text-base md:text-lg leading-relaxed">
-              From consultation to commissioning — our expert team delivers reliable energy solutions tailored to your needs.
-            </p>
-          </motion.div>
-
-          {/* 6 Cards Grid */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            {[
-              {
-                number: "01",
-                accent: "text-primary",
-                border: "border-primary/30",
-                icon: Sun,
-                title: "Solar Installation",
-                desc: "End-to-end residential and commercial solar PV system design, supply, and professional installation.",
-                link: "/services",
-              },
-              {
-                number: "02",
-                accent: "text-secondary",
-                border: "border-secondary/40",
-                icon: Battery,
-                title: "Energy Storage",
-                desc: "High-capacity lithium battery systems and inverter solutions for 24/7 uninterrupted power supply.",
-                link: "/services",
-              },
-              {
-                number: "03",
-                accent: "text-alternativeO",
-                border: "border-alternativeO/30",
-                icon: ShieldCheck,
-                title: "System Maintenance",
-                desc: "Scheduled inspections, performance monitoring, and rapid-response after-sales support.",
-                link: "/services",
-              },
-              {
-                number: "04",
-                accent: "text-alternativeR",
-                border: "border-alternativeR/30",
-                icon: Building2,
-                title: "Commercial Projects",
-                desc: "Scalable solar solutions for factories, office complexes, schools, and government facilities.",
-                link: "/services",
-              },
-              {
-                number: "05",
-                accent: "text-primary",
-                border: "border-primary/30",
-                icon: HomeIcon,
-                title: "Smart Home Energy",
-                desc: "Intelligent energy management systems that optimise usage and reduce electricity bills.",
-                link: "/services",
-              },
-              {
-                number: "06",
-                accent: "text-secondary",
-                border: "border-secondary/40",
-                icon: Leaf,
-                title: "Eco Consultation",
-                desc: "Expert energy audits and sustainability road-maps aligned with your green-energy goals.",
-                link: "/services",
-              },
-            ].map((card, idx) => {
-              const CardIcon = card.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  variants={fadeIn}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className={`bg-white rounded-2xl p-7 shadow-lg hover:shadow-2xl transition-shadow duration-300 border-t-4 ${card.border} flex flex-col gap-4 group`}
-                >
-                  {/* Number + Icon row */}
-                  <div className="flex items-center justify-between">
-                    <span className={`font-anton font-extrabold text-5xl leading-none ${card.accent} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}>
-                      {card.number}
-                    </span>
-                    <div className={`w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center shadow-sm`}>
-                      <CardIcon className={`w-6 h-6 ${card.accent}`} strokeWidth={1.8} />
-                    </div>
-                  </div>
-
-                  {/* Text */}
-                  <div>
-                    <h3 className="font-montserrat font-bold text-primary text-lg mb-2 group-hover:text-secondary transition-colors duration-300">
-                      {card.title}
-                    </h3>
-                    <p className="text-slate-500 font-montserrat text-sm leading-relaxed">
-                      {card.desc}
-                    </p>
-                  </div>
-
-                  {/* CTA */}
-                  <Link
-                    to={card.link}
-                    className={`inline-flex items-center gap-1.5 font-montserrat font-semibold text-sm ${card.accent} mt-auto group-hover:gap-3 transition-all duration-300`}
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </div>
-      </section>
       {/* SERVICES PREVIEW */}
       <section className="pt-12 pb-24 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
