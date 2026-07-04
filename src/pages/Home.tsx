@@ -319,8 +319,8 @@ export function Home() {
 
         <div className="relative z-10 flex flex-col min-h-[calc(100dvh-4rem)] md:min-h-[90vh]">
           {/* Full-width phrase banner - FIXED HEIGHT to prevent jumping */}
-          <div className="w-full px-4 md:px-6 pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-2 sm:pb-4">
-            <h3 className="text-2xl sm:text-3xl md:text-[32pt] text-white leading-[1.2] w-full font-montserrat font-extrabold text-center h-auto sm:h-[110px] md:h-[120px] lg:h-[140px] flex items-center justify-center capitalize min-h-[80px] sm:min-h-[90px]">
+          <div className="w-full px-4 md:px-6 pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-4 sm:pb-6">
+            <h3 className="text-3xl sm:text-4xl md:text-[32pt] text-white leading-[1.2] w-full font-montserrat font-black text-center h-auto sm:h-[110px] md:h-[120px] lg:h-[140px] flex items-center justify-center capitalize min-h-[100px] sm:min-h-[110px]">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={phraseIndex}
@@ -345,7 +345,7 @@ export function Home() {
           </div>
 
           {/* Hero content - centered below the phrase */}
-          <div className="container mx-auto px-4 md:px-6 pb-6 md:pb-44 flex-1 flex items-start md:items-center">
+          <div className="container mx-auto px-4 md:px-6 pb-6 md:pb-44 flex-1 flex items-center md:items-center">
             <div className="w-full mx-auto text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -354,16 +354,16 @@ export function Home() {
                 className="gpu-accelerate flex flex-col items-center"
               >
                 <p
-                  className="text-sm sm:text-base md:text-[14pt] text-slate-200 font-semibold mb-4 sm:mb-6 md:mb-8 max-w-4xl leading-relaxed text-center mx-auto px-2"
+                  className="text-lg sm:text-xl md:text-[14pt] text-white font-extrabold mb-6 sm:mb-8 md:mb-10 max-w-4xl leading-relaxed text-center mx-auto px-2 drop-shadow-lg"
                   style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
                 >
                   Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
                 </p>
 
-                <div className="flex flex-col gap-3 sm:gap-4 sm:flex-row items-center justify-center w-full px-2">
+                <div className="flex flex-col gap-4 sm:gap-5 sm:flex-row items-center justify-center w-full px-2 mb-6 sm:mb-8">
                   <Link
                     to="/contact"
-                    className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-semibold px-4 sm:px-8 py-3 sm:py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center text-sm sm:text-lg shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
+                    className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-black text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
                   >
                     Request a Quote
                     <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
