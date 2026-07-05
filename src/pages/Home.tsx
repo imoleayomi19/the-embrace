@@ -17,6 +17,9 @@ import {
   Pencil,
   Zap,
   Power,
+  Camera,
+  GraduationCap,
+  ShoppingBag,
 } from "lucide-react";
 
 const fadeIn = {
@@ -294,6 +297,50 @@ export function Home() {
     },
   ];
 
+  // What does Embrace actually do? - Services data
+  const embraceServices = [
+    {
+      number: "01",
+      title: "Solar & Energy Solutions",
+      desc: "Hybrid, off-grid, grid-tie, backup and commercial power solutions",
+      icon: Sun,
+      accent: "text-secondary",
+      bgAccent: "bg-secondary/10",
+    },
+    {
+      number: "02",
+      title: "Security & Smart Systems",
+      desc: "CCTV, access control and intelligent surveillance system",
+      icon: Camera,
+      accent: "text-primary",
+      bgAccent: "bg-primary/10",
+    },
+    {
+      number: "03",
+      title: "Engineering Services",
+      desc: "Design, installation, commissioning and maintenance",
+      icon: Wrench,
+      accent: "text-alternativeO",
+      bgAccent: "bg-alternativeO/10",
+    },
+    {
+      number: "04",
+      title: "Retail Shop",
+      desc: "Inverters, Batteries, Panels, Cables, Breakers, Racks, Rails, etc.",
+      icon: ShoppingBag,
+      accent: "text-alternativeR",
+      bgAccent: "bg-alternativeR/10",
+    },
+    {
+      number: "05",
+      title: "Training & Capacity Development",
+      desc: "Professional training and practical certification programs.",
+      icon: GraduationCap,
+      accent: "text-secondary",
+      bgAccent: "bg-secondary/10",
+    },
+  ];
+
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION */}
@@ -372,64 +419,175 @@ export function Home() {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Trust Strip — in document flow on mobile, pinned to bottom on desktop */}
+      {/* WHAT DOES EMBRACE ACTUALLY DO? SECTION */}
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden rounded-t-lg">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10 ">
+          {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 1.0, ease: "easeOut" }}
-            className="relative md:absolute md:bottom-0 md:left-0 md:right-0 bg-primary/95 backdrop-blur-md border-t border-white/10 py-4 sm:py-5 md:py-6 gpu-accelerate shrink-0"
+            className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+            {...fadeIn}
           >
-            <div className="container mx-auto px-4 md:px-6">
-              <div className="grid grid-cols-2 gap-x-4 gap-y-4 sm:gap-x-6 md:flex md:flex-row md:justify-between md:items-center md:gap-12">
-                <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
-                  <CountUp
-                    target={yearsOfExperience}
-                    duration={1200}
-                    suffix="+"
-                    className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
-                  />
-                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                    years of installation experience
-                  </span>
-                </div>
-                <Link
-                  to="/projects"
-                  className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left group transition-colors hover:text-white"
-                >
-                  <CountUp
-                    target={10000}
-                    duration={1300}
-                    suffix="+"
-                    format={(value) =>
-                      value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString()
-                    }
-                    className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0 group-hover:text-secondary"
-                  />
-                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                    installations delivered
-                  </span>
-                </Link>
-                <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
-                  <span className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0">1MW</span>
-                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                    commercial solar capacity
-                  </span>
-                </div>
-                <div className="flex flex-row items-center gap-2 sm:gap-3 md:flex-col md:items-start lg:flex-row lg:items-start text-left">
-                  <CountUp
-                    target={25}
-                    duration={1200}
-                    suffix="+"
-                    className="text-secondary font-anton font-extrabold text-2xl sm:text-3xl shrink-0"
-                  />
-                  <span className="text-slate-300 font-montserrat font-medium text-[10px] sm:text-xs md:text-sm uppercase leading-tight">
-                    training programs delivered
-                  </span>
-                </div>
-              </div>
-            </div>
           </motion.div>
+
+          {/* Services Grid */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+          >
+            {embraceServices.map((service, idx) => {
+              const ServiceIcon = service.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  variants={fadeIn}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="bg-white rounded-2xl p-7 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-secondary/30 group relative overflow-hidden"
+                >
+                  {/* Number badge */}
+                  <div className="absolute top-4 right-4">
+                    <span className={`font-anton font-extrabold text-4xl leading-none ${service.accent} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}>
+                      {service.number}
+                    </span>
+                  </div>
+
+                  {/* Icon */}
+                  <div className={`w-14 h-14 rounded-xl ${service.bgAccent} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                    <ServiceIcon className={`w-7 h-7 ${service.accent}`} strokeWidth={1.8} />
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <h3 className={`font-montserrat font-bold text-primary text-lg mb-2 group-hover:${service.accent.replace('text-', 'text-')} transition-colors duration-300`}>
+                      {service.title}
+                    </h3>
+                    <p className="text-slate-600 font-montserrat text-sm leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+
+                  {/* Hover accent line */}
+                  <div className={`absolute bottom-0 left-0 w-0 h-1 ${service.accent.replace('text-', 'bg-')} group-hover:w-full transition-all duration-500`} />
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-3 bg-primary text-white font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-secondary hover:text-primary transition-all duration-300 shadow-lg hover:shadow-xl group"
+            >
+              Explore All Services
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* STATS SECTION - All 4 items in one row */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-[#1a1a2e] via-[#0f0f1e] to-[#16213e]">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
+            {/* Stats Item 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2">
+                <CountUp
+                  target={yearsOfExperience}
+                  duration={1200}
+                  suffix="+"
+                  className="text-white"
+                />
+              </div>
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+                Years of Installation Experience
+              </div>
+
+            </motion.div>
+
+            {/* Stats Item 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2">
+                <CountUp
+                  target={10}
+                  duration={1300}
+                  suffix="k+"
+                  format={(value) =>
+                    value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString()
+                  }
+                  className="text-white"
+                />
+              </div>
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+                Installations Delivered
+              </div>
+            </motion.div>
+
+            {/* Stats Item 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2">
+                1MW
+              </div>
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+                Commercial Solar Capacity
+              </div>
+            </motion.div>
+
+            {/* Stats Item 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2">
+                <CountUp
+                  target={25}
+                  duration={1300}
+                  suffix="+"
+                  className="text-white"
+                />
+              </div>
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+                Training Programs Delivered
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
