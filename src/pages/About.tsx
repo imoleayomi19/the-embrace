@@ -625,9 +625,9 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            {/* <h3 className="text-2xl md:text-3xl font-montserrat font-black uppercase tracking-wider mb-8 text-primary">
+            <h3 className="text-2xl md:text-3xl font-montserrat font-black uppercase tracking-wider mb-8 text-primary">
               Certifications & Compliance
-            </h3> */}
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {["CAC", "NEMSA", "COREN", "HSE"].map((cert, idx) => (
                 <motion.div
@@ -828,7 +828,7 @@ export function About() {
 
             {/* Commitment Cards - Vertical Panels - Right Side */}
             <motion.div
-              className="lg:w-3/4 flex flex-col md:flex-row gap-2"
+              className="w-full lg:w-3/4 flex flex-col md:flex-row gap-2"
               variants={staggerContainer}
               initial="initial"
               whileInView="whileInView"
@@ -873,7 +873,7 @@ export function About() {
                 <motion.div
                   key={idx}
                   variants={fadeIn}
-                  className="group relative flex-1 min-h-[400px] md:min-h-[500px] overflow-hidden cursor-pointer"
+                  className="group relative w-full md:w-auto flex-1 min-h-[400px] md:min-h-[500px] overflow-hidden cursor-pointer"
                   whileHover={{ flex: 2 }}
                   transition={{ duration: 0.5 }}
                 >
