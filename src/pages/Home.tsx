@@ -466,14 +466,13 @@ export function Home() {
                 </Link>
               </div>
             </motion.div>
-
-            {/* Right Side - Service Cards Grid */}
+            {/* Right Side - Service Cards Grid - Mobile: Stacked, Desktop: 3-Column Grid */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex flex-wrap justify-center gap-4 md:gap-5"
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5"
             >
               {serviceCards.map((card, idx) => {
                 const CardIcon = card.icon;
@@ -485,38 +484,40 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
                     whileHover={{ y: -5 }}
-                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden w-[calc(33.333%-10px)] md:w-[calc(33.333%-14px)] max-w-[280px]"
+                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden min-h-[280px] md:min-h-[260px]"
                   >
                     {/* Colored accent line at top */}
                     <div
-                      className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-1.5"
+                      className="absolute top-0 left-0 right-0 h-1.5 rounded-t-xl"
                       style={{ backgroundColor: card.color }}
                     />
 
-                    {/* Icon with brand color */}
-                    <div className="mb-3 flex justify-center">
+                    {/* Icon with brand color - moves up on hover */}
+                    <div className="mb-4 mt-2 flex justify-center transition-transform duration-300 group-hover:-translate-y-3">
                       <div
-                        className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                        className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                         style={{ backgroundColor: `${card.color}15` }}
                       >
                         <CardIcon
-                          className="w-7 h-7 md:w-8 md:h-8 transition-transform duration-300"
+                          className="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300"
                           strokeWidth={1.8}
                           style={{ color: card.color }}
                         />
                       </div>
                     </div>
 
-                    {/* Title */}
-                    <h4 className="font-montserrat font-semibold text-primary text-xs md:text-sm leading-tight mb-1 min-h-[2.5rem] flex items-center justify-center">
+                    {/* Title - moves up on hover */}
+                    <h4 className="font-montserrat font-bold text-primary text-sm md:text-base leading-tight uppercase tracking-wide mb-2 transition-transform duration-300 group-hover:-translate-y-3">
                       {card.title}
                     </h4>
 
-                    {/* Description - appears on hover - INCREASED FONT SIZE AND WEIGHT */}
+                    {/* Description - slides up from bottom on hover */}
                     <div
-                      className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100"
+                      className="absolute bottom-4 left-0 right-0 px-4 overflow-hidden transition-all duration-300 ease-in-out 
+            max-h-0 opacity-0 translate-y-4
+            md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0"
                     >
-                      <p className="text-slate-600 text-sm md:text-base font-semibold leading-relaxed pt-2 border-t border-slate-100 mt-2" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+                      <p className="text-slate-600 text-xs md:text-sm font-medium leading-relaxed pt-2 border-t border-slate-100" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
                         {card.desc}
                       </p>
                     </div>
