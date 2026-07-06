@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+
+
+
+
 // Add this CountUp component
 function CountUp({
   target,
@@ -49,6 +53,9 @@ function CountUp({
       cancelAnimationFrame(rafId);
     };
   }, [target, duration]);
+
+
+
 
   return (
     <span ref={ref} className={className}>
@@ -555,20 +562,19 @@ export function About() {
                 image: "./solar-6.jpg",
               },
             ].map((milestone, idx) => (
-              <>
+              <div key={idx} className="relative w-full lg:w-80 h-96 mx-2">
                 <motion.div
-                  key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.15 }}
-                  className="relative w-full lg:w-80 h-96 rounded-2xl overflow-hidden group mx-2"
+                  className="relative w-full h-full rounded-2xl overflow-hidden group"
                 >
                   {/* Background Image */}
-                  <div
+                  {/* <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                     style={{ backgroundImage: `url('${milestone.image}')` }}
-                  />
+                  /> */}
 
                   {/* Dark Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
@@ -588,14 +594,14 @@ export function About() {
                   </div>
                 </motion.div>
 
-                {/* Arrow Connector - Positioned at top, overlapping cards */}
+                {/* Arrow Connector - Positioned between cards */}
                 {idx < 2 && (
                   <div
                     className="hidden lg:block absolute z-30"
                     style={{
-                      left: `${(idx + 1) * 33.333}%`,
-                      top: '30px',
-                      transform: 'translateX(-50%)'
+                      left: 'calc(100% + 8px)',
+                      top: '50%',
+                      transform: 'translate(-50%, -50%)'
                     }}
                   >
                     <div className="w-14 h-14 rounded-full bg-teal-500 flex items-center justify-center shadow-lg border-4 border-white">
@@ -603,7 +609,7 @@ export function About() {
                     </div>
                   </div>
                 )}
-              </>
+              </div>
             ))}
           </div>
         </div>
@@ -619,9 +625,9 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h3 className="text-2xl md:text-3xl font-anton font-extrabold mb-8 text-primary">
+            {/* <h3 className="text-2xl md:text-3xl font-montserrat font-black uppercase tracking-wider mb-8 text-primary">
               Certifications & Compliance
-            </h3>
+            </h3> */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {["CAC", "NEMSA", "COREN", "HSE"].map((cert, idx) => (
                 <motion.div
@@ -630,14 +636,15 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="bg-white rounded-xl p-6 border-2 border-slate-200 hover:border-secondary hover:shadow-lg transition-all duration-300"
+                  className="bg-white rounded-xl p-6 border-2 border-slate-100 hover:border-secondary hover:shadow-lg flex items-center justify-center transition-all duration-300"
                 >
-                  <span className="text-xl font-montserrat font-bold text-primary">
+                  <span className="text-xl font-montserrat font-bold text-primary tracking-wide">
                     {cert}
                   </span>
                 </motion.div>
               ))}
             </div>
+
           </motion.div>
         </div>
       </section>
