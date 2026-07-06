@@ -297,47 +297,42 @@ export function Home() {
     },
   ];
 
-  // What does Embrace actually do? - Services data
-  const embraceServices = [
+  // Service cards for the right side - 5 cards with 5 brand colors
+  const serviceCards = [
     {
-      number: "01",
+      icon: Sun,
       title: "Solar & Energy Solutions",
       desc: "Hybrid, off-grid, grid-tie, backup and commercial power solutions",
-      icon: Sun,
-      accent: "text-secondary",
-      bgAccent: "bg-secondary/10",
+      color: "#002060", // primary - dark blue
+      gradient: "linear-gradient(135deg, #002060 0%, #004080 100%)",
     },
     {
-      number: "02",
+      icon: Camera,
       title: "Security & Smart Systems",
       desc: "CCTV, access control and intelligent surveillance system",
-      icon: Camera,
-      accent: "text-primary",
-      bgAccent: "bg-primary/10",
+      color: "#FFC759", // secondary - yellow
+      gradient: "linear-gradient(135deg, #FFC759 0%, #FFB300 100%)",
     },
     {
-      number: "03",
+      icon: Wrench,
       title: "Engineering Services",
       desc: "Design, installation, commissioning and maintenance",
-      icon: Wrench,
-      accent: "text-alternativeO",
-      bgAccent: "bg-alternativeO/10",
+      color: "#066906", // alternative - green
+      gradient: "linear-gradient(135deg, #066906 0%, #0A8F0A 100%)",
     },
     {
-      number: "04",
+      icon: ShoppingBag,
       title: "Retail Shop",
       desc: "Inverters, Batteries, Panels, Cables, Breakers, Racks, Rails, etc.",
-      icon: ShoppingBag,
-      accent: "text-alternativeR",
-      bgAccent: "bg-alternativeR/10",
+      color: "#EA6936", // alternativeO - orange
+      gradient: "linear-gradient(135deg, #EA6936 0%, #FF8C61 100%)",
     },
     {
-      number: "05",
+      icon: GraduationCap,
       title: "Training & Capacity Development",
       desc: "Professional training and practical certification programs.",
-      icon: GraduationCap,
-      accent: "text-secondary",
-      bgAccent: "bg-secondary/10",
+      color: "#EE373D", // alternativeR - red
+      gradient: "linear-gradient(135deg, #EE373D 0%, #FF6B6E 100%)",
     },
   ];
 
@@ -410,7 +405,7 @@ export function Home() {
                 <div className="flex flex-col gap-4 sm:gap-5 sm:flex-row items-center justify-center w-full px-2 mb-6 sm:mb-8">
                   <Link
                     to="/contact"
-                    className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-black text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-yellow-400 transition-colors text-center shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
+                    className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-black text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-center shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
                   >
                     Request a Quote
                     <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -423,81 +418,113 @@ export function Home() {
       </section>
 
       {/* WHAT DOES EMBRACE ACTUALLY DO? SECTION */}
-      <section className="py-16 md:py-24 bg-white relative overflow-hidden rounded-t-lg">
-        {/* Subtle background decoration */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10 ">
-          {/* Section Header */}
-          <motion.div
-            className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
-            {...fadeIn}
-          >
-          </motion.div>
-
-          {/* Services Grid */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-          >
-            {embraceServices.map((service, idx) => {
-              const ServiceIcon = service.icon;
-              return (
-                <motion.div
-                  key={idx}
-                  variants={fadeIn}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="bg-white rounded-2xl p-7 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 hover:border-secondary/30 group relative overflow-hidden"
-                >
-                  {/* Number badge */}
-                  <div className="absolute top-4 right-4">
-                    <span className={`font-anton font-extrabold text-4xl leading-none ${service.accent} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}>
-                      {service.number}
-                    </span>
-                  </div>
-
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl ${service.bgAccent} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                    <ServiceIcon className={`w-7 h-7 ${service.accent}`} strokeWidth={1.8} />
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3 className={`font-montserrat font-bold text-primary text-lg mb-2 group-hover:${service.accent.replace('text-', 'text-')} transition-colors duration-300`}>
-                      {service.title}
-                    </h3>
-                    <p className="text-slate-600 font-montserrat text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-
-                  {/* Hover accent line */}
-                  <div className={`absolute bottom-0 left-0 w-0 h-1 ${service.accent.replace('text-', 'bg-')} group-hover:w-full transition-all duration-500`} />
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          {/* CTA Button */}
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-3 bg-primary text-white font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-secondary hover:text-primary transition-all duration-300 shadow-lg hover:shadow-xl group"
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left Side - Large Image/Video Container */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px] lg:h-[550px]"
             >
-              Explore All Services
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </motion.div>
+              {/* Video Background */}
+              <div className="absolute inset-0 overflow-hidden">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
+                  style={{ zIndex: 0 }}
+                >
+                  <source src="./home-video.mp4" type="video/mp4" />
+                  {/* Fallback image if video doesn't load */}
+                  <img
+                    src="./solar-4.jpg"
+                    alt="Embrace Technologies"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </video>
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40" />
+              </div>
+
+              {/* Content - visible on top of video */}
+              <div className="relative z-10 h-full flex flex-col justify-center p-6 md:p-10">
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-white mb-4 leading-tight">
+                  Your Power, Our Priority
+                </h3>
+
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 text-white font-montserrat font-semibold border-2 border-white px-6 py-3 rounded-full hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Service Cards Grid */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-wrap justify-center gap-4 md:gap-5"
+            >
+              {serviceCards.map((card, idx) => {
+                const CardIcon = card.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    whileHover={{ y: -5 }}
+                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden w-[calc(33.333%-10px)] md:w-[calc(33.333%-14px)] max-w-[280px]"
+                  >
+                    {/* Colored accent line at top */}
+                    <div
+                      className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-1.5"
+                      style={{ backgroundColor: card.color }}
+                    />
+
+                    {/* Icon with brand color */}
+                    <div className="mb-3 flex justify-center">
+                      <div
+                        className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                        style={{ backgroundColor: `${card.color}15` }}
+                      >
+                        <CardIcon
+                          className="w-7 h-7 md:w-8 md:h-8 transition-transform duration-300"
+                          strokeWidth={1.8}
+                          style={{ color: card.color }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h4 className="font-montserrat font-semibold text-primary text-xs md:text-sm leading-tight mb-1 min-h-[2.5rem] flex items-center justify-center">
+                      {card.title}
+                    </h4>
+
+                    {/* Description - appears on hover - INCREASED FONT SIZE AND WEIGHT */}
+                    <div
+                      className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100"
+                    >
+                      <p className="text-slate-600 text-sm md:text-base font-semibold leading-relaxed pt-2 border-t border-slate-100 mt-2" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+                        {card.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -513,7 +540,7 @@ export function Home() {
               transition={{ duration: 0.6 }}
               className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
                 <CountUp
                   target={yearsOfExperience}
                   duration={1200}
@@ -521,10 +548,9 @@ export function Home() {
                   className="text-white"
                 />
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
                 Years of Installation Experience
               </div>
-
             </motion.div>
 
             {/* Stats Item 2 */}
@@ -535,7 +561,7 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
                 <CountUp
                   target={10}
                   duration={1300}
@@ -546,7 +572,7 @@ export function Home() {
                   className="text-white"
                 />
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
                 Installations Delivered
               </div>
             </motion.div>
@@ -559,10 +585,10 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
                 1MW
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
                 Commercial Solar Capacity
               </div>
             </motion.div>
@@ -575,7 +601,7 @@ export function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-center"
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
                 <CountUp
                   target={25}
                   duration={1300}
@@ -583,7 +609,7 @@ export function Home() {
                   className="text-white"
                 />
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3">
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
                 Training Programs Delivered
               </div>
             </motion.div>
@@ -673,9 +699,9 @@ export function Home() {
                 {/* Button */}
                 <Link
                   to="/services"
-                  className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-secondary hover:text-primary text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-300 group-hover:shadow-lg"
+                  className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-300 group-hover:shadow-lg"
                 >
-                  MORE DETAILS
+                  More Details
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>
@@ -695,7 +721,7 @@ export function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">
               How we work
             </h2>
-            <p className="text-slate-600 font-montserrat text-lg">
+            <p className="text-slate-600 font-montserrat text-lg" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               A simple, transparent process from your first consultation to
               flipping the switch.
             </p>
@@ -832,7 +858,7 @@ export function Home() {
               Leading Solar Installation Company in Nigeria
             </h2>
 
-            <div className="space-y-2 text-slate-600 font-montserrat text-sm leading-relaxed max-w-4xl mx-auto">
+            <div className="space-y-2 text-slate-600 font-montserrat text-sm leading-relaxed max-w-4xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               <p>
                 As a leading solar installation company in Nigeria, Embrace Technologies delivers more than solar products — we engineer reliable power systems built specifically for Nigerian conditions.
               </p>
@@ -915,7 +941,8 @@ export function Home() {
                               wordBreak: 'break-word',
                               overflowWrap: 'break-word',
                               hyphens: 'auto',
-                              textAlign: 'center'
+                              textAlign: 'center',
+                              fontFamily: "'Source Sans Pro', sans-serif"
                             }}
                           >
                             "{testimonial.quote}"
@@ -968,7 +995,7 @@ export function Home() {
           onMouseLeave={() => setIsTrustedPaused(false)}>
           <motion.div className="text-center mb-12" {...fadeIn}>
             <p className="font-montserrat font-medium text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">
-              Trusted By Leading Organisations
+              Trusted By Leading Partners
             </p>
             <div className="w-16 h-0.5 bg-secondary mx-auto"></div>
           </motion.div>
@@ -988,7 +1015,7 @@ export function Home() {
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: isTrustedPaused ? 0 : 50,  // When paused, duration becomes 0 (stops animation)
+                  duration: isTrustedPaused ? 0 : 50,
                   ease: "linear",
                 },
               }}
@@ -1043,17 +1070,15 @@ export function Home() {
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-montserrat font-bold text-white mb-4 sm:mb-6">
               Ready to Embrace Clean Energy?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-slate-200 font-montserrat mb-8 sm:mb-10 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-slate-200 font-montserrat mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               Call To Action
               Ready To Power Your Home or Business?
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-yellow-400 transition-colors text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"
+              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"
             >
-
               Request Free Consultation
-
               <ArrowRight className="w-6 h-6" />
             </Link>
           </motion.div>

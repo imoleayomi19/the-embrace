@@ -39,12 +39,12 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "IVPA Series", path: "/shop" },
     ],
     products: [
-      { name: "IVPS3.5~10kVA", image: "./solar-4.jpg", path: "/shop" },
-      { name: "IVPS0712-1512", image: "./solar-5.jpg", path: "/shop" },
-      { name: "IVEM8~12kW", image: "./solar-6.jpg", path: "/shop" },
-      { name: "IVCM1012-LV", image: "./solar-7.jpg", path: "/shop" },
-      { name: "IVPA-Pro", image: "./solar-8.jpg", path: "/shop" },
-      { name: "IVPS-Mini", image: "./solar-4.jpg", path: "/shop" },
+      { name: "IVPS3.5~10kVA", image: "./product.png", path: "/shop" },
+      { name: "IVPS0712-1512", image: "./product.png", path: "/shop" },
+      { name: "IVEM8~12kW", image: "./product.png", path: "/shop" },
+      { name: "IVCM1012-LV", image: "./product.png", path: "/shop" },
+      { name: "IVPA-Pro", image: "./product.png", path: "/shop" },
+      { name: "IVPS-Mini", image: "./product.png", path: "/shop" },
     ],
   },
   {
@@ -56,11 +56,11 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "IVPM Series", path: "/shop" },
     ],
     products: [
-      { name: "IVCM1/2/3kW-PRO", image: "./solar-5.jpg", path: "/shop" },
-      { name: "IVCM5kW-Lite", image: "./solar-6.jpg", path: "/shop" },
-      { name: "IVHG-30kW", image: "./solar-7.jpg", path: "/shop" },
-      { name: "IVHG-50kW", image: "./solar-8.jpg", path: "/shop" },
-      { name: "IVHG-100kW", image: "./solar-4.jpg", path: "/shop" },
+      { name: "IVCM1/2/3kW-PRO", image: "./product.png", path: "/shop" },
+      { name: "IVCM5kW-Lite", image: "./product.png", path: "/shop" },
+      { name: "IVHG-30kW", image: "./product.png", path: "/shop" },
+      { name: "IVHG-50kW", image: "./product.png", path: "/shop" },
+      { name: "IVHG-100kW", image: "./product.png", path: "/shop" },
     ],
   },
   {
@@ -71,9 +71,9 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "Micro-400W Series", path: "/shop" },
     ],
     products: [
-      { name: "IVEM8~12kW-II", image: "./solar-6.jpg", path: "/shop" },
-      { name: "IVEM-400W", image: "./solar-7.jpg", path: "/shop" },
-      { name: "IVEM-800W", image: "./solar-8.jpg", path: "/shop" },
+      { name: "IVEM8~12kW-II", image: "./product.png", path: "/shop" },
+      { name: "IVEM-400W", image: "./product.png", path: "/shop" },
+      { name: "IVEM-800W", image: "./product.png", path: "/shop" },
     ],
   },
   {
@@ -85,12 +85,12 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "Stackable Series", path: "/shop" },
     ],
     products: [
-      { name: "IVLI-100AH", image: "./solar-7.jpg", path: "/shop" },
-      { name: "IVLI-200AH", image: "./solar-8.jpg", path: "/shop" },
-      { name: "IVLI-300AH", image: "./solar-4.jpg", path: "/shop" },
-      { name: "IVLI-Stack", image: "./solar-5.jpg", path: "/shop" },
-      { name: "IVLI-Rack", image: "./solar-6.jpg", path: "/shop" },
-      { name: "IVLI-Wall", image: "./solar-7.jpg", path: "/shop" },
+      { name: "IVLI-100AH", image: "./product.png", path: "/shop" },
+      { name: "IVLI-200AH", image: "./product.png", path: "/shop" },
+      { name: "IVLI-300AH", image: "./product.png", path: "/shop" },
+      { name: "IVLI-Stack", image: "./product.png", path: "/shop" },
+      { name: "IVLI-Rack", image: "./product.png", path: "/shop" },
+      { name: "IVLI-Wall", image: "./product.png", path: "/shop" },
     ],
   },
   {
@@ -101,8 +101,8 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "Air Cooling Series", path: "/shop" },
     ],
     products: [
-      { name: "IVCS-50kW", image: "./solar-8.jpg", path: "/shop" },
-      { name: "IVCS-100kW", image: "./solar-4.jpg", path: "/shop" },
+      { name: "IVCS-50kW", image: "./product.png", path: "/shop" },
+      { name: "IVCS-100kW", image: "./product.png", path: "/shop" },
     ],
   },
   {
@@ -113,9 +113,9 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "Solar Gel Series", path: "/shop" },
     ],
     products: [
-      { name: "GEL-100AH", image: "./solar-5.jpg", path: "/shop" },
-      { name: "GEL-150AH", image: "./solar-6.jpg", path: "/shop" },
-      { name: "GEL-200AH", image: "./solar-7.jpg", path: "/shop" },
+      { name: "GEL-100AH", image: "./product.png", path: "/shop" },
+      { name: "GEL-150AH", image: "./product.png", path: "/shop" },
+      { name: "GEL-200AH", image: "./product.png", path: "/shop" },
     ],
   },
   {
@@ -127,11 +127,11 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "Accessory Series", path: "/shop" },
     ],
     products: [
-      { name: "MPPT Controller", image: "./solar-8.jpg", path: "/shop" },
-      { name: "Solar Cables", image: "./solar-4.jpg", path: "/shop" },
-      { name: "MC4 Connectors", image: "./solar-5.jpg", path: "/shop" },
-      { name: "Mounting Frames", image: "./solar-6.jpg", path: "/shop" },
-      { name: "Protection Switch", image: "./solar-7.jpg", path: "/shop" },
+      { name: "MPPT Controller", image: "./product.png", path: "/shop" },
+      { name: "Solar Cables", image: "./product.png", path: "/shop" },
+      { name: "MC4 Connectors", image: "./product.png", path: "/shop" },
+      { name: "Mounting Frames", image: "./product.png", path: "/shop" },
+      { name: "Protection Switch", image: "./product.png", path: "/shop" },
     ],
   },
 ];
@@ -146,10 +146,10 @@ const commercialCategories: (ProductCategory & { products: ProductItem[]; series
       { label: "Air Cooling Series", path: "/shop" },
     ],
     products: [
-      { name: "FLM500-125/261", image: "./solar-4.jpg", path: "/shop" },
-      { name: "FLH-E60", image: "./solar-5.jpg", path: "/shop" },
-      { name: "FLS-MES215AF-S", image: "./solar-6.jpg", path: "/shop" },
-      { name: "FLS-ES232LC-S", image: "./solar-7.jpg", path: "/shop" },
+      { name: "FLM500-125/261", image: "./product.png", path: "/shop" },
+      { name: "FLH-E60", image: "./product.png", path: "/shop" },
+      { name: "FLS-MES215AF-S", image: "./product.png", path: "/shop" },
+      { name: "FLS-ES232LC-S", image: "./product.png", path: "/shop" },
     ],
   },
 ];
@@ -182,14 +182,15 @@ function ProductsMegaMenu({
       style={{ top: isScrolled ? "56px" : "80px" }}
       className="fixed left-0 right-0 z-[100] shadow-2xl"
     >
-      <div className="bg-white border-t border-slate-100 mt-4 mb-2">
+      {/* Added border-t and mt-2 for visual separation */}
+      <div className="bg-white border-t-2 border-gray-400 mt-5 mb-2">
         <div className="max-w-[1400px] mx-auto">
 
-          {/* Product Type Tabs - Header above sidebar and products */}
+          {/* Product Type Tabs - Montserrat Bold */}
           <div className="flex items-center justify-center gap-12 py-5 border-b border-slate-100">
             <button
               onClick={() => setProductType("residential")}
-              className={`font-montserrat font-semibold text-base transition-colors flex items-center gap-1 ${productType === "residential"
+              className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "residential"
                 ? "text-secondary"
                 : "text-slate-700 hover:text-secondary"
                 }`}
@@ -198,7 +199,7 @@ function ProductsMegaMenu({
             </button>
             <button
               onClick={() => setProductType("commercial")}
-              className={`font-montserrat font-semibold text-base transition-colors flex items-center gap-1 ${productType === "commercial"
+              className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "commercial"
                 ? "text-secondary"
                 : "text-slate-700 hover:text-secondary"
                 }`}
@@ -209,7 +210,7 @@ function ProductsMegaMenu({
 
           {/* Sidebar and Products side by side */}
           <div className="flex" style={{ height: "calc(100vh - 180px)" }}>
-            {/* ── Left sidebar: categories ── */}
+            {/* ── Left sidebar: categories - Montserrat Medium ── */}
             <aside className="w-52 flex-shrink-0 border-r border-slate-100 py-4">
               {categories.map((cat) => {
                 const active = activeCategory === cat.name;
@@ -263,7 +264,8 @@ function ProductsMegaMenu({
                             }}
                           />
                         </div>
-                        <span className="font-montserrat text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
+                        {/* Product name - Montserrat Medium */}
+                        <span className="font-montserrat font-medium text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
                           {product.name}
                         </span>
                       </Link>
@@ -272,20 +274,20 @@ function ProductsMegaMenu({
                 </AnimatePresence>
               </div>
 
-              {/* Series links row — unique per category */}
+              {/* Series links row - Source Sans Pro/Poppins Regular */}
               <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3 mt-4">
                 {activeCat.series.map((s) => (
                   <Link
                     key={s.label}
                     to={s.path}
-                    className="font-montserrat text-xs text-slate-500 hover:text-secondary transition-colors"
+                    className="font-poppins font-normal text-xs text-slate-500 hover:text-secondary transition-colors"
                   >
                     {s.label} &gt;
                   </Link>
                 ))}
                 <Link
                   to={activeCat.path}
-                  className="ml-auto font-montserrat text-xs font-semibold text-secondary hover:underline"
+                  className="ml-auto font-montserrat font-semibold text-xs text-secondary hover:underline"
                 >
                   All {activeCat.name} &gt;
                 </Link>
@@ -357,12 +359,10 @@ export function Navbar() {
       name: "Solutions",
       path: "/services",
       children: [
-        { name: "Balcony", path: "/services", image: "./balcony.png" },
         { name: "Residential", path: "/services", image: "./residential.png" },
         { name: "Commercial", path: "/services", image: "./commercial.png" },
         { name: "C&I ESS Cabinet", path: "/services", image: "./C&I ESS cabinet.png" },
         { name: "Project Cases", path: "/services", image: "./project cases.png" },
-        { name: "Esolar Platform", path: "/services", image: "./Fsolar Platform.png" },
         { name: "System Config Plan", path: "/services", image: "./system config.png" },
       ],
     },
@@ -412,7 +412,7 @@ export function Navbar() {
             />
           </Link>
 
-          {/* Desktop Nav - Center */}
+          {/* Desktop Nav - Center - Montserrat Bold */}
           <nav className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center gap-4">
               {navLinks.map((link) => {
@@ -421,7 +421,7 @@ export function Navbar() {
                 const hasChildren = !!link.children?.length;
                 const active = isActive(link);
 
-                // Simple link (no children)
+                // Simple link (no children) - Montserrat Bold
                 if (!hasChildren && !isProducts) {
                   return (
                     <Link
@@ -437,7 +437,7 @@ export function Navbar() {
                   );
                 }
 
-                // Products — dedicated mega menu trigger
+                // Products — dedicated mega menu trigger - Montserrat Bold
                 if (isProducts) {
                   return (
                     <div
@@ -477,7 +477,7 @@ export function Navbar() {
                   );
                 }
 
-                // Dropdowns with children (Solutions, About, Academy)
+                // Dropdowns with children (Solutions, About, Academy) - Montserrat Bold
                 return (
                   <div
                     key={link.name}
@@ -520,8 +520,10 @@ export function Navbar() {
                           }}
                           className="fixed left-0 right-0 z-[100]"
                         >
-                          <div className="bg-white shadow-2xl w-full h-full overflow-y-auto mt-5">
+                          {/* Added border-t-2 and mt-2 for visual separation */}
+                          <div className="bg-white shadow-2xl w-full h-full overflow-y-auto mt-7 border-t-2 border-gray-400">
                             <div className="px-4 py-6">
+                              {/* Section Title - Anton ExtraBold */}
                               <h3 className="text-2xl font-anton font-extrabold text-primary mb-6 uppercase tracking-wide text-center">
                                 Our Solutions
                               </h3>
@@ -544,13 +546,15 @@ export function Navbar() {
                                         </>
                                       ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center">
-                                          <span className="text-slate-600 font-semibold text-xs">
+                                          {/* View Details - Source Sans Pro/Poppins Regular */}
+                                          <span className="text-slate-600 font-poppins font-normal text-xs">
                                             View Details
                                           </span>
                                         </div>
                                       )}
                                     </div>
                                     <div className="text-center">
+                                      {/* Card Title - Montserrat Bold */}
                                       <span className="inline-block font-montserrat font-bold text-primary text-xs capitalize tracking-wide group-hover:text-secondary transition-colors duration-300">
                                         {child.name}
                                       </span>
@@ -563,22 +567,23 @@ export function Navbar() {
                         </motion.div>
                       )}
 
-                      {/* Regular dropdown for About, Academy */}
+                      {/* Regular dropdown for About, Academy - Montserrat Medium */}
                       {openDropdown === link.name && !isSolutions && (
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute top-full left-2/2 -translate-x-1/2 pt-2 w-64 z-50 mt-5"
+                          className="absolute top-full left-2/2 -translate-x-1/2 pt-2 w-64 z-50 mt-2"
                         >
-                          <div className="bg-white shadow-2xl border border-slate-100 overflow-hidden">
+                          {/* Added border-t-2 for visual separation */}
+                          <div className="bg-white shadow-2xl mt-5 border-t-2 border-gray-400 overflow-hidden">
                             <ul className="py-1">
                               {link.children!.map((child, index) => (
                                 <li key={child.name}>
                                   <Link
                                     to={child.path}
-                                    className={`block px-5 py-3 font-montserrat text-sm text-slate-700 hover:text-secondary hover:bg-slate-50 transition-all duration-200
+                                    className={`block px-5 py-3 font-montserrat font-medium text-sm text-slate-700 hover:text-secondary hover:bg-slate-50 transition-all duration-200
                 ${index !== link.children!.length - 1 ? "border-b border-slate-300" : ""}
               `}
                                   >
@@ -597,11 +602,11 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Get a Quote Button - Far Right */}
+          {/* Get a Quote Button - Montserrat SemiBold */}
           <div className="hidden lg:block flex-shrink-0">
             <Link
               to="/contact"
-              className="bg-secondary text-primary font-bold font-poppins px-6 py-2.5 rounded-sm hover:bg-yellow-400 transition-colors shadow-sm uppercase text-sm tracking-wide"
+              className="bg-secondary text-primary font-montserrat font-semibold px-6 py-2.5 rounded-sm hover:bg-yellow-400 transition-colors shadow-sm uppercase text-sm tracking-wide"
             >
               Get a Quote
             </Link>
@@ -622,7 +627,7 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Nav */}
+      {/* Mobile Nav - Montserrat Medium */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -635,7 +640,7 @@ export function Navbar() {
               {navLinks.map((link) => {
                 const isProducts = link.name === "Products";
 
-                // Products mobile: show category list
+                // Products mobile: show category list - Montserrat Medium
                 if (isProducts) {
                   const isOpen = openMobileSub === "Products";
                   return (
@@ -666,9 +671,10 @@ export function Navbar() {
                           >
                             {residentialCategories.map((cat) => (
                               <li key={cat.name}>
+                                {/* Category links - Montserrat Medium */}
                                 <Link
                                   to={cat.path}
-                                  className="block font-montserrat text-sm py-2 transition-colors text-slate-600"
+                                  className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
                                 >
                                   {cat.name}
                                 </Link>
@@ -682,6 +688,7 @@ export function Navbar() {
                 }
 
                 const hasChildren = !!link.children?.length;
+                // Simple links - Montserrat Medium
                 if (!hasChildren) {
                   return (
                     <Link
@@ -694,6 +701,7 @@ export function Navbar() {
                   );
                 }
 
+                // Dropdown links - Montserrat Medium
                 const isOpen = openMobileSub === link.name;
                 return (
                   <div
@@ -725,9 +733,10 @@ export function Navbar() {
                         >
                           {link.children!.map((child) => (
                             <li key={child.name}>
+                              {/* Submenu links - Montserrat Medium */}
                               <Link
                                 to={child.path}
-                                className="block font-montserrat text-sm py-2 transition-colors text-slate-600"
+                                className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
                               >
                                 {child.name}
                               </Link>
@@ -740,9 +749,10 @@ export function Navbar() {
                 );
               })}
 
+              {/* Get a Quote Button - Montserrat SemiBold */}
               <Link
                 to="/contact"
-                className="bg-secondary text-primary font-bold font-poppins px-6 py-3 rounded-sm text-center mt-4 uppercase tracking-wide"
+                className="bg-secondary text-primary font-montserrat font-semibold px-6 py-3 rounded-sm text-center mt-4 uppercase tracking-wide"
               >
                 Get a Quote
               </Link>

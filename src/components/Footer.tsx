@@ -65,7 +65,7 @@ export function Footer() {
                 className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain"
               />
             </Link>
-            {/* Body Text - Poppins Regular */}
+            {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
               {[
                 { icon: Facebook, href: 'https://www.facebook.com/share/1JfaLfq7ov/?mibextid=wwXIfr' },
@@ -108,9 +108,11 @@ export function Footer() {
 
           {/* Column 3: Our Services */}
           <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start">
+            {/* Section Title - Montserrat Bold */}
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Our Services
             </h4>
+            {/* Navigation Menu - Montserrat Medium */}
             <ul className="space-y-2 text-sm text-slate-400 font-montserrat font-medium">
               {services.map((service, idx) => (
                 <li key={idx}>
@@ -127,13 +129,14 @@ export function Footer() {
 
           {/* Column 4: Contact Info */}
           <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start">
+            {/* Section Title - Montserrat Bold */}
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Get In Touch
             </h4>
             <ul className="space-y-3 text-sm text-slate-400 font-montserrat font-medium items-center lg:items-start flex flex-col">
               <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
                 <MapPin className="w-5 h-5 text-secondary shrink-0" />
-                {/* Body Text - Poppins Regular */}
+                {/* Body Text - Source Sans Pro/Poppins Regular */}
                 <span className="leading-relaxed font-poppins font-normal">
                   116 Ikorodu-Lagos Road, Haruna Bustop, <br /> Ikorodu, Lagos, Nigeria
                 </span>
@@ -141,6 +144,7 @@ export function Footer() {
               <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
                 <Phone className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
+                  {/* Contact Info - Source Sans Pro/Poppins Regular */}
                   <a href="tel:+2347061451583" className="transition-colors hover:text-secondary block font-poppins font-normal">
                     +234 706 145 1583
                   </a>
@@ -150,9 +154,10 @@ export function Footer() {
               <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
+                  {/* Email - Source Sans Pro/Poppins Regular */}
                   <a
                     href="mailto:Info@embracetechng.com"
-                    className="transition-colors hover:text-secondary break-all font-poppins font-semibold text-slate-300"
+                    className="transition-colors hover:text-secondary break-all font-poppins font-normal text-slate-300"
                   >
                     Info@embracetechng.com
                   </a>
@@ -161,9 +166,10 @@ export function Footer() {
               <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
+                  {/* Email - Source Sans Pro/Poppins Regular */}
                   <a
                     href="mailto:embracetechnologiesltd@gmail.com"
-                    className="transition-colors hover:text-secondary font-poppins font-semibold text-slate-300"
+                    className="transition-colors hover:text-secondary font-poppins font-normal text-slate-300"
                   >
                     embracetechnologiesltd@gmail.com
                   </a>
@@ -171,11 +177,12 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 flex-col lg:flex-row">
                 <Globe className="w-5 h-5 text-secondary shrink-0" />
+                {/* Website - Source Sans Pro/Poppins Regular */}
                 <a
                   href="https://www.embracetechng.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-secondary break-all font-poppins font-semibold text-slate-300"
+                  className="transition-colors hover:text-secondary break-all font-poppins font-normal text-slate-300"
                 >
                   www.embracetechng.com
                 </a>
@@ -195,7 +202,9 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-4 flex flex-col gap-3 items-center md:flex-row md:items-center md:justify-between text-slate-500 text-xs font-poppins font-normal text-center md:text-left">
+          {/* Copyright - Source Sans Pro/Poppins Regular */}
           <p>© {new Date().getFullYear()} Embrace Technologies Ltd. All rights reserved.</p>
+          {/* Footer Links - Montserrat Medium */}
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4">
             <Link to="/privacy-policy" className="transition-colors hover:text-white font-montserrat font-medium">
               Privacy Policy

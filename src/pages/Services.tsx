@@ -224,7 +224,7 @@ export function Services() {
 
   return (
     <main className="w-full overflow-hidden">
-      {/* PAGE HERO */}
+      {/* PAGE HERO - LEFT AS IS */}
       <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
@@ -374,7 +374,7 @@ export function Services() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
               Our Solutions
             </h2>
-            {/* Body Text - Poppins Regular */}
+            {/* Body Text - Source Sans Pro/Poppins Regular */}
             <p className="text-slate-600 font-poppins font-normal text-lg">
               Comprehensive clean energy solutions tailored to your needs. From
               initial design to lifetime maintenance, we handle everything.
@@ -398,7 +398,7 @@ export function Services() {
                 </div>
                 {/* Section Title - Montserrat Bold */}
                 <h3 className="text-2xl font-montserrat font-bold mb-4">{service.title}</h3>
-                {/* Body Text - Poppins Regular */}
+                {/* Body Text - Source Sans Pro/Poppins Regular */}
                 <p className="text-slate-600 font-poppins font-normal mb-8 flex-grow">
                   {service.desc}
                 </p>
@@ -437,7 +437,7 @@ export function Services() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-6">
                 The Embrace Process
               </h2>
-              {/* Body Text - Poppins Regular */}
+              {/* Body Text - Source Sans Pro/Poppins Regular */}
               <p className="text-slate-600 font-poppins font-normal text-lg mb-10">
                 Going solar shouldn't be complicated. We've streamlined our
                 process to make your transition to clean energy as smooth and
@@ -484,7 +484,7 @@ export function Services() {
                     <div className="pb-8">
                       {/* Section Title - Montserrat Bold */}
                       <h4 className="text-xl font-montserrat font-bold mb-2">{step.title}</h4>
-                      {/* Body Text - Poppins Regular */}
+                      {/* Body Text - Source Sans Pro/Poppins Regular */}
                       <p className="text-slate-600 font-poppins font-normal text-sm leading-relaxed">
                         {step.desc}
                       </p>
@@ -528,7 +528,7 @@ export function Services() {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
               Frequently Asked Questions
             </h2>
-            {/* Body Text - Poppins Regular */}
+            {/* Body Text - Source Sans Pro/Poppins Regular */}
             <p className="text-slate-600 font-poppins font-normal text-lg">
               Everything you need to know about switching to solar.
             </p>
@@ -586,7 +586,7 @@ export function Services() {
                         duration: 0.3,
                       }}
                     >
-                      {/* Body Text - Poppins Regular */}
+                      {/* Body Text - Source Sans Pro/Poppins Regular */}
                       <div className="px-6 pb-6 pt-2 text-slate-600 font-poppins font-normal leading-relaxed border-t border-slate-50">
                         {faq.a}
                       </div>
@@ -611,7 +611,7 @@ export function Services() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold text-white mb-4">
                 Ready to start your solar journey?
               </h2>
-              {/* Body Text - Poppins Regular */}
+              {/* Body Text - Source Sans Pro/Poppins Regular */}
               <p className="text-slate-300 font-poppins font-normal text-lg">
                 Schedule a free site assessment and discover your property's
                 solar potential.

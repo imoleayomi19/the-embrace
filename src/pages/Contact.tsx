@@ -87,7 +87,7 @@ export function Contact() {
 
   return (
     <main className="w-full overflow-hidden">
-      {/* PAGE HERO */}
+      {/* PAGE HERO - LEFT AS IS */}
       <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
@@ -241,7 +241,7 @@ export function Contact() {
                 <h2 className="text-3xl md:text-4xl font-anton font-extrabold mt-4 mb-4">
                   Let's start your solar or security project with the right partner.
                 </h2>
-                {/* Body Text - Poppins Regular */}
+                {/* Body Text - Source Sans Pro/Poppins Regular */}
                 <p className="text-slate-600 font-poppins font-normal leading-relaxed">
                   Reach out for a free consultation, customized proposal, or professional site inspection. Our team specializes in solar power systems, CCTV surveillance, and smart energy solutions for homes and businesses.
                 </p>
@@ -251,25 +251,30 @@ export function Contact() {
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
                   {/* Section Title - Montserrat Bold */}
                   <h3 className="text-lg font-montserrat font-bold mb-2">Office Address</h3>
-                  {/* Body Text - Poppins Regular */}
+                  {/* Body Text - Source Sans Pro/Poppins Regular */}
                   <p className="text-slate-600 font-poppins font-normal">
                     116 Ikorodu-Lagos Road, Haruna Bustop, Ikorodu, Lagos,
                     Nigeria
                   </p>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
+                  {/* Section Title - Montserrat Bold */}
                   <h3 className="text-lg font-montserrat font-bold mb-2">Call Us</h3>
+                  {/* Body Text - Source Sans Pro/Poppins Regular */}
                   <p className="text-slate-600 font-poppins font-normal">+234 706 145 1583</p>
                   <p className="text-slate-600 font-poppins font-normal">+234 807 895 4388</p>
                   <p className="text-slate-600 font-poppins font-normal">+234 911 015 2566</p>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
                   <div>
+                    {/* Section Title - Montserrat Bold */}
                     <h3 className="text-lg font-montserrat font-bold mb-2">WhatsApp Us</h3>
+                    {/* Body Text - Source Sans Pro/Poppins Regular */}
                     <p className="text-slate-600 font-poppins font-normal mb-4">
                       Chat directly with our support team for quick assistance and consultations.
                     </p>
                   </div>
+                  {/* Button - Montserrat SemiBold */}
                   <a
                     href="https://wa.me/2347061451583?text=Hello%20Embrace%20Technologies%2C%20I%20am%20interested%20in%20your%20services%20and%20would%20like%20to%20get%20more%20information."
                     target="_blank"
@@ -283,7 +288,9 @@ export function Contact() {
                   </a>
                 </div>
                 <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
+                  {/* Section Title - Montserrat Bold */}
                   <h3 className="text-lg font-montserrat font-bold mb-2">Email</h3>
+                  {/* Body Text - Source Sans Pro/Poppins Regular */}
                   <p className="text-slate-600 font-poppins font-normal">info@embracetechng.com</p>
                 </div>
                 {/* <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 sm:col-span-2">
@@ -311,6 +318,7 @@ export function Contact() {
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Full Name
                 </label>
+                {/* Input - Source Sans Pro/Poppins Regular */}
                 <input
                   type="text"
                   placeholder="Your full name"
@@ -318,9 +326,11 @@ export function Contact() {
                 />
               </div>
               <div>
+                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Email Address
                 </label>
+                {/* Input - Source Sans Pro/Poppins Regular */}
                 <input
                   type="email"
                   placeholder="you@example.com"
@@ -328,9 +338,11 @@ export function Contact() {
                 />
               </div>
               <div>
+                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Phone Number
                 </label>
+                {/* Input - Source Sans Pro/Poppins Regular */}
                 <input
                   type="tel"
                   placeholder="+234 000 000 0000"
@@ -338,9 +350,11 @@ export function Contact() {
                 />
               </div>
               <div>
+                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Enquiring About
                 </label>
+                {/* Select - Source Sans Pro/Poppins Regular */}
                 <select
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
                 >
@@ -350,9 +364,11 @@ export function Contact() {
                 </select>
               </div>
               <div>
+                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Message
                 </label>
+                {/* Textarea - Source Sans Pro/Poppins Regular */}
                 <textarea
                   placeholder="Tell us about your project"
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none font-poppins font-normal"

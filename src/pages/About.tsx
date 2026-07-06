@@ -1,5 +1,62 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
+// Add this CountUp component
+function CountUp({
+  target,
+  duration = 2000,
+  suffix = "",
+  format = (value: number) => value.toString(),
+  className,
+}: {
+  target: number;
+  duration?: number;
+  suffix?: string;
+  format?: (value: number) => string;
+  className?: string;
+}) {
+  const [value, setValue] = useState(0);
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const animatedRef = useRef(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    let rafId = 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !animatedRef.current) {
+          animatedRef.current = true;
+          const startTime = performance.now();
+
+          const step = (timestamp: number) => {
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            setValue(Math.round(progress * target));
+            if (progress < 1) rafId = requestAnimationFrame(step);
+          };
+
+          rafId = requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.3, rootMargin: "0px 0px -100px 0px" }
+    );
+
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(rafId);
+    };
+  }, [target, duration]);
+
+  return (
+    <span ref={ref} className={className}>
+      {format(value)}
+      {suffix}
+    </span>
+  );
+}
 import {
   Award,
   Users,
@@ -12,6 +69,7 @@ import {
   Shield,
   Lightbulb,
   Handshake,
+  ArrowRightCircle,
 } from "lucide-react";
 
 const fadeIn = {
@@ -111,7 +169,7 @@ export function About() {
 
   return (
     <main className="w-full overflow-hidden">
-      {/* HERO SECTION */}
+      {/* HERO SECTION - LEFT AS IS */}
       <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
@@ -463,107 +521,184 @@ export function About() {
         </div>
       </section>
 
-      {/* MILESTONES & CERTIFICATIONS */}
-      <section className="py-16 bg-white">
+      {/* MILESTONES TIMELINE - HORIZONTAL CARD STYLE */}
+      <section className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Milestones Timeline */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center lg:text-left"
-            >
-              <h3 className="text-2xl md:text-3xl font-anton font-extrabold mb-8 text-primary">
-                Milestones Timeline
-              </h3>
-              <div className="space-y-6">
-                {[
-                  { year: "2019", event: "Founded" },
-                  { year: "2021", event: "Registered as Business Name (CAC)" },
-                  { year: "2026", event: "Incorporated as Limited Liability Company" },
-                ].map((milestone, idx) => (
-                  <div key={idx} className="flex items-center gap-4">
-                    <div className="flex-shrink-0 w-20 h-20 bg-primary rounded-full flex items-center justify-center">
-                      <span className="text-2xl font-anton font-extrabold text-white">
-                        {milestone.year}
-                      </span>
+          <motion.div
+            className="text-center mb-12"
+            {...fadeIn}
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-anton font-extrabold mb-4 text-primary">
+              Milestones Timeline
+            </h2>
+            <p className="text-slate-600 font-poppins font-normal text-lg max-w-2xl mx-auto">
+              Our journey of growth and excellence
+            </p>
+          </motion.div>
+
+          {/* Horizontal Timeline Cards with Overlapping Arrows */}
+          <div className="relative flex flex-col lg:flex-row items-center justify-center">
+            {[
+              {
+                year: 2019,
+                title: "Founded",
+                image: "./solar-4.jpg",
+              },
+              {
+                year: 2021,
+                title: "Registered as Business Name (CAC)",
+                image: "./solar-5.jpg",
+              },
+              {
+                year: 2026,
+                title: "Incorporated as Limited Liability Company",
+                image: "./solar-6.jpg",
+              },
+            ].map((milestone, idx) => (
+              <>
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.15 }}
+                  className="relative w-full lg:w-80 h-96 rounded-2xl overflow-hidden group mx-2"
+                >
+                  {/* Background Image */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                    style={{ backgroundImage: `url('${milestone.image}')` }}
+                  />
+
+                  {/* Dark Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+                  {/* Content */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6">
+                    <div className="text-6xl font-anton font-extrabold text-white/30 mb-2">
+                      <CountUp
+                        target={milestone.year}
+                        duration={2000}
+                        className=""
+                      />
                     </div>
-                    <div className="flex-grow border-b border-slate-200 pb-4">
-                      <p className="text-slate-700 font-poppins font-normal text-base">
-                        {milestone.event}
-                      </p>
+                    <h3 className="text-white font-montserrat font-bold text-lg leading-tight">
+                      {milestone.title}
+                    </h3>
+                  </div>
+                </motion.div>
+
+                {/* Arrow Connector - Positioned at top, overlapping cards */}
+                {idx < 2 && (
+                  <div
+                    className="hidden lg:block absolute z-30"
+                    style={{
+                      left: `${(idx + 1) * 33.333}%`,
+                      top: '30px',
+                      transform: 'translateX(-50%)'
+                    }}
+                  >
+                    <div className="w-14 h-14 rounded-full bg-teal-500 flex items-center justify-center shadow-lg border-4 border-white">
+                      <ArrowRightCircle className="w-7 h-7 text-white" />
                     </div>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Certifications & Compliance */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center lg:text-left"
-            >
-              <h3 className="text-2xl md:text-3xl font-anton font-extrabold mb-8 text-primary">
-                Certifications & Compliance
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {["CAC", "NEMSA", "COREN", "HSE"].map((cert, idx) => (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: idx * 0.1 }}
-                    className="bg-slate-50 rounded-xl p-6 border-2 border-slate-200 hover:border-secondary hover:shadow-lg transition-all duration-300"
-                  >
-                    <span className="text-xl font-montserrat font-bold text-primary">
-                      {cert}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+                )}
+              </>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* OUR CORE VALUES - SOLAR STYLE */}
-      <section className=" relative overflow-hidden ml-2 mr-2">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0">
+      {/* CERTIFICATIONS & COMPLIANCE */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h3 className="text-2xl md:text-3xl font-anton font-extrabold mb-8 text-primary">
+              Certifications & Compliance
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {["CAC", "NEMSA", "COREN", "HSE"].map((cert, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className="bg-white rounded-xl p-6 border-2 border-slate-200 hover:border-secondary hover:shadow-lg transition-all duration-300"
+                >
+                  <span className="text-xl font-montserrat font-bold text-primary">
+                    {cert}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* OUR CORE VALUES - SOLAR STYLE WITH ANIMATED GRADIENT */}
+      <section className="relative overflow-hidden ml-5 mr-5 pt-10 pb-10 rounded-3xl ">
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-blue-800 to-primary opacity-95">
           <div
-            className="absolute inset-0 bg-cover bg-center bg-fixed"
+            className="absolute inset-0 opacity-30"
             style={{
-              backgroundImage: "url('./solar-4.jpg')",
+              background: `linear-gradient(
+                -45deg, 
+                #002060 0%, 
+                #066906 25%, 
+                #FFC759 50%, 
+                #EA6936 75%, 
+                #EE373D 100%
+              )`,
+              backgroundSize: '400% 400%',
+              animation: 'gradientShift 15s ease infinite',
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/85 to-primary/90" />
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 pt-10 relative z-10">
+        {/* Animated mesh pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+            backgroundSize: '40px 40px',
+          }}
+        />
+
+        {/* Add keyframes for gradient animation */}
+        <style>{`
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        `}</style>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mt-2 mb-4 text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mt-2 mb-4 text-white drop-shadow-lg">
               Our Core Values
             </h2>
             {/* Body Text - Source Sans Pro/Poppins Regular */}
-            <p className="text-slate-200 font-poppins font-normal text-lg">
+            <p className="text-secondary font-poppins font-normal text-lg drop-shadow-md">
               These principles guide everything we do and shape our commitment to excellence.
             </p>
           </motion.div>
 
-          {/* SOLAR-style Vertical Panels */}
+          {/* SOLAR-style Vertical Panels - Border Radius on Container */}
           <motion.div
-
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 text-center"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 text-center p-3"
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
@@ -573,90 +708,84 @@ export function About() {
                 letter: "E",
                 title: "Excellence",
                 desc: "We pursue the highest standards of engineering, quality, and professionalism in everything we do.",
-                color: "text-secondary",
+                color: "text-white",
                 borderColor: "border-secondary/30",
-                bgColor: "bg-secondary/10",
+                bgColor: "bg-white/95",
+                textColor: "text-primary",
               },
               {
                 letter: "I",
                 title: "Integrity",
                 desc: "We conduct business with honesty, transparency, and accountability.",
-                color: "text-alternativeO",
+                color: "text-white",
                 borderColor: "border-alternativeO/30",
-                bgColor: "bg-alternativeO/10",
+                bgColor: "bg-white/95",
+                textColor: "text-primary",
               },
               {
                 letter: "I",
                 title: "Innovation",
                 desc: "We embrace technology and continuous improvement to deliver sustainable solutions.",
-                color: "text-alternativeR",
+                color: "text-white",
                 borderColor: "border-alternativeR/30",
-                bgColor: "bg-alternativeR/10",
+                bgColor: "bg-white/95",
+                textColor: "text-primary",
               },
               {
                 letter: "C",
                 title: "Customer Success",
                 desc: "We are committed to creating lasting value and exceptional experiences for our clients.",
-                color: "text-alternative",
+                color: "text-white",
                 borderColor: "border-alternative/30",
-                bgColor: "bg-alternative/10",
+                bgColor: "bg-white/95",
+                textColor: "text-primary",
               },
               {
                 letter: "C",
                 title: "Collaboration",
                 desc: "We believe strong partnerships and teamwork drive exceptional outcomes.",
                 color: "text-white",
-                borderColor: "border-white/30",
-                bgColor: "bg-white/10",
+                borderColor: "border-primary/30",
+                bgColor: "bg-white/95",
+                textColor: "text-primary",
               },
               {
                 letter: "S",
                 title: "Sustainability",
                 desc: "We contribute to a cleaner and more resilient future through responsible innovation.",
-                color: "text-green-400",
-                borderColor: "border-green-400/30",
-                bgColor: "bg-green-400/10",
+                color: "text-white",
+                borderColor: "border-green-600/30",
+                bgColor: "bg-white/95",
+                textColor: "text-primary",
               },
             ].map((value, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeIn}
-                className="group relative h-[400px] md:h-[500px] overflow-hidden border-t-0 border-l-0 border-r-0 border-b border-white/20 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl"
+                className={`group relative h-[450px] md:h-[550px] overflow-hidden backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl ${idx !== 5 ? 'border-r border-white/20' : ''}`}
                 style={{
-                  background: `linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)`,
+                  background: value.bgColor,
                 }}
               >
-                {/* Large Letter - Anton ExtraBold */}
-                <div className="absolute top-6 left-1/2 -translate-x-1/2">
-                  <span className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-anton font-extrabold ${value.color} opacity-30 group-hover:opacity-50 transition-opacity duration-500`}>
+                {/* Large Letter - Anton ExtraBold with brand colors - INCREASED TOP MARGIN */}
+                <div className="absolute top-12 left-1/2 -translate-x-1/2">
+                  <span className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-anton font-extrabold ${value.color} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}>
                     {value.letter}
                   </span>
                 </div>
 
                 {/* Content Container */}
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
-                  {/* Icon - Aligned at top */}
-                  {/* <div className="flex justify-center pt-8">
-                    <div className={`w-12 h-12 ${value.bgColor} border ${value.borderColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-md`}>
-                      {idx === 0 && <Award className={`w-6 h-6 ${value.color}`} />}
-                      {idx === 1 && <Shield className={`w-6 h-6 ${value.color}`} />}
-                      {idx === 2 && <Lightbulb className={`w-6 h-6 ${value.color}`} />}
-                      {idx === 3 && <Target className={`w-6 h-6 ${value.color}`} />}
-                      {idx === 4 && <Handshake className={`w-6 h-6 ${value.color}`} />}
-                      {idx === 5 && <Heart className={`w-6 h-6 ${value.color}`} />}
-                    </div>
-                  </div> */}
-
-                  {/* Middle Section - Title (Montserrat Bold) */}
-                  <div className="flex-grow flex items-center justify-center">
-                    <h3 className="text-sm md:text-base font-montserrat font-bold text-white text-center leading-tight px-2">
+                  {/* Middle Section - Title (Montserrat Bold) - INCREASED TOP MARGIN */}
+                  <div className="flex-grow flex items-center justify-center pt-56">
+                    <h3 className={`text-sm md:text-base font-montserrat font-bold ${value.textColor} text-center leading-tight px-2 drop-shadow-sm`}>
                       {value.title}
                     </h3>
                   </div>
 
-                  {/* Bottom Section - Description (Source Sans Pro/Poppins Regular) */}
-                  <div className="pb-2">
-                    <p className="text-slate-200 font-poppins font-normal text-xs text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 px-2">
+                  {/* Bottom Section - Description (Source Sans Pro/Poppins Regular) - WHITE TEXT */}
+                  <div className="pb-8 mb-2">
+                    <p className="text-white font-poppins font-normal text-xs text-center leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 px-2">
                       {value.desc}
                     </p>
                   </div>
@@ -665,28 +794,14 @@ export function About() {
                   <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-secondary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                {/* Colored top border accent */}
+                <div className={`absolute top-0 left-0 right-0 h-1.5 ${value.color.replace('text-', 'bg-')}`} />
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Interactive Hint */}
-          {/* <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 1, duration: 0.8 }}
-          >
-            <p className="text-slate-300 font-poppins font-normal text-sm flex items-center justify-center gap-2">
-              <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-              Hover over each value to learn more
-              <span className="w-2 h-2 bg-secondary rounded-full animate-pulse" />
-            </p>
-          </motion.div> */}
         </div>
       </section>
+
       {/* OUR COMMITMENT */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
@@ -700,7 +815,7 @@ export function About() {
             >
               {/* Main Headline - Anton ExtraBold */}
               <h2 className="text-2xl md:text-3xl font-anton font-extrabold text-primary leading-tight">
-                our commitment
+                OUR COMMITMENT
               </h2>
             </motion.div>
 
@@ -717,35 +832,35 @@ export function About() {
                   desc: "We deliver dependable solutions, professional service, and long-term value built on trust and excellence.",
                   color: "bg-primary",
                   textColor: "text-primary",
-                  image: "./solar-4.jpg",
+                  image: "./our-client.png",
                 },
                 {
                   title: "To Our Employees",
                   desc: "We foster a culture of safety, innovation, teamwork, and continuous development.",
                   color: "bg-secondary",
                   textColor: "text-secondary",
-                  image: "./solar-5.jpg",
+                  image: "./our-emplyee.png",
                 },
                 {
                   title: "To Our Partners",
                   desc: "We cultivate relationships founded on integrity, transparency, and mutual success.",
                   color: "bg-alternativeO",
                   textColor: "text-alternativeO",
-                  image: "./solar-6.jpg",
+                  image: "./our-partners.png",
                 },
                 {
                   title: "To Our Shareholders",
                   desc: "We are committed to sustainable growth, operational excellence, and long-term value creation.",
                   color: "bg-secondary",
                   textColor: "text-alternativeR",
-                  image: "./solar-7.jpg",
+                  image: "./our-shareholder.png",
                 },
                 {
                   title: "To Our Communities",
                   desc: "We create positive impact through clean energy, technological innovation, and responsible business practices.",
                   color: "bg-primary",
                   textColor: "text-alternative",
-                  image: "./solar-8.jpg",
+                  image: "./our-communities.png",
                 },
               ].map((commitment, idx) => (
                 <motion.div
@@ -850,7 +965,7 @@ export function About() {
             {/* Button - Montserrat SemiBold */}
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-center shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
             >
               Get Started Today
               <ArrowRight className="w-5 h-5" />

@@ -95,7 +95,7 @@ export function Projects() {
 
   return (
     <main className="w-full overflow-hidden">
-      {/* PAGE HERO */}
+      {/* PAGE HERO - LEFT AS IS */}
       <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
@@ -247,13 +247,16 @@ export function Projects() {
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
           >
-            <p className="uppercase tracking-[0.3em] text-sm text-secondary font-bold mb-4">
+            {/* Section Label - Montserrat Bold */}
+            <p className="uppercase tracking-[0.3em] text-sm text-secondary font-montserrat font-bold mb-4">
               Projects
             </p>
-            <h2 className="text-4xl md:text-5xl mb-4">
+            {/* Main Headline - Anton ExtraBold */}
+            <h2 className="text-4xl md:text-5xl font-anton font-extrabold text-primary mb-4">
               10k+ installations delivered
             </h2>
-            <p className="text-slate-600 font-montserrat text-lg leading-relaxed">
+            {/* Body Text - Source Sans Pro/Poppins Regular */}
+            <p className="text-slate-600 font-poppins font-normal text-lg leading-relaxed">
               Explore our portfolio of residential, commercial, and community solar
               installations. Each project reflects our commitment to quality,
               efficiency, and sustainable energy solutions.
@@ -283,8 +286,10 @@ export function Projects() {
                 {...fadeIn}
                 className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
               >
-                <h2 className="text-2xl font-semibold mb-3">{item.title}</h2>
-                <p className="text-slate-600 leading-relaxed">{item.description}</p>
+                {/* Card Title - Montserrat Bold */}
+                <h2 className="text-2xl font-montserrat font-bold text-primary mb-3">{item.title}</h2>
+                {/* Card Description - Source Sans Pro/Poppins Regular */}
+                <p className="text-slate-600 font-poppins font-normal leading-relaxed">{item.description}</p>
               </motion.article>
             ))}
           </div>
