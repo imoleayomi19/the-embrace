@@ -472,7 +472,7 @@ export function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5"
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 justify-items-center"
             >
               {serviceCards.map((card, idx) => {
                 const CardIcon = card.icon;
@@ -484,7 +484,7 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
                     whileHover={{ y: -5 }}
-                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden min-h-[280px] md:min-h-[260px]"
+                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden min-h-[280px] md:min-h-[260px] w-full max-w-[280px] md:max-w-none"
                   >
                     {/* Colored accent line at top */}
                     <div
@@ -511,13 +511,13 @@ export function Home() {
                       {card.title}
                     </h4>
 
-                    {/* Description - slides up from bottom on hover */}
+                    {/* Description - slides up from bottom on hover - BOLDER TEXT */}
                     <div
                       className="absolute bottom-4 left-0 right-0 px-4 overflow-hidden transition-all duration-300 ease-in-out 
             max-h-0 opacity-0 translate-y-4
             md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0"
                     >
-                      <p className="text-slate-600 text-xs md:text-sm font-medium leading-relaxed pt-2 border-t border-slate-100" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+                      <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed pt-2 border-t border-slate-100" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
                         {card.desc}
                       </p>
                     </div>
