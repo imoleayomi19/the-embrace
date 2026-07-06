@@ -769,7 +769,13 @@ export function About() {
               <motion.div
                 key={idx}
                 variants={fadeIn}
-                className={`group relative h-[450px] md:h-[550px] overflow-hidden backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl ${idx !== 5 ? 'border-r border-white/20' : ''}`}
+                className={`group relative h-[450px] md:h-[550px] overflow-hidden backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl ${
+                  // Mobile: Remove border from Integrity (idx 1) and Customer Success (idx 3)
+                  idx !== 1 && idx !== 3 && idx !== 5 ? 'border-r border-white/20' : ''
+                  } ${
+                  // Desktop: Add border to all except last card
+                  idx !== 5 ? 'md:border-r md:border-white/20' : ''
+                  }`}
                 style={{
                   background: value.bgColor,
                 }}
@@ -785,7 +791,7 @@ export function About() {
                 <div className="absolute inset-0 flex flex-col justify-between p-4">
                   {/* Middle Section - Title (Montserrat Bold) - INCREASED TOP MARGIN */}
                   <div className="flex-grow flex items-center justify-center pt-56">
-                    <h3 className={`text-sm md:text-base font-montserrat font-bold ${value.textColor} text-center leading-tight px-2 drop-shadow-sm`}>
+                    <h3 className={`text-sm md:text-base font-montserrat font-bold ${value.textColor} text-center leading-none px-2 drop-shadow-sm`}>
                       {value.title}
                     </h3>
                   </div>
@@ -798,7 +804,7 @@ export function About() {
                   </div>
 
                   {/* Hover Indicator */}
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-secondary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-secondary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" /> */}
                 </div>
 
                 {/* Colored top border accent */}

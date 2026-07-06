@@ -149,17 +149,17 @@ export function Services() {
         "Corporate sustainability",
       ],
     },
-    {
-      icon: Battery,
-      title: "Battery Storage",
-      desc: "Store excess energy generated during the day to use at night or during grid outages. True energy independence.",
-      features: [
-        "Seamless backup power",
-        "Time-of-use optimization",
-        "Lithium-ion technology",
-        "Scalable capacity",
-      ],
-    },
+    // {
+    //   icon: Battery,
+    //   title: "Battery Storage",
+    //   desc: "Store excess energy generated during the day to use at night or during grid outages. True energy independence.",
+    //   features: [
+    //     "Seamless backup power",
+    //     "Time-of-use optimization",
+    //     "Lithium-ion technology",
+    //     "Scalable capacity",
+    //   ],
+    // },
     {
       icon: Wrench,
       title: "Solar Maintenance",
@@ -171,28 +171,28 @@ export function Services() {
         "Pest abatement",
       ],
     },
-    {
-      icon: Search,
-      title: "Energy Audits",
-      desc: "Comprehensive analysis of your property's energy consumption to identify efficiency improvements before going solar.",
-      features: [
-        "Thermal imaging",
-        "Insulation check",
-        "Appliance analysis",
-        "Detailed ROI report",
-      ],
-    },
-    {
-      icon: Zap,
-      title: "EV Charging",
-      desc: "Level 2 and DC fast charging station installation for homes and businesses, integrated with your solar system.",
-      features: [
-        "Smart load management",
-        "Multi-vehicle setups",
-        "Commercial fleet solutions",
-        "Rebate assistance",
-      ],
-    },
+    // {
+    //   icon: Search,
+    //   title: "Energy Audits",
+    //   desc: "Comprehensive analysis of your property's energy consumption to identify efficiency improvements before going solar.",
+    //   features: [
+    //     "Thermal imaging",
+    //     "Insulation check",
+    //     "Appliance analysis",
+    //     "Detailed ROI report",
+    //   ],
+    // },
+    // {
+    //   icon: Zap,
+    //   title: "EV Charging",
+    //   desc: "Level 2 and DC fast charging station installation for homes and businesses, integrated with your solar system.",
+    //   features: [
+    //     "Smart load management",
+    //     "Multi-vehicle setups",
+    //     "Commercial fleet solutions",
+    //     "Rebate assistance",
+    //   ],
+    // },
   ];
 
   const faqs = [
@@ -212,10 +212,10 @@ export function Services() {
       q: "Do solar panels work on cloudy days?",
       a: "Yes! While they produce the most power in direct sunlight, solar panels still generate electricity on cloudy or rainy days. They just produce at a lower capacity.",
     },
-    {
-      q: "What warranties do you offer?",
-      a: "We offer a comprehensive 25-year warranty that covers the panels, microinverters, racking, and our workmanship. We guarantee your system will perform as promised.",
-    },
+    // {
+    //   q: "What warranties do you offer?",
+    //   a: "We offer a comprehensive 25-year warranty that covers the panels, microinverters, racking, and our workmanship. We guarantee your system will perform as promised.",
+    // },
     {
       q: "Will solar panels damage my roof?",
       a: "No. In fact, solar panels can actually protect the portion of the roof they cover from weather and UV damage. Our certified installers use specialized flashing to ensure your roof remains completely watertight.",
@@ -497,7 +497,7 @@ export function Services() {
             <motion.div className="lg:w-1/2 w-full" {...fadeIn}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="./services3.jpeg"
+                  src="./"
                   alt="Solar Installation Process"
                   className="w-full h-[600px] object-cover"
                 />
@@ -620,7 +620,7 @@ export function Services() {
             {/* Button - Montserrat SemiBold */}
             <Link
               to="/"
-              className="shrink-0 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm hover:bg-yellow-400 transition-colors text-lg shadow-lg flex items-center gap-2"
+              className="shrink-0 bg-secondary text-primary font-montserrat font-semibold px-8 py-4 rounded-sm  hover:bg-gradient-to-r hover:from-white hover:to-secondary transition-colors text-lg shadow-lg flex items-center gap-2"
             >
               Schedule Assessment <ArrowRight className="w-5 h-5" />
             </Link>

@@ -484,7 +484,7 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.1 }}
                     whileHover={{ y: -5 }}
-                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden min-h-[280px] md:min-h-[260px] w-full max-w-[280px] md:max-w-none"
+                    className="relative bg-white rounded-xl p-5 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 group text-center overflow-hidden min-h-[auto] md:min-h-[260px] w-full max-w-md mx-auto md:max-w-none"
                   >
                     {/* Colored accent line at top */}
                     <div
@@ -492,32 +492,32 @@ export function Home() {
                       style={{ backgroundColor: card.color }}
                     />
 
-                    {/* Icon with brand color - moves up on hover */}
-                    <div className="mb-4 mt-2 flex justify-center transition-transform duration-300 group-hover:-translate-y-3">
+                    {/* Icon with brand color - moves up on hover (desktop only) */}
+                    <div className="mb-4 mt-2 flex justify-center transition-transform duration-300 md:group-hover:-translate-y-3">
                       <div
-                        className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                        className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-300 md:group-hover:scale-110"
                         style={{ backgroundColor: `${card.color}15` }}
                       >
                         <CardIcon
-                          className="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300"
+                          className="w-7 h-7 md:w-8 md:h-8 transition-transform duration-300"
                           strokeWidth={1.8}
                           style={{ color: card.color }}
                         />
                       </div>
                     </div>
 
-                    {/* Title - moves up on hover */}
-                    <h4 className="font-montserrat font-bold text-primary text-sm md:text-base leading-tight uppercase tracking-wide mb-2 transition-transform duration-300 group-hover:-translate-y-3">
+                    {/* Title - moves up on hover (desktop only) */}
+                    <h4 className="font-montserrat font-bold text-primary text-base md:text-lg leading-tight uppercase tracking-wide mb-3 transition-transform duration-300 md:group-hover:-translate-y-3">
                       {card.title}
                     </h4>
 
-                    {/* Description - slides up from bottom on hover - BOLDER TEXT */}
+                    {/* Description - Always visible on mobile, slides up on desktop hover */}
                     <div
-                      className="absolute bottom-4 left-0 right-0 px-4 overflow-hidden transition-all duration-300 ease-in-out 
-            max-h-0 opacity-0 translate-y-4
-            md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+                      className="overflow-hidden transition-all duration-300 ease-in-out 
+            max-h-40 opacity-100 translate-y-0
+            md:max-h-0 md:opacity-0 md:translate-y-4 md:group-hover:max-h-20 md:group-hover:opacity-100 md:group-hover:translate-y-0"
                     >
-                      <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed pt-2 border-t border-slate-100" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+                      <p className="text-slate-700 text-base md:text-sm font-bold leading-relaxed px-2" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
                         {card.desc}
                       </p>
                     </div>

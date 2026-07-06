@@ -243,27 +243,27 @@ export function Projects() {
       {/* PROJECTS GRID */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div
+          {/* <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
             {...fadeIn}
-          >
-            {/* Section Label - Montserrat Bold */}
-            <p className="uppercase tracking-[0.3em] text-sm text-secondary font-montserrat font-bold mb-4">
+          > */}
+          {/* Section Label - Montserrat Bold */}
+          {/* <p className="uppercase tracking-[0.3em] text-sm text-secondary font-montserrat font-bold mb-4">
               Projects
-            </p>
-            {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold text-primary mb-4">
+            </p> */}
+          {/* Main Headline - Anton ExtraBold */}
+          {/* <h2 className="text-4xl md:text-5xl font-anton font-extrabold text-primary mb-4">
               10k+ installations delivered
-            </h2>
-            {/* Body Text - Source Sans Pro/Poppins Regular */}
-            <p className="text-slate-600 font-poppins font-normal text-lg leading-relaxed">
+            </h2> */}
+          {/* Body Text - Source Sans Pro/Poppins Regular */}
+          {/* <p className="text-slate-600 font-poppins font-normal text-lg leading-relaxed">
               Explore our portfolio of residential, commercial, and community solar
               installations. Each project reflects our commitment to quality,
               efficiency, and sustainable energy solutions.
-            </p>
-          </motion.div>
+            </p> */}
+          {/* </motion.div> */}
 
-          <div className="grid gap-8 md:grid-cols-3">
+          {/* <div className="grid gap-8 md:grid-cols-3">
             {[
               {
                 title: "Residential Solar",
@@ -279,20 +279,20 @@ export function Projects() {
                 title: "Training & Support",
                 description:
                   "Expert project management and continuous training for lasting results.",
-              },
-            ].map((item) => (
-              <motion.article
-                key={item.title}
-                {...fadeIn}
-                className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
-              >
-                {/* Card Title - Montserrat Bold */}
-                <h2 className="text-2xl font-montserrat font-bold text-primary mb-3">{item.title}</h2>
-                {/* Card Description - Source Sans Pro/Poppins Regular */}
-                <p className="text-slate-600 font-poppins font-normal leading-relaxed">{item.description}</p>
-              </motion.article>
-            ))}
-          </div>
+              }, */}
+          {/* // ].map((item) => (
+            //   <motion.article */}
+          {/* //     key={item.title}
+            //     {...fadeIn}
+            //     className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
+            //   > */}
+          {/* Card Title - Montserrat Bold */}
+          {/* // <h2 className="text-2xl font-montserrat font-bold text-primary mb-3">{item.title}</h2> */}
+          {/* Card Description - Source Sans Pro/Poppins Regular */}
+          {/* //       <p className="text-slate-600 font-poppins font-normal leading-relaxed">{item.description}</p>
+          //     </motion.article>
+          //   ))}
+          // </div> */}
         </div>
       </section>
     </main>

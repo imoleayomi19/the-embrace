@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -84,6 +85,12 @@ const glowVariants = {
 
 export function Contact() {
   const title = "CONTACT US";
+  const location = useLocation();
+
+  // Scroll to top when location changes (fires every time, even on same route)
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname, location.search]);
 
   return (
     <main className="w-full overflow-hidden">
@@ -293,10 +300,6 @@ export function Contact() {
                   {/* Body Text - Source Sans Pro/Poppins Regular */}
                   <p className="text-slate-600 font-poppins font-normal">info@embracetechng.com</p>
                 </div>
-                {/* <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 sm:col-span-2">
-                  <h3 className="text-lg font-montserrat font-bold mb-2">Working Hours</h3>
-                  <p className="text-slate-600 font-poppins font-normal">Mon – Fri: 8AM – 5PM</p>
-                </div> */}
               </div>
 
               <div className="rounded-[2rem] overflow-hidden shadow-xl border border-slate-200">
@@ -314,11 +317,9 @@ export function Contact() {
               className="space-y-6 bg-white rounded-[2rem] p-8 shadow-xl border border-slate-200"
             >
               <div>
-                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Full Name
                 </label>
-                {/* Input - Source Sans Pro/Poppins Regular */}
                 <input
                   type="text"
                   placeholder="Your full name"
@@ -326,11 +327,9 @@ export function Contact() {
                 />
               </div>
               <div>
-                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Email Address
                 </label>
-                {/* Input - Source Sans Pro/Poppins Regular */}
                 <input
                   type="email"
                   placeholder="you@example.com"
@@ -338,11 +337,9 @@ export function Contact() {
                 />
               </div>
               <div>
-                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Phone Number
                 </label>
-                {/* Input - Source Sans Pro/Poppins Regular */}
                 <input
                   type="tel"
                   placeholder="+234 000 000 0000"
@@ -350,11 +347,9 @@ export function Contact() {
                 />
               </div>
               <div>
-                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Enquiring About
                 </label>
-                {/* Select - Source Sans Pro/Poppins Regular */}
                 <select
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
                 >
@@ -364,17 +359,14 @@ export function Contact() {
                 </select>
               </div>
               <div>
-                {/* Form Label - Montserrat SemiBold */}
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Message
                 </label>
-                {/* Textarea - Source Sans Pro/Poppins Regular */}
                 <textarea
                   placeholder="Tell us about your project"
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none font-poppins font-normal"
                 />
               </div>
-              {/* Button - Montserrat SemiBold */}
               <button
                 type="submit"
                 className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-full px-8 py-4 hover:bg-yellow-400 transition-colors"
