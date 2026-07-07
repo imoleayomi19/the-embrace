@@ -334,7 +334,7 @@ export function About() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[600px] lg:max-h-[700px]">
                 <img
-                  src="./solar-10.jpg"
+                  src="./img-4.png"
                   alt="Embrace Technologies Team"
                   className="w-full h-full object-cover"
                 />
