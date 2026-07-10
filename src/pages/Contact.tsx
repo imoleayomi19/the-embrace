@@ -255,7 +255,8 @@ export function Contact() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
+                {/* Office Address Container with primary blue glow */}
+                <div className="rounded-[2rem] bg-white p-6 shadow-[0_0_40px_rgba(0,32,96,0.15)] border border-slate-200 transition-all duration-300 hover:shadow-[0_0_60px_rgba(0,32,96,0.25)]">
                   {/* Section Title - Montserrat Bold */}
                   <h3 className="text-lg font-montserrat font-bold mb-2">Office Address</h3>
                   {/* Body Text - Source Sans Pro/Poppins Regular */}
@@ -264,7 +265,9 @@ export function Contact() {
                     Nigeria
                   </p>
                 </div>
-                <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
+
+                {/* Call Us Container with secondary yellow glow */}
+                <div className="rounded-[2rem] bg-white p-6 shadow-[0_0_40px_rgba(255,199,89,0.20)] border border-slate-200 transition-all duration-300 hover:shadow-[0_0_60px_rgba(255,199,89,0.35)]">
                   {/* Section Title - Montserrat Bold */}
                   <h3 className="text-lg font-montserrat font-bold mb-2">Call Us</h3>
                   {/* Body Text - Source Sans Pro/Poppins Regular */}
@@ -272,7 +275,9 @@ export function Contact() {
                   <p className="text-slate-600 font-poppins font-normal">+234 807 895 4388</p>
                   <p className="text-slate-600 font-poppins font-normal">+234 911 015 2566</p>
                 </div>
-                <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200 flex flex-col justify-between">
+
+                {/* WhatsApp Us Container with green glow */}
+                <div className="rounded-[2rem] bg-white p-6 shadow-[0_0_40px_rgba(6,105,6,0.15)] border border-slate-200 flex flex-col justify-between transition-all duration-300 hover:shadow-[0_0_60px_rgba(6,105,6,0.25)]">
                   <div>
                     {/* Section Title - Montserrat Bold */}
                     <h3 className="text-lg font-montserrat font-bold mb-2">WhatsApp Us</h3>
@@ -294,7 +299,9 @@ export function Contact() {
                     Chat on WhatsApp
                   </a>
                 </div>
-                <div className="rounded-[2rem] bg-white p-6 shadow-sm border border-slate-200">
+
+                {/* Email Container with orange glow */}
+                <div className="rounded-[2rem] bg-white p-6 shadow-[0_0_40px_rgba(234,105,54,0.15)] border border-slate-200 transition-all duration-300 hover:shadow-[0_0_60px_rgba(234,105,54,0.25)]">
                   {/* Section Title - Montserrat Bold */}
                   <h3 className="text-lg font-montserrat font-bold mb-2">Email</h3>
                   {/* Body Text - Source Sans Pro/Poppins Regular */}
@@ -302,7 +309,7 @@ export function Contact() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] overflow-hidden shadow-xl border border-slate-200">
+              <div className="rounded-[2rem] overflow-hidden shadow-[0_0_60px_rgba(0,32,96,0.20)] border border-slate-200 transition-all duration-300 hover:shadow-[0_0_80px_rgba(0,32,96,0.30)]">
                 <iframe
                   title="Embrace Technologies Location"
                   src="https://www.google.com/maps?q=116%20Ikorodu-Lagos%20Road%2C%20Haruna%20Bustop%2C%20Ikorodu%2C%20Lagos%2C%20Nigeria&z=15&output=embed"
@@ -312,9 +319,10 @@ export function Contact() {
               </div>
             </motion.div>
 
+            {/* Form inputs with glowing border effect and container shadow - primary blue */}
             <motion.form
               {...fadeIn}
-              className="space-y-6 bg-white rounded-[2rem] p-8 shadow-xl border border-slate-200"
+              className="space-y-6 bg-white rounded-[2rem] p-8 shadow-[0_0_60px_rgba(0,32,96,0.15)] border border-slate-200 transition-all duration-300 hover:shadow-[0_0_80px_rgba(0,32,96,0.15)]"
             >
               <div>
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
@@ -323,7 +331,7 @@ export function Contact() {
                 <input
                   type="text"
                   placeholder="Your full name"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <div>
@@ -333,7 +341,7 @@ export function Contact() {
                 <input
                   type="email"
                   placeholder="you@example.com"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <div>
@@ -343,7 +351,7 @@ export function Contact() {
                 <input
                   type="tel"
                   placeholder="+234 000 000 0000"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <div>
@@ -351,7 +359,7 @@ export function Contact() {
                   Enquiring About
                 </label>
                 <select
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 >
                   <option value="solar">Solar</option>
                   <option value="cctv">CCTV</option>
@@ -364,7 +372,7 @@ export function Contact() {
                 </label>
                 <textarea
                   placeholder="Tell us about your project"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <button
