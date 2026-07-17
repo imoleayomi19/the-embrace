@@ -401,7 +401,7 @@ export function Navbar() {
           {/* Logo - Far Left */}
           <Link to="/" className="group flex-shrink-0 min-w-0">
             <img
-              src="./embrace-logo.jpg"
+              src="./embrace-nav-logo.png"
               alt="Embrace Technologies"
               className={`
                 rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105 max-w-full

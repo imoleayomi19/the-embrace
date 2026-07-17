@@ -4,7 +4,6 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Twitter,
   Instagram,
   Linkedin,
   MessageCircle,
@@ -24,6 +23,18 @@ const TikTok = ({ className }: { className?: string }) => (
     className={className}
   >
     <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+  </svg>
+);
+
+// X (formerly Twitter) Icon Component
+const XLogo = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
   </svg>
 );
 
@@ -60,16 +71,16 @@ export function Footer() {
               className="inline-flex items-center justify-center rounded-2xl bg-white/5 p-3 shadow-lg transition hover:bg-white/10 border border-white/5"
             >
               <img
-                src="./embracewhite.png"
+                src="./embrace-logo-footer.png"
                 alt="Embrace Technologies"
-                className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain"
+                className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain rounded-tl-3xl rounded-br-3xl"
               />
             </Link>
             {/* Social Icons */}
             <div className="flex items-center gap-3 pt-2">
               {[
                 { icon: Facebook, href: 'https://www.facebook.com/share/1JfaLfq7ov/?mibextid=wwXIfr' },
-                { icon: Twitter, href: '#' },
+                { icon: XLogo, href: '#' }, // Replaced Twitter with XLogo
                 { icon: Instagram, href: 'https://www.instagram.com/embracetechnologieslimited?igsh=bGNua2QzYTc4OTVz' },
                 { icon: Linkedin, href: '#' },
                 { icon: TikTok, href: 'https://www.tiktok.com/@embracetechnologies?_r=1&_t=ZS-97ivVXzhWSq' },

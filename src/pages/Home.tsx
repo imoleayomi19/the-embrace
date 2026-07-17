@@ -485,7 +485,7 @@ export function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.1 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
+                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[0].color}15` }}>
                         <CardIcon01 className="w-7 h-7" style={{ color: serviceCards[0].color }} />
@@ -511,7 +511,7 @@ export function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.2 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 md:mt-16 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
+                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 md:mt-16 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[1].color}15` }}>
                         <CardIcon02 className="w-7 h-7" style={{ color: serviceCards[1].color }} />
@@ -537,7 +537,7 @@ export function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.3 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
+                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[2].color}15` }}>
                         <CardIcon03 className="w-7 h-7" style={{ color: serviceCards[2].color }} />
@@ -563,7 +563,7 @@ export function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.4 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 md:mt-16 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
+                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 md:mt-16 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[3].color}15` }}>
                         <CardIcon04 className="w-7 h-7" style={{ color: serviceCards[3].color }} />
@@ -589,7 +589,7 @@ export function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.5 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 md:col-span-1 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
+                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 md:col-span-1 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
                     >
                       <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[4].color}15` }}>
                         <CardIcon05 className="w-7 h-7" style={{ color: serviceCards[4].color }} />
@@ -954,65 +954,65 @@ export function Home() {
             </div>
           </motion.div>
 
-          {/* Split Layout: Image + Testimonial */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl">
-            {/* Left: Image */}
+          {/* Testimonial Slider with Paired Image + Card */}
+          <div
+            className="relative overflow-hidden rounded-3xl"
+            onMouseEnter={() => setIsTestimonialPaused(true)}
+            onMouseLeave={() => setIsTestimonialPaused(false)}
+          >
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative h-[300px] lg:h-[450px]"
+              className="flex"
+              animate={{ x: `-${testimonialIndex * 100}%` }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-              <img
-                src="./solar-4.jpg"
-                alt="Solar panel installation team at work"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-primary/20 lg:bg-gradient-to-r lg:from-transparent lg:to-primary/10" />
-            </motion.div>
-
-            {/* Right: Blue Testimonial Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative bg-primary p-3 sm:p-5 md:p-8 lg:p-12 flex flex-col justify-center min-h-[auto] lg:min-h-[450px] group/card"
-              style={{
-                backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)`,
-                backgroundSize: '40px 40px'
-              }}
-            >
-              <div
-                className="relative z-10 flex flex-col justify-between h-full w-full max-w-full"
-                onMouseEnter={() => setIsTestimonialPaused(true)}
-                onMouseLeave={() => setIsTestimonialPaused(false)}
-              >
-                {/* Title */}
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-montserrat font-bold text-white mb-3 sm:mb-4 md:mb-6 text-center leading-tight px-2"
+              {testimonials.map((testimonial, idx) => (
+                <motion.div
+                  key={idx}
+                  className="w-full flex-shrink-0"
+                  style={{ minWidth: '100%' }}
                 >
-                  What Client Say About Us
-                </motion.h3>
+                  {/* Split Layout: Image + Testimonial for each slide */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl">
+                    {/* Left: Image */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative h-[300px] lg:h-[450px]"
+                    >
+                      <img
+                        src="./solar-4.jpg"
+                        alt="Solar panel installation team at work"
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-primary/20 lg:bg-gradient-to-r lg:from-transparent lg:to-primary/10" />
+                    </motion.div>
 
-                {/* Testimonial Slider */}
-                <div className="overflow-hidden flex-grow flex items-center w-full max-w-full">
-                  <motion.div
-                    className="flex"
-                    animate={{ x: `-${testimonialIndex * 100}%` }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  >
-                    {testimonials.map((testimonial, idx) => (
-                      <motion.div
-                        key={idx}
-                        className="w-full flex-shrink-0 px-2 sm:px-3 md:px-4"
-                        style={{ minWidth: '100%' }}
-                      >
+                    {/* Right: Blue Testimonial Card */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative bg-primary p-3 sm:p-5 md:p-8 lg:p-12 flex flex-col justify-center min-h-[auto] lg:min-h-[450px] group/card"
+                      style={{
+                        backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0)`,
+                        backgroundSize: '40px 40px'
+                      }}
+                    >
+                      <div className="relative z-10 flex flex-col justify-between h-full w-full max-w-full">
+                        {/* Title */}
+                        <motion.h3
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6 }}
+                          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-montserrat font-bold text-white mb-3 sm:mb-4 md:mb-6 text-center leading-tight px-2"
+                        >
+                          What Client Say About Us
+                        </motion.h3>
+
                         <div className="text-center w-full max-w-full">
                           {/* Quote */}
                           <motion.p
@@ -1057,17 +1057,46 @@ export function Home() {
                             </p>
                           </motion.div>
                         </div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
 
-                {/* Animated underline - visible on hover of entire card */}
-                <div className="mt-3 sm:mt-4 md:mt-6 flex justify-center">
-                  <div className="h-0.5 bg-secondary w-0 group-hover/card:w-56 transition-all duration-500" />
-                </div>
-              </div>
+                        {/* Animated underline - visible on hover of entire card */}
+                        <div className="mt-3 sm:mt-4 md:mt-6 flex justify-center">
+                          <div className="h-0.5 bg-secondary w-0 group-hover/card:w-56 transition-all duration-500" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevTestimonial}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-primary flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={nextTestimonial}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-primary flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 z-10"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-4">
+              {testimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setTestimonialIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === testimonialIndex ? 'bg-primary w-6' : 'bg-slate-300'
+                    }`}
+                  aria-label={`Go to testimonial ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
