@@ -730,7 +730,7 @@ export function Home() {
               },
               {
                 title: "Commercial Solar Solution",
-                image: "./solar-5.jpg",
+                image: "./commercial.jpg",
                 features: [
                   "Maximize ROI",
                   "Take advantage of tax incentives",
@@ -956,7 +956,7 @@ export function Home() {
 
           {/* Testimonial Slider with Paired Image + Card */}
           <div
-            className="relative overflow-hidden rounded-3xl"
+            className="relative overflow-hidden rounded-3xl pb-2"
             onMouseEnter={() => setIsTestimonialPaused(true)}
             onMouseLeave={() => setIsTestimonialPaused(false)}
           >
@@ -972,7 +972,7 @@ export function Home() {
                   style={{ minWidth: '100%' }}
                 >
                   {/* Split Layout: Image + Testimonial for each slide */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0  overflow-hidden shadow-2xl">
                     {/* Left: Image */}
                     <motion.div
                       initial={{ opacity: 0, x: -30 }}

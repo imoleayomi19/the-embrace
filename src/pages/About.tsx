@@ -2,10 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-
-
-
-
 // Add this CountUp component
 function CountUp({
   target,
@@ -54,9 +50,6 @@ function CountUp({
     };
   }, [target, duration]);
 
-
-
-
   return (
     <span ref={ref} className={className}>
       {format(value)}
@@ -64,6 +57,7 @@ function CountUp({
     </span>
   );
 }
+
 import {
   Award,
   Users,
@@ -320,6 +314,7 @@ export function About() {
           </div>
         </div>
       </section>
+
       {/* OUR STORY */}
       <section className="relative py-9 bg-white overflow-visible">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -374,6 +369,7 @@ export function About() {
             </motion.div>
           </div>
         </div>
+
         {/* Vision, Mission, Tagline Cards */}
         <div className="container mx-auto px-4 md:px-6 mt-12">
           <div className="max-w-5xl mx-auto">
@@ -570,12 +566,6 @@ export function About() {
                   transition={{ duration: 0.6, delay: idx * 0.15 }}
                   className="relative w-full h-full rounded-2xl overflow-hidden group"
                 >
-                  {/* Background Image */}
-                  {/* <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                    style={{ backgroundImage: `url('${milestone.image}')` }}
-                  /> */}
-
                   {/* Dark Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
@@ -625,26 +615,94 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h3 className="text-2xl md:text-3xl font-montserrat font-black uppercase tracking-wider mb-8 text-primary">
+            <h3 className="text-2xl md:text-3xl font-montserrat font-black uppercase tracking-wider mb-12 text-primary">
               Certifications & Compliance
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              {["CAC", "NEMSA", "COREN", "HSE"].map((cert, idx) => (
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8 max-w-6xl mx-auto">
+              {[
+                {
+                  name: "CAC",
+                  gradientStart: "#002060", // Primary
+                  gradientEnd: "#066906",    // Alternative
+                },
+                {
+                  name: "NEMSA",
+                  gradientStart: "#FFC759",  // Secondary
+                  gradientEnd: "#EA6936",    // AlternativeO
+                },
+                {
+                  name: "COREN",
+                  gradientStart: "#066906",  // Alternative
+                  gradientEnd: "#002060",    // Primary
+                },
+                {
+                  name: "HSE",
+                  gradientStart: "#EE373D",  // AlternativeR
+                  gradientEnd: "#EA6936",    // AlternativeO
+                },
+              ].map((cert, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="bg-white rounded-xl p-6 border-2 border-slate-100 hover:border-secondary hover:shadow-lg flex items-center justify-center transition-all duration-300"
+                  className="relative flex flex-col items-center group"
                 >
-                  <span className="text-xl font-montserrat font-bold text-primary tracking-wide">
-                    {cert}
-                  </span>
+                  {/* Hexagonal Badge */}
+                  <div className="relative w-40 h-44 md:w-48 md:h-52 transition-transform duration-300 group-hover:scale-105">
+                    {/* Hexagon Shape */}
+                    <svg
+                      viewBox="0 0 200 220"
+                      className="w-full h-full drop-shadow-lg"
+                    >
+                      <defs>
+                        <linearGradient id={`grad-${idx}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor={cert.gradientStart} />
+                          <stop offset="100%" stopColor={cert.gradientEnd} />
+                        </linearGradient>
+                      </defs>
+
+                      {/* Outer hexagon border with gradient */}
+                      <polygon
+                        points="100,5 190,52.5 190,157.5 100,205 10,157.5 10,52.5"
+                        fill="white"
+                        stroke={`url(#grad-${idx})`}
+                        strokeWidth="6"
+                      />
+
+                      {/* Inner hexagon to create clean border effect */}
+                      <polygon
+                        points="100,15 180,57.5 180,152.5 100,195 20,152.5 20,57.5"
+                        fill="white"
+                        stroke="none"
+                      />
+                    </svg>
+
+                    {/* Badge Content */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pt-4 pb-8">
+                      <h4 className="text-lg md:text-xl font-montserrat font-bold text-slate-800 mb-1">
+                        {cert.name}
+                      </h4>
+                      <div className="w-16 h-0.5 bg-slate-300 my-1"></div>
+                    </div>
+
+                    {/* Ribbon */}
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                      <svg
+                        viewBox="0 0 60 40"
+                        className="w-16 h-12 md:w-20 md:h-14 drop-shadow-md"
+                      >
+                        <polygon
+                          points="0,0 60,0 45,40 30,30 15,40"
+                          fill="#1E293B"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
-
           </motion.div>
         </div>
       </section>
@@ -769,12 +827,8 @@ export function About() {
               <motion.div
                 key={idx}
                 variants={fadeIn}
-                className={`group relative h-[450px] md:h-[550px] overflow-hidden backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl ${
-                  // Mobile: Remove border from Integrity (idx 1) and Customer Success (idx 3)
-                  idx !== 1 && idx !== 3 && idx !== 5 ? 'border-r border-white/20' : ''
-                  } ${
-                  // Desktop: Add border to all except last card
-                  idx !== 5 ? 'md:border-r md:border-white/20' : ''
+                className={`group relative h-[450px] md:h-[550px] overflow-hidden backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:z-20 hover:shadow-2xl ${idx !== 1 && idx !== 3 && idx !== 5 ? 'border-r border-white/20' : ''
+                  } ${idx !== 5 ? 'md:border-r md:border-white/20' : ''
                   }`}
                 style={{
                   background: value.bgColor,
@@ -802,9 +856,6 @@ export function About() {
                       {value.desc}
                     </p>
                   </div>
-
-                  {/* Hover Indicator */}
-                  {/* <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-secondary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" /> */}
                 </div>
 
                 {/* Colored top border accent */}
@@ -919,7 +970,6 @@ export function About() {
         </div>
       </section>
 
-
       {/* TEAM SECTION */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-6">
@@ -948,9 +998,6 @@ export function About() {
           </motion.p>
         </div>
       </section>
-
-
-
 
       {/* CTA SECTION */}
       <section className="py-24 bg-primary relative overflow-hidden">
