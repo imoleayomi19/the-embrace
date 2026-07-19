@@ -154,7 +154,25 @@ const commercialCategories: (ProductCategory & { products: ProductItem[]; series
   },
 ];
 
-// ─── Products Mega Menu Component ────────────────────────────────────────────
+// Mini Grid product categories
+const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
+  {
+    name: "Mini Grid Systems",
+    path: "/shop/mini-grid",
+    series: [
+      { label: "Off-Grid Mini Grid", path: "/shop" },
+      { label: "Hybrid Mini Grid", path: "/shop" },
+    ],
+    products: [
+      { name: "MG-50kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-100kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-200kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-500kW System", image: "./product.png", path: "/shop" },
+    ],
+  },
+];
+
+// ─── Products Mega Menu Component ───────────────────────────────────────────
 
 function ProductsMegaMenu({
   isScrolled,
@@ -166,10 +184,14 @@ function ProductsMegaMenu({
   isScrolled: boolean;
   activeCategory: string;
   setActiveCategory: (c: string) => void;
-  productType: "residential" | "commercial";
-  setProductType: (type: "residential" | "commercial") => void;
+  productType: "residential" | "commercial" | "mini-grid";
+  setProductType: (type: "residential" | "commercial" | "mini-grid") => void;
 }) {
-  const categories = productType === "residential" ? residentialCategories : commercialCategories;
+  const categories = productType === "residential"
+    ? residentialCategories
+    : productType === "commercial"
+      ? commercialCategories
+      : miniGridCategories;
   const activeCat = categories.find((c) => c.name === activeCategory) ?? categories[0];
   const products = activeCat.products;
 
@@ -187,7 +209,7 @@ function ProductsMegaMenu({
         <div className="max-w-[1400px] mx-auto">
 
           {/* Product Type Tabs - Montserrat Bold */}
-          <div className="flex items-center justify-center gap-12 py-5 border-b border-slate-100">
+          <div className="flex items-center justify-center gap-8 py-5 border-b border-slate-100">
             <button
               onClick={() => setProductType("residential")}
               className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "residential"
@@ -206,11 +228,20 @@ function ProductsMegaMenu({
             >
               Commercial & Industrial <ChevronRight className="w-4 h-4" />
             </button>
+            <button
+              onClick={() => setProductType("mini-grid")}
+              className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "mini-grid"
+                ? "text-secondary"
+                : "text-slate-700 hover:text-secondary"
+                }`}
+            >
+              Mini Grid <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
 
           {/* Sidebar and Products side by side */}
           <div className="flex" style={{ height: "calc(100vh - 180px)" }}>
-            {/* ── Left sidebar: categories - Montserrat Medium ── */}
+            {/* ─ Left sidebar: categories - Montserrat Medium ─ */}
             <aside className="w-52 flex-shrink-0 border-r border-slate-100 py-4">
               {categories.map((cat) => {
                 const active = activeCategory === cat.name;
@@ -300,7 +331,7 @@ function ProductsMegaMenu({
   );
 }
 
-// ─── Main Navbar ─────────────────────────────────────────────────────────────
+// ── Main Navbar ────────────────────────────────────────────────────────────
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -310,7 +341,7 @@ export function Navbar() {
   const [activeProductCategory, setActiveProductCategory] = useState(
     residentialCategories[0].name
   );
-  const [productType, setProductType] = useState<"residential" | "commercial">("residential");
+  const [productType, setProductType] = useState<"residential" | "commercial" | "mini-grid">("residential");
   const location = useLocation();
 
   useEffect(() => {
@@ -350,6 +381,10 @@ export function Navbar() {
           path: "/team",
         },
         {
+          name: "Downloads",
+          path: "/downloads",
+        },
+        {
           name: "Contact Us",
           path: "/contact",
         },
@@ -376,10 +411,10 @@ export function Navbar() {
       name: "Training Academy",
       path: "/academy",
       children: [
-        // { name: "Solar Installation Track", path: "/academy" },
-        // { name: "Inverter & Battery Workshop", path: "/academy" },
-        // { name: "Certification Programs", path: "/academy" },
-        // { name: "Corporate Capacity Building", path: "/academy" },
+        { name: "Solar PV Installation Training", path: "/academy" },
+        { name: "CCTV Installation Training", path: "/academy" },
+        { name: "Corporate Training", path: "/academy" },
+        { name: "Certification Programs", path: "/academy" },
       ],
     },
     {
@@ -401,7 +436,7 @@ export function Navbar() {
           {/* Logo - Far Left */}
           <Link to="/" className="group flex-shrink-0 min-w-0">
             <img
-              src="./embrace-nav-logo.png"
+              src="./embrace-nav-log.png"
               alt="Embrace Technologies"
               className={`
                 rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105 max-w-full
@@ -418,6 +453,7 @@ export function Navbar() {
               {navLinks.map((link) => {
                 const isProducts = link.name === "Products";
                 const isSolutions = link.name === "Solutions";
+                const isAcademy = link.name === "Training Academy";
                 const hasChildren = !!link.children?.length;
                 const active = isActive(link);
 
@@ -567,8 +603,76 @@ export function Navbar() {
                         </motion.div>
                       )}
 
-                      {/* Regular dropdown for About, Academy - Montserrat Medium */}
-                      {openDropdown === link.name && !isSolutions && (
+                      {/* Training Academy Dropdown */}
+                      {openDropdown === link.name && isAcademy && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 8 }}
+                          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                          className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-80 z-50 mt-2"
+                        >
+                          <div className="bg-white shadow-2xl mt-5 border-t-2 border-gray-400 overflow-hidden">
+                            <div className="p-4">
+
+
+                              {/* Training Items */}
+                              <div className="space-y-3">
+                                {link.children!.map((child, index) => (
+                                  <div key={child.name}>
+                                    <Link
+                                      to={child.path}
+                                      className="block font-montserrat font-semibold text-sm text-primary hover:text-secondary transition-colors mb-1"
+                                    >
+                                      {child.name}
+                                    </Link>
+
+                                    {/* Sub-items for each training */}
+                                    {child.name === "Solar PV Installation Training" && (
+                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
+                                        <div>• Basic | Intermediate | Advance</div>
+                                        <div>• Practical Installation</div>
+                                        <div>• Design & Sizing</div>
+                                      </div>
+                                    )}
+
+                                    {child.name === "CCTV Installation Training" && (
+                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
+                                        <div>• Installation | Networking</div>
+                                        <div>• Configuration | Maintenance</div>
+                                      </div>
+                                    )}
+
+                                    {child.name === "Corporate Training" && (
+                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
+                                        <div>• Internship</div>
+                                        <div>• Graduate Programs</div>
+                                      </div>
+                                    )}
+
+                                    {child.name === "Certification Programs" && (
+                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
+                                        <div>• Program Overview</div>
+                                        <div>• Duration</div>
+                                        <div>• Certification</div>
+                                        <div>• Gallery</div>
+                                        <div>• Register Now Form</div>
+                                      </div>
+                                    )}
+
+                                    {index !== link.children!.length - 1 && (
+                                      <div className="border-t border-slate-100 mt-3 pt-3" />
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {/* Regular dropdown for About - Montserrat Medium */}
+                      {openDropdown === link.name && !isSolutions && !isAcademy && (
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}

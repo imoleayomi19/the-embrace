@@ -171,7 +171,7 @@ export function About() {
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION - LEFT AS IS */}
-      <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
+      <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[600px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -401,8 +401,7 @@ export function About() {
                       Tagline
                     </h3>
                     <p className="text-white font-poppins font-normal text-base md:text-lg text-center max-w-2xl leading-relaxed font-semibold">
-                      Reliable Power Begins with The Right Partner.
-                    </p>
+                      Stay on go beyond                    </p>
                   </div>
                 </div>
               </motion.div>

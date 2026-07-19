@@ -20,7 +20,33 @@ import {
   Camera,
   GraduationCap,
   ShoppingBag,
+  Settings,
 } from "lucide-react";
+
+// Custom Solar Panel with Settings Icon
+const SolarPanelSettings = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    {/* Solar Panel */}
+    <rect x="2" y="6" width="20" height="12" rx="2" />
+    <line x1="6" y1="6" x2="6" y2="18" />
+    <line x1="10" y1="6" x2="10" y2="18" />
+    <line x1="14" y1="6" x2="14" y2="18" />
+    <line x1="18" y1="6" x2="18" y2="18" />
+    <line x1="2" y1="10" x2="22" y2="10" />
+    <line x1="2" y1="14" x2="22" y2="14" />
+    {/* Settings Gear */}
+    <circle cx="18" cy="18" r="3" fill="currentColor" stroke="none" />
+  </svg>
+);
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -269,7 +295,7 @@ export function Home() {
       step: "02",
       title: "Custom Design",
       desc: "Our engineers design a system optimized for your specific roof and usage.",
-      icon: Pencil,
+      icon: SolarPanelSettings,
       bgColor: "bg-secondary",
       ringColor: "ring-secondary/30",
       textColor: "text-secondary",
@@ -288,7 +314,7 @@ export function Home() {
     {
       step: "04",
       title: "Activation",
-      desc: "We handle all permits and inspections. You turn on the power and save.",
+      desc: "We handle permits and inspections. You flip the switch and start saving.",
       icon: Zap,
       bgColor: "bg-alternativeR",
       ringColor: "ring-alternativeR/30",
@@ -397,7 +423,7 @@ export function Home() {
               >
                 <p
                   className="text-lg sm:text-xl md:text-[14pt] text-white font-extrabold mb-6 sm:mb-8 md:mb-10 max-w-4xl leading-relaxed text-center mx-auto px-2 drop-shadow-lg"
-                  style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+                  style={{ fontFamily: "Source Sans Pro" }}
                 >
                   Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
                 </p>
@@ -439,7 +465,7 @@ export function Home() {
                   className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
                   style={{ zIndex: 0 }}
                 >
-                  <source src="./home-video.mp4" type="video/mp4" />
+                  <source src="./embrace-video.mp4" type="video/mp4" />
                   {/* Fallback image if video doesn't load */}
                   <img
                     src="./solar-4.jpg"
@@ -614,29 +640,21 @@ export function Home() {
       {/* STATS SECTION - All 4 items in one row */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-[#1a1a2e] via-[#0f0f1e] to-[#16213e]">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
-            {/* Stats Item 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
-                <CountUp
-                  target={yearsOfExperience}
-                  duration={1200}
-                  suffix="+"
-                  className="text-white"
-                />
-              </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
-                Years of Installation Experience
-              </div>
-            </motion.div>
+          {/* Impact + Numbers Focus Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl md:text-3xl font-montserrat font-medium text-white">
+              Impact + Numbers Focus
+            </h2>
+          </motion.div>
 
-            {/* Stats Item 2 */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
+            {/* Stats Item 1 - 10k+ Installations Delivered */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -660,29 +678,13 @@ export function Home() {
               </div>
             </motion.div>
 
-            {/* Stats Item 3 */}
+            {/* Stats Item 2 - 25+ Training Programs Delivered */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
-                1MW
-              </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
-                Commercial Solar Capacity
-              </div>
-            </motion.div>
-
-            {/* Stats Item 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center"
             >
               <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
                 <CountUp
@@ -696,6 +698,43 @@ export function Home() {
                 Training Programs Delivered
               </div>
             </motion.div>
+
+            {/* Stats Item 3 - 7+ Years of Experience */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
+                <CountUp
+                  target={yearsOfExperience}
+                  duration={1200}
+                  suffix="+"
+                  className="text-white"
+                />
+              </div>
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
+                Years of Experience
+              </div>
+            </motion.div>
+
+            {/* Stats Item 4 - 1MW Commercial Solar Capacity Installed */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
+                1MW
+              </div>
+              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
+                Commercial Solar Capacity Installed
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -703,24 +742,16 @@ export function Home() {
       {/* SERVICES PREVIEW */}
       <section className="pt-12 pb-24 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('./solar-4.jpg')" }}
-            />
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-
           {/* Service Cards Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12 rounded-xl p-4 shadow-[0_0_30px_rgba(0,32,96,0.15)] hover:shadow-[0_0_40px_rgba(255,199,89,0.25)] transition-all duration-300 group border border-white/10"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
             variants={staggerContainer}
             initial="initial"
             whileInView="whileInView"
           >
             {[
               {
-                title: "Residential Solar Solution",
+                title: "Residential Solar Service",
                 image: "./solar-4.jpg",
                 features: [
                   "Power your home with clean energy",
@@ -729,64 +760,69 @@ export function Home() {
                 ],
               },
               {
-                title: "Commercial Solar Solution",
-                image: "./commercial.jpg",
+                title: "Commercial Solar Service",
+                image: "./main1.jpg",
                 features: [
-                  "Maximize ROI",
-                  "Take advantage of tax incentives",
-                  "Showcase your corporate sustainability",
+                  "Maximize your ROI",
+                  "Access tax incentives",
+                  "Boost your corporate sustainability",
                 ],
               },
               {
                 title: "Solar Maintenance Service",
-                image: "./solar-6.jpg",
+                image: "./img-3.png",
                 features: [
                   "Keep your system running at peak efficiency",
-                  "Comprehensive maintenance plans",
-                  "Regular inspections and cleaning",
+                  "Get comprehensive maintenance plans",
+                  "Schedule regular inspections and cleaning",
                 ],
               },
             ].map((service, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeIn}
-                className="bg-primary rounded-2xl p-6 md:p-8 shadow-[0_0_30px_rgba(0,32,96,0.15)] hover:shadow-[0_0_40px_rgba(255,199,89,0.25)] transition-all duration-300 group border border-white/10"
+                className="relative bg-primary rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,32,96,0.15)] hover:shadow-[0_0_40px_rgba(255,199,89,0.25)] transition-all duration-300 group"
               >
-                {/* Title - At the top */}
-                <h3 className="text-xl md:text-2xl font-montserrat font-bold text-white mb-6 text-center">
-                  {service.title}
-                </h3>
-
-                {/* Image */}
-                <div className="h-48 md:h-56 overflow-hidden rounded-xl mb-6">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                {/* Background Image - Spreads across most of card */}
+                <div className="relative h-[400px] md:h-[450px] overflow-hidden">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+                    style={{ backgroundImage: `url('${service.image}')` }}
                   />
+                  {/* Dark overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-primary" />
+
+                  {/* Floating Title - Centered on image */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center px-4">
+                    <h3 className="text-xl md:text-2xl font-montserrat font-bold text-white mb-2 leading-tight">
+                      {service.title}
+                    </h3>
+                  </div>
                 </div>
 
-                {/* Features List */}
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((feature, fIdx) => (
-                    <li
-                      key={fIdx}
-                      className="flex items-start gap-3 text-white/90 font-montserrat text-sm"
-                    >
-                      <div className="w-1.5 h-1.5 rounded-full bg-secondary mt-2 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Features List - At bottom */}
+                <div className="p-6 md:p-8">
+                  <ul className="space-y-3 mb-6">
+                    {service.features.map((feature, fIdx) => (
+                      <li
+                        key={fIdx}
+                        className="flex items-start gap-3 text-white/90 font-montserrat text-sm"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-secondary mt-2 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                {/* Button */}
-                <Link
-                  to="/services"
-                  className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-white font-montserrat font-semibold py-3 px-6 rounded-lg transition-all duration-300 group-hover:shadow-lg"
-                >
-                  More Details
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                  {/* Button */}
+                  <Link
+                    to="/services"
+                    className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-white font-montserrat font-semibold py-3 px-6 rounded-lg group-hover:shadow-lg"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -824,7 +860,7 @@ export function Home() {
             </div>
 
             {/* Steps grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 relative">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 relative">
               {steps.map((item, idx) => {
                 const StepIcon = item.icon;
                 return (
@@ -1134,20 +1170,20 @@ export function Home() {
             >
               {[...Array(2)].flatMap((_, dupIdx) =>
                 [
-                  { name: "Deye", src: "./embrace-trusted3.png" },
-                  { name: "Lado Oil", src: "./embrace-trusted1.png" },
-                  { name: "Felicity Solar", src: "./embrace-trusted2.jpg" },
-                  { name: "luxsun energy", src: "./luxsun logo.png" },
-                  { name: "growatt", src: "./Growatt-logo.png" },
-                  { name: "Prado Power", src: "./prado-logo.png" },
                   { name: "Chint Power", src: "./Chint-logo.png" },
                   { name: "Coleman Power", src: "./Coleman-logo.png" },
                   { name: "Dahua Power", src: "./Dahua logo.png" },
+                  { name: "Deye", src: "./deye-logo.png" },
+                  { name: "Felicity Solar", src: "./felicity-logo.png" },
+                  { name: "growatt", src: "./Growatt-logo.png" },
                   { name: "Hikvision Power", src: "./Hikvision-logo.png" },
                   { name: "Huawei Power", src: "./huawei_logo.png" },
                   { name: "ja-solar", src: "./ja-solar.png" },
                   { name: "jinko Power", src: "./jinko solar.png" },
+                  { name: "Lado Oil", src: "./lado-logo.png" },
                   { name: "longi Power", src: "./longi-logo.png" },
+                  { name: "luxsun energy", src: "./luxsun-logo.png" },
+                  { name: "Prado Power", src: "./prado-logo.png" },
                   { name: "Suntree Power", src: "./Suntree-logo.png" },
                   { name: "Trina Power", src: "./Trina logo.png" },
                 ].map((org, idx) => (

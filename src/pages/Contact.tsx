@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
@@ -87,20 +87,64 @@ export function Contact() {
   const title = "CONTACT US";
   const location = useLocation();
 
+  const [selectedState, setSelectedState] = useState<string | null>(null);
+  const [address, setAddress] = useState("");
+
   // Scroll to top when location changes (fires every time, even on same route)
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname, location.search]);
 
+  // Nigerian states
+  const nigerianStates = [
+    "Abia",
+    "Adamawa",
+    "Akwa Ibom",
+    "Anambra",
+    "Bauchi",
+    "Bayelsa",
+    "Benue",
+    "Borno",
+    "Cross River",
+    "Delta",
+    "Ebonyi",
+    "Edo",
+    "Ekiti",
+    "Enugu",
+    "FCT - Abuja",
+    "Gombe",
+    "Imo",
+    "Jigawa",
+    "Kaduna",
+    "Kano",
+    "Katsina",
+    "Kebbi",
+    "Kogi",
+    "Kwara",
+    "Lagos",
+    "Nasarawa",
+    "Niger",
+    "Ogun",
+    "Ondo",
+    "Osun",
+    "Oyo",
+    "Plateau",
+    "Rivers",
+    "Sokoto",
+    "Taraba",
+    "Yobe",
+    "Zamfara"
+  ];
+
   return (
     <main className="w-full overflow-hidden">
       {/* PAGE HERO - LEFT AS IS */}
-      <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[450px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
+      <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[600px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./embrace-about.jpg')",
+              backgroundImage: "url('./contact3.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -249,12 +293,11 @@ export function Contact() {
               <div>
                 {/* Main Headline - Anton ExtraBold */}
                 <h2 className="text-3xl md:text-4xl font-anton font-extrabold mt-4 mb-4">
-                  Let's start your solar or security project with the right partner.
-                </h2>
+                  Let's Power Your Home & Secure Your Property                </h2>
               </div>
 
               {/* Contact Info Cards with Icon Styling */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {/* Address */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -270,7 +313,7 @@ export function Contact() {
                       className="w-12 h-12 object-contain"
                     />
                   </div>
-                  <h3 className="text-lg font-montserrat font-bold text-alternativeO mb-2">Address</h3>
+                  <h3 className="text-lg font-montserrat font-bold text-primary mb-2">Address</h3>
                   <p className="text-slate-600 font-poppins font-normal text-sm leading-relaxed">
                     116 Ikorodu-Lagos Road, Haruna Bustop,<br />
                     Ikorodu, Lagos, Nigeria
@@ -292,10 +335,9 @@ export function Contact() {
                       className="w-12 h-12 object-contain"
                     />
                   </div>
-                  <h3 className="text-lg font-montserrat font-bold text-secondary mb-2">Call Us</h3>
+                  <h3 className="text-lg font-montserrat font-bold text-primary mb-2">Call Us</h3>
                   <p className="text-slate-600 font-poppins font-normal text-sm leading-relaxed">
                     +234 706 145 1583<br />
-                    +234 807 895 4388<br />
                     +234 911 015 2566
                   </p>
                 </motion.div>
@@ -336,9 +378,9 @@ export function Contact() {
                       className="w-12 h-12 object-contain"
                     />
                   </div>
-                  <h3 className="text-lg font-montserrat font-bold text-alternativeR mb-2">Working Hours</h3>
+                  <h3 className="text-lg font-montserrat font-bold text-primary mb-2">Working Hours</h3>
                   <p className="text-slate-600 font-poppins font-normal text-sm leading-relaxed">
-                    24/7
+                    Mon - Sat: 8:00 AM - 6:00 PM
                   </p>
                 </motion.div>
               </div>
@@ -398,7 +440,7 @@ export function Contact() {
             >
               <div>
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
-                  Full Name
+                  Name
                 </label>
                 <input
                   type="text"
@@ -408,17 +450,7 @@ export function Contact() {
               </div>
               <div>
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
-                />
-              </div>
-              <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
-                  Phone Number
+                  Phone
                 </label>
                 <input
                   type="tel"
@@ -428,13 +460,58 @@ export function Contact() {
               </div>
               <div>
                 <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
-                  Enquiring About
+                  Email
+                </label>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                />
+              </div>
+              <div>
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                  Location
                 </label>
                 <select
+                  value={selectedState || ""}
+                  onChange={(e) => setSelectedState(e.target.value)}
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 >
-                  <option value="solar">Solar</option>
-                  <option value="cctv">CCTV</option>
+                  <option value="" disabled>Select your state</option>
+                  {nigerianStates.map((state) => (
+                    <option key={state} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
+
+                {selectedState && (
+                  <div className="mt-4">
+                    <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                      Property Address
+                    </label>
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      placeholder="Enter your full address"
+                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                    />
+                  </div>
+                )}
+              </div>
+              <div>
+                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                  Service Needed
+                </label>
+                <select
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                >
+                  <option value="solar">Solar Energy System </option>
+                  <option value="cctv">CCTV Surveillance System </option>
+                  <option value="training">SPVI Training and Certification</option>
+                  <option value="training">CCTV Installation Training</option>
+                  <option value="training">Partnership </option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -444,14 +521,14 @@ export function Contact() {
                 </label>
                 <textarea
                   placeholder="Tell us about your project"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <button
                 type="submit"
                 className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-full px-8 py-4 hover:bg-yellow-400 transition-colors"
               >
-                Send Message
+                Submit Request
               </button>
             </motion.form>
 

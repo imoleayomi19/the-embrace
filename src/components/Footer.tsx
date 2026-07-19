@@ -50,9 +50,11 @@ export function Footer() {
   const services = [
     { name: 'Residential Solar', to: '/services' },
     { name: 'Commercial Solar', to: '/services' },
+    { name: 'CCTV Surveillance System', to: '/services' },
     { name: 'Battery Storage', to: '/services' },
     { name: 'Maintenance', to: '/services' },
     { name: 'Energy Audits', to: '/services' },
+    { name: 'SPVI Training', to: '/services' },
   ];
 
   return (
@@ -73,7 +75,7 @@ export function Footer() {
               <img
                 src="./embrace-logo-footer.png"
                 alt="Embrace Technologies"
-                className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain rounded-tl-3xl rounded-br-3xl"
+                className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain rounded-2xl"
               />
             </Link>
             {/* Social Icons */}
@@ -174,18 +176,7 @@ export function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
-                <Mail className="w-5 h-5 text-secondary shrink-0" />
-                <div className="flex flex-col gap-1">
-                  {/* Email - Source Sans Pro/Poppins Regular */}
-                  <a
-                    href="mailto:embracetechnologiesltd@gmail.com"
-                    className="transition-colors hover:text-secondary font-poppins font-normal text-slate-300"
-                  >
-                    embracetechnologiesltd@gmail.com
-                  </a>
-                </div>
-              </li>
+
               <li className="flex items-center gap-3 flex-col lg:flex-row">
                 <Globe className="w-5 h-5 text-secondary shrink-0" />
                 {/* Website - Source Sans Pro/Poppins Regular */}
@@ -204,7 +195,7 @@ export function Footer() {
                   to="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-secondary/10 border border-secondary/20 px-5 py-2.5 text-sm font-montserrat font-semibold text-secondary transition-all hover:bg-secondary hover:text-white hover:shadow-lg"
                 >
-                  Enquire Now
+                  Get Free Quote
                 </Link>
               </li>
             </ul>
