@@ -59,17 +59,7 @@ function CountUp({
 }
 
 import {
-  Award,
-  Users,
-  Target,
-  Heart,
-  CheckCircle2,
   ArrowRight,
-  Quote,
-  Sun,
-  Shield,
-  Lightbulb,
-  Handshake,
   ArrowRightCircle,
 } from "lucide-react";
 

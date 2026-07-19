@@ -2,25 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
-  ShieldCheck,
   Sun,
-  Battery,
-  Leaf,
   ArrowRight,
-  Home as HomeIcon,
-  Building2,
   Wrench,
-  Quote,
   ChevronLeft,
   ChevronRight,
   Phone,
-  Pencil,
   Zap,
-  Power,
   Camera,
   GraduationCap,
   ShoppingBag,
-  Settings,
 } from "lucide-react";
 
 // Custom Solar Panel with Settings Icon
@@ -182,15 +173,6 @@ function CountUp({
 export function Home() {
   const [phraseIndex, setPhraseIndex] = useState(0);
 
-  const [residentialSlide, setResidentialSlide] = useState(0);
-  const [isResidentialPaused, setIsResidentialPaused] = useState(false);
-
-  const [commercialSlide, setCommercialSlide] = useState(0);
-  const [isCommercialPaused, setIsCommercialPaused] = useState(false);
-
-  const [maintenanceSlide, setMaintenanceSlide] = useState(0);
-  const [isMaintenancePaused, setIsMaintenancePaused] = useState(false);
-
   const [heroSlide, setHeroSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -198,11 +180,7 @@ export function Home() {
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [isTrustedPaused, setIsTrustedPaused] = useState(false);
 
-  const residentialImages = ["/", "/]"];
-  const commercialImages = ["/", "/"];
-  const maintenanceImages = ["/", "/"];
-
-  const testimonials = [
+  const testimonials: { name: string; quote: string; role?: string }[] = [
     {
       name: "Sadiq A. - Lagos Entrepreneur",
       quote:
@@ -228,29 +206,7 @@ export function Home() {
     return () => window.clearInterval(intervalId);
   }, [isTestimonialPaused, testimonials.length]);
 
-  useEffect(() => {
-    if (isResidentialPaused) return;
-    const intervalId = window.setInterval(() => {
-      setResidentialSlide((current) => (current + 1) % residentialImages.length);
-    }, 4500);
-    return () => window.clearInterval(intervalId);
-  }, [isResidentialPaused, residentialImages.length]);
 
-  useEffect(() => {
-    if (isCommercialPaused) return;
-    const intervalId = window.setInterval(() => {
-      setCommercialSlide((current) => (current + 1) % commercialImages.length);
-    }, 4500);
-    return () => window.clearInterval(intervalId);
-  }, [isCommercialPaused, commercialImages.length]);
-
-  useEffect(() => {
-    if (isMaintenancePaused) return;
-    const intervalId = window.setInterval(() => {
-      setMaintenanceSlide((current) => (current + 1) % maintenanceImages.length);
-    }, 4500);
-    return () => window.clearInterval(intervalId);
-  }, [isMaintenancePaused, maintenanceImages.length]);
 
   useEffect(() => {
     const heroInterval = window.setInterval(() => {

@@ -6,7 +6,6 @@ import {
   Facebook,
   Instagram,
   Linkedin,
-  MessageCircle,
   Globe,
 } from 'lucide-react';
 

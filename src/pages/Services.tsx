@@ -1,13 +1,10 @@
-import React, { useState, Children } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Home,
   Building2,
-  Battery,
   Wrench,
-  Search,
-  Zap,
   ArrowRight,
   Plus,
   Minus,
