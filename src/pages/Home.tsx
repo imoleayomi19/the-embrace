@@ -56,6 +56,7 @@ const staggerContainer = {
 const INSTALLATION_START_YEAR = 2019;
 const yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
 
+
 const heroPhrases = [
   "power your future with the sun",
   "reliable power begins with the right partner",
@@ -175,6 +176,8 @@ export function Home() {
 
   const [heroSlide, setHeroSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
+
 
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
@@ -449,145 +452,71 @@ export function Home() {
               </div>
             </motion.div>
 
-            {/* Right Side - Service Cards Grid - Staggered Layout */}
+            {/* Right Side - Service Cards Accordion */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative space-y-4"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {/* Card 01 - Top Left */}
-                {(() => {
-                  const CardIcon01 = serviceCards[0].icon;
-                  return (
+              {serviceCards.map((card, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.1 }}
+                  className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden cursor-pointer border border-slate-100"
+                  onClick={() => setActiveServiceIndex(activeServiceIndex === idx ? null : idx)}
+                >
+                  {/* Card Header - Always Visible */}
+                  <div className="flex items-center justify-between p-6">
+                    <h4 className="font-montserrat font-bold text-primary text-base uppercase tracking-wide flex-1">
+                      {card.title}
+                    </h4>
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.1 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
+                      animate={{ rotate: activeServiceIndex === idx ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex-shrink-0 ml-4"
                     >
-                      <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[0].color}15` }}>
-                        <CardIcon01 className="w-7 h-7" style={{ color: serviceCards[0].color }} />
-                      </div>
-                      <h4 className="font-montserrat font-bold text-primary text-lg mb-4 uppercase tracking-wide text-center">
-                        {serviceCards[0].title}
-                      </h4>
-                      <div className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100">
-                        <p className="text-slate-600 text-base font-semibold leading-relaxed text-center" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-                          {serviceCards[0].desc}
-                        </p>
-                      </div>
+                      <svg
+                        className="w-5 h-5 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </motion.div>
-                  );
-                })()}
+                  </div>
 
-                {/* Card 02 - Top Right (offset) */}
-                {(() => {
-                  const CardIcon02 = serviceCards[1].icon;
-                  return (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.2 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 md:mt-16 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
-                    >
-                      <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[1].color}15` }}>
-                        <CardIcon02 className="w-7 h-7" style={{ color: serviceCards[1].color }} />
-                      </div>
-                      <h4 className="font-montserrat font-bold text-primary text-lg mb-4 uppercase tracking-wide text-center">
-                        {serviceCards[1].title}
-                      </h4>
-                      <div className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100">
-                        <p className="text-slate-600 text-base font-semibold leading-relaxed text-center" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-                          {serviceCards[1].desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })()}
-
-                {/* Card 03 - Middle Left */}
-                {(() => {
-                  const CardIcon03 = serviceCards[2].icon;
-                  return (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
-                    >
-                      <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[2].color}15` }}>
-                        <CardIcon03 className="w-7 h-7" style={{ color: serviceCards[2].color }} />
-                      </div>
-                      <h4 className="font-montserrat font-bold text-primary text-lg mb-4 uppercase tracking-wide text-center">
-                        {serviceCards[2].title}
-                      </h4>
-                      <div className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100">
-                        <p className="text-slate-600 text-base font-semibold leading-relaxed text-center" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-                          {serviceCards[2].desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })()}
-
-                {/* Card 04 - Middle Right (offset) */}
-                {(() => {
-                  const CardIcon04 = serviceCards[3].icon;
-                  return (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.4 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 md:mt-16 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
-                    >
-                      <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[3].color}15` }}>
-                        <CardIcon04 className="w-7 h-7" style={{ color: serviceCards[3].color }} />
-                      </div>
-                      <h4 className="font-montserrat font-bold text-primary text-lg mb-4 uppercase tracking-wide text-center">
-                        {serviceCards[3].title}
-                      </h4>
-                      <div className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100">
-                        <p className="text-slate-600 text-base font-semibold leading-relaxed text-center" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-                          {serviceCards[3].desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })()}
-
-                {/* Card 05 - Bottom Left */}
-                {(() => {
-                  const CardIcon05 = serviceCards[4].icon;
-                  return (
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.5 }}
-                      className="bg-white rounded-2xl border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.2)] transition-all duration-300 md:col-span-1 h-[320px] group flex flex-col justify-center items-center px-8 py-10"
-                    >
-                      <div className="w-14 h-14 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: `${serviceCards[4].color}15` }}>
-                        <CardIcon05 className="w-7 h-7" style={{ color: serviceCards[4].color }} />
-                      </div>
-                      <h4 className="font-montserrat font-bold text-primary text-lg mb-4 uppercase tracking-wide text-center">
-                        {serviceCards[4].title}
-                      </h4>
-                      <div className="overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100">
-                        <p className="text-slate-600 text-base font-semibold leading-relaxed text-center" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-                          {serviceCards[4].desc}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })()}
-              </div>
+                  {/* Card Content - Expandable */}
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      height: activeServiceIndex === idx ? "auto" : 0,
+                      opacity: activeServiceIndex === idx ? 1 : 0
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 pt-0 border-t border-slate-100">
+                      <p
+                        className="text-slate-600 text-sm leading-relaxed pt-4"
+                        style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+                      >
+                        {card.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>

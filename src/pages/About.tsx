@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import {
+  ArrowRight,
+  ArrowRightCircle,
+  Globe,
+  Headphones,
+} from "lucide-react";
+
 
 // Add this CountUp component
 function CountUp({
@@ -57,11 +64,6 @@ function CountUp({
     </span>
   );
 }
-
-import {
-  ArrowRight,
-  ArrowRightCircle,
-} from "lucide-react";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -469,46 +471,165 @@ export function About() {
         </div>
       </section>
 
-      {/* WHY EMBRACE TECHNOLOGIES LIMITED */}
-      <section className="py-16 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div className="text-center mb-12" {...fadeIn}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-anton font-extrabold mb-6 text-primary">
+      {/* WHY EMBRACE TECHNOLOGIES LIMITED - ECOSYSTEM STYLE WITH BACKGROUND IMAGE */}
+      <section className="relative py-2 overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('./en.jpg')", // Replace with your image path
+            backgroundPosition: "center bottom",
+          }}
+        />
+
+        {/* Optional: Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 via-blue-300/20 to-transparent" />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div className="text-center mb-16" {...fadeIn}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-anton font-extrabold mb-6 text-white drop-shadow-lg">
               Why Embrace Technologies Limited
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-6xl mx-auto">
-            {[
-              "Engineering expertise",
-              "End-to-end project delivery",
-              "Quality products",
-              "Professional Installation",
-              "After-sales support",
-              "Technical training",
-              "Strategic partnerships",
-              "Nationwide project execution",
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="bg-slate-900 rounded-lg p-6 flex items-center gap-4 hover:bg-slate-800 transition-colors cursor-pointer group"
-              >
-                <svg
-                  className="w-4 h-4 text-secondary flex-shrink-0 group-hover:translate-x-1 transition-transform"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
+          {/* Ecosystem Diagram */}
+          <div className="relative max-w-6xl mx-auto">
+
+            {/* Top Row - Perfect Frosted Glass Circles in Arch Formation */}
+            <div className="relative h-48 md:h-56">
+              {[
+                { label: "Engineering Expertise", delay: 0, xOffset: 0 },
+                { label: "End-to-End Delivery", delay: 0.1, xOffset: 1 },
+                { label: "Quality Products", delay: 0.2, xOffset: 2 },
+                { label: "Professional Installation", delay: 0.3, xOffset: 3 },
+              ].map((item, idx) => {
+                // Calculate arch position - shifted higher
+                const positions = [
+                  { left: "8%", yOffset: "30%" },
+                  { left: "32%", yOffset: "0%" },
+                  { left: "58%", yOffset: "0%" },
+                  { left: "82%", yOffset: "30%" },
+                ];
+                const pos = positions[idx];
+
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: item.delay }}
+                    whileHover={{ scale: 1.05, y: -8 }}
+                    className="absolute w-24 h-24 md:w-28 md:h-28 rounded-full backdrop-blur-md cursor-pointer flex items-center justify-center text-center p-3"
+                    style={{
+                      left: pos.left,
+                      top: pos.yOffset,
+                      transform: "translateX(-50%)",
+                      background: "radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1))",
+                      border: "2px solid rgba(255, 255, 255, 0.5)",
+                      boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15), inset 0 2px 8px rgba(255, 255, 255, 0.4)",
+                    }}
+                  >
+                    <span className="text-white font-montserrat font-bold text-[10px] md:text-xs leading-tight">
+                      {item.label}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Middle Row - Icon Connectors */}
+            <div className="flex justify-center items-center gap-8 md:gap-16 mb-8">
+              {[
+                { icon: "./support-1.png", label: "After-Sales Support" },
+                // { icon: "🎓", label: "Technical Training" },
+                { icon: "./graduation.png", label: "Technical Training" },
+                { icon: "./partnership.png", label: "Strategic Partnerships" },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + idx * 0.1 }}
+                  className="flex flex-col items-center"
                 >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                <span className="text-white font-montserrat font-bold text-sm uppercase tracking-wide">
-                  {item}
-                </span>
-              </motion.div>
-            ))}
+                  {/* Connecting Line */}
+                  {/* <div className="w-0.5 h-8 bg-white/60 mb-2" /> */}
+
+                  {/* Icon Circle */}
+                  <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center shadow-lg mb-2 border-2 border-white/50 p-2">
+                    {item.icon.endsWith('.png') || item.icon.endsWith('.jpg') || item.icon.endsWith('.svg') ? (
+                      <img
+                        src={item.icon}
+                        alt={item.label}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-3xl md:text-4xl">{item.icon}</span>
+                    )}
+                  </div>
+
+                  {/* Label */}
+                  <span className="text-white font-montserrat font-semibold text-xs md:text-sm text-center drop-shadow-md bg-black/20 px-3 py-1 rounded-full">
+                    {item.label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom Row - Large White Circles */}
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+              {[
+                {
+                  label: "Nationwide Execution",
+                  icon: "./world-3.png",
+                  gradient: "from-primary to-blue-700"
+                }
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.7 + idx * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.05 }}
+                  className="relative w-40 md:w-48"
+                >
+                  {/* Large White Circle */}
+                  <div className="relative w-full aspect-square rounded-full bg-white shadow-2xl flex flex-col items-center justify-center p-4 overflow-hidden border-4 border-white/50">
+                    {/* Gradient accent at top */}
+                    <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${item.gradient}`} />
+
+                    {/* Icon */}
+                    <div className="w-10 h-10 md:w-14 md:h-14 mb-2">
+                      {item.icon.endsWith('.png') || item.icon.endsWith('.jpg') || item.icon.endsWith('.svg') ? (
+                        <img
+                          src={item.icon}
+                          alt={item.label}
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <span className="text-4xl md:text-5xl">{item.icon}</span>
+                      )}
+                    </div>
+
+                    {/* Label */}
+                    <h4 className="text-primary font-montserrat font-bold text-xs md:text-sm text-center leading-tight mb-1">
+                      {item.label}
+                    </h4>
+
+                    {/* Description */}
+                    {/* <p className="text-slate-500 font-poppins font-normal text-xs text-center">
+          {item.desc}
+        </p> */}
+                  </div>
+
+                  {/* Shadow underneath */}
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3/4 h-4 bg-black/20 rounded-full blur-md" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
