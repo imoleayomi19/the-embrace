@@ -56,66 +56,6 @@ const staggerContainer = {
 const INSTALLATION_START_YEAR = 2019;
 const yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
 
-
-const heroPhrases = [
-  "power your future with the sun",
-  "reliable power begins with the right partner",
-  "securing your home with the best surveillance system",
-];
-
-const heroImages = [
-  "./solar-4.jpg",
-  "./solar-5.jpg",
-  "./solar-6.jpg",
-  "./solar-7.jpg",
-  "./solar-8.jpg",
-];
-
-// Word-by-word stagger animation variants
-const phraseContainerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-  exit: {
-    transition: {
-      staggerChildren: 0.04,
-      staggerDirection: -1,
-    },
-  },
-};
-
-const wordVariants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-    rotateX: -45,
-    filter: "blur(8px)",
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -20,
-    filter: "blur(6px)",
-    transition: {
-      duration: 0.3,
-      ease: "easeIn",
-    },
-  },
-};
-
 function CountUp({
   target,
   duration = 1200,
@@ -173,15 +113,43 @@ function CountUp({
 
 export function Home() {
   const [phraseIndex, setPhraseIndex] = useState(0);
-
   const [heroSlide, setHeroSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
-
-
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [isTrustedPaused, setIsTrustedPaused] = useState(false);
+  const [displayTextIndex, setDisplayTextIndex] = useState(0);
+
+  // Hero slides data - 2 cards with navigation
+  const heroSlides = [
+    {
+      type: "video",
+      content: "./hero-video.mp4",
+      text: "Stay on. Go beyond.",
+      duration: 17000, // 17 seconds for first slide
+    },
+    {
+      type: "video",
+      content: "./hero-video2.mp4", // Replace with your surveillance video
+      texts: [
+        "securing your home with the best surveillance system",
+        "power your future with the sun",
+        "securing your home with the best surveillance system",
+      ],
+      duration: 15000, // 15 seconds for second slide
+    },
+  ];
+
+  // Auto-cycle through texts on second slide
+  useEffect(() => {
+    if (heroSlide === 1) {
+      const textInterval = setInterval(() => {
+        setDisplayTextIndex((prev) => (prev + 1) % heroSlides[1].texts.length);
+      }, 4000); // Change text every 4 seconds
+      return () => clearInterval(textInterval);
+    }
+  }, [heroSlide]);
 
   const testimonials: { name: string; quote: string; role?: string }[] = [
     {
@@ -201,6 +169,37 @@ export function Home() {
     },
   ];
 
+  // Auto-advance slides based on current slide duration
+  useEffect(() => {
+    const currentSlideDuration = heroSlides[heroSlide].duration;
+    const intervalId = window.setInterval(() => {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setHeroSlide((current) => (current + 1) % heroSlides.length);
+        setIsTransitioning(false);
+      }, 300);
+    }, currentSlideDuration);
+    return () => window.clearInterval(intervalId);
+  }, [heroSlide, heroSlides]);
+
+  // Manual navigation functions
+  const nextSlide = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setHeroSlide((current) => (current + 1) % heroSlides.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  const prevSlide = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setHeroSlide((current) => (current - 1 + heroSlides.length) % heroSlides.length);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  // Testimonial auto-advance
   useEffect(() => {
     if (isTestimonialPaused) return;
     const intervalId = window.setInterval(() => {
@@ -208,27 +207,6 @@ export function Home() {
     }, 5000);
     return () => window.clearInterval(intervalId);
   }, [isTestimonialPaused, testimonials.length]);
-
-
-
-  useEffect(() => {
-    const heroInterval = window.setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setHeroSlide((current) => (current + 1) % heroImages.length);
-        setIsTransitioning(false);
-      }, 300);
-    }, 7000);
-    return () => window.clearInterval(heroInterval);
-  }, []);
-
-  // Hero phrase rotation - each phrase stays for 5 seconds
-  useEffect(() => {
-    const phraseInterval = window.setInterval(() => {
-      setPhraseIndex((current) => (current + 1) % heroPhrases.length);
-    }, 5000);
-    return () => window.clearInterval(phraseInterval);
-  }, []);
 
   const nextTestimonial = () =>
     setTestimonialIndex((current) => (current + 1) % testimonials.length);
@@ -323,81 +301,151 @@ export function Home() {
 
   return (
     <main className="w-full overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden min-h-full">
+      {/* HERO SECTION WITH SLIDING CARDS */}
+      <section className="relative overflow-hidden min-h-[110vh] md:min-h-[120vh] bg-primary">
+        {/* Sliding Cards Container */}
+        <div className="absolute inset-0 overflow-hidden bg-primary">
           <AnimatePresence mode="wait">
             <motion.div
               key={heroSlide}
-              initial={{ opacity: 0, scale: 1 }}
-              animate={{ opacity: 1, scale: isTransitioning ? 1 : 1.1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{
-                opacity: { duration: 1.2, ease: "easeInOut" },
-                scale: { duration: 7, ease: "easeOut" },
+                opacity: { duration: 0.15 },
               }}
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('${heroImages[heroSlide]}')` }}
-            />
+              className="absolute inset-0 bg-primary"
+            >
+              {/* Card Content */}
+              <div className="absolute inset-0 bg-cover bg-center">
+                {heroSlides[heroSlide].type === "video" ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                  >
+                    <source src={heroSlides[heroSlide].content} type="video/mp4" />
+                    <img
+                      src="./solar-4.jpg"
+                      alt="Video fallback"
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </video>
+                ) : (
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${heroSlides[heroSlide].content}')` }}
+                  />
+                )}
+              </div>
+
+              {/* Subtle Dark Gradient Overlay - Entire Section */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+            </motion.div>
           </AnimatePresence>
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-primary/80" />
         </div>
 
-        <div className="relative z-10 flex flex-col min-h-[calc(100dvh-4rem)] md:min-h-[90vh]">
-          {/* Full-width phrase banner - FIXED HEIGHT to prevent jumping */}
-          <div className="w-full px-4 md:px-6 pt-28 sm:pt-32 md:pt-36 lg:pt-40 pb-4 sm:pb-6">
-            <h3 className="text-3xl sm:text-4xl md:text-[32pt] text-white leading-[1.2] w-full font-montserrat font-black text-center h-auto sm:h-[110px] md:h-[120px] lg:h-[140px] flex items-center justify-center capitalize min-h-[100px] sm:min-h-[110px]">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={phraseIndex}
-                  className="inline-flex flex-wrap justify-center items-center text-center gap-x-2 sm:gap-x-3"
-                  variants={phraseContainerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                >
-                  {heroPhrases[phraseIndex].split(" ").map((word, wordIdx) => (
-                    <motion.span
-                      key={`${phraseIndex}-${wordIdx}`}
-                      className="inline-block text-white"
-                      variants={wordVariants}
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                </motion.span>
-              </AnimatePresence>
-            </h3>
+        {/* Navigation Arrows - White */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" />
+        </button>
+
+        {/* Content */}
+        <div className="relative z-20 flex flex-col min-h-[110vh] md:min-h-[120vh]">
+          {/* Header Text - Top Middle (Moved Down) */}
+          <div className="w-full px-4 md:px-6 pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-4">
+            <motion.div
+              key={`text-${heroSlide}`}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="text-center py-4"
+            >
+              <h3
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+        bg-gradient-to-r from-white to-secondary bg-clip-text text-transparent
+        drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
+        leading-relaxed font-montserrat font-black drop-shadow-2xl
+        overflow-visible pb-2"
+                style={{
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textTransform: 'capitalize'
+                }}
+              >
+                {heroSlide === 0
+                  ? (heroSlides[0] as { text: string }).text.toLowerCase()
+                  : (heroSlides[1] as { texts: string[] }).texts[displayTextIndex].toLowerCase()
+                }
+              </h3>
+            </motion.div>
           </div>
 
-          {/* Hero content - centered below the phrase */}
-          <div className="container mx-auto px-4 md:px-6 pb-6 md:pb-44 flex-1 flex items-center md:items-center">
-            <div className="w-full mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.5, delay: 0.3, ease: "easeOut" }}
-                className="gpu-accelerate flex flex-col items-center"
-              >
-                <p
-                  className="text-lg sm:text-xl md:text-[14pt] text-white font-extrabold mb-6 sm:mb-8 md:mb-10 max-w-4xl leading-relaxed text-center mx-auto px-2 drop-shadow-lg"
-                  style={{ fontFamily: "Source Sans Pro" }}
-                >
-                  Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
-                </p>
+          {/* Spacer to push content down */}
+          <div className="flex-1" />
 
-                <div className="flex flex-col gap-4 sm:gap-5 sm:flex-row items-center justify-center w-full px-2 mb-6 sm:mb-8">
+          {/* Hero Description and Button - Centered */}
+          <div className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="gpu-accelerate"
+              >
+                {/* Text Card - Less visible */}
+                <div className="inline-block bg-white/10 backdrop-blur-md p-4 sm:p-6 rounded-md border border-white/10 mb-8">
+                  <p
+                    className="text-[18px] font-source-sans-pro font-medium text-white leading-snug drop-shadow-lg"
+                    style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+                  >
+                    Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage,
+                    <br />
+                    digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
+                  </p>
+                </div>
+
+                {/* Button */}
+                <div>
                   <Link
                     to="/contact"
-                    className="w-full sm:w-auto bg-secondary text-primary font-montserrat font-black text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-center shadow-lg shadow-secondary/20 flex items-center justify-center gap-2 group whitespace-nowrap"
+                    className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
                   >
                     Request a Quote
-                    <ArrowRight className="hidden sm:block w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               </motion.div>
             </div>
+          </div>
+
+          {/* Slide Indicators */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+            {heroSlides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  setHeroSlide(idx);
+                }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === heroSlide ? "bg-white w-8" : "bg-white/50"
+                  }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -625,7 +673,7 @@ export function Home() {
       </section>
 
       {/* SERVICES PREVIEW */}
-      <section className="pt-12 pb-24 bg-slate-50 relative overflow-hidden">
+      <section className="pt-12 pb-20 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Service Cards Grid */}
           <motion.div
@@ -715,16 +763,18 @@ export function Home() {
       </section>
 
       {/* HOW IT WORKS — ENHANCED */}
-      <section className="py-16 md:py-24 bg-slate-50 overflow-hidden relative">
+      <section className="py-8 md:py-10 bg-slate-50 overflow-hidden relative">
         {/* Subtle background decoration */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Section Header - Removed "Our Process" badge */}
           <motion.div className="text-center max-w-3xl mx-auto mb-20" {...fadeIn}>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-primary mb-4">
+            <h3 className="text-3xl sm:text-4xl font-black md:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
               How we work
-            </h2>
+            </h3>
+
+
             <p className="text-slate-600 font-montserrat text-lg" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               A simple, transparent process from your first consultation to
               flipping the switch.
@@ -858,11 +908,11 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl font-montserrat font-bold text-primary mb-3">
+            <h3 className="text-2xl font-black md:text-3xl mb-4 tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
               Leading Solar Installation Company in Nigeria
-            </h2>
+            </h3>
 
-            <div className="space-y-2 text-slate-600 font-montserrat text-sm leading-relaxed max-w-4xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+            <div className="space-y-2 text-slate-600 font-montserrat text-lg leading-relaxed max-w-4xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               <p>
                 As a leading solar installation company in Nigeria, Embrace Technologies delivers more than solar products — we engineer reliable power systems built specifically for Nigerian conditions.
               </p>
@@ -1100,13 +1150,13 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-6xl font-montserrat font-bold text-white mb-4 sm:mb-6">
-              Ready to Embrace Clean Energy?
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
+              READY TO EMBRACE CLEAN ENERGY?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-slate-200 font-montserrat mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+            {/* <p className="text-base sm:text-lg md:text-xl text-slate-200 font-montserrat mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               Call To Action
               Ready To Power Your Home or Business?
-            </p>
+            </p> */}
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"

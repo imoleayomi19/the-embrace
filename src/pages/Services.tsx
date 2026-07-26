@@ -227,7 +227,7 @@ export function Services() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./embrace-about.jpg')",
+              backgroundImage: "url('./services.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -368,9 +368,9 @@ export function Services() {
             {...fadeIn}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
+            <h3 className="text-2xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
               Our Solutions
-            </h2>
+            </h3>
             {/* Body Text - Source Sans Pro/Poppins Regular */}
             <p className="text-slate-600 font-poppins font-normal text-lg">
               Comprehensive clean energy solutions tailored to your needs. From
@@ -431,9 +431,13 @@ export function Services() {
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <motion.div className="lg:w-1/2" {...fadeIn}>
               {/* Main Headline - Anton ExtraBold */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-6">
+              <h3 className="text-3xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
                 The Embrace Process
-              </h2>
+              </h3>
+              {/* <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-6">
+                The Embrace Process
+              </h2> */}
+
               {/* Body Text - Source Sans Pro/Poppins Regular */}
               <p className="text-slate-600 font-poppins font-normal text-lg mb-10">
                 Going solar shouldn't be complicated. We've streamlined our
@@ -494,7 +498,7 @@ export function Services() {
             <motion.div className="lg:w-1/2 w-full" {...fadeIn}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="./"
+                  src="./contact-us.jpeg"
                   alt="Solar Installation Process"
                   className="w-full h-[600px] object-cover"
                 />
@@ -522,9 +526,12 @@ export function Services() {
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.div className="text-center mb-16" {...fadeIn}>
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
+            <h3 className="text-2xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
+              FREQUENTLY ASKED QUESTIONS
+            </h3>
+            {/* <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
               Frequently Asked Questions
-            </h2>
+            </h2> */}
             {/* Body Text - Source Sans Pro/Poppins Regular */}
             <p className="text-slate-600 font-poppins font-normal text-lg">
               Everything you need to know about switching to solar.
@@ -605,14 +612,17 @@ export function Services() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-white/5 backdrop-blur-sm border border-white/10 p-10 rounded-2xl">
             <div className="max-w-2xl">
               {/* Main Headline - Anton ExtraBold */}
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold text-white mb-4">
+              {/* <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold text-white mb-4">
                 Ready to start your solar journey?
+              </h2> */}
+              <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
+                READY TO START YOUR SOLAR JOURNEY?
               </h2>
               {/* Body Text - Source Sans Pro/Poppins Regular */}
-              <p className="text-slate-300 font-poppins font-normal text-lg">
+              {/* <p className="text-slate-300 font-poppins font-normal text-lg">
                 Schedule a free site assessment and discover your property's
                 solar potential.
-              </p>
+              </p> */}
             </div>
             {/* Button - Montserrat SemiBold */}
             <Link

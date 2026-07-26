@@ -144,7 +144,7 @@ export function Contact() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./contact3.jpg')",
+              backgroundImage: "url('./contact1.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -290,10 +290,12 @@ export function Contact() {
 
             {/* LEFT COLUMN: Info + Map */}
             <motion.div {...fadeIn} className="space-y-8">
-              <div>
-                {/* Main Headline - Anton ExtraBold */}
-                <h2 className="text-3xl md:text-4xl font-anton font-extrabold mt-4 mb-4">
-                  Let's Power Your Home & Secure Your Property                </h2>
+              <div className="mb-8">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
+                  <span className="bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent">
+                    Let's Power Your Home & Secure Your Property
+                  </span>
+                </h2>
               </div>
 
               {/* Contact Info Cards with Icon Styling */}

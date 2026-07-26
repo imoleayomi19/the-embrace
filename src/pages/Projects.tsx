@@ -87,7 +87,7 @@ export function Projects() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./embrace-about.jpg')",
+              backgroundImage: "url('./project1.jpg')",
               backgroundPosition: "center 40%",
             }}
           />

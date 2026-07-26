@@ -31,7 +31,7 @@ type ProductItem = {
 // Residential product categories
 const residentialCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
   {
-    name: "Off Grid Inverter",
+    name: "Complete Hybrid Solar Systems",
     path: "/shop/off-grid-inverter",
     series: [
       { label: "IVPS Series", path: "/shop" },
@@ -48,7 +48,7 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
     ],
   },
   {
-    name: "Hybrid Inverter",
+    name: "CCTV Surveillance Systems",
     path: "/shop/hybrid-inverter",
     series: [
       { label: "IVCM Series", path: "/shop" },
@@ -64,7 +64,7 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
     ],
   },
   {
-    name: "Micro Inverter",
+    name: "Shop All Products",
     path: "/shop/micro-inverter",
     series: [
       { label: "IVEM Series", path: "/shop" },
@@ -76,70 +76,12 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { name: "IVEM-800W", image: "./product.png", path: "/shop" },
     ],
   },
-  {
-    name: "Lithium Battery",
-    path: "/shop/lithium-battery",
-    series: [
-      { label: "Wall-Mount Series", path: "/shop" },
-      { label: "Rack Series", path: "/shop" },
-      { label: "Stackable Series", path: "/shop" },
-    ],
-    products: [
-      { name: "IVLI-100AH", image: "./product.png", path: "/shop" },
-      { name: "IVLI-200AH", image: "./product.png", path: "/shop" },
-      { name: "IVLI-300AH", image: "./product.png", path: "/shop" },
-      { name: "IVLI-Stack", image: "./product.png", path: "/shop" },
-      { name: "IVLI-Rack", image: "./product.png", path: "/shop" },
-      { name: "IVLI-Wall", image: "./product.png", path: "/shop" },
-    ],
-  },
-  {
-    name: "All in One ESS",
-    path: "/shop/all-in-one-ess",
-    series: [
-      { label: "Liquid Cooling Series", path: "/shop" },
-      { label: "Air Cooling Series", path: "/shop" },
-    ],
-    products: [
-      { name: "IVCS-50kW", image: "./product.png", path: "/shop" },
-      { name: "IVCS-100kW", image: "./product.png", path: "/shop" },
-    ],
-  },
-  {
-    name: "Gel Battery",
-    path: "/shop/gel-battery",
-    series: [
-      { label: "Deep Cycle Series", path: "/shop" },
-      { label: "Solar Gel Series", path: "/shop" },
-    ],
-    products: [
-      { name: "GEL-100AH", image: "./product.png", path: "/shop" },
-      { name: "GEL-150AH", image: "./product.png", path: "/shop" },
-      { name: "GEL-200AH", image: "./product.png", path: "/shop" },
-    ],
-  },
-  {
-    name: "Key Components",
-    path: "/shop/key-components",
-    series: [
-      { label: "MPPT Series", path: "/shop" },
-      { label: "Protection Series", path: "/shop" },
-      { label: "Accessory Series", path: "/shop" },
-    ],
-    products: [
-      { name: "MPPT Controller", image: "./product.png", path: "/shop" },
-      { name: "Solar Cables", image: "./product.png", path: "/shop" },
-      { name: "MC4 Connectors", image: "./product.png", path: "/shop" },
-      { name: "Mounting Frames", image: "./product.png", path: "/shop" },
-      { name: "Protection Switch", image: "./product.png", path: "/shop" },
-    ],
-  },
 ];
 
 // Commercial product categories
 const commercialCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
   {
-    name: "Cabinet ESS",
+    name: "Commercial Hybrid Solar Systems",
     path: "/shop/cabinet-ess",
     series: [
       { label: "Liquid Cooling Series", path: "/shop" },
@@ -158,6 +100,20 @@ const commercialCategories: (ProductCategory & { products: ProductItem[]; series
 const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
   {
     name: "Mini Grid Systems",
+    path: "/shop/mini-grid",
+    series: [
+      { label: "Off-Grid Mini Grid", path: "/shop" },
+      { label: "Hybrid Mini Grid", path: "/shop" },
+    ],
+    products: [
+      { name: "MG-50kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-100kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-200kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-500kW System", image: "./product.png", path: "/shop" },
+    ],
+  },
+  {
+    name: "Mini Grid Tied",
     path: "/shop/mini-grid",
     series: [
       { label: "Off-Grid Mini Grid", path: "/shop" },
@@ -436,7 +392,7 @@ export function Navbar() {
           {/* Logo - Far Left */}
           <Link to="/" className="group flex-shrink-0 min-w-0">
             <img
-              src="./embrace-nav-log.png"
+              src="./embrace-nav-logo-removebg.png"
               alt="Embrace Technologies"
               className={`
                 rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105 max-w-full
@@ -707,14 +663,14 @@ export function Navbar() {
           </nav>
 
           {/* Get a Quote Button - Montserrat SemiBold */}
-          <div className="hidden lg:block flex-shrink-0">
+          {/* <div className="hidden lg:block flex-shrink-0">
             <Link
               to="/contact"
               className="bg-secondary text-primary font-montserrat font-semibold px-6 py-2.5 rounded-sm hover:bg-yellow-400 transition-colors shadow-sm uppercase text-sm tracking-wide"
             >
-              Get a Quote
+              Get a Free Quote
             </Link>
-          </div>
+          </div> */}
 
           {/* Mobile Menu Toggle */}
           <button

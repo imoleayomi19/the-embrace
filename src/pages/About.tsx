@@ -141,6 +141,8 @@ const particleVariants = {
   }),
 };
 
+
+
 // Glow pulse
 const glowVariants = {
   animate: {
@@ -159,6 +161,34 @@ const yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
 
 export function About() {
   const title = "ABOUT US";
+  const [activeMilestone, setActiveMilestone] = useState(0);
+
+  const milestones = [
+    {
+      year: 2019,
+      title: "Founded",
+      image: "./founded.jpg",
+    },
+    {
+      year: 2021,
+      title: "Registered as Business Name With CAC",
+      image: "./registered.jpg",
+    },
+    {
+      year: 2026,
+      title: "Incorporated as a Limited Liability Company",
+      image: "./limited.jpg",
+    },
+  ];
+
+  // Auto-rotate milestones
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveMilestone((current) => (current + 1) % milestones.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <main className="w-full overflow-hidden">
@@ -168,7 +198,7 @@ export function About() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./embrace-about.jpg')",
+              backgroundImage: "url('./about-us.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -339,9 +369,10 @@ export function About() {
             >
               <motion.div {...fadeIn}>
                 {/* Main Headline - Anton ExtraBold */}
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mt-1 mb-6 leading-tight text-primary">
-                  EMBRACE TECHNOLOGIES LIMITED
-                </h2>
+                <h3 className="text-2xl font-black sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
+                  EMBRACE TECHNOLOGIES LIMITED.
+                </h3>
+
               </motion.div>
 
               <motion.div {...fadeIn} className="space-y-4">
@@ -362,128 +393,146 @@ export function About() {
           </div>
         </div>
 
-        {/* Vision, Mission, Tagline Cards */}
+        {/* Vision, Mission, Tagline Cards - Embrace Logo Style */}
         <div className="container mx-auto px-4 md:px-6 mt-12">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 gap-2">
-              {/* Tagline Card - Top Full Width */}
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col gap-5">
+
+              {/* Tagline Card - Top (Shortest, Shifted Right) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative h-[200px] md:h-[240px] overflow-hidden group cursor-pointer"
+                className="relative h-[160px] md:h-[180px] overflow-hidden group cursor-pointer mx-auto"
+                style={{ width: '50%', borderRadius: '80px', marginRight: '20%' }}
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: "url('./tagline.png')" }}
-                />
+                {/* Default: Colored Background with Text */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
 
-                {/* Title visible always */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                {/* Hover: Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ backgroundImage: "url('./mission1.jpg')" }}
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Content - Always Visible */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-14 drop-shadow-lg transition-all duration-500">
                     Tagline
                   </h3>
-                </div>
-
-                {/* Hover overlay - swipes up from bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-3">
-                      Tagline
-                    </h3>
-                    <p className="text-white font-poppins font-normal text-base md:text-lg text-center max-w-2xl leading-relaxed font-semibold">
-                      Stay on go beyond                    </p>
-                  </div>
+                  <p className="text-white font-poppins font-normal text-sm md:text-base text-center max-w-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    Stay on. Go beyond.
+                  </p>
                 </div>
               </motion.div>
 
-              {/* Vision and Mission Cards - Bottom Side by Side */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {/* Vision Card */}
+              {/* mission Card - Middle (Medium Width, with Yellow Circle) */}
+              <div className="flex items-center justify-center gap-12">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative h-[240px] md:h-[280px] overflow-hidden group cursor-pointer"
+                  className="relative h-[160px] md:h-[180px] overflow-hidden group cursor-pointer"
+                  style={{ width: '55%', borderRadius: '80px', marginLeft: '20px' }}
                 >
+                  {/* Default: Colored Background with Text */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
+
+                  {/* Hover: Background Image */}
                   <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: "url('./vision.png')" }}
+                    className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ backgroundImage: "url('./stay.jpg')" }}
                   />
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Title visible always */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
-                      Vision
-                    </h3>
-                  </div>
-
-                  {/* Hover overlay - swipes up from bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-3">
-                        Vision
-                      </h3>
-                      <p className="text-slate-100 font-poppins font-normal text-xs md:text-sm text-center leading-relaxed">
-                        Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Mission Card */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="relative h-[240px] md:h-[280px] overflow-hidden group cursor-pointer"
-                >
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                    style={{ backgroundImage: "url('./mission.png')" }}
-                  />
-
-                  {/* Title visible always */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white drop-shadow-lg">
+                  {/* Content - Always Visible */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-2 drop-shadow-lg transition-all duration-500">
                       Mission
                     </h3>
-                  </div>
-
-                  {/* Hover overlay - swipes up from bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/95 to-primary/90 opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-full group-hover:translate-y-0">
-                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-3">
-                        Mission
-                      </h3>
-                      <p className="text-white font-poppins font-normal text-xs md:text-sm text-center leading-relaxed">
-                        To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
-                      </p>
-                    </div>
+                    <p className="text-white font-poppins font-normal text-sm md:text-base text-center max-w-xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                      To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
+                    </p>
                   </div>
                 </motion.div>
+
+                {/* Yellow Circle Dot - Perfect Circle with Lightning Bolt */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="shadow-lg flex-shrink-0 flex items-center justify-center overflow-hidden"
+                  style={{
+                    width: '150px',
+                    height: '150px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #EE373D 0%, #FFC759 100%)'
+                  }}
+                >
+                  {/* White Lightning Bolt SVG - Full Spread */}
+                  {/* <svg
+                    viewBox="0 0 100 100"
+                    className="w-full h-full p-2"
+                    fill="white"
+                  >
+                    <path d="M55 0 L20 50 L45 50 L35 100 L80 40 L55 40 Z" />
+                  </svg> */}
+                </motion.div>
               </div>
+
+              {/* Vision Card - Bottom (Longest, Centered) */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="relative h-[160px] md:h-[180px] overflow-hidden group cursor-pointer mx-auto"
+                style={{ width: '90%', borderRadius: '80px' }}
+              >
+                {/* Default: Colored Background with Text */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
+
+                {/* Hover: Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ backgroundImage: "url('./vission1.jpg')" }}
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Content - Always Visible */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-2 drop-shadow-lg transition-all duration-500">
+                    Vision
+                  </h3>
+                  <p className="text-white font-poppins font-normal text-sm md:text-base text-center max-w-3xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
+                  </p>
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </div>
       </section>
 
       {/* WHY EMBRACE TECHNOLOGIES LIMITED - ECOSYSTEM STYLE WITH BACKGROUND IMAGE */}
-      <section className="relative py-2 overflow-hidden">
+      <section className="relative py-10 overflow-hidden">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('./en.jpg')", // Replace with your image path
+            backgroundImage: "url('./new3.jpg')", // Replace with your image path
             backgroundPosition: "center bottom",
           }}
         />
 
-        {/* Optional: Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-400/20 via-blue-300/20 to-transparent" />
+        {/* Enhanced Overlay for better readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-primary/60" />
+        <div className="absolute inset-0 bg-black/0" />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div className="text-center mb-16" {...fadeIn}>
@@ -621,8 +670,8 @@ export function About() {
 
                     {/* Description */}
                     {/* <p className="text-slate-500 font-poppins font-normal text-xs text-center">
-          {item.desc}
-        </p> */}
+        {item.desc}
+      </p> */}
                   </div>
 
                   {/* Shadow underneath */}
@@ -634,89 +683,91 @@ export function About() {
         </div>
       </section>
 
-      {/* MILESTONES TIMELINE - HORIZONTAL CARD STYLE */}
+      {/* MILESTONES TIMELINE - CAROUSEL STYLE */}
       <section className="py-16 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
+        <div className="container mx-auto px-10 md:px-6">
           <motion.div
             className="text-center mb-12"
             {...fadeIn}
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-anton font-extrabold mb-4 text-primary">
-              Milestones Timeline
-            </h2>
-            <p className="text-slate-600 font-poppins font-normal text-lg max-w-2xl mx-auto">
-              Our journey of growth and excellence
+            <h3 className="text-3xl font-black md:text-4xl mb-4 tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+              OUR MILESTONE JOURNEY
+            </h3>
+            <p className="text-gray-600 font-poppins font-normal text-lg max-w-2xl mx-auto">
+              A journey of growth, impact, & excellence
             </p>
           </motion.div>
 
-          {/* Horizontal Timeline Cards with Overlapping Arrows */}
-          <div className="relative flex flex-col lg:flex-row items-center justify-center">
-            {[
-              {
-                year: 2019,
-                title: "Founded",
-                image: "./solar-4.jpg",
-              },
-              {
-                year: 2021,
-                title: "Registered as Business Name (CAC)",
-                image: "./solar-5.jpg",
-              },
-              {
-                year: 2026,
-                title: "Incorporated as Limited Liability Company",
-                image: "./solar-6.jpg",
-              },
-            ].map((milestone, idx) => (
-              <div key={idx} className="relative w-full lg:w-80 h-96 mx-2">
+          {/* Carousel Container */}
+          <div className="relative flex items-center justify-center h-[300px] md:h-[400px]">
+            {milestones.map((milestone, index) => {
+              // Calculate position relative to active index
+              const diff = index - activeMilestone;
+              const isActive = diff === 0;
+              const isLeft = diff === -1 || (diff === 2 && milestones.length === 3);
+              const isRight = diff === 1 || (diff === -2 && milestones.length === 3);
+
+              return (
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: idx * 0.15 }}
-                  className="relative w-full h-full rounded-2xl overflow-hidden group"
+                  key={index}
+                  initial={{ opacity: 0, x: 300 }}
+                  animate={{
+                    opacity: isActive ? 1 : 0.6,
+                    x: isActive ? 0 : isLeft ? -280 : isRight ? 280 : diff < 0 ? -400 : 400,
+                    scale: isActive ? 1 : 0.9,
+                    rotate: isActive ? 0 : isLeft ? -4 : isRight ? 4 : 0,
+                    zIndex: isActive ? 30 : isLeft || isRight ? 20 : 10,
+                    filter: isActive ? 'blur(0px)' : 'blur(2px)',
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.4, 0, 0.2, 1],
+                  }}
+                  className="absolute w-80 md:w-96 h-96 rounded-3xl overflow-hidden cursor-pointer"
+                  onClick={() => setActiveMilestone(index)}
                 >
-                  {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  {/* Card Image */}
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${milestone.image}')` }} />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                   {/* Content */}
                   <div className="absolute inset-0 flex flex-col justify-end p-6">
-                    <div className="text-6xl font-anton font-extrabold text-white/30 mb-2">
+                    <div className={`text-6xl font-anton font-extrabold mb-2 transition-all duration-500 ${isActive ? 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]' : 'text-white/30'}`}>
                       <CountUp
                         target={milestone.year}
                         duration={2000}
                         className=""
                       />
                     </div>
-                    <h3 className="text-white font-montserrat font-bold text-lg leading-tight">
+                    <h3 className={`font-montserrat font-bold text-lg leading-tight transition-all duration-500 ${isActive ? 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]' : 'text-white/50'}`}>
                       {milestone.title}
                     </h3>
                   </div>
                 </motion.div>
+              );
+            })}
+          </div>
 
-                {/* Arrow Connector - Positioned between cards */}
-                {idx < 2 && (
-                  <div
-                    className="hidden lg:block absolute z-30"
-                    style={{
-                      left: 'calc(100% + 8px)',
-                      top: '50%',
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  >
-                    <div className="w-14 h-14 rounded-full bg-teal-500 flex items-center justify-center shadow-lg border-4 border-white">
-                      <ArrowRightCircle className="w-7 h-7 text-white" />
-                    </div>
-                  </div>
-                )}
-              </div>
+          {/* Navigation Dots */}
+          <div className="flex justify-center gap-3 mt-8">
+            {milestones.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveMilestone(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${index === activeMilestone ? 'bg-primary w-8' : 'bg-slate-300'
+                  }`}
+                aria-label={`Go to milestone ${index + 1}`}
+              />
             ))}
           </div>
         </div>
       </section>
 
+
       {/* CERTIFICATIONS & COMPLIANCE */}
-      <section className="py-16 bg-slate-50">
+      <section className="pt-2 pb-10 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -725,7 +776,8 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h3 className="text-2xl md:text-3xl font-montserrat font-black uppercase tracking-wider mb-12 text-primary">
+            <h3 className="text-2xl font-black md:text-3xl mb-12 tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+
               Certifications & Compliance
             </h3>
             <div className="flex flex-wrap justify-center gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -818,25 +870,23 @@ export function About() {
       </section>
 
       {/* OUR CORE VALUES - SOLAR STYLE WITH ANIMATED GRADIENT */}
-      <section className="relative overflow-hidden ml-5 mr-5 pt-10 pb-10 rounded-3xl ">
+      <section className="relative overflow-hidden ml-5 mr-5 mt-5 pt-10 pb-10 rounded-3xl">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary via-blue-800 to-primary opacity-95">
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              background: `linear-gradient(
-                -45deg, 
-                #002060 0%, 
-                #066906 25%, 
-                #FFC759 50%, 
-                #EA6936 75%, 
-                #EE373D 100%
-              )`,
-              backgroundSize: '400% 400%',
-              animation: 'gradientShift 15s ease infinite',
-            }}
-          />
-        </div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(
+        -45deg, 
+        #002060 0%, 
+        #066906 25%, 
+        #FFC759 50%, 
+        #EA6936 75%, 
+        #EE373D 100%
+      )`,
+            backgroundSize: '400% 400%',
+            animation: 'gradientShift 15s ease infinite',
+          }}
+        />
 
         {/* Animated mesh pattern overlay */}
         <div
@@ -849,12 +899,12 @@ export function About() {
 
         {/* Add keyframes for gradient animation */}
         <style>{`
-          @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-        `}</style>
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  `}</style>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
@@ -944,9 +994,16 @@ export function About() {
                   background: value.bgColor,
                 }}
               >
-                {/* Large Letter - Anton ExtraBold with brand colors - INCREASED TOP MARGIN */}
+                {/* Large Letter - Anton ExtraBold with brand colors - SHARP & VISIBLE */}
                 <div className="absolute top-12 left-1/2 -translate-x-1/2">
-                  <span className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-anton font-extrabold ${value.color} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}>
+                  <span
+                    className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-anton font-extrabold ${value.color} transition-opacity duration-500`}
+                    style={{
+                      textShadow: '0 2px 10px rgba(0,0,0,0.2)',
+                      WebkitFontSmoothing: 'antialiased',
+                      MozOsxFontSmoothing: 'grayscale',
+                    }}
+                  >
                     {value.letter}
                   </span>
                 </div>
@@ -987,12 +1044,12 @@ export function About() {
               className="lg:w-1/4 flex flex-col justify-center text-center"
               {...fadeIn}
             >
-              {/* Main Headline - Anton ExtraBold */}
-              <h2 className="text-2xl md:text-3xl font-anton font-extrabold text-primary leading-tight">
-                OUR COMMITMENT
-              </h2>
-            </motion.div>
 
+              <h3 className="text-2xl font-black md:text-3xl  mb-12  tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+
+                OUR COMMITMENT
+              </h3>
+            </motion.div>
             {/* Commitment Cards - Vertical Panels - Right Side */}
             <motion.div
               className="w-full lg:w-3/4 flex flex-col md:flex-row gap-2"
@@ -1080,35 +1137,6 @@ export function About() {
         </div>
       </section>
 
-      {/* TEAM SECTION */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <motion.div
-            className="text-center max-w-3xl mx-auto mb-16"
-            {...fadeIn}
-          >
-            {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4 text-primary">Our Team</h2>
-            {/* Body Text - Source Sans Pro/Poppins Regular */}
-            <p className="text-slate-600 font-poppins font-normal text-lg">
-              Dedicated professionals committed to powering your sustainable
-              future.
-            </p>
-          </motion.div>
-
-          <motion.p
-            className="text-center text-slate-600 font-poppins font-normal text-lg max-w-2xl mx-auto"
-            {...fadeIn}
-          >
-            Our team of experienced engineers, installers, and support
-            specialists work tirelessly to deliver exceptional results. With a
-            combined experience of over
-            {yearsOfExperience * 3} years in renewable energy, we bring
-            expertise, passion, and reliability to every project.
-          </motion.p>
-        </div>
-      </section>
-
       {/* CTA SECTION */}
       <section className="py-24 bg-primary relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
@@ -1124,14 +1152,11 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold text-white mb-4 sm:mb-6">
-              Ready to Join the Solar Revolution?
+
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
+              READY TO JOIN THE SOLAR REVOLUTION?
             </h2>
-            {/* Body Text - Source Sans Pro/Poppins Regular */}
-            <p className="text-xl text-slate-200 font-poppins font-normal mb-10">
-              Let's help you harness the power of the sun and build a
-              sustainable future.
-            </p>
+
             {/* Button - Montserrat SemiBold */}
             <Link
               to="/contact"
