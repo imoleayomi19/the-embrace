@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+
 // Letter animation variants
 const letterVariants = {
   hidden: { opacity: 0, y: 40, rotateX: 90 },

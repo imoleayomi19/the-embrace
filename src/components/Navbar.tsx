@@ -329,6 +329,10 @@ export function Navbar() {
           path: "/about",
         },
         {
+          name: "Blog",
+          path: "/blog"
+        },
+        {
           name: "Project",
           path: "/projects",
         },
@@ -339,11 +343,7 @@ export function Navbar() {
         {
           name: "Downloads",
           path: "/downloads",
-        },
-        {
-          name: "Contact Us",
-          path: "/contact",
-        },
+        }
       ],
     },
     {

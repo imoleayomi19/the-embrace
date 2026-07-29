@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Search, X, Calendar, ArrowLeft, ArrowRight } from "lucide-react";
+import { blogPosts } from "../data/blogPosts";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -82,8 +85,30 @@ const glowVariants = {
   },
 };
 
+// Blog List Page Component
 export function Blog() {
   const title = "BLOG";
+  const navigate = useNavigate();
+
+  // Search and Sort State
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("newest");
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 4;
+
+  // Calculate total pages
+  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Pagination numbers array
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <main className="w-full overflow-hidden">
@@ -94,7 +119,7 @@ export function Blog() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./embrace-about.jpg')",
+              backgroundImage: "url('./BLOG1.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -234,71 +259,266 @@ export function Blog() {
         </div>
       </section>
 
-      {/* Rest of the page */}
-      <section className="py-24 bg-slate-50">
+      {/* Search and Sort Section - Below Hero */}
+      <section className="relative z-20 bg-slate-50 py-8">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div {...fadeIn} className="max-w-3xl mx-auto text-center mb-16">
-            {/* Section Title - Montserrat Bold */}
-            <span className="text-secondary uppercase tracking-[0.3em] text-sm font-montserrat font-bold">
-              Insights & Updates
-            </span>
-            {/* Main Headline - Anton ExtraBold */}
-            <h2 className="text-4xl md:text-5xl font-anton font-extrabold mt-2 mb-4">
-              Latest Articles
-            </h2>
-            {/* Body Text - Poppins Regular */}
-            <p className="text-slate-600 font-poppins font-normal text-lg leading-relaxed">
-              Explore solar energy tips, security solutions, and practical advice
-              for Nigerian homes and businesses.
-            </p>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            {[
-              {
-                title: "Why Solar Is the Best Investment for Your Home",
-                description:
-                  "Discover how solar power reduces costs, increases reliability, and boosts your property's value.",
-              },
-              {
-                title: "Top CCTV Setup Tips for Maximum Security",
-                description:
-                  "Learn how to choose the right cameras, position them for the best coverage, and protect your property.",
-              },
-              {
-                title: "How to Prepare Your Business for Power Outages",
-                description:
-                  "Practical guidance on hybrid solar systems, batteries, and backup power solutions.",
-              },
-              {
-                title: "Solar Maintenance: Keep Your System Performing",
-                description:
-                  "Simple maintenance steps that preserve performance and extend the lifetime of your solar panels.",
-              },
-            ].map((post, index) => (
-              <motion.article
-                key={index}
-                className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
-                {...fadeIn}
+          <div className="bg-white rounded-2xl shadow-lg p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Expandable Search Box */}
+            <div className="relative w-full md:w-auto flex items-center">
+              <div
+                className={`flex items-center bg-slate-100 rounded-full overflow-hidden transition-all duration-300 ease-in-out border border-transparent focus-within:border-secondary/30 ${isSearchExpanded ? "w-full md:w-80" : "w-12"
+                  }`}
               >
-                {/* Section Title - Montserrat Bold */}
-                <h3 className="text-2xl font-montserrat font-bold mb-3">{post.title}</h3>
-                {/* Body Text - Poppins Regular */}
-                <p className="text-slate-600 font-poppins font-normal leading-relaxed mb-6">
-                  {post.description}
-                </p>
-                {/* Link - Montserrat SemiBold */}
-                <Link
-                  to="/blog"
-                  className="inline-flex items-center gap-2 text-secondary font-montserrat font-semibold"
+                <button
+                  onClick={() => setIsSearchExpanded(!isSearchExpanded)}
+                  className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-slate-500 hover:text-primary transition-colors"
+                  aria-label="Toggle search"
                 >
-                  Read More
-                </Link>
-              </motion.article>
-            ))}
+                  {isSearchExpanded ? (
+                    <X className="w-5 h-5" />
+                  ) : (
+                    <Search className="w-5 h-5" />
+                  )}
+                </button>
+
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={`bg-transparent outline-none text-slate-700 placeholder-slate-400 font-poppins text-sm transition-all duration-300 ${isSearchExpanded
+                    ? "w-full h-12 px-4 opacity-100"
+                    : "w-0 h-0 px-0 opacity-0"
+                    }`}
+                />
+              </div>
+            </div>
+
+            {/* Sort By Select */}
+            <div className="flex items-center gap-3 w-full md:w-auto">
+              <span className="text-slate-600 font-montserrat font-medium text-sm whitespace-nowrap">
+                Sort by:
+              </span>
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="flex-1 md:flex-none bg-slate-100 border-none rounded-full px-4 py-3 text-slate-700 font-poppins text-sm outline-none focus:ring-2 focus:ring-secondary cursor-pointer transition-all duration-200 hover:bg-slate-200"
+              >
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="popular">Most Popular</option>
+              </select>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Blog Posts Grid */}
+      <section className="py-12 md:py-24 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid gap-8 md:grid-cols-2">
+            {currentPosts.map((post) => (
+              <motion.article
+                key={post.id}
+                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
+                {...fadeIn}
+              >
+                {/* Featured Image at the top */}
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6 sm:p-8 flex flex-col flex-grow">
+                  {/* Section Title - Montserrat Bold */}
+                  <h3 className="text-xl sm:text-2xl font-montserrat font-bold mb-3 text-slate-800 leading-tight">
+                    {post.title}
+                  </h3>
+
+                  {/* Date - Added between title and description */}
+                  <div className="flex items-center gap-2 text-slate-500 text-sm font-poppins mb-4">
+                    <Calendar className="w-4 h-4" />
+                    <span>{post.date}</span>
+                  </div>
+
+                  {/* Body Text - Poppins Regular */}
+                  <p className="text-slate-600 font-poppins font-normal leading-relaxed mb-6 flex-grow">
+                    {post.description}
+                  </p>
+
+                  {/* Link - Montserrat SemiBold */}
+                  <button
+                    onClick={() => navigate(`/blog/${post.id}`)}
+                    className="inline-flex items-center gap-2 text-secondary font-montserrat font-semibold hover:gap-3 transition-all duration-300 w-fit"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          {/* Pagination Numbers - Only show if more than 4 posts */}
+          {totalPages > 1 && (
+            <motion.div
+              className="flex justify-center items-center gap-4 mt-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              {pageNumbers.map((number) => (
+                <button
+                  key={number}
+                  onClick={() => {
+                    setCurrentPage(number);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center font-montserrat font-semibold text-lg transition-all duration-300 ${currentPage === number
+                    ? "bg-primary text-white"
+                    : "text-secondary hover:bg-secondary/10"
+                    }`}
+                >
+                  {number}
+                </button>
+              ))}
+            </motion.div>
+          )}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+// Individual Blog Post Page Component
+export function BlogPost() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const postId = parseInt(id || "1");
+
+  const currentPost = blogPosts.find((post) => post.id === postId);
+  const currentIndex = blogPosts.findIndex((post) => post.id === postId);
+
+  const previousPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
+  const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+
+  if (!currentPost) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-slate-800 mb-4">Post Not Found</h2>
+          <button
+            onClick={() => navigate("/blog")}
+            className="text-secondary font-semibold hover:underline"
+          >
+            Back to Blog
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <main className="w-full bg-white min-h-screen">
+      {/* Article Content */}
+      <article className="max-w-4xl mx-auto px-4 md:px-6 pt-32 pb-12 md:pt-40 md:pb-16">
+        {/* Title */}
+        <motion.h1
+          className="text-3xl sm:text-4xl md:text-5xl font-anton font-extrabold text-slate-700 mb-4 leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {currentPost.title}
+        </motion.h1>
+
+        {/* Date - Simple text styling */}
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <span className="text-slate-400 text-sm italic font-poppins">
+            {currentPost.date}
+          </span>
+        </motion.div>
+
+        {/* Featured Image */}
+        <motion.div
+          className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-2xl overflow-hidden mb-12 shadow-xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <img
+            src={currentPost.image}
+            alt={currentPost.title}
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        </motion.div>
+
+        {/* Full Article Content */}
+        <motion.div
+          className="prose prose-lg max-w-none"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          dangerouslySetInnerHTML={{ __html: currentPost.content }}
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            lineHeight: "1.8",
+          }}
+        />
+      </article>
+
+      {/* Navigation Buttons */}
+      {(previousPost || nextPost) && (
+        <motion.div
+          className="max-w-4xl mx-auto px-4 md:px-6 pb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            {/* Previous Article Button */}
+            {previousPost ? (
+              <button
+                onClick={() => navigate(`/blog/${previousPost.id}`)}
+                className="w-full sm:w-auto inline-flex items-center gap-3 px-6 py-4 bg-slate-100 hover:bg-slate-200 rounded-full transition-all duration-300 group"
+              >
+                <ArrowLeft className="w-5 h-5 text-primary group-hover:-translate-x-1 transition-transform" />
+                <span className="text-sm font-montserrat font-semibold text-slate-800">
+                  Previous Article
+                </span>
+              </button>
+            ) : (
+              <div className="w-full sm:w-auto" />
+            )}
+
+            {/* Next Article Button */}
+            {nextPost ? (
+              <button
+                onClick={() => navigate(`/blog/${nextPost.id}`)}
+                className="w-full sm:w-auto inline-flex items-center gap-3 px-6 py-4 bg-slate-100 hover:bg-slate-200 rounded-full transition-all duration-300 group"
+              >
+                <span className="text-sm font-montserrat font-semibold text-slate-800">
+                  Next Article
+                </span>
+                <ArrowRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
+              </button>
+            ) : (
+              <div className="w-full sm:w-auto" />
+            )}
+          </div>
+        </motion.div>
+      )}
     </main>
   );
 }
