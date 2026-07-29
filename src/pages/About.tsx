@@ -347,9 +347,9 @@ export function About() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative -mt-40 lg:-mt-28 z-20"
+              className="relative -mt-16 sm:-mt-20 lg:-mt-28 z-20"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[600px] lg:max-h-[700px]">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[400px] sm:max-h-[500px] lg:max-h-[700px]">
                 <img
                   src="./img-4.png"
                   alt="Embrace Technologies Team"
@@ -398,14 +398,13 @@ export function About() {
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col gap-5">
 
-              {/* Tagline Card - Top (Shortest, Shifted Right) */}
+              {/* Tagline Card - Top (Shorter, Right Aligned) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative h-[160px] md:h-[180px] overflow-hidden group cursor-pointer mx-auto"
-                style={{ width: '50%', borderRadius: '80px', marginRight: '20%' }}
+                className="relative h-[140px] sm:h-[160px] md:h-[180px] overflow-hidden group cursor-pointer w-[70%] sm:w-[60%] md:w-[50%] ml-auto mr-[10%] sm:mr-[15%] md:mr-[20%] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
               >
                 {/* Default: Colored Background with Text */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
@@ -417,26 +416,25 @@ export function About() {
                 />
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Content - Always Visible */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-14 drop-shadow-lg transition-all duration-500">
+                {/* Content - Header at top, desc at bottom */}
+                <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 z-10">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
                     Tagline
                   </h3>
-                  <p className="text-white font-poppins font-normal text-sm md:text-base text-center max-w-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 pb-2">
                     Stay on. Go beyond.
                   </p>
                 </div>
               </motion.div>
 
-              {/* mission Card - Middle (Medium Width, with Yellow Circle) */}
-              <div className="flex items-center justify-center gap-12">
+              {/* Mission Card - Middle (Medium Width, Left Aligned) */}
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative h-[160px] md:h-[180px] overflow-hidden group cursor-pointer"
-                  style={{ width: '55%', borderRadius: '80px', marginLeft: '20px' }}
+                  className="relative h-[140px] sm:h-[160px] md:h-[180px] overflow-hidden group cursor-pointer w-[75%] sm:w-[65%] md:w-[55%] ml-[5%] sm:ml-[10%] md:ml-[20px] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
                 >
                   {/* Default: Colored Background with Text */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
@@ -448,24 +446,24 @@ export function About() {
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Content - Always Visible */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-2 drop-shadow-lg transition-all duration-500">
+                  {/* Content - Header at top, desc at bottom */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 z-10">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
                       Mission
                     </h3>
-                    <p className="text-white font-poppins font-normal text-sm md:text-base text-center max-w-xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 pb-2">
                       To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
                     </p>
                   </div>
                 </motion.div>
 
-                {/* Yellow Circle Dot - Perfect Circle with Lightning Bolt */}
+                {/* Yellow Circle Dot - Hidden on mobile and tablet, shown on desktop */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="shadow-lg flex-shrink-0 flex items-center justify-center overflow-hidden"
+                  className="hidden lg:flex shadow-lg flex-shrink-0 items-center justify-center overflow-hidden"
                   style={{
                     width: '150px',
                     height: '150px',
@@ -473,14 +471,6 @@ export function About() {
                     background: 'linear-gradient(135deg, #EE373D 0%, #FFC759 100%)'
                   }}
                 >
-                  {/* White Lightning Bolt SVG - Full Spread */}
-                  {/* <svg
-                    viewBox="0 0 100 100"
-                    className="w-full h-full p-2"
-                    fill="white"
-                  >
-                    <path d="M55 0 L20 50 L45 50 L35 100 L80 40 L55 40 Z" />
-                  </svg> */}
                 </motion.div>
               </div>
 
@@ -490,8 +480,7 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative h-[160px] md:h-[180px] overflow-hidden group cursor-pointer mx-auto"
-                style={{ width: '90%', borderRadius: '80px' }}
+                className="relative h-[140px] sm:h-[160px] md:h-[180px] overflow-hidden group cursor-pointer w-[85%] sm:w-[80%] md:w-[90%] mx-auto rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
               >
                 {/* Default: Colored Background with Text */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
@@ -503,12 +492,12 @@ export function About() {
                 />
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Content - Always Visible */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-anton font-extrabold text-white mb-2 drop-shadow-lg transition-all duration-500">
+                {/* Content - Header at top, desc at bottom */}
+                <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 z-10">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
                     Vision
                   </h3>
-                  <p className="text-white font-poppins font-normal text-sm md:text-base text-center max-w-3xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-3xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 pb-2">
                     Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
                   </p>
                 </div>
@@ -545,21 +534,25 @@ export function About() {
           <div className="relative max-w-6xl mx-auto">
 
             {/* Top Row - Perfect Frosted Glass Circles in Arch Formation */}
-            <div className="relative h-48 md:h-56">
+            <div className="relative h-48 md:h-56 px-4">
               {[
-                { label: "Engineering Expertise", delay: 0, xOffset: 0 },
-                { label: "End-to-End Delivery", delay: 0.1, xOffset: 1 },
-                { label: "Quality Products", delay: 0.2, xOffset: 2 },
-                { label: "Professional Installation", delay: 0.3, xOffset: 3 },
+                { label: "Engineering Expertise", delay: 0 },
+                { label: "End-to-End Delivery", delay: 0.1 },
+                { label: "Quality Products", delay: 0.2 },
+                { label: "Professional Installation", delay: 0.3 },
               ].map((item, idx) => {
-                // Calculate arch position - shifted higher
-                const positions = [
-                  { left: "8%", yOffset: "30%" },
-                  { left: "32%", yOffset: "0%" },
-                  { left: "58%", yOffset: "0%" },
-                  { left: "82%", yOffset: "30%" },
-                ];
-                const pos = positions[idx];
+                // Responsive positions - shifted more left for better centering
+                const getPositions = (idx: number) => {
+                  const positions = [
+                    { left: "5%", smLeft: "8%", yOffset: "35%", smYOffset: "30%" },
+                    { left: "28%", smLeft: "32%", yOffset: "5%", smYOffset: "0%" },
+                    { left: "52%", smLeft: "58%", yOffset: "5%", smYOffset: "0%" },
+                    { left: "75%", smLeft: "82%", yOffset: "35%", smYOffset: "30%" },
+                  ];
+                  return positions[idx];
+                };
+
+                const pos = getPositions(idx);
 
                 return (
                   <motion.div
@@ -569,7 +562,7 @@ export function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: item.delay }}
                     whileHover={{ scale: 1.05, y: -8 }}
-                    className="absolute w-24 h-24 md:w-28 md:h-28 rounded-full backdrop-blur-md cursor-pointer flex items-center justify-center text-center p-3"
+                    className="absolute w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full backdrop-blur-md cursor-pointer flex items-center justify-center text-center p-2 sm:p-3"
                     style={{
                       left: pos.left,
                       top: pos.yOffset,
@@ -579,7 +572,7 @@ export function About() {
                       boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15), inset 0 2px 8px rgba(255, 255, 255, 0.4)",
                     }}
                   >
-                    <span className="text-white font-montserrat font-bold text-[10px] md:text-xs leading-tight">
+                    <span className="text-white font-montserrat font-bold text-[8px] sm:text-[10px] md:text-xs leading-tight">
                       {item.label}
                     </span>
                   </motion.div>
@@ -699,7 +692,7 @@ export function About() {
           </motion.div>
 
           {/* Carousel Container */}
-          <div className="relative flex items-center justify-center h-[300px] md:h-[400px]">
+          <div className="relative flex items-center justify-center h-[300px] md:h-[400px] mb-12 md:mb-16">
             {milestones.map((milestone, index) => {
               // Calculate position relative to active index
               const diff = index - activeMilestone;
@@ -749,7 +742,6 @@ export function About() {
               );
             })}
           </div>
-
           {/* Navigation Dots */}
           <div className="flex justify-center gap-3 mt-8">
             {milestones.map((_, index) => (

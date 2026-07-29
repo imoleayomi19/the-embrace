@@ -227,7 +227,7 @@ export function Services() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./services.jpg')",
+              backgroundImage: "url('./ser.jpg')",
               backgroundPosition: "center 40%",
             }}
           />

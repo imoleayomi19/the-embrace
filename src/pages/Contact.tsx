@@ -142,10 +142,10 @@ export function Contact() {
       <section className="relative min-h-[280px] sm:min-h-[350px] md:min-h-[600px] flex items-end pb-12 sm:pb-16 md:pb-20 overflow-hidden">
         <div className="absolute inset-0">
           <div
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center sm:bg-center"
             style={{
               backgroundImage: "url('./contact1.jpg')",
-              backgroundPosition: "center 40%",
+              backgroundPosition: "left 30% center",
             }}
           />
           <div className="absolute inset-0 bg-black/40" />

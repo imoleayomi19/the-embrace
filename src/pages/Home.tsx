@@ -125,13 +125,14 @@ export function Home() {
   const heroSlides = [
     {
       type: "video",
-      content: "./hero-video.mp4",
+      content: "./hero-video2.mp4",
       text: "Stay on. Go beyond.",
       duration: 17000, // 17 seconds for first slide
     },
     {
       type: "video",
-      content: "./hero-video2.mp4", // Replace with your surveillance video
+      content: "./hero-video.mp4",
+      // Replace with your surveillance video
       texts: [
         "securing your home with the best surveillance system",
         "power your future with the sun",
@@ -408,9 +409,9 @@ export function Home() {
                 className="gpu-accelerate"
               >
                 {/* Text Card - Less visible */}
-                <div className="inline-block bg-white/10 backdrop-blur-md p-4 sm:p-6 rounded-md border border-white/10 mb-8">
+                <div className="inline-block bg-white p-4 sm:p-6 rounded-md border border-blue-200 mb-8 shadow-lg">
                   <p
-                    className="text-[18px] font-source-sans-pro font-medium text-white leading-snug drop-shadow-lg"
+                    className="text-[18px] font-source-sans-pro font-medium text-primary leading-snug"
                     style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
                   >
                     Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage,
@@ -556,7 +557,7 @@ export function Home() {
                   >
                     <div className="px-6 pb-6 pt-0 border-t border-slate-100">
                       <p
-                        className="text-slate-600 text-sm leading-relaxed pt-4"
+                        className="text-slate-600 text-lg leading-relaxed pt-4"
                         style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
                       >
                         {card.desc}
