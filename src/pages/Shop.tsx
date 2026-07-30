@@ -56,13 +56,6 @@ export function Shop() {
                   View Cart
                   <ShoppingCart className="w-4 h-4" />
                 </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-white/20"
-                >
-                  Get Quote
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
               </div>
             </div>
           </div>
@@ -83,11 +76,10 @@ export function Shop() {
                 key={category}
                 type="button"
                 onClick={() => setActiveCategory(category)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
-                  activeCategory === category
+                className={`rounded-full border px-4 py-2 text-sm font-medium transition ${activeCategory === category
                     ? "bg-primary text-white border-primary"
                     : "bg-white text-slate-700 border-slate-200 hover:border-secondary hover:text-secondary"
-                }`}
+                  }`}
               >
                 {category}
               </button>
