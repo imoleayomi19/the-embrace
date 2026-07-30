@@ -9,6 +9,8 @@ import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Blog, BlogPost } from './pages/Blog';
 import { Contact } from './pages/Contact';
+import { Shop } from './pages/Shop';
+import { Cart } from './pages/Cart';
 
 export function App() {
   return (
@@ -24,6 +26,8 @@ export function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
