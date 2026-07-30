@@ -13,6 +13,7 @@ export default {
         alternative: '#066906',
         alternativeO: '#EA6936',
         alternativeR: '#EE373D',
+        orange: '#fd8d07',
       },
       fontFamily: {
         anton: ['Anton', 'sans-serif'],

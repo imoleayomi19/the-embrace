@@ -424,7 +424,7 @@ export function Home() {
                 <div>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
+                    className="inline-flex items-center justify-center gap-2 bg-orange text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
                   >
                     Request a Quote
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
