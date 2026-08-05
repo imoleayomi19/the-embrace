@@ -119,7 +119,7 @@ export function Blog() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./BLOG1.jpg')",
+              backgroundImage: "url('./blog.webp')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -313,8 +313,8 @@ export function Blog() {
         </div>
       </section>
 
-      {/* Blog Posts Grid */}
-      <section className="py-12 md:py-24 bg-slate-50">
+      {/* Blog Posts Grid - COMMENTED OUT */}
+      {/* <section className="py-12 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             {currentPosts.map((post) => (
@@ -323,7 +323,6 @@ export function Blog() {
                 className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
                 {...fadeIn}
               >
-                {/* Featured Image at the top */}
                 <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                   <img
                     src={post.image}
@@ -333,25 +332,20 @@ export function Blog() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
 
-                {/* Content Section */}
                 <div className="p-6 sm:p-8 flex flex-col flex-grow">
-                  {/* Section Title - Montserrat Bold */}
                   <h3 className="text-xl sm:text-2xl font-montserrat font-bold mb-3 text-slate-800 leading-tight">
                     {post.title}
                   </h3>
 
-                  {/* Date - Added between title and description */}
                   <div className="flex items-center gap-2 text-slate-500 text-sm font-poppins mb-4">
                     <Calendar className="w-4 h-4" />
                     <span>{post.date}</span>
                   </div>
 
-                  {/* Body Text - Poppins Regular */}
                   <p className="text-slate-600 font-poppins font-normal leading-relaxed mb-6 flex-grow">
                     {post.description}
                   </p>
 
-                  {/* Link - Montserrat SemiBold */}
                   <button
                     onClick={() => navigate(`/blog/${post.id}`)}
                     className="inline-flex items-center gap-2 text-secondary font-montserrat font-semibold hover:gap-3 transition-all duration-300 w-fit"
@@ -363,7 +357,6 @@ export function Blog() {
             ))}
           </div>
 
-          {/* Pagination Numbers - Only show if more than 4 posts */}
           {totalPages > 1 && (
             <motion.div
               className="flex justify-center items-center gap-4 mt-16"
@@ -390,7 +383,7 @@ export function Blog() {
             </motion.div>
           )}
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

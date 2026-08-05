@@ -167,17 +167,17 @@ export function About() {
     {
       year: 2019,
       title: "Founded",
-      image: "./founded.jpg",
+      image: "./founded.webp",
     },
     {
       year: 2021,
       title: "Registered as Business Name With CAC",
-      image: "./registered.jpg",
+      image: "./register.webp",
     },
     {
       year: 2026,
       title: "Incorporated as a Limited Liability Company",
-      image: "./limited.jpg",
+      image: "./limited.webp",
     },
   ];
 
@@ -198,7 +198,7 @@ export function About() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./where.jpg')",
+              backgroundImage: "url('./about-img1.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -351,7 +351,7 @@ export function About() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[400px] sm:max-h-[500px] lg:max-h-[700px]">
                 <img
-                  src="./img-4.png"
+                  src="./about.webp"
                   alt="Embrace Technologies Team"
                   className="w-full h-full object-cover"
                 />
@@ -398,60 +398,61 @@ export function About() {
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col gap-5">
 
-              {/* Tagline Card - Top (Shorter, Right Aligned) */}
+              {/* Tagline Card - Top */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative h-[140px] sm:h-[160px] md:h-[180px] overflow-hidden group cursor-pointer w-[70%] sm:w-[60%] md:w-[50%] ml-auto mr-[10%] sm:mr-[15%] md:mr-[20%] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
+                className="relative h-[240px] md:h-[180px] overflow-hidden group cursor-pointer w-[85%] mx-auto md:w-[50%] md:ml-auto md:mr-[20%] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
               >
-                {/* Default: Colored Background with Text */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
+                {/* Gradient - hidden on mobile (logo state shown), visible on md+ until hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                {/* Hover: Background Image */}
+                {/* Logo watermark - always visible on mobile, hover-only on md+ */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ backgroundImage: "url('./mission1.jpg')" }}
+                  className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                  style={{ backgroundImage: "url('./logo-1-removebg.png')" }}
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Overlay - always on for mobile readability, hover-only on md+ */}
+                <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
-                {/* Content - Header at top, desc at bottom */}
-                <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 z-10">
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
-                    Tagline
-                  </h3>
-                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-2xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 pb-2">
+                {/* Content - centered */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 md:justify-between md:gap-0 p-4 sm:p-6 z-10">                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
+                  Tagline
+                </h3>
+                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-2xl w-full leading-relaxed opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
                     Stay on. Go beyond.
                   </p>
                 </div>
               </motion.div>
 
-              {/* Mission Card - Middle (Medium Width, Left Aligned) */}
+              {/* Mission Card - Middle */}
               <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative h-[140px] sm:h-[160px] md:h-[180px] overflow-hidden group cursor-pointer w-[75%] sm:w-[65%] md:w-[55%] ml-[5%] sm:ml-[10%] md:ml-[20px] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
+                  className="relative h-[240px] md:h-[180px] overflow-hidden group cursor-pointer w-[85%] mx-auto md:w-[55%] md:ml-[20px] md:mr-0 rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
                 >
-                  {/* Default: Colored Background with Text */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
+                  {/* Gradient - hidden on mobile, visible on md+ until hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                  {/* Hover: Background Image */}
+                  {/* Logo watermark - always visible on mobile, hover-only on md+ */}
                   <div
-                    className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ backgroundImage: "url('./stay.jpg')" }}
+                    className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                    style={{ backgroundImage: "url('./logo-1-removebg.png')" }}
                   />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
-                  {/* Content - Header at top, desc at bottom */}
-                  <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 z-10">
+                  {/* Content - centered */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
                     <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
                       Mission
                     </h3>
-                    <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 pb-2">
+                    <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-xl w-full leading-relaxed opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
                       To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
                     </p>
                   </div>
@@ -474,30 +475,31 @@ export function About() {
                 </motion.div>
               </div>
 
-              {/* Vision Card - Bottom (Longest, Centered) */}
+              {/* Vision Card - Bottom (same height as the rest on mobile) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative h-[140px] sm:h-[160px] md:h-[180px] overflow-hidden group cursor-pointer w-[85%] sm:w-[80%] md:w-[90%] mx-auto rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
+                className="relative h-[240px] md:h-[220px] overflow-hidden group cursor-pointer w-[85%] mx-auto md:w-[90%] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
               >
-                {/* Default: Colored Background with Text */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 group-hover:opacity-0" />
+                {/* Gradient - hidden on mobile, visible on md+ until hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                {/* Hover: Background Image */}
+                {/* Logo watermark - always visible on mobile, hover-only on md+ */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ backgroundImage: "url('./vission1.jpg')" }}
+                  className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                  style={{ backgroundImage: "url('./logo-1-removebg.png')" }}
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
-                {/* Content - Header at top, desc at bottom */}
-                <div className="absolute inset-0 flex flex-col justify-between p-4 sm:p-6 z-10">
+                {/* Content - centered, more line spacing */}
+                <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
                   <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
                     Vision
                   </h3>
-                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-3xl leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0 pb-2">
+                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-3xl w-full leading-loose opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
                     Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
                   </p>
                 </div>
@@ -514,7 +516,7 @@ export function About() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('./new3.jpg')", // Replace with your image path
+            backgroundImage: "url('./whyembrace.webp')", // Replace with your image path
             backgroundPosition: "center bottom",
           }}
         />
@@ -583,7 +585,7 @@ export function About() {
             {/* Middle Row - Icon Connectors */}
             <div className="flex justify-center items-center gap-8 md:gap-16 mb-8">
               {[
-                { icon: "./support-1.png", label: "After-Sales Support" },
+                { icon: "./support.png", label: "After-Sales Support" },
                 // { icon: "🎓", label: "Technical Training" },
                 { icon: "./graduation.png", label: "Technical Training" },
                 { icon: "./partnership.png", label: "Strategic Partnerships" },
@@ -625,7 +627,7 @@ export function About() {
               {[
                 {
                   label: "Nationwide Execution",
-                  icon: "./world-3.png",
+                  icon: "./world-3.webp",
                   gradient: "from-primary to-blue-700"
                 }
               ].map((item, idx) => (
@@ -645,7 +647,7 @@ export function About() {
 
                     {/* Icon */}
                     <div className="w-10 h-10 md:w-14 md:h-14 mb-2">
-                      {item.icon.endsWith('.png') || item.icon.endsWith('.jpg') || item.icon.endsWith('.svg') ? (
+                      {item.icon.endsWith('.webp') || item.icon.endsWith('.jpg') || item.icon.endsWith('.svg') ? (
                         <img
                           src={item.icon}
                           alt={item.label}
@@ -1055,35 +1057,35 @@ export function About() {
                   desc: "We deliver dependable solutions, professional service, and long-term value built on trust and excellence.",
                   color: "bg-primary",
                   textColor: "text-primary",
-                  image: "./our-client.png",
+                  image: "./our-client.webp",
                 },
                 {
                   title: "To Our Employees",
                   desc: "We foster a culture of safety, innovation, teamwork, and continuous development.",
                   color: "bg-secondary",
                   textColor: "text-secondary",
-                  image: "./our-emplyee.png",
+                  image: "./our-employee.webp",
                 },
                 {
                   title: "To Our Partners",
                   desc: "We cultivate relationships founded on integrity, transparency, and mutual success.",
                   color: "bg-alternativeO",
                   textColor: "text-alternativeO",
-                  image: "./our-partners.png",
+                  image: "./our-partner.webp",
                 },
                 {
                   title: "To Our Shareholders",
                   desc: "We are committed to sustainable growth, operational excellence, and long-term value creation.",
                   color: "bg-secondary",
                   textColor: "text-alternativeR",
-                  image: "./our-shareholder.png",
+                  image: "./our-shareholder.webp",
                 },
                 {
                   title: "To Our Communities",
                   desc: "We create positive impact through clean energy, technological innovation, and responsible business practices.",
                   color: "bg-primary",
                   textColor: "text-alternative",
-                  image: "./our-communities.png",
+                  image: "./our-communities.webp",
                 },
               ].map((commitment, idx) => (
                 <motion.div
@@ -1160,6 +1162,6 @@ export function About() {
           </motion.div>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

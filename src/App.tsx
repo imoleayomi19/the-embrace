@@ -26,7 +26,7 @@ export function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/shop" element={<Shop />} />
+            {/* <Route path="/shop" element={<Shop />} /> */}
             <Route path="/cart" element={<Cart />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

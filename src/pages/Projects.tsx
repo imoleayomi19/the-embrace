@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import { Home, Building, Settings } from "lucide-react";
 
 // Letter animation variants
 const letterVariants = {
@@ -77,8 +77,40 @@ const glowVariants = {
   },
 };
 
+// Fade in animation
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6 },
+};
+
 export function Projects() {
   const title = "PROJECTS";
+
+  const projectCategories = [
+    {
+      title: "Residential",
+      icon: Home,
+      description: "Home solar installations",
+      color: "bg-primary",
+      hoverColor: "hover:bg-secondary",
+    },
+    {
+      title: "Commercial",
+      icon: Building,
+      description: "Business & industrial projects",
+      color: "bg-primary",
+      hoverColor: "hover:bg-secondary",
+    },
+    {
+      title: "Customisable",
+      icon: Settings,
+      description: "Tailored solutions",
+      color: "bg-primary",
+      hoverColor: "hover:bg-secondary",
+    },
+  ];
 
   return (
     <main className="w-full overflow-hidden">
@@ -88,7 +120,7 @@ export function Projects() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./project1.jpg')",
+              backgroundImage: "url('./project.webp')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -227,59 +259,86 @@ export function Projects() {
         </div>
       </section>
 
+      {/* HOW WE HAVE DELIVERED SECTION */}
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          {/* Header */}
+          <motion.div
+            className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4 bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent">
+              How we have delivered in the past
+            </h2>
+            <p className="text-slate-600 font-poppins font-normal text-base md:text-lg leading-relaxed">
+              Take a look at our past projects in the Solar power sector from Solar PV Systems to Off grid Systems.
+            </p>
+          </motion.div>
+
+          {/* Category Cards */}
+          {/* Category Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {projectCategories.map((category, index) => {
+              const Icon = category.icon;
+              return (
+                <motion.div
+                  key={category.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group cursor-pointer"
+                >
+                  <div className={`relative ${category.color} ${category.hoverColor} transition-all duration-300 rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl overflow-hidden`}>
+                    {/* Background gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                      {/* Icon */}
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-6 h-6 md:w-8 md:h-8 text-white" strokeWidth={2} />
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-lg md:text-xl font-montserrat font-bold text-white mb-2">
+                        {category.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-white/80 font-poppins font-normal text-xs md:text-sm">
+                        {category.description}
+                      </p>
+
+                      {/* Arrow indicator */}
+                      <motion.div
+                        className="mt-3 w-8 h-8 rounded-full bg-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        whileHover={{ x: 4 }}
+                      >
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* PROJECTS GRID */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
-          {/* <motion.div
-            className="text-center max-w-3xl mx-auto mb-16"
-            {...fadeIn}
-          > */}
-          {/* Section Label - Montserrat Bold */}
-          {/* <p className="uppercase tracking-[0.3em] text-sm text-secondary font-montserrat font-bold mb-4">
-              Projects
-            </p> */}
-          {/* Main Headline - Anton ExtraBold */}
-          {/* <h2 className="text-4xl md:text-5xl font-anton font-extrabold text-primary mb-4">
-              10k+ installations delivered
-            </h2> */}
-          {/* Body Text - Source Sans Pro/Poppins Regular */}
-          {/* <p className="text-slate-600 font-poppins font-normal text-lg leading-relaxed">
-              Explore our portfolio of residential, commercial, and community solar
-              installations. Each project reflects our commitment to quality,
-              efficiency, and sustainable energy solutions.
-            </p> */}
-          {/* </motion.div> */}
-
-          {/* <div className="grid gap-8 md:grid-cols-3">
-            {[
-              {
-                title: "Residential Solar",
-                description:
-                  "High-efficiency installations for homes seeking lower energy bills and cleaner power.",
-              },
-              {
-                title: "Commercial Systems",
-                description:
-                  "Large-scale rooftop and canopy systems designed for lasting performance.",
-              },
-              {
-                title: "Training & Support",
-                description:
-                  "Expert project management and continuous training for lasting results.",
-              }, */}
-          {/* // ].map((item) => (
-            //   <motion.article */}
-          {/* //     key={item.title}
-            //     {...fadeIn}
-            //     className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
-            //   > */}
-          {/* Card Title - Montserrat Bold */}
-          {/* // <h2 className="text-2xl font-montserrat font-bold text-primary mb-3">{item.title}</h2> */}
-          {/* Card Description - Source Sans Pro/Poppins Regular */}
-          {/* //       <p className="text-slate-600 font-poppins font-normal leading-relaxed">{item.description}</p>
-          //     </motion.article>
-          //   ))}
-          // </div> */}
+          {/* Content can go here */}
         </div>
       </section>
     </main>

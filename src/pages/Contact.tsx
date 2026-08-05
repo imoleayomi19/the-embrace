@@ -144,7 +144,7 @@ export function Contact() {
           <div
             className="absolute inset-0 bg-cover bg-center sm:bg-center"
             style={{
-              backgroundImage: "url('./contact1.jpg')",
+              backgroundImage: "url('./contact.webp')",
               backgroundPosition: "left 30% center",
             }}
           />

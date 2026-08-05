@@ -15,6 +15,47 @@ type NavLink = {
   children?: NavChild[];
 };
 
+// ─── Resources dropdown data (medium hover dropdown) ───────────────────────
+
+type ResourceItem = {
+  name: string;
+  path: string;
+  badge?: string;
+};
+
+type ResourceGroup = {
+  title: string;
+  items: ResourceItem[];
+};
+const resourcesGroups: ResourceGroup[] = [
+  {
+    title: "Training Academy",
+    items: [
+      { name: "Solar PV Installation", path: "/academy" },
+      { name: "CCTV Installation", path: "/academy" },
+      { name: "Corporate Training", path: "/academy" },
+      { name: "Certification Programs", path: "/academy" },
+      { name: "Register Now Form", path: "/academy/register" },
+    ],
+  },
+  {
+    title: "Support Center",
+    items: [
+      { name: "FAQs", path: "/faqs" },
+      { name: "Troubleshooting", path: "/troubleshooting" },
+      { name: "Submit a Ticket", path: "/support/ticket" },
+    ],
+  },
+  {
+    title: "Knowledge Hub",
+    items: [
+      { name: "Blog", badge: "New!", path: "/blog" },
+      { name: "Datasheets", path: "/downloads" },
+      { name: "User Manuals", path: "/downloads" },
+      { name: "Product Catalogs", path: "/downloads" },
+    ],
+  },
+];
 // ─── Products mega-menu data ────────────────────────────────────────────────
 
 type ProductCategory = {
@@ -39,12 +80,12 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "IVPA Series", path: "/shop" },
     ],
     products: [
-      { name: "IVPS3.5~10kVA", image: "./product.png", path: "/shop" },
-      { name: "IVPS0712-1512", image: "./product.png", path: "/shop" },
-      { name: "IVEM8~12kW", image: "./product.png", path: "/shop" },
-      { name: "IVCM1012-LV", image: "./product.png", path: "/shop" },
-      { name: "IVPA-Pro", image: "./product.png", path: "/shop" },
-      { name: "IVPS-Mini", image: "./product.png", path: "/shop" },
+      { name: "IVPS3.5~10kVA", image: "./product.webp", path: "/shop" },
+      { name: "IVPS0712-1512", image: "./product.webp", path: "/shop" },
+      { name: "IVEM8~12kW", image: "./product.webp", path: "/shop" },
+      { name: "IVCM1012-LV", image: "./product.webp", path: "/shop" },
+      { name: "IVPA-Pro", image: "./product.webp", path: "/shop" },
+      { name: "IVPS-Mini", image: "./product.webp", path: "/shop" },
     ],
   },
   {
@@ -56,11 +97,11 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "IVPM Series", path: "/shop" },
     ],
     products: [
-      { name: "IVCM1/2/3kW-PRO", image: "./product.png", path: "/shop" },
-      { name: "IVCM5kW-Lite", image: "./product.png", path: "/shop" },
-      { name: "IVHG-30kW", image: "./product.png", path: "/shop" },
-      { name: "IVHG-50kW", image: "./product.png", path: "/shop" },
-      { name: "IVHG-100kW", image: "./product.png", path: "/shop" },
+      { name: "IVCM1/2/3kW-PRO", image: "./product.webp", path: "/shop" },
+      { name: "IVCM5kW-Lite", image: "./product.webp", path: "/shop" },
+      { name: "IVHG-30kW", image: "./product.webp", path: "/shop" },
+      { name: "IVHG-50kW", image: "./product.webp", path: "/shop" },
+      { name: "IVHG-100kW", image: "./product.webp", path: "/shop" },
     ],
   },
   {
@@ -71,9 +112,9 @@ const residentialCategories: (ProductCategory & { products: ProductItem[]; serie
       { label: "Micro-400W Series", path: "/shop" },
     ],
     products: [
-      { name: "IVEM8~12kW-II", image: "./product.png", path: "/shop" },
-      { name: "IVEM-400W", image: "./product.png", path: "/shop" },
-      { name: "IVEM-800W", image: "./product.png", path: "/shop" },
+      { name: "IVEM8~12kW-II", image: "./product.webp", path: "/shop" },
+      { name: "IVEM-400W", image: "./product.webp", path: "/shop" },
+      { name: "IVEM-800W", image: "./product.webp", path: "/shop" },
     ],
   },
 ];
@@ -88,10 +129,10 @@ const commercialCategories: (ProductCategory & { products: ProductItem[]; series
       { label: "Air Cooling Series", path: "/shop" },
     ],
     products: [
-      { name: "FLM500-125/261", image: "./product.png", path: "/shop" },
-      { name: "FLH-E60", image: "./product.png", path: "/shop" },
-      { name: "FLS-MES215AF-S", image: "./product.png", path: "/shop" },
-      { name: "FLS-ES232LC-S", image: "./product.png", path: "/shop" },
+      { name: "FLM500-125/261", image: "./product.webp", path: "/shop" },
+      { name: "FLH-E60", image: "./product.webp", path: "/shop" },
+      { name: "FLS-MES215AF-S", image: "./product.webp", path: "/shop" },
+      { name: "FLS-ES232LC-S", image: "./product.webp", path: "/shop" },
     ],
   },
 ];
@@ -106,10 +147,10 @@ const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: 
       { label: "Hybrid Mini Grid", path: "/shop" },
     ],
     products: [
-      { name: "MG-50kW System", image: "./product.png", path: "/shop" },
-      { name: "MG-100kW System", image: "./product.png", path: "/shop" },
-      { name: "MG-200kW System", image: "./product.png", path: "/shop" },
-      { name: "MG-500kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-50kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-100kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-200kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-500kW System", image: "./product.webp", path: "/shop" },
     ],
   },
   {
@@ -120,10 +161,10 @@ const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: 
       { label: "Hybrid Mini Grid", path: "/shop" },
     ],
     products: [
-      { name: "MG-50kW System", image: "./product.png", path: "/shop" },
-      { name: "MG-100kW System", image: "./product.png", path: "/shop" },
-      { name: "MG-200kW System", image: "./product.png", path: "/shop" },
-      { name: "MG-500kW System", image: "./product.png", path: "/shop" },
+      { name: "MG-50kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-100kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-200kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-500kW System", image: "./product.webp", path: "/shop" },
     ],
   },
 ];
@@ -160,7 +201,6 @@ function ProductsMegaMenu({
       style={{ top: isScrolled ? "56px" : "80px" }}
       className="fixed left-0 right-0 z-[100] shadow-2xl"
     >
-      {/* Added border-t and mt-2 for visual separation */}
       <div className="bg-white border-t-2 border-gray-400 mt-5 mb-2">
         <div className="max-w-[1400px] mx-auto">
 
@@ -251,7 +291,6 @@ function ProductsMegaMenu({
                             }}
                           />
                         </div>
-                        {/* Product name - Montserrat Medium */}
                         <span className="font-montserrat font-medium text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
                           {product.name}
                         </span>
@@ -261,7 +300,7 @@ function ProductsMegaMenu({
                 </AnimatePresence>
               </div>
 
-              {/* Series links row - Source Sans Pro/Poppins Regular */}
+              {/* Series links row */}
               <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3 mt-4">
                 {activeCat.series.map((s) => (
                   <Link
@@ -315,6 +354,7 @@ export function Navbar() {
     setOpenMobileSub(null);
   }, [location.pathname]);
 
+  // HOME | ABOUT | SOLUTIONS | SHOP PRODUCTS | PROJECTS | RESOURCES ▾
   const navLinks: NavLink[] = [
     {
       name: "Home",
@@ -324,58 +364,35 @@ export function Navbar() {
       name: "About Embrace",
       path: "/about",
       children: [
-        {
-          name: "Our Company",
-          path: "/about",
-        },
-        {
-          name: "Blog",
-          path: "/blog"
-        },
-        {
-          name: "Project",
-          path: "/projects",
-        },
-        {
-          name: "Team",
-          path: "/team",
-        },
-        {
-          name: "Downloads",
-          path: "/downloads",
-        }
+        { name: "Our Company", path: "/about" },
+        { name: "Team", path: "/team" },
       ],
     },
     {
       name: "Solutions",
       path: "/services",
       children: [
-        { name: "Residential", path: "/services", image: "./residential.png" },
-        { name: "Commercial", path: "/services", image: "./commercial.png" },
-        { name: "C&I ESS Cabinet", path: "/services", image: "./C&I ESS cabinet.png" },
-        { name: "Project Cases", path: "/services", image: "./project cases.png" },
-        { name: "System Config Plan", path: "/services", image: "./system config.png" },
+        { name: "Residential", path: "/services", image: "./residential.webp" },
+        { name: "Commercial", path: "/services", image: "./commercial.webp" },
+        { name: "C&I ESS Cabinet", path: "/services", image: "./cs-ess-cabinet.webp" },
+        { name: "Project Cases", path: "/services", image: "./project cases.webp" },
+        { name: "System Config Plan", path: "/services", image: "./system-config.webp" },
       ],
     },
     {
-      name: "Products",
+      name: "Shop Products",
       path: "/shop",
       // children intentionally empty — mega menu is handled separately
       children: [],
     },
     {
-      name: "Training Academy",
-      path: "/academy",
-      children: [
-        { name: "Solar PV Installation Training", path: "/academy" },
-        { name: "CCTV Installation Training", path: "/academy" },
-        { name: "Corporate Training", path: "/academy" },
-        { name: "Certification Programs", path: "/academy" },
-      ],
+      name: "Projects",
+      path: "/projects",
     },
     {
-      name: "Contact Us",
-      path: "/contact",
+      name: "Resources",
+      path: "/resources",
+      // children handled by resourcesGroups (medium dropdown)
     },
   ];
 
@@ -392,7 +409,7 @@ export function Navbar() {
           {/* Logo - Far Left */}
           <Link to="/" className="group flex-shrink-0 min-w-0">
             <img
-              src="./embrace-nav-logo.png"
+              src="./nav-logo.webp"
               alt="Embrace Technologies"
               className={`
                 rounded-[20px] object-contain transition-all duration-300 group-hover:scale-105 max-w-full
@@ -407,14 +424,14 @@ export function Navbar() {
           <nav className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center gap-4">
               {navLinks.map((link) => {
-                const isProducts = link.name === "Products";
+                const isProducts = link.name === "Shop Products";
                 const isSolutions = link.name === "Solutions";
-                const isAcademy = link.name === "Training Academy";
+                const isResources = link.name === "Resources";
                 const hasChildren = !!link.children?.length;
                 const active = isActive(link);
 
                 // Simple link (no children) - Montserrat Bold
-                if (!hasChildren && !isProducts) {
+                if (!hasChildren && !isProducts && !isResources) {
                   return (
                     <Link
                       key={link.name}
@@ -429,13 +446,13 @@ export function Navbar() {
                   );
                 }
 
-                // Products — dedicated mega menu trigger - Montserrat Bold
+                // Shop Products — dedicated mega menu trigger - Montserrat Bold
                 if (isProducts) {
                   return (
                     <div
                       key={link.name}
                       className="relative"
-                      onMouseEnter={() => setOpenDropdown("Products")}
+                      onMouseEnter={() => setOpenDropdown("Shop Products")}
                       onMouseLeave={() => setOpenDropdown(null)}
                     >
                       <button
@@ -445,17 +462,17 @@ export function Navbar() {
                           : "text-primary hover:text-secondary"
                           }`}
                         aria-haspopup="true"
-                        aria-expanded={openDropdown === "Products"}
+                        aria-expanded={openDropdown === "Shop Products"}
                       >
-                        <span>Products</span>
+                        <span>Shop Products</span>
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === "Products" ? "rotate-180" : ""
+                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === "Shop Products" ? "rotate-180" : ""
                             }`}
                         />
                       </button>
 
                       <AnimatePresence>
-                        {openDropdown === "Products" && (
+                        {openDropdown === "Shop Products" && (
                           <ProductsMegaMenu
                             isScrolled={isScrolled}
                             activeCategory={activeProductCategory}
@@ -469,7 +486,83 @@ export function Navbar() {
                   );
                 }
 
-                // Dropdowns with children (Solutions, About, Academy) - Montserrat Bold
+                // Resources — medium hover dropdown (3 columns) - same styling as other dropdowns
+                if (isResources) {
+                  return (
+                    <div
+                      key={link.name}
+                      className="relative"
+                      onMouseEnter={() => setOpenDropdown(link.name)}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpenDropdown(openDropdown === link.name ? null : link.name)
+                        }
+                        className={`flex items-center gap-1 font-montserrat font-bold text-sm capitalize tracking-wide transition-colors py-2 px-1 ${active
+                          ? "text-secondary"
+                          : "text-primary hover:text-secondary"
+                          }`}
+                        aria-haspopup="true"
+                        aria-expanded={openDropdown === link.name}
+                      >
+                        <span>{link.name}</span>
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === link.name ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {openDropdown === link.name && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 8 }}
+                            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            className={`absolute top-full right-0 pt-2 z-50 ${isScrolled ? "mt-0" : "mt-2"}`}
+                          >
+                            {/* Existing dropdown styling: white panel, shadow, gray top border */}
+                            <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden w-[720px] max-w-[92vw] ${isScrolled ? "mt-4" : "mt-5"}`}>                              <div className="grid grid-cols-3 gap-8 px-7 py-6">
+                              {resourcesGroups.map((group) => (
+                                <div key={group.title}>
+                                  {/* Column header - Montserrat Bold */}
+                                  <h4 className="font-montserrat font-bold text-xs uppercase tracking-widest text-primary border-b border-slate-200 pb-2 mb-3">
+                                    {group.title}
+                                  </h4>
+                                  <ul className="space-y-2.5">
+                                    {group.items.map((item) => (
+                                      <li key={item.name}>
+                                        <Link
+                                          to={item.path}
+                                          className="group flex items-baseline gap-2 font-poppins font-normal text-sm text-slate-700 hover:text-secondary transition-colors"
+                                        >
+                                          <span className="text-secondary text-xs leading-none">•</span>
+                                          <span>
+                                            {item.name}
+                                            {item.badge && (
+                                              <span className="ml-1 font-montserrat font-bold text-[10px] text-secondary">
+                                                ({item.badge})
+                                              </span>
+                                            )}
+                                          </span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
+                // Dropdowns with children (Solutions, About) - Montserrat Bold
                 return (
                   <div
                     key={link.name}
@@ -512,10 +605,8 @@ export function Navbar() {
                           }}
                           className="fixed left-0 right-0 z-[100]"
                         >
-                          {/* Added border-t-2 and mt-2 for visual separation */}
                           <div className="bg-white shadow-2xl w-full h-full overflow-y-auto mt-7 border-t-2 border-gray-400">
                             <div className="px-4 py-6">
-                              {/* Section Title - Anton ExtraBold */}
                               <h3 className="text-2xl font-anton font-extrabold text-primary mb-6 uppercase tracking-wide text-center">
                                 Our Solutions
                               </h3>
@@ -538,7 +629,6 @@ export function Navbar() {
                                         </>
                                       ) : (
                                         <div className="w-full h-full bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center">
-                                          {/* View Details - Source Sans Pro/Poppins Regular */}
                                           <span className="text-slate-600 font-poppins font-normal text-xs">
                                             View Details
                                           </span>
@@ -546,7 +636,6 @@ export function Navbar() {
                                       )}
                                     </div>
                                     <div className="text-center">
-                                      {/* Card Title - Montserrat Bold */}
                                       <span className="inline-block font-montserrat font-bold text-primary text-xs capitalize tracking-wide group-hover:text-secondary transition-colors duration-300">
                                         {child.name}
                                       </span>
@@ -559,99 +648,29 @@ export function Navbar() {
                         </motion.div>
                       )}
 
-                      {/* Training Academy Dropdown */}
-                      {openDropdown === link.name && isAcademy && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 8 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 8 }}
-                          transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-80 z-50 mt-2"
-                        >
-                          <div className="bg-white shadow-2xl mt-5 border-t-2 border-gray-400 overflow-hidden">
-                            <div className="p-4">
-
-
-                              {/* Training Items */}
-                              <div className="space-y-3">
-                                {link.children!.map((child, index) => (
-                                  <div key={child.name}>
-                                    <Link
-                                      to={child.path}
-                                      className="block font-montserrat font-semibold text-sm text-primary hover:text-secondary transition-colors mb-1"
-                                    >
-                                      {child.name}
-                                    </Link>
-
-                                    {/* Sub-items for each training */}
-                                    {child.name === "Solar PV Installation Training" && (
-                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
-                                        <div>• Basic | Intermediate | Advance</div>
-                                        <div>• Practical Installation</div>
-                                        <div>• Design & Sizing</div>
-                                      </div>
-                                    )}
-
-                                    {child.name === "CCTV Installation Training" && (
-                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
-                                        <div>• Installation | Networking</div>
-                                        <div>• Configuration | Maintenance</div>
-                                      </div>
-                                    )}
-
-                                    {child.name === "Corporate Training" && (
-                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
-                                        <div>• Internship</div>
-                                        <div>• Graduate Programs</div>
-                                      </div>
-                                    )}
-
-                                    {child.name === "Certification Programs" && (
-                                      <div className="pl-4 text-xs text-slate-600 font-poppins space-y-1">
-                                        <div>• Program Overview</div>
-                                        <div>• Duration</div>
-                                        <div>• Certification</div>
-                                        <div>• Gallery</div>
-                                        <div>• Register Now Form</div>
-                                      </div>
-                                    )}
-
-                                    {index !== link.children!.length - 1 && (
-                                      <div className="border-t border-slate-100 mt-3 pt-3" />
-                                    )}
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-
                       {/* Regular dropdown for About - Montserrat Medium */}
-                      {openDropdown === link.name && !isSolutions && !isAcademy && (
+                      {openDropdown === link.name && !isSolutions && (
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute top-full left-2/2 -translate-x-1/2 pt-2 w-64 z-50 mt-2"
+                          className={`absolute top-full left-2/2 -translate-x-1/2 pt-2 w-64 z-50 ${isScrolled ? "mt-0" : "mt-2"}`}
                         >
-                          {/* Added border-t-2 for visual separation */}
-                          <div className="bg-white shadow-2xl mt-5 border-t-2 border-gray-400 overflow-hidden">
-                            <ul className="py-1">
-                              {link.children!.map((child, index) => (
-                                <li key={child.name}>
-                                  <Link
-                                    to={child.path}
-                                    className={`block px-5 py-3 font-montserrat font-medium text-sm text-slate-700 hover:text-secondary hover:bg-slate-50 transition-all duration-200
+                          <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden ${isScrolled ? "mt-4" : "mt-5"}`}>                            <ul className="py-1">
+                            {link.children!.map((child, index) => (
+                              <li key={child.name}>
+                                <Link
+                                  to={child.path}
+                                  className={`block px-5 py-3 font-montserrat font-medium text-sm text-slate-700 hover:text-secondary hover:bg-slate-50 transition-all duration-200
                 ${index !== link.children!.length - 1 ? "border-b border-slate-300" : ""}
               `}
-                                  >
-                                    {child.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
+                                >
+                                  {child.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
                           </div>
                         </motion.div>
                       )}
@@ -662,15 +681,15 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Get a Quote Button - Montserrat SemiBold */}
-          {/* <div className="hidden lg:block flex-shrink-0">
+          {/* Contact Us Button - Far Right - personal background color + hover */}
+          <div className="hidden lg:block flex-shrink-0">
             <Link
               to="/contact"
-              className="bg-secondary text-primary font-montserrat font-semibold px-6 py-2.5 rounded-sm hover:bg-yellow-400 transition-colors shadow-sm uppercase text-sm tracking-wide"
+              className="inline-block bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-2.5 rounded-sm shadow-md uppercase text-sm tracking-wide transition-all duration-200 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg hover:-translate-y-0.5"
             >
-              Get a Free Quote
+              Contact Us
             </Link>
-          </div> */}
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -698,23 +717,24 @@ export function Navbar() {
           >
             <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link) => {
-                const isProducts = link.name === "Products";
+                const isProducts = link.name === "Shop Products";
+                const isResources = link.name === "Resources";
 
-                // Products mobile: show category list - Montserrat Medium
+                // Shop Products mobile: show category list
                 if (isProducts) {
-                  const isOpen = openMobileSub === "Products";
+                  const isOpen = openMobileSub === "Shop Products";
                   return (
                     <div
-                      key="Products"
+                      key="Shop Products"
                       className="transition-colors border-b border-slate-50"
                     >
                       <button
                         type="button"
-                        onClick={() => setOpenMobileSub(isOpen ? null : "Products")}
+                        onClick={() => setOpenMobileSub(isOpen ? null : "Shop Products")}
                         className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
                         aria-expanded={isOpen}
                       >
-                        <span>Products</span>
+                        <span>Shop Products</span>
                         <ChevronDown
                           className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
                             }`}
@@ -731,7 +751,6 @@ export function Navbar() {
                           >
                             {residentialCategories.map((cat) => (
                               <li key={cat.name}>
-                                {/* Category links - Montserrat Medium */}
                                 <Link
                                   to={cat.path}
                                   className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
@@ -747,8 +766,68 @@ export function Navbar() {
                   );
                 }
 
+                // Resources mobile: show the 3 groups from the dropdown
+                if (isResources) {
+                  const isOpen = openMobileSub === "Resources";
+                  return (
+                    <div
+                      key="Resources"
+                      className="transition-colors border-b border-slate-50"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setOpenMobileSub(isOpen ? null : "Resources")}
+                        className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
+                        aria-expanded={isOpen}
+                      >
+                        <span>Resources</span>
+                        <ChevronDown
+                          className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                            }`}
+                        />
+                      </button>
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
+                          >
+                            {resourcesGroups.map((group) => (
+                              <div key={group.title} className="pt-2">
+                                <div className="font-montserrat font-bold text-xs uppercase tracking-widest text-primary pb-1">
+                                  {group.title}
+                                </div>
+                                <ul>
+                                  {group.items.map((item) => (
+                                    <li key={item.name}>
+                                      <Link
+                                        to={item.path}
+                                        className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
+                                      >
+                                        {item.name}
+                                        {item.badge && (
+                                          <span className="ml-1 text-xs font-bold text-secondary">
+                                            ({item.badge})
+                                          </span>
+                                        )}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+
                 const hasChildren = !!link.children?.length;
-                // Simple links - Montserrat Medium
+                // Simple links
                 if (!hasChildren) {
                   return (
                     <Link
@@ -761,7 +840,7 @@ export function Navbar() {
                   );
                 }
 
-                // Dropdown links - Montserrat Medium
+                // Dropdown links
                 const isOpen = openMobileSub === link.name;
                 return (
                   <div
@@ -793,7 +872,6 @@ export function Navbar() {
                         >
                           {link.children!.map((child) => (
                             <li key={child.name}>
-                              {/* Submenu links - Montserrat Medium */}
                               <Link
                                 to={child.path}
                                 className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
@@ -809,12 +887,12 @@ export function Navbar() {
                 );
               })}
 
-              {/* Get a Quote Button - Montserrat SemiBold */}
+              {/* Contact Us Button (mobile) - same personal color */}
               <Link
                 to="/contact"
-                className="bg-secondary text-primary font-montserrat font-semibold px-6 py-3 rounded-sm text-center mt-4 uppercase tracking-wide"
+                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center mt-4 uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
               >
-                Get a Quote
+                Contact Us
               </Link>
             </div>
           </motion.div>

@@ -72,7 +72,7 @@ export function Footer() {
               className="inline-flex items-center justify-center rounded-2xl bg-white/5 p-3 shadow-lg transition hover:bg-white/10 border border-white/5"
             >
               <img
-                src="./footer-logo.jpg"
+                src="./fotter-logo.jpg"
                 alt="Embrace Technologies"
                 className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain rounded-3xl"
               />

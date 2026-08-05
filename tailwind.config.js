@@ -9,11 +9,10 @@ export default {
     extend: {
       colors: {
         primary: '#002060',
-        secondary: '#FFC759',
+        secondary: '#fd8d07',
         alternative: '#066906',
         alternativeO: '#EA6936',
         alternativeR: '#EE373D',
-        orange: '#fd8d07',
       },
       fontFamily: {
         anton: ['Anton', 'sans-serif'],

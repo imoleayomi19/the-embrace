@@ -424,7 +424,7 @@ export function Home() {
                 <div>
                   <Link
                     to="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-orange text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
+                    className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
                   >
                     Request a Quote
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -473,7 +473,7 @@ export function Home() {
                   className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
                   style={{ zIndex: 0 }}
                 >
-                  <source src="./embrace-video.mp4" type="video/mp4" />
+                  <source src="./Embrace-Video-v2.mp4" type="video/mp4" />
                   {/* Fallback image if video doesn't load */}
                   <img
                     src="./solar-4.jpg"
@@ -686,7 +686,7 @@ export function Home() {
             {[
               {
                 title: "Residential Solar Service",
-                image: "./solar-4.jpg",
+                image: "./residential-solar-service.webp",
                 features: [
                   "Power your home with clean energy",
                   "Reduce utility bills",
@@ -695,7 +695,7 @@ export function Home() {
               },
               {
                 title: "Commercial Solar Service",
-                image: "./main1.jpg",
+                image: "./commercial-solar-service.webp",
                 features: [
                   "Maximize your ROI",
                   "Access tax incentives",
@@ -704,7 +704,7 @@ export function Home() {
               },
               {
                 title: "Solar Maintenance Service",
-                image: "./img-3.png",
+                image: "./solar-maintenance-service.webp",
                 features: [
                   "Keep your system running at peak efficiency",
                   "Get comprehensive maintenance plans",
@@ -954,7 +954,7 @@ export function Home() {
                       className="relative h-[300px] lg:h-[450px]"
                     >
                       <img
-                        src="./solar-4.jpg"
+                        src="./residential-solar-service.webp"
                         alt="Solar panel installation team at work"
                         className="absolute inset-0 w-full h-full object-cover"
                       />
@@ -1106,22 +1106,22 @@ export function Home() {
             >
               {[...Array(2)].flatMap((_, dupIdx) =>
                 [
-                  { name: "Chint Power", src: "./Chint-logo.png" },
-                  { name: "Coleman Power", src: "./Coleman-logo.png" },
-                  { name: "Dahua Power", src: "./Dahua logo.png" },
-                  { name: "Deye", src: "./deye-logo.png" },
-                  { name: "Felicity Solar", src: "./felicity-logo.png" },
-                  { name: "growatt", src: "./Growatt-logo.png" },
-                  { name: "Hikvision Power", src: "./Hikvision-logo.png" },
-                  { name: "Huawei Power", src: "./huawei_logo.png" },
-                  { name: "ja-solar", src: "./ja-solar.png" },
-                  { name: "jinko Power", src: "./jinko solar.png" },
-                  { name: "Lado Oil", src: "./lado-logo.png" },
-                  { name: "longi Power", src: "./longi-logo.png" },
-                  { name: "luxsun energy", src: "./luxsun-logo.png" },
-                  { name: "Prado Power", src: "./prado-logo.png" },
-                  { name: "Suntree Power", src: "./Suntree-logo.png" },
-                  { name: "Trina Power", src: "./Trina logo.png" },
+                  { name: "Chint Power", src: "./chint-logo.webp" },
+                  { name: "Coleman Power", src: "./coleman-logo.webp" },
+                  { name: "Dahua Power", src: "./dahua-logo.webp" },
+                  { name: "Deye", src: "./deye-logo.webp" },
+                  { name: "Felicity Solar", src: "./felicity-logo.webp" },
+                  { name: "growatt", src: "./growatt-logo.webp" },
+                  { name: "Hikvision Power", src: "./hikvision-logo.webp" },
+                  { name: "Huawei Power", src: "./huawei-logo.webp" },
+                  { name: "ja-solar", src: "./ja-solar.webp" },
+                  { name: "jinko Power", src: "./jinko-solar.webp" },
+                  { name: "Lado Oil", src: "./lado-logo.webp" },
+                  { name: "longi Power", src: "./longi-logo.webp" },
+                  { name: "luxsun energy", src: "./luxsun-logo.webp" },
+                  { name: "Prado Power", src: "./prado-logo.webp" },
+                  { name: "Suntree Power", src: "./suntree-logo.webp" },
+                  { name: "Trina Power", src: "./trina-logo.webp" },
                 ].map((org, idx) => (
                   <div
                     key={`${dupIdx}-${idx}`}
