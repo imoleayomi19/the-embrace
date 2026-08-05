@@ -198,7 +198,7 @@ export function About() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./about-img1.jpg')",
+              backgroundImage: "url('./aboutus-hero.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -351,7 +351,7 @@ export function About() {
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] lg:aspect-[3/4] max-h-[400px] sm:max-h-[500px] lg:max-h-[700px]">
                 <img
-                  src="./about.webp"
+                  src="./aboutus-left-img.webp"
                   alt="Embrace Technologies Team"
                   className="w-full h-full object-cover"
                 />
@@ -412,7 +412,7 @@ export function About() {
                 {/* Logo watermark - always visible on mobile, hover-only on md+ */}
                 <div
                   className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
-                  style={{ backgroundImage: "url('./logo-1-removebg.png')" }}
+                  style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
                 />
                 {/* Overlay - always on for mobile readability, hover-only on md+ */}
                 <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
@@ -442,7 +442,7 @@ export function About() {
                   {/* Logo watermark - always visible on mobile, hover-only on md+ */}
                   <div
                     className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
-                    style={{ backgroundImage: "url('./logo-1-removebg.png')" }}
+                    style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
                   />
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
@@ -489,7 +489,7 @@ export function About() {
                 {/* Logo watermark - always visible on mobile, hover-only on md+ */}
                 <div
                   className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
-                  style={{ backgroundImage: "url('./logo-1-removebg.png')" }}
+                  style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
                 />
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />

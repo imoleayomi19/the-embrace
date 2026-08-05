@@ -119,7 +119,7 @@ export function Blog() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./blog.webp')",
+              backgroundImage: "url('./blog-hero.webp')",
               backgroundPosition: "center 40%",
             }}
           />
