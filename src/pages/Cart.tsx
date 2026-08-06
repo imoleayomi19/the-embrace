@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowLeft, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "../hooks/useCart";
 
 function formatPrice(value: number) {
@@ -14,20 +14,19 @@ export function Cart() {
       <main className="w-full min-h-screen bg-slate-50 py-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl rounded-[2rem] border border-slate-200 bg-white p-10 text-center shadow-xl">
-            <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-primary text-white shadow-lg">
+            {/* <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-primary text-white shadow-lg">
               <ShoppingBag className="h-10 w-10" />
-            </div>
-            <h1 className="text-4xl font-anton text-slate-900">Your Cart is Empty</h1>
-            <p className="mt-4 text-slate-600 font-poppins leading-relaxed">
+            </div> */}
+            <h1 className="text-4xl font-anton text-slate-900">Your Cart is Empty.</h1>
+            {/* <p className="mt-4 text-slate-600 font-poppins leading-relaxed">
               Add products to your cart from the shop page and they will appear here instantly.
-            </p>
+            </p> */}
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Link
                 to="/shop"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary transition hover:bg-yellow-400"
               >
                 Continue Shopping
-                <ArrowLeft className="w-4 h-4" />
               </Link>
               <Link
                 to="/contact"

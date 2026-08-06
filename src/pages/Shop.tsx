@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ShoppingBag, ShoppingCart } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { shopProducts } from "../data/shopProducts";
 import { useCart } from "../hooks/useCart";
 
@@ -9,7 +9,7 @@ function formatPrice(value: number) {
 }
 
 export function Shop() {
-  const { items, addItem, totalItems } = useCart();
+  const { addItem } = useCart();
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categories = useMemo(
@@ -30,39 +30,36 @@ export function Shop() {
 
   return (
     <main className="w-full overflow-hidden bg-slate-50 min-h-screen">
-      <section className="relative overflow-hidden bg-primary text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,199,89,0.18),_transparent_45%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(12,51,103,0.9),_rgba(12,51,103,0.7))]" />
-        <div className="container mx-auto px-4 py-24 relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm uppercase tracking-[0.3em] text-slate-100 font-montserrat font-semibold">
-              Shop
-            </span>
-            <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-anton font-extrabold tracking-tight text-white">
-              Browse products built for Nigerian power systems.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 font-poppins">
-              Choose reliable inverters, batteries, panels, and accessories with clear pricing and fast ordering.
-            </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="rounded-full bg-white/10 border border-white/20 px-4 py-3 text-sm text-slate-100 shadow-sm backdrop-blur-sm">
-                {totalItems} item{totalItems === 1 ? "" : "s"} in cart
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/cart"
-                  className="inline-flex items-center gap-2 rounded-full bg-secondary px-5 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary shadow-xl transition hover:bg-yellow-400"
-                >
-                  View Cart
-                  <ShoppingCart className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
+      {/* Hero Section — full-bleed image, centered text */}
+      <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-contain bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(/solar-panels.png)` }}
+        />
+
+        {/* Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* Centered Content - shifted down more */}
+        <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 text-center pt-20 md:pt-32">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-anton font-extrabold tracking-tight text-white drop-shadow-lg">
+            Embrace The Power
+          </h1>
+
+          <div className="mt-10 flex w-full max-w-md flex-col items-center gap-4">
+            <a
+              href="#products"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-8 py-3.5 text-base font-semibold text-slate-900 shadow-xl transition hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
+            >
+              Shop Products
+              <ArrowRight className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-12 md:py-16">
+      <section id="products" className="container mx-auto px-4 py-12 md:py-16">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl font-anton text-slate-900">Shop Categories</h2>

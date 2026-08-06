@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../hooks/useCart";
 
 type NavChild = {
   name: string;
@@ -338,6 +339,7 @@ export function Navbar() {
   );
   const [productType, setProductType] = useState<"residential" | "commercial" | "mini-grid">("residential");
   const location = useLocation();
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -681,8 +683,41 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Contact Us Button - Far Right - personal background color + hover */}
-          <div className="hidden lg:block flex-shrink-0">
+          {/* Cart and Contact Us - Far Right */}
+          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+            {/* Shopping Cart Icon + Badge (badge hidden when cart is empty) */}
+            <Link
+              to="/cart"
+              className="group relative inline-flex items-center justify-center p-2"
+              aria-label="View cart"
+            >
+              <span className="relative inline-block">
+                <img
+                  src="/shopping-cart.png"
+                  alt="Shopping Cart"
+                  className="w-6 h-6 transition-transform group-hover:scale-110"
+                />
+                {totalItems > 0 && (
+                  <span
+                    className="absolute z-50 flex items-center justify-center rounded-full bg-orange-500 font-bold text-white shadow-md pointer-events-none"
+                    style={{
+                      top: "-7px",
+                      right: "-7px",
+                      minWidth: "18px",
+                      height: "18px",
+                      padding: "0 4px",
+                      fontSize: "10px",
+                      lineHeight: "1",
+                      border: "2px solid #ffffff",
+                    }}
+                  >
+                    {totalItems}
+                  </span>
+                )}
+              </span>
+            </Link>
+
+            {/* Contact Us Button */}
             <Link
               to="/contact"
               className="inline-block bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-2.5 rounded-sm shadow-md uppercase text-sm tracking-wide transition-all duration-200 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg hover:-translate-y-0.5"
@@ -887,13 +922,41 @@ export function Navbar() {
                 );
               })}
 
-              {/* Contact Us Button (mobile) - same personal color */}
-              <Link
-                to="/contact"
-                className="bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center mt-4 uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
-              >
-                Contact Us
-              </Link>
+              {/* Cart and Contact Us Buttons (mobile) */}
+              <div className="flex items-center gap-3 mt-4">
+                <Link
+                  to="/cart"
+                  className="flex-1 flex items-center justify-center gap-2 bg-white border border-orange-500 text-orange-500 font-montserrat font-semibold px-4 py-3 rounded-sm uppercase tracking-wide shadow-sm"
+                >
+                  <span className="relative inline-block">
+                    <img src="/shopping-cart.png" alt="Cart" className="w-5 h-5" />
+                    {totalItems > 0 && (
+                      <span
+                        className="absolute z-50 flex items-center justify-center rounded-full bg-orange-500 font-bold text-white pointer-events-none"
+                        style={{
+                          top: "-7px",
+                          right: "-7px",
+                          minWidth: "16px",
+                          height: "16px",
+                          padding: "0 3px",
+                          fontSize: "9px",
+                          lineHeight: "1",
+                          border: "2px solid #ffffff",
+                        }}
+                      >
+                        {totalItems}
+                      </span>
+                    )}
+                  </span>
+                  Cart
+                </Link>
+                <Link
+                  to="/contact"
+                  className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
