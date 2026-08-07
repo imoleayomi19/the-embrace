@@ -528,7 +528,7 @@ export function Contact() {
               </div>
               <button
                 type="submit"
-                className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-full px-8 py-4 hover:bg-yellow-400 transition-colors"
+                className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-sm px-8 py-4 hover:bg-alternativeO transition-colors"
               >
                 Submit Request
               </button>

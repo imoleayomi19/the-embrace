@@ -50,7 +50,7 @@ export function Shop() {
           <div className="mt-10 flex w-full max-w-md flex-col items-center gap-4">
             <a
               href="#products"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-8 py-3.5 text-base font-semibold text-slate-900 shadow-xl transition hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-white px-8 py-3.5 text-base font-semibold text-slate-900 shadow-xl transition hover:bg-slate-100 hover:scale-[1.02] active:scale-[0.98] sm:w-auto"
             >
               Shop Products
               <ArrowRight className="h-5 w-5" />

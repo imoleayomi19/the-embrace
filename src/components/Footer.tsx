@@ -192,7 +192,7 @@ export function Footer() {
                 {/* Button - Montserrat SemiBold */}
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-secondary/10 border border-secondary/20 px-5 py-2.5 text-sm font-montserrat font-semibold text-secondary transition-all hover:bg-secondary hover:text-white hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-sm bg-secondary/10 border border-secondary/20 px-5 py-2.5 text-sm font-montserrat font-semibold text-secondary transition-all hover:bg-secondary hover:text-white hover:shadow-lg"
                 >
                   Get Free Quote
                 </Link>

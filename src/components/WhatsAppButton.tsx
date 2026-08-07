@@ -26,7 +26,7 @@ export function WhatsAppButton() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="bg-white text-slate-800 px-4 py-3 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-slate-100 flex items-start gap-3 max-w-[260px] relative md:max-w-xs pointer-events-auto"
+            className="bg-white text-slate-800 px-4 py-3 rounded-sm shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-slate-100 flex items-start gap-3 max-w-[260px] relative md:max-w-xs pointer-events-auto"
           >
             {/* Tooltip Arrow */}
             <div className="absolute right-6 -bottom-1.5 w-3 h-3 bg-white border-r border-b border-slate-100 rotate-45" />

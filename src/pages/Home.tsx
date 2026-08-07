@@ -493,7 +493,7 @@ export function Home() {
 
                 <Link
                   to="/services"
-                  className="inline-flex items-center gap-2 text-white font-montserrat font-semibold border-2 border-white px-6 py-3 rounded-full hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit"
+                  className="inline-flex items-center gap-2 text-white font-montserrat font-semibold border-2 border-white px-6 py-3 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit"
                 >
                   Learn More
                   <ArrowRight className="w-4 h-4" />
@@ -751,7 +751,7 @@ export function Home() {
                   {/* Button */}
                   <Link
                     to="/services"
-                    className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-white font-montserrat font-semibold py-3 px-6 rounded-lg group-hover:shadow-lg"
+                    className="inline-flex items-center justify-center w-full bg-white/10 hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-white font-montserrat font-semibold py-3 px-6 rounded-sm group-hover:shadow-lg"
                   >
                     Learn More
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

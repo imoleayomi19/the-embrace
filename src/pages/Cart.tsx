@@ -11,26 +11,23 @@ export function Cart() {
 
   if (items.length === 0) {
     return (
-      <main className="w-full min-h-screen bg-slate-50 py-24">
+      // CHANGE 2: Increased top padding (pt-48) to shift the container down away from the navbar
+      <main className="w-full min-h-screen bg-slate-50 pt-48 pb-24">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-2xl rounded-[2rem] border border-slate-200 bg-white p-10 text-center shadow-xl">
-            {/* <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-primary text-white shadow-lg">
-              <ShoppingBag className="h-10 w-10" />
-            </div> */}
             <h1 className="text-4xl font-anton text-slate-900">Your Cart is Empty.</h1>
-            {/* <p className="mt-4 text-slate-600 font-poppins leading-relaxed">
-              Add products to your cart from the shop page and they will appear here instantly.
-            </p> */}
+
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <Link
                 to="/shop"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary transition hover:bg-yellow-400"
+                // CHANGE 1: Removed hover:bg-yellow-400. Added hover:bg-primary hover:text-white for a non-yellow hover state.
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary transition hover:bg-[#EA6936]"
               >
                 Continue Shopping
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-secondary hover:text-secondary"
+                className="inline-flex items-center justify-center rounded-sm border border-slate-300 bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-secondary hover:text-secondary"
               >
                 Contact Sales
               </Link>
@@ -146,7 +143,8 @@ export function Cart() {
               <button
                 type="button"
                 onClick={() => window.alert("Proceed to checkout flow not implemented yet.")}
-                className="w-full rounded-full bg-secondary px-5 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-primary transition hover:bg-yellow-400"
+                // CHANGE 1 (Consistency): Updated checkout button hover to match the new non-yellow style
+                className="w-full rounded-full bg-secondary px-5 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-primary transition hover:bg-primary hover:text-white"
               >
                 Checkout
               </button>
