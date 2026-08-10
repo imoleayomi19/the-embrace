@@ -89,20 +89,7 @@ export function Shop() {
       </div>
 
       <section id="products" className="container mx-auto px-4 py-12 md:py-16">
-        {/* Header — active category + product count */}
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h2 className="text-2xl font-anton text-slate-900">
-              {activeCategory === "All" ? "Shop Categories" : activeCategory}
-            </h2>
-            <p className="mt-2 max-w-xl text-sm text-slate-600 font-poppins">
-              Filter by category to find the right product faster.
-            </p>
-          </div>
-          <span className="font-montserrat text-xs text-slate-500">
-            {visibleProducts.length} product{visibleProducts.length === 1 ? "" : "s"}
-          </span>
-        </div>
+
 
         {/* ── NEW product grid style + compact Add to Cart button ── */}
         {visibleProducts.length === 0 ? (
