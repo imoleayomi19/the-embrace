@@ -949,25 +949,149 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden overflow-hidden transition-colors bg-white border-t border-slate-100"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
-              {navLinks.map((link) => {
-                const isProducts = link.name === "Shop Products";
-                const isResources = link.name === "Resources";
+            {/* FIX: cap menu at viewport height and scroll internally,
+                so long dropdowns (Resources) never get stuck off-screen */}
+            <div
+              className="overflow-y-auto overscroll-contain"
+              style={{ maxHeight: "calc(100dvh - 64px)" }}
+            >
+              <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+                {navLinks.map((link) => {
+                  const isProducts = link.name === "Shop Products";
+                  const isResources = link.name === "Resources";
 
-                if (isProducts) {
-                  const isOpen = openMobileSub === "Shop Products";
+                  if (isProducts) {
+                    const isOpen = openMobileSub === "Shop Products";
+                    return (
+                      <div
+                        key="Shop Products"
+                        className="transition-colors border-b border-slate-50"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setOpenMobileSub(isOpen ? null : "Shop Products")}
+                          className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
+                          aria-expanded={isOpen}
+                        >
+                          <span>Shop Products</span>
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                              }`}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.ul
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
+                            >
+                              {residentialCategories.map((cat) => (
+                                <li key={cat.name}>
+                                  <Link
+                                    to={cat.path}
+                                    className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
+                                  >
+                                    {cat.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </motion.ul>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+
+                  if (isResources) {
+                    const isOpen = openMobileSub === "Resources";
+                    return (
+                      <div
+                        key="Resources"
+                        className="transition-colors border-b border-slate-50"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setOpenMobileSub(isOpen ? null : "Resources")}
+                          className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
+                          aria-expanded={isOpen}
+                        >
+                          <span>Resources</span>
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                              }`}
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
+                            >
+                              {resourcesGroups.map((group) => (
+                                <div key={group.title} className="pt-2">
+                                  <div className="font-montserrat font-bold text-xs uppercase tracking-widest text-primary pb-1">
+                                    {group.title}
+                                  </div>
+                                  <ul>
+                                    {group.items.map((item) => (
+                                      <li key={item.name}>
+                                        <Link
+                                          to={item.path}
+                                          className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
+                                        >
+                                          {item.name}
+                                          {item.badge && (
+                                            <span className="ml-1 text-xs font-bold text-secondary">
+                                              ({item.badge})
+                                            </span>
+                                          )}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+
+                  const hasChildren = !!link.children?.length;
+                  if (!hasChildren) {
+                    return (
+                      <Link
+                        key={link.name}
+                        to={link.path}
+                        className="font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary border-b border-slate-50"
+                      >
+                        {link.name}
+                      </Link>
+                    );
+                  }
+
+                  const isOpen = openMobileSub === link.name;
                   return (
                     <div
-                      key="Shop Products"
+                      key={link.name}
                       className="transition-colors border-b border-slate-50"
                     >
                       <button
                         type="button"
-                        onClick={() => setOpenMobileSub(isOpen ? null : "Shop Products")}
+                        onClick={() =>
+                          setOpenMobileSub(isOpen ? null : link.name)
+                        }
                         className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
                         aria-expanded={isOpen}
                       >
-                        <span>Shop Products</span>
+                        <span>{link.name}</span>
                         <ChevronDown
                           className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
                             }`}
@@ -982,13 +1106,13 @@ export function Navbar() {
                             transition={{ duration: 0.2 }}
                             className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
                           >
-                            {residentialCategories.map((cat) => (
-                              <li key={cat.name}>
+                            {link.children!.map((child) => (
+                              <li key={child.name}>
                                 <Link
-                                  to={cat.path}
+                                  to={child.path}
                                   className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
                                 >
-                                  {cat.name}
+                                  {child.name}
                                 </Link>
                               </li>
                             ))}
@@ -997,160 +1121,43 @@ export function Navbar() {
                       </AnimatePresence>
                     </div>
                   );
-                }
+                })}
 
-                if (isResources) {
-                  const isOpen = openMobileSub === "Resources";
-                  return (
-                    <div
-                      key="Resources"
-                      className="transition-colors border-b border-slate-50"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setOpenMobileSub(isOpen ? null : "Resources")}
-                        className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
-                        aria-expanded={isOpen}
-                      >
-                        <span>Resources</span>
-                        <ChevronDown
-                          className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
-                            }`}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
-                          >
-                            {resourcesGroups.map((group) => (
-                              <div key={group.title} className="pt-2">
-                                <div className="font-montserrat font-bold text-xs uppercase tracking-widest text-primary pb-1">
-                                  {group.title}
-                                </div>
-                                <ul>
-                                  {group.items.map((item) => (
-                                    <li key={item.name}>
-                                      <Link
-                                        to={item.path}
-                                        className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
-                                      >
-                                        {item.name}
-                                        {item.badge && (
-                                          <span className="ml-1 text-xs font-bold text-secondary">
-                                            ({item.badge})
-                                          </span>
-                                        )}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
-
-                const hasChildren = !!link.children?.length;
-                if (!hasChildren) {
-                  return (
-                    <Link
-                      key={link.name}
-                      to={link.path}
-                      className="font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary border-b border-slate-50"
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                }
-
-                const isOpen = openMobileSub === link.name;
-                return (
-                  <div
-                    key={link.name}
-                    className="transition-colors border-b border-slate-50"
+                {/* Cart and Contact Us Buttons (mobile) */}
+                <div className="flex items-center gap-3 mt-4">
+                  <Link
+                    to="/cart"
+                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-orange-500 text-orange-500 font-montserrat font-semibold px-4 py-3 rounded-sm uppercase tracking-wide shadow-sm"
                   >
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setOpenMobileSub(isOpen ? null : link.name)
-                      }
-                      className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
-                      aria-expanded={isOpen}
-                    >
-                      <span>{link.name}</span>
-                      <ChevronDown
-                        className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
-                          }`}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.ul
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
+                    <span className="relative inline-block">
+                      <img src="/shopping-cart.png" alt="Cart" className="w-5 h-5" />
+                      {totalItems > 0 && (
+                        <span
+                          className="absolute z-50 flex items-center justify-center rounded-full bg-orange-500 font-bold text-white pointer-events-none"
+                          style={{
+                            top: "-7px",
+                            right: "-7px",
+                            minWidth: "16px",
+                            height: "16px",
+                            padding: "0 3px",
+                            fontSize: "9px",
+                            lineHeight: "1",
+                            border: "2px solid #ffffff",
+                          }}
                         >
-                          {link.children!.map((child) => (
-                            <li key={child.name}>
-                              <Link
-                                to={child.path}
-                                className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
-                              >
-                                {child.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </motion.ul>
+                          {totalItems}
+                        </span>
                       )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-
-              {/* Cart and Contact Us Buttons (mobile) */}
-              <div className="flex items-center gap-3 mt-4">
-                <Link
-                  to="/cart"
-                  className="flex-1 flex items-center justify-center gap-2 bg-white border border-orange-500 text-orange-500 font-montserrat font-semibold px-4 py-3 rounded-sm uppercase tracking-wide shadow-sm"
-                >
-                  <span className="relative inline-block">
-                    <img src="/shopping-cart.png" alt="Cart" className="w-5 h-5" />
-                    {totalItems > 0 && (
-                      <span
-                        className="absolute z-50 flex items-center justify-center rounded-full bg-orange-500 font-bold text-white pointer-events-none"
-                        style={{
-                          top: "-7px",
-                          right: "-7px",
-                          minWidth: "16px",
-                          height: "16px",
-                          padding: "0 3px",
-                          fontSize: "9px",
-                          lineHeight: "1",
-                          border: "2px solid #ffffff",
-                        }}
-                      >
-                        {totalItems}
-                      </span>
-                    )}
-                  </span>
-                  Cart
-                </Link>
-                <Link
-                  to="/contact"
-                  className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
-                >
-                  Contact Us
-                </Link>
+                    </span>
+                    Cart
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>
