@@ -314,7 +314,7 @@ export function Blog() {
       </section>
 
       {/* Blog Posts Grid - COMMENTED OUT */}
-      {/* <section className="py-12 md:py-24 bg-slate-50">
+      <section className="py-12 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid gap-8 md:grid-cols-2">
             {currentPosts.map((post) => (
@@ -383,7 +383,7 @@ export function Blog() {
             </motion.div>
           )}
         </div>
-      </section> */}
+      </section>
     </main>
   );
 }
