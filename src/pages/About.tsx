@@ -404,26 +404,32 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="relative h-[240px] md:h-[180px] overflow-hidden group cursor-pointer w-[85%] mx-auto md:w-[50%] md:ml-auto md:mr-[20%] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
+                className="relative h-[240px] md:h-[180px] group cursor-pointer w-[85%] mx-auto md:w-[50%] md:ml-auto md:mr-[20%]"
               >
-                {/* Gradient - hidden on mobile (logo state shown), visible on md+ until hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
+                {/* FIX: clipping lives on this inner, non-transformed wrapper.
+                    (overflow-hidden + border-radius on the framer-transformed
+                    outer element fails to clip on mobile browsers) */}
+                <div className="absolute inset-0 overflow-hidden rounded-[60px] sm:rounded-[70px] md:rounded-[80px]">
+                  {/* Gradient - hidden on mobile (logo state shown), visible on md+ until hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                {/* Logo watermark - always visible on mobile, hover-only on md+ */}
-                <div
-                  className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
-                  style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
-                />
-                {/* Overlay - always on for mobile readability, hover-only on md+ */}
-                <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                  {/* Logo watermark - always visible on mobile, hover-only on md+ */}
+                  <div
+                    className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                    style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
+                  />
+                  {/* Overlay - always on for mobile readability, hover-only on md+ */}
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
-                {/* Content - centered */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 md:justify-between md:gap-0 p-4 sm:p-6 z-10">                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
-                  Tagline
-                </h3>
-                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-2xl w-full leading-relaxed opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
-                    Stay on. Go beyond.
-                  </p>
+                  {/* Content - centered */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 md:justify-between md:gap-0 p-4 sm:p-6 z-10">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
+                      Tagline
+                    </h3>
+                    <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-2xl w-full leading-relaxed opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
+                      Stay on. Go beyond.
+                    </p>
+                  </div>
                 </div>
               </motion.div>
 
@@ -434,27 +440,30 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative h-[240px] md:h-[180px] overflow-hidden group cursor-pointer w-[85%] mx-auto md:w-[55%] md:ml-[20px] md:mr-0 rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
+                  className="relative h-[240px] md:h-[180px] group cursor-pointer w-[85%] mx-auto md:w-[55%] md:ml-[20px] md:mr-0"
                 >
-                  {/* Gradient - hidden on mobile, visible on md+ until hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
+                  {/* FIX: inner clipping wrapper */}
+                  <div className="absolute inset-0 overflow-hidden rounded-[60px] sm:rounded-[70px] md:rounded-[80px]">
+                    {/* Gradient - hidden on mobile, visible on md+ until hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                  {/* Logo watermark - always visible on mobile, hover-only on md+ */}
-                  <div
-                    className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
-                    style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
-                  />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                    {/* Logo watermark - always visible on mobile, hover-only on md+ */}
+                    <div
+                      className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                      style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
-                  {/* Content - centered */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
-                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
-                      Mission
-                    </h3>
-                    <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-xl w-full leading-relaxed opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
-                      To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
-                    </p>
+                    {/* Content - centered */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
+                      <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
+                        Mission
+                      </h3>
+                      <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-xl w-full leading-relaxed opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
+                        To deliver innovative, reliable, and cost-effective energy and smart infrastructure solutions through engineering excellence, quality execution, and strategic partnerships that empower homes, businesses, industries, and communities across Africa.
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
 
@@ -481,27 +490,30 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="relative h-[240px] md:h-[220px] overflow-hidden group cursor-pointer w-[85%] mx-auto md:w-[90%] rounded-[60px] sm:rounded-[70px] md:rounded-[80px]"
+                className="relative h-[240px] md:h-[220px] group cursor-pointer w-[85%] mx-auto md:w-[90%]"
               >
-                {/* Gradient - hidden on mobile, visible on md+ until hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
+                {/* FIX: inner clipping wrapper */}
+                <div className="absolute inset-0 overflow-hidden rounded-[60px] sm:rounded-[70px] md:rounded-[80px]">
+                  {/* Gradient - hidden on mobile, visible on md+ until hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                {/* Logo watermark - always visible on mobile, hover-only on md+ */}
-                <div
-                  className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
-                  style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                  {/* Logo watermark - always visible on mobile, hover-only on md+ */}
+                  <div
+                    className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                    style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
-                {/* Content - centered, more line spacing */}
-                <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
-                    Vision
-                  </h3>
-                  <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-3xl w-full leading-loose opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
-                    Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
-                  </p>
+                  {/* Content - centered, more line spacing */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
+                    <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-anton font-extrabold text-white text-center drop-shadow-lg pt-2">
+                      Vision
+                    </h3>
+                    <p className="text-white font-poppins font-normal text-xs sm:text-sm md:text-base text-center max-w-3xl w-full leading-loose opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 pb-2 [text-shadow:0_1px_4px_rgba(0,0,0,0.55)]">
+                      Our vision is to become a leading African provider of sustainable energy and smart infrastructure engineering solutions, delivering world-class projects that create lasting economic and social impact.
+                    </p>
+                  </div>
                 </div>
               </motion.div>
 
