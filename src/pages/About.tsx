@@ -392,7 +392,6 @@ export function About() {
             </motion.div>
           </div>
         </div>
-
         {/* Vision, Mission, Tagline Cards - Embrace Logo Style */}
         <div className="container mx-auto px-4 md:px-6 mt-12">
           <div className="max-w-6xl mx-auto">
@@ -406,20 +405,18 @@ export function About() {
                 transition={{ duration: 0.6 }}
                 className="relative h-[240px] md:h-[180px] group cursor-pointer w-[85%] mx-auto md:w-[50%] md:ml-auto md:mr-[20%]"
               >
-                {/* FIX: clipping lives on this inner, non-transformed wrapper.
-                    (overflow-hidden + border-radius on the framer-transformed
-                    outer element fails to clip on mobile browsers) */}
                 <div className="absolute inset-0 overflow-hidden rounded-[60px] sm:rounded-[70px] md:rounded-[80px]">
-                  {/* Gradient - hidden on mobile (logo state shown), visible on md+ until hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
+                  {/* Gradient - hidden on mobile, visible on md+ until hover */}
+                  <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                  {/* Logo watermark - always visible on mobile, hover-only on md+ */}
+                  {/* Logo watermark - rounded on itself + no blur on mobile,
+                      so iOS Safari can't leak it past the corners */}
                   <div
-                    className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                    className="absolute inset-0 rounded-[inherit] bg-contain bg-no-repeat bg-center md:blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
                     style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
                   />
-                  {/* Overlay - always on for mobile readability, hover-only on md+ */}
-                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 rounded-[inherit] bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
                   {/* Content - centered */}
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 md:justify-between md:gap-0 p-4 sm:p-6 z-10">
@@ -442,18 +439,17 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="relative h-[240px] md:h-[180px] group cursor-pointer w-[85%] mx-auto md:w-[55%] md:ml-[20px] md:mr-0"
                 >
-                  {/* FIX: inner clipping wrapper */}
                   <div className="absolute inset-0 overflow-hidden rounded-[60px] sm:rounded-[70px] md:rounded-[80px]">
-                    {/* Gradient - hidden on mobile, visible on md+ until hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
+                    {/* Gradient */}
+                    <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                    {/* Logo watermark - always visible on mobile, hover-only on md+ */}
+                    {/* Logo watermark */}
                     <div
-                      className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                      className="absolute inset-0 rounded-[inherit] bg-contain bg-no-repeat bg-center md:blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
                       style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
                     />
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                    <div className="absolute inset-0 rounded-[inherit] bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
                     {/* Content - centered */}
                     <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
@@ -484,7 +480,7 @@ export function About() {
                 </motion.div>
               </div>
 
-              {/* Vision Card - Bottom (same height as the rest on mobile) */}
+              {/* Vision Card - Bottom */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -492,18 +488,17 @@ export function About() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="relative h-[240px] md:h-[220px] group cursor-pointer w-[85%] mx-auto md:w-[90%]"
               >
-                {/* FIX: inner clipping wrapper */}
                 <div className="absolute inset-0 overflow-hidden rounded-[60px] sm:rounded-[70px] md:rounded-[80px]">
-                  {/* Gradient - hidden on mobile, visible on md+ until hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
+                  {/* Gradient */}
+                  <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-br from-primary via-primary/95 to-secondary transition-opacity duration-500 opacity-0 md:opacity-100 md:group-hover:opacity-0" />
 
-                  {/* Logo watermark - always visible on mobile, hover-only on md+ */}
+                  {/* Logo watermark */}
                   <div
-                    className="absolute inset-0 bg-contain bg-no-repeat bg-center blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
+                    className="absolute inset-0 rounded-[inherit] bg-contain bg-no-repeat bg-center md:blur-[1px] transition-all duration-500 opacity-70 md:opacity-0 md:group-hover:opacity-70"
                     style={{ backgroundImage: "url('./mis-vis-tag.png')" }}
                   />
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                  <div className="absolute inset-0 rounded-[inherit] bg-black/50 transition-opacity duration-500 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
                   {/* Content - centered, more line spacing */}
                   <div className="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6 z-10">
