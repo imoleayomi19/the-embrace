@@ -72,4 +72,6 @@ export const shopProducts: ShopProduct[] = [
     image: "./product.png",
     description: "Essential surge protection for power reliability and safety.",
   },
+
+
 ];

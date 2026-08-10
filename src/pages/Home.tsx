@@ -125,13 +125,13 @@ export function Home() {
   const heroSlides = [
     {
       type: "video",
-      content: "./hero-video2.mp4",
+      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1786354052/hero-video2.webm",
       text: "Stay on. Go beyond.",
       duration: 17000, // 17 seconds for first slide
     },
     {
       type: "video",
-      content: "./hero-video.mp4",
+      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1786354189/hero-video.webm",
       // Replace with your surveillance video
       texts: [
         "securing your home with the best surveillance system",
@@ -327,7 +327,10 @@ export function Home() {
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover"
                   >
-                    <source src={heroSlides[heroSlide].content} type="video/mp4" />
+                    <source
+                      src={heroSlides[heroSlide].content}
+                      type={heroSlides[heroSlide].content.endsWith('.webm') ? 'video/webm' : 'video/mp4'}
+                    />
                     <img
                       src="./solar-4.jpg"
                       alt="Video fallback"
@@ -473,7 +476,10 @@ export function Home() {
                   className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover"
                   style={{ zIndex: 0 }}
                 >
-                  <source src="./Embrace-Video-v2.mp4" type="video/mp4" />
+                  <source
+                    src="https://res.cloudinary.com/ubznmcom/video/upload/v1786354052/hero-video2.webm"
+                    type="video/webm"
+                  />
                   {/* Fallback image if video doesn't load */}
                   <img
                     src="./solar-4.jpg"

@@ -70,73 +70,151 @@ type ProductItem = {
   path: string;
 };
 
+// Banner Type for the specific category view
+type CategoryBanner = {
+  title: string;
+  image: string;
+  path: string;
+  description?: string;
+};
+
+// ─── Shop By Model chips — DIRECT LINKS to shop page with model parameter ──
+const shopByModels: string[] = ["IVEM", "IVPM", "IVGM", "DXLV", "DXHV", "FLEX"];
+
 // Residential product categories
-const residentialCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
-  {
-    name: "Complete Hybrid Solar Systems",
-    path: "/shop/off-grid-inverter",
-    series: [
-      { label: "IVPS Series", path: "/shop" },
-      { label: "IVEM Series", path: "/shop" },
-      { label: "IVPA Series", path: "/shop" },
-    ],
-    products: [
-      { name: "IVPS3.5~10kVA", image: "./product.webp", path: "/shop" },
-      { name: "IVPS0712-1512", image: "./product.webp", path: "/shop" },
-      { name: "IVEM8~12kW", image: "./product.webp", path: "/shop" },
-      { name: "IVCM1012-LV", image: "./product.webp", path: "/shop" },
-      { name: "IVPA-Pro", image: "./product.webp", path: "/shop" },
-      { name: "IVPS-Mini", image: "./product.webp", path: "/shop" },
-    ],
-  },
-  {
-    name: "CCTV Surveillance Systems",
-    path: "/shop/hybrid-inverter",
-    series: [
-      { label: "IVCM Series", path: "/shop" },
-      { label: "IVHG Series", path: "/shop" },
-      { label: "IVPM Series", path: "/shop" },
-    ],
-    products: [
-      { name: "IVCM1/2/3kW-PRO", image: "./product.webp", path: "/shop" },
-      { name: "IVCM5kW-Lite", image: "./product.webp", path: "/shop" },
-      { name: "IVHG-30kW", image: "./product.webp", path: "/shop" },
-      { name: "IVHG-50kW", image: "./product.webp", path: "/shop" },
-      { name: "IVHG-100kW", image: "./product.webp", path: "/shop" },
-    ],
-  },
-  {
-    name: "Shop All Products",
-    path: "/shop/micro-inverter",
-    series: [
-      { label: "IVEM Series", path: "/shop" },
-      { label: "Micro-400W Series", path: "/shop" },
-    ],
-    products: [
-      { name: "IVEM8~12kW-II", image: "./product.webp", path: "/shop" },
-      { name: "IVEM-400W", image: "./product.webp", path: "/shop" },
-      { name: "IVEM-800W", image: "./product.webp", path: "/shop" },
-    ],
-  },
-];
+const residentialCategories: (ProductCategory & {
+  products: ProductItem[];
+  series: { label: string; path: string }[];
+  banners?: CategoryBanner[];
+})[] = [
+    {
+      name: "Complete Hybrid Solar Systems",
+      path: "/shop/off-grid-inverter",
+      series: [
+        { label: "IVPS Series", path: "/shop" },
+        { label: "IVGM Series", path: "/shop" },
+        { label: "IVPM Series", path: "/shop" },
+      ],
+      banners: [
+        {
+          title: "IVEM",
+          description: "Advanced energy management for homes.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+        {
+          title: "IVPM",
+          description: "Premium power management solutions.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+        {
+          title: "FLEX",
+          description: "Flexible hybrid solar configurations.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+      ],
+      products: [
+        { name: "IVPS3.5~10kVA", image: "./product.webp", path: "/shop" },
+        { name: "IVPS0712-1512", image: "./product.webp", path: "/shop" },
+        { name: "IVEM8~12kW", image: "./product.webp", path: "/shop" },
+        { name: "IVEM-3.6kW", image: "./product.webp", path: "/shop" },
+        { name: "IVCM1012-LV", image: "./product.webp", path: "/shop" },
+        { name: "IVPA-Pro", image: "./product.webp", path: "/shop" },
+        { name: "IVPS-Mini", image: "./product.webp", path: "/shop" },
+        { name: "IVPM-5kW", image: "./product.webp", path: "/shop" },
+        { name: "IVPM-8kW", image: "./product.webp", path: "/shop" },
+        { name: "FLEX-Home 5kVA", image: "./product.webp", path: "/shop" },
+        { name: "FLEX-Home 10kVA", image: "./product.webp", path: "/shop" },
+      ],
+    },
+    {
+      name: "CCTV Surveillance Systems",
+      path: "/shop/hybrid-inverter",
+      series: [
+        { label: "IVCM Series", path: "/shop" },
+        { label: "IVHG Series", path: "/shop" },
+        { label: "IVPM Series", path: "/shop" },
+      ],
+      products: [
+        { name: "IVCM1/2/3kW-PRO", image: "./product.webp", path: "/shop" },
+        { name: "IVCM5kW-Lite", image: "./product.webp", path: "/shop" },
+        { name: "IVHG-30kW", image: "./product.webp", path: "/shop" },
+        { name: "IVHG-50kW", image: "./product.webp", path: "/shop" },
+        { name: "IVHG-100kW", image: "./product.webp", path: "/shop" },
+      ],
+    },
+    {
+      name: "Shop All Products",
+      path: "/shop/micro-inverter",
+      series: [
+        { label: "IVEM Series", path: "/shop" },
+        { label: "Micro-400W Series", path: "/shop" },
+      ],
+      products: [
+        { name: "IVEM8~12kW-II", image: "./product.webp", path: "/shop" },
+        { name: "IVEM-400W", image: "./product.webp", path: "/shop" },
+        { name: "IVEM-800W", image: "./product.webp", path: "/shop" },
+      ],
+    },
+  ];
 
 // Commercial product categories
-const commercialCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
-  {
-    name: "Commercial Hybrid Solar Systems",
-    path: "/shop/cabinet-ess",
-    series: [
-      { label: "Liquid Cooling Series", path: "/shop" },
-      { label: "Air Cooling Series", path: "/shop" },
-    ],
-    products: [
-      { name: "FLM500-125/261", image: "./product.webp", path: "/shop" },
-      { name: "FLH-E60", image: "./product.webp", path: "/shop" },
-      { name: "FLS-MES215AF-S", image: "./product.webp", path: "/shop" },
-      { name: "FLS-ES232LC-S", image: "./product.webp", path: "/shop" },
-    ],
-  },
-];
+const commercialCategories: (ProductCategory & {
+  products: ProductItem[];
+  series: { label: string; path: string }[];
+  banners?: CategoryBanner[];
+})[] = [
+    {
+      name: "Commercial Hybrid Solar Systems",
+      path: "/shop/cabinet-ess",
+      series: [
+        { label: "Liquid Cooling Series", path: "/shop" },
+        { label: "Air Cooling Series", path: "/shop" },
+      ],
+      banners: [
+        {
+          title: "IVGM",
+          description: "Industrial grade grid management.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+        {
+          title: "DXLV",
+          description: "Low voltage commercial storage solutions.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+        {
+          title: "DXHV",
+          description: "High voltage industrial energy systems.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+        {
+          title: "FLEX",
+          description: "Scalable flexible commercial arrays.",
+          image: "./product.webp",
+          path: "/shop",
+        },
+      ],
+      products: [
+        { name: "FLM500-125/261", image: "./product.webp", path: "/shop" },
+        { name: "FLH-E60", image: "./product.webp", path: "/shop" },
+        { name: "FLS-MES215AF-S", image: "./product.webp", path: "/shop" },
+        { name: "FLS-ES232LC-S", image: "./product.webp", path: "/shop" },
+        { name: "IVGM-50kW", image: "./product.webp", path: "/shop" },
+        { name: "IVGM-100kW", image: "./product.webp", path: "/shop" },
+        { name: "DXLV-100", image: "./product.webp", path: "/shop" },
+        { name: "DXLV-200", image: "./product.webp", path: "/shop" },
+        { name: "DXHV-200", image: "./product.webp", path: "/shop" },
+        { name: "DXHV-500", image: "./product.webp", path: "/shop" },
+        { name: "FLEX-C&I 100kVA", image: "./product.webp", path: "/shop" },
+        { name: "FLEX-C&I 250kVA", image: "./product.webp", path: "/shop" },
+      ],
+    },
+  ];
 
 // Mini Grid product categories
 const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
@@ -170,6 +248,42 @@ const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: 
   },
 ];
 
+// ─── Product card ───────────────────────────────────────────────────────────
+// large = same footprint as the Residential / Commercial banner flyers
+// (aspect-[3/4] + 1/2/4-column responsive widths inside the 1200px container).
+// default = compact fixed-size centered card (flex-none w-40 md:w-44).
+function ProductCard({ product, large = false }: { product: ProductItem; large?: boolean }) {
+  return (
+    <Link
+      to={product.path}
+      className={`group flex flex-col items-center gap-2 ${large
+        ? "w-full md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
+        : "flex-none w-40 md:w-44"
+        }`}
+    >
+      <div
+        className={`w-full overflow-hidden rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200 ${large ? "aspect-[3/4]" : "aspect-square"
+          }`}
+      >
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+      </div>
+      <span
+        className={`font-montserrat text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight ${large ? "font-semibold text-sm" : "font-medium text-xs"
+          }`}
+      >
+        {product.name}
+      </span>
+    </Link>
+  );
+}
+
 // ─── Products Mega Menu Component ───────────────────────────────────────────
 
 function ProductsMegaMenu({
@@ -185,13 +299,18 @@ function ProductsMegaMenu({
   productType: "residential" | "commercial" | "mini-grid";
   setProductType: (type: "residential" | "commercial" | "mini-grid") => void;
 }) {
+  // Local state for the "Shop By Model" dropdown button
+  const [isShopByModelOpen, setIsShopByModelOpen] = useState(false);
+
   const categories = productType === "residential"
     ? residentialCategories
     : productType === "commercial"
       ? commercialCategories
       : miniGridCategories;
+
   const activeCat = categories.find((c) => c.name === activeCategory) ?? categories[0];
-  const products = activeCat.products;
+  const hasBanners = !!activeCat.banners && activeCat.banners.length > 0;
+  const isMiniGrid = productType === "mini-grid";
 
   return (
     <motion.div
@@ -263,62 +382,144 @@ function ProductsMegaMenu({
               })}
             </aside>
 
-            {/* ── Right: product grid + series ── */}
-            <div className="flex-1 px-6 py-5 flex flex-col">
-              {/* Product image grid — columns adapt to count */}
-              <div className="flex-1 overflow-y-auto">
-                <AnimatePresence mode="wait">
+            {/* ── Right: Content Area (Banners OR Product Cards) ── */}
+            <div className="flex-1 px-6 py-5 flex flex-col overflow-hidden">
+
+              <AnimatePresence mode="wait">
+                {hasBanners ? (
+                  // Banner flyers layout — CENTERED via flex wrap
                   <motion.div
-                    key={activeCat.name}
+                    key={`${activeCat.name}-banners`}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.18 }}
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
+                    className="w-full h-full overflow-y-auto flex items-start justify-center"
                   >
-                    {products.map((product) => (
-                      <Link
-                        key={product.name}
-                        to={product.path}
-                        className="group flex flex-col items-center gap-2"
-                      >
-                        <div className="w-full aspect-square bg-slate-50 border border-slate-100 rounded-lg overflow-hidden flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200">
-                          <img
-                            src={product.image}
-                            alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = "none";
-                            }}
-                          />
-                        </div>
-                        <span className="font-montserrat font-medium text-xs text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight">
-                          {product.name}
-                        </span>
-                      </Link>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                    {/* Container: max-width 1200px, padding 20px 24px, bg white */}
+                    <div className="w-full max-w-[1200px] p-[20px_24px] bg-white">
+                      <div className="flex flex-wrap justify-center gap-4">
+                        {activeCat.banners!.map((banner, idx) => (
+                          <Link
+                            key={idx}
+                            to={banner.path}
+                            className="group relative block overflow-hidden rounded-[4px] shadow-sm hover:shadow-lg transition-shadow duration-300 aspect-[3/4] bg-slate-100 w-full md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
+                          >
+                            <img
+                              src={banner.image}
+                              alt={banner.title}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = "none";
+                              }}
+                            />
+                            {/* Overlay for text contrast > 4.5:1 */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
 
-              {/* Series links row */}
-              <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3 mt-4">
-                {activeCat.series.map((s) => (
-                  <Link
-                    key={s.label}
-                    to={s.path}
-                    className="font-poppins font-normal text-xs text-slate-500 hover:text-secondary transition-colors"
+                            <div className="absolute bottom-0 left-0 p-5 w-full">
+                              <h3 className="text-white font-montserrat font-bold text-lg mb-1">
+                                {banner.title}
+                              </h3>
+                              {banner.description && (
+                                <p className="text-slate-200 text-sm font-poppins line-clamp-2 mb-3">
+                                  {banner.description}
+                                </p>
+                              )}
+                              <span className="inline-flex items-center text-white text-sm font-semibold border-b-2 border-transparent group-hover:border-white transition-all pb-0.5">
+                                Explore Series <ChevronRight className="w-4 h-4 ml-1" />
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  // Product Cards — Mini Grid uses LARGE cards (same size as
+                  // Residential / Commercial flyers); others stay compact.
+                  <motion.div
+                    key={`${activeCat.name}-products`}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.18 }}
+                    className="flex-1 overflow-y-auto"
                   >
-                    {s.label} &gt;
+                    <div className={isMiniGrid ? "w-full max-w-[1200px] mx-auto p-[20px_24px]" : ""}>
+                      <div className="flex flex-wrap justify-center gap-4">
+                        {activeCat.products.map((product) => (
+                          <ProductCard key={product.name} product={product} large={isMiniGrid} />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Series links row — only for non-banner views */}
+              {!hasBanners && (
+                <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3 mt-4">
+                  {activeCat.series.map((s) => (
+                    <Link
+                      key={s.label}
+                      to={s.path}
+                      className="font-poppins font-normal text-xs text-slate-500 hover:text-secondary transition-colors"
+                    >
+                      {s.label} &gt;
+                    </Link>
+                  ))}
+                  <Link
+                    to={activeCat.path}
+                    className="ml-auto font-montserrat font-semibold text-xs text-secondary hover:underline"
+                  >
+                    All {activeCat.name} &gt;
                   </Link>
-                ))}
-                <Link
-                  to={activeCat.path}
-                  className="ml-auto font-montserrat font-semibold text-xs text-secondary hover:underline"
-                >
-                  All {activeCat.name} &gt;
-                </Link>
-              </div>
+                </div>
+              )}
+
+              {/* "Shop By Model" dropdown — chips are DIRECT LINKS to /shop?model=XXX */}
+              {hasBanners && (
+                <div className="mt-4 pt-4 border-t-2 border-dashed border-slate-300">
+                  <button
+                    type="button"
+                    onClick={() => setIsShopByModelOpen((v) => !v)}
+                    aria-expanded={isShopByModelOpen}
+                    aria-haspopup="true"
+                    className="flex items-center gap-2 font-mono text-sm font-semibold tracking-wider text-primary hover:text-secondary transition-colors"
+                  >
+                    [ Shop By Model ]
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-200 ${isShopByModelOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {isShopByModelOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        {/* CHIPS: pill buttons that navigate directly to shop */}
+                        <div className="flex items-center flex-wrap gap-2 pt-3">
+                          {shopByModels.map((model) => (
+                            <Link
+                              key={model}
+                              to={`/shop?model=${model}`}
+                              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-1.5 font-montserrat text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 transition-colors hover:border-secondary hover:text-secondary"
+                            >
+                              {model}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+
             </div>
           </div>
         </div>
@@ -349,12 +550,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menus on route change
+  // FIX: Close menus on ANY navigation — pathname AND search (query string).
+  // Previously only pathname was watched, so navigating /shop → /shop?model=IVGM
+  // left the mega menu open, overlaying the shop page.
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setOpenDropdown(null);
     setOpenMobileSub(null);
-  }, [location.pathname]);
+  }, [location.pathname, location.search]);
 
   // HOME | ABOUT | SOLUTIONS | SHOP PRODUCTS | PROJECTS | RESOURCES ▾
   const navLinks: NavLink[] = [
@@ -488,7 +691,7 @@ export function Navbar() {
                   );
                 }
 
-                // Resources — medium hover dropdown (3 columns) - same styling as other dropdowns
+                // Resources — medium hover dropdown (3 columns)
                 if (isResources) {
                   return (
                     <div
@@ -525,11 +728,9 @@ export function Navbar() {
                             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                             className={`absolute top-full right-0 pt-2 z-50 ${isScrolled ? "mt-0" : "mt-2"}`}
                           >
-                            {/* Existing dropdown styling: white panel, shadow, gray top border */}
                             <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden w-[720px] max-w-[92vw] ${isScrolled ? "mt-4" : "mt-5"}`}>                              <div className="grid grid-cols-3 gap-8 px-7 py-6">
                               {resourcesGroups.map((group) => (
                                 <div key={group.title}>
-                                  {/* Column header - Montserrat Bold */}
                                   <h4 className="font-montserrat font-bold text-xs uppercase tracking-widest text-primary border-b border-slate-200 pb-2 mb-3">
                                     {group.title}
                                   </h4>
@@ -564,7 +765,7 @@ export function Navbar() {
                   );
                 }
 
-                // Dropdowns with children (Solutions, About) - Montserrat Bold
+                // Dropdowns with children (Solutions, About)
                 return (
                   <div
                     key={link.name}
@@ -650,7 +851,7 @@ export function Navbar() {
                         </motion.div>
                       )}
 
-                      {/* Regular dropdown for About - Montserrat Medium */}
+                      {/* Regular dropdown for About */}
                       {openDropdown === link.name && !isSolutions && (
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
@@ -685,7 +886,6 @@ export function Navbar() {
 
           {/* Cart and Contact Us - Far Right */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-            {/* Shopping Cart Icon + Badge (badge hidden when cart is empty) */}
             <Link
               to="/cart"
               className="group relative inline-flex items-center justify-center p-2"
@@ -717,7 +917,6 @@ export function Navbar() {
               </span>
             </Link>
 
-            {/* Contact Us Button */}
             <Link
               to="/contact"
               className="inline-block bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-2.5 rounded-sm shadow-md uppercase text-sm tracking-wide transition-all duration-200 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg hover:-translate-y-0.5"
@@ -755,7 +954,6 @@ export function Navbar() {
                 const isProducts = link.name === "Shop Products";
                 const isResources = link.name === "Resources";
 
-                // Shop Products mobile: show category list
                 if (isProducts) {
                   const isOpen = openMobileSub === "Shop Products";
                   return (
@@ -801,7 +999,6 @@ export function Navbar() {
                   );
                 }
 
-                // Resources mobile: show the 3 groups from the dropdown
                 if (isResources) {
                   const isOpen = openMobileSub === "Resources";
                   return (
@@ -862,7 +1059,6 @@ export function Navbar() {
                 }
 
                 const hasChildren = !!link.children?.length;
-                // Simple links
                 if (!hasChildren) {
                   return (
                     <Link
@@ -875,7 +1071,6 @@ export function Navbar() {
                   );
                 }
 
-                // Dropdown links
                 const isOpen = openMobileSub === link.name;
                 return (
                   <div
