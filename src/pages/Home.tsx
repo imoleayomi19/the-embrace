@@ -477,14 +477,8 @@ export function Home() {
                   style={{ zIndex: 0 }}
                 >
                   <source
-                    src="https://res.cloudinary.com/ubznmcom/video/upload/v1786354052/hero-video2.webm"
+                    src="https://res.cloudinary.com/ubznmcom/video/upload/v1786443325/Embrace-Video.webm"
                     type="video/webm"
-                  />
-                  {/* Fallback image if video doesn't load */}
-                  <img
-                    src="./solar-4.jpg"
-                    alt="Embrace Technologies"
-                    className="absolute inset-0 w-full h-full object-cover"
                   />
                 </video>
                 {/* Overlay gradient */}

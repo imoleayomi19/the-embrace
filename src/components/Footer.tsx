@@ -26,17 +26,16 @@ const TikTok = ({ className }: { className?: string }) => (
   </svg>
 );
 
-// X (formerly Twitter) Icon Component
-const XLogo = ({ className }: { className?: string }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className={className}
-  >
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-  </svg>
-);
+// const XLogo = ({ className }: { className?: string }) => (
+//   <svg
+//     xmlns="http://www.w3.org/2000/svg"
+//     viewBox="0 0 24 24"
+//     fill="currentColor"
+//     className={className}
+//   >
+//     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+//   </svg>
+// );
 
 export function Footer() {
   const [email, setEmail] = useState("");
@@ -81,9 +80,9 @@ export function Footer() {
 
             {/* Left: Icon + Copy */}
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-left flex-shrink-0">
-              <div className="w-11 h-11 md:w-12 md:h-12 rounded-lg bg-gradient-to-br from-alternativeO to-secondary flex items-center justify-center shadow-md shadow-alternativeO/25 flex-shrink-0">
+              {/* <div className="w-11 h-11 md:w-12 md:h-12 rounded-lg bg-gradient-to-br from-alternativeO to-secondary flex items-center justify-center shadow-md shadow-alternativeO/25 flex-shrink-0">
                 <Mail className="w-5 h-5 md:w-6 md:h-6 text-white" />
-              </div>
+              </div> */}
               <div>
                 <h3 className="text-base md:text-lg font-montserrat font-bold text-white leading-snug">
                   Subscribe to Our Newsletter
@@ -106,11 +105,11 @@ export function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full rounded-lg bg-slate-200 px-4 py-2.5 sm:pr-32 text-slate-800 placeholder-slate-500 font-poppins font-normal text-sm focus:outline-none focus:ring-2 focus:ring-secondary/70"
+                  className="w-full rounded-sm bg-slate-200 px-4 py-2.5 sm:pr-32 text-slate-800 placeholder-slate-500 font-poppins font-normal text-sm focus:outline-none focus:ring-2 focus:ring-secondary/70"
                 />
                 <button
                   type="submit"
-                  className="w-full sm:w-auto sm:absolute sm:top-1/2 sm:right-1 sm:-translate-y-1/2 rounded-md bg-secondary px-5 py-2.5 sm:py-1.5 text-white font-montserrat font-semibold text-xs md:text-sm whitespace-nowrap shadow-sm transition-all duration-200 hover:bg-alternativeO hover:text-primary"
+                  className="w-full sm:w-auto sm:absolute sm:top-1/2 sm:right-1 sm:-translate-y-1/2 rounded-sm bg-secondary px-5 py-2.5 sm:py-1.5 text-white font-montserrat font-semibold text-xs md:text-sm whitespace-nowrap shadow-sm transition-all duration-200 hover:bg-alternativeO hover:text-primary"
                 >
                   Subscribe
                 </button>
@@ -146,9 +145,9 @@ export function Footer() {
             <div className="flex items-center gap-3 pt-2">
               {[
                 { icon: Facebook, href: 'https://www.facebook.com/share/1JfaLfq7ov/?mibextid=wwXIfr' },
-                { icon: XLogo, href: '#' }, // Replaced Twitter with XLogo
+                // { icon: XLogo, href: '#' },
                 { icon: Instagram, href: 'https://www.instagram.com/embracetechnologieslimited?igsh=bGNua2QzYTc4OTVz' },
-                { icon: Linkedin, href: '#' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/company/136027320' },
                 { icon: TikTok, href: 'https://www.tiktok.com/@embracetechnologies?_r=1&_t=ZS-97ivVXzhWSq' },
               ].map((social, idx) => (
                 <a

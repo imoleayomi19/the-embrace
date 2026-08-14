@@ -99,16 +99,56 @@ export function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
 
-  // Calculate total pages
-  const totalPages = Math.ceil(blogPosts.length / postsPerPage);
+  // Filter posts by search query
+  const filteredPosts = blogPosts.filter((post) => {
+    const q = searchQuery.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(q) ||
+      post.description.toLowerCase().includes(q) ||
+      post.date.toLowerCase().includes(q)
+    );
+  });
 
-  // Get current posts
+  // Sort filtered posts
+  const sortedPosts = [...filteredPosts].sort((a, b) => {
+    if (sortBy === "newest") {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    } else if (sortBy === "oldest") {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+    // "popular" — keep original order (could be extended with a views field)
+    return 0;
+  });
+
+  // Calculate total pages based on filtered results
+  const totalPages = Math.ceil(sortedPosts.length / postsPerPage);
+
+  // Get current posts from filtered + sorted list
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = blogPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   // Pagination numbers array
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  // Handlers that reset page to 1
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleSearchToggle = () => {
+    if (isSearchExpanded) {
+      setSearchQuery("");
+      setCurrentPage(1);
+    }
+    setIsSearchExpanded(!isSearchExpanded);
+  };
 
   return (
     <main className="w-full overflow-hidden">
@@ -270,7 +310,7 @@ export function Blog() {
                   }`}
               >
                 <button
-                  onClick={() => setIsSearchExpanded(!isSearchExpanded)}
+                  onClick={handleSearchToggle}
                   className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-slate-500 hover:text-primary transition-colors"
                   aria-label="Toggle search"
                 >
@@ -285,7 +325,7 @@ export function Blog() {
                   type="text"
                   placeholder="Search articles..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={handleSearch}
                   className={`bg-transparent outline-none text-slate-700 placeholder-slate-400 font-poppins text-sm transition-all duration-300 ${isSearchExpanded
                     ? "w-full h-12 px-4 opacity-100"
                     : "w-0 h-0 px-0 opacity-0"
@@ -301,7 +341,7 @@ export function Blog() {
               </span>
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={handleSort}
                 className="flex-1 md:flex-none bg-slate-100 border-none rounded-full px-4 py-3 text-slate-700 font-poppins text-sm outline-none focus:ring-2 focus:ring-secondary cursor-pointer transition-all duration-200 hover:bg-slate-200"
               >
                 <option value="newest">Newest First</option>
@@ -313,9 +353,25 @@ export function Blog() {
         </div>
       </section>
 
-      {/* Blog Posts Grid - COMMENTED OUT */}
+      {/* Blog Posts Grid */}
       <section className="py-12 md:py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
+          {/* No results message */}
+          {sortedPosts.length === 0 && (
+            <motion.div
+              className="flex flex-col items-center justify-center py-24 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Search className="w-12 h-12 text-slate-300 mb-4" />
+              <h3 className="text-xl font-montserrat font-semibold text-slate-500 mb-2">No articles found</h3>
+              <p className="text-slate-400 font-poppins text-sm">
+                No results for &ldquo;<span className="text-secondary">{searchQuery}</span>&rdquo;. Try a different keyword.
+              </p>
+            </motion.div>
+          )}
+
           <div className="grid gap-8 md:grid-cols-2">
             {currentPosts.map((post) => (
               <motion.article
