@@ -39,7 +39,7 @@ export function Shop() {
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-contain bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(/solar-panels.png)` }}
+          style={{ backgroundImage: `url(/solar-panels.webp)` }}
         />
 
         {/* Dark Overlay for text readability */}

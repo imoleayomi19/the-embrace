@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
     id: 1,
     title: "Why Solar Is the Best Investment for Your Home",
     date: "October 15, 2023",
-    image: "./solar-4.jpg",
+    image: "./blog.webp",
     description: "Discover how solar power reduces costs, increases reliability, and boosts your property's value.",
     content: `
       <p>For years, "Save 30 percent with the ITC" was instrumental in the residential solar sales pitch – a value hook that helped land the sale.</p>
@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
     id: 2,
     title: "Top CCTV Setup Tips for Maximum Security",
     date: "November 2, 2023",
-    image: "./main1.jpg",
+    image: "./blog.webp",
     description: "Learn how to choose the right cameras, position them for the best coverage, and protect your property.",
     content: `
       <p>Security is paramount for both residential and commercial properties. A well-designed CCTV system provides peace of mind and acts as a powerful deterrent against criminal activity.</p>
@@ -78,7 +78,7 @@ export const blogPosts: BlogPost[] = [
     id: 3,
     title: "How to Prepare Your Business for Power Outages",
     date: "November 18, 2023",
-    image: "./img-3.png",
+    image: "./blog.webp",
     description: "Practical guidance on hybrid solar systems, batteries, and backup power solutions.",
     content: `
       <p>Power outages can cripple business operations, resulting in lost revenue, damaged equipment, and dissatisfied customers. Implementing reliable backup power solutions is essential for business continuity.</p>
@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
     id: 4,
     title: "Solar Maintenance: Keep Your System Performing",
     date: "December 5, 2023",
-    image: "./about-us.jpg",
+    image: "./blog.webp",
     description: "Simple maintenance steps that preserve performance and extend the lifetime of your solar panels.",
     content: `
       <p>Solar panels are designed to be low-maintenance, but regular care ensures optimal performance and maximizes your return on investment over the system's 25-30 year lifespan.</p>
@@ -139,7 +139,7 @@ export const blogPosts: BlogPost[] = [
     id: 5,
     title: "The Future of Renewable Energy in Nigeria",
     date: "January 10, 2024",
-    image: "./solar-4.jpg",
+    image: "./blog.webp",
     description: "Exploring the potential of renewable energy sources and their impact on Nigeria's power sector.",
     content: `
       <p>Nigeria stands at the forefront of Africa's renewable energy revolution. With abundant solar resources and growing demand for reliable electricity, the country is poised for significant transformation in its energy sector.</p>
@@ -169,7 +169,7 @@ export const blogPosts: BlogPost[] = [
     id: 6,
     title: "Smart Home Security Systems Guide",
     date: "February 5, 2024",
-    image: "./main1.jpg",
+    image: "./blog.webp",
     description: "Complete guide to choosing and installing smart security systems for modern homes.",
     content: `
       <p>Smart home security systems represent the evolution of traditional security, offering advanced features, remote monitoring, and seamless integration with other smart home devices.</p>
@@ -201,7 +201,7 @@ export const blogPosts: BlogPost[] = [
     id: 7,
     title: "Energy Efficiency Tips for Nigerian Businesses",
     date: "March 12, 2024",
-    image: "./img-3.png",
+    image: "./blog.webp",
     description: "Practical strategies to reduce energy costs and improve operational efficiency.",
     content: `
       <p>Energy costs represent a significant operational expense for Nigerian businesses. Implementing energy efficiency measures can substantially reduce costs while improving environmental impact and operational reliability.</p>
@@ -233,7 +233,7 @@ export const blogPosts: BlogPost[] = [
     id: 8,
     title: "Understanding Solar Panel Warranties",
     date: "April 8, 2024",
-    image: "./about-us.jpg",
+    image: "./blog.webp",
     description: "What you need to know about solar panel warranties and protection plans.",
     content: `
       <p>Solar panel warranties protect your investment and ensure long-term performance. Understanding warranty terms helps you make informed purchasing decisions and maximize your system's value.</p>
