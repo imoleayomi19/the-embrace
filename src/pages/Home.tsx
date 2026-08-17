@@ -125,7 +125,7 @@ export function Home() {
   const heroSlides = [
     {
       type: "video",
-      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1786354052/hero-video2.webm",
+      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1786443325/Embrace-Video.webm",
       text: "Stay on. Go beyond.",
       duration: 17000, // 17 seconds for first slide
     },

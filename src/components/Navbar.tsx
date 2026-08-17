@@ -925,18 +925,53 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden p-2 transition-colors flex-shrink-0 text-primary"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+          {/* Mobile: Cart icon + Hamburger toggle */}
+          <div className="lg:hidden flex items-center gap-1 flex-shrink-0">
+            {/* Cart icon — left of hamburger */}
+            <Link
+              to="/cart"
+              className="relative inline-flex items-center justify-center p-2 text-primary"
+              aria-label="View cart"
+            >
+              <span className="relative inline-block">
+                <img
+                  src="/shopping-cart.png"
+                  alt="Shopping Cart"
+                  className="w-6 h-6"
+                />
+                {totalItems > 0 && (
+                  <span
+                    className="absolute z-50 flex items-center justify-center rounded-full bg-orange-500 font-bold text-white shadow-md pointer-events-none"
+                    style={{
+                      top: "-7px",
+                      right: "-7px",
+                      minWidth: "18px",
+                      height: "18px",
+                      padding: "0 4px",
+                      fontSize: "10px",
+                      lineHeight: "1",
+                      border: "2px solid #ffffff",
+                    }}
+                  >
+                    {totalItems}
+                  </span>
+                )}
+              </span>
+            </Link>
+
+            {/* Hamburger */}
+            <button
+              className="p-2 transition-colors text-primary"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1123,34 +1158,8 @@ export function Navbar() {
                   );
                 })}
 
-                {/* Cart and Contact Us Buttons (mobile) */}
+                {/* Contact Us Button (mobile) */}
                 <div className="flex items-center gap-3 mt-4">
-                  <Link
-                    to="/cart"
-                    className="flex-1 flex items-center justify-center gap-2 bg-white border border-orange-500 text-orange-500 font-montserrat font-semibold px-4 py-3 rounded-sm uppercase tracking-wide shadow-sm"
-                  >
-                    <span className="relative inline-block">
-                      <img src="/shopping-cart.png" alt="Cart" className="w-5 h-5" />
-                      {totalItems > 0 && (
-                        <span
-                          className="absolute z-50 flex items-center justify-center rounded-full bg-orange-500 font-bold text-white pointer-events-none"
-                          style={{
-                            top: "-7px",
-                            right: "-7px",
-                            minWidth: "16px",
-                            height: "16px",
-                            padding: "0 3px",
-                            fontSize: "9px",
-                            lineHeight: "1",
-                            border: "2px solid #ffffff",
-                          }}
-                        >
-                          {totalItems}
-                        </span>
-                      )}
-                    </span>
-                    Cart
-                  </Link>
                   <Link
                     to="/contact"
                     className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
