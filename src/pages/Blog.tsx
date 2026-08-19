@@ -372,11 +372,11 @@ export function Blog() {
             </motion.div>
           )}
 
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className={`grid gap-8 ${currentPosts.length === 1 ? 'grid-cols-1 place-items-center' : 'md:grid-cols-2'}`}>
             {currentPosts.map((post) => (
               <motion.article
                 key={post.id}
-                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
+                className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col h-full w-full max-w-2xl"
                 {...fadeIn}
               >
                 <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">

@@ -15,26 +15,26 @@ import { Cart } from './pages/Cart';
 export function App() {
   return (
     <CartProvider>
-    <Router>
-      <div className="flex flex-col min-h-screen overflow-x-hidden">
-        <Navbar />
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+      <Router>
+        <div className="flex flex-col min-h-screen overflow-x-hidden">
+          <Navbar />
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              {/* <Route path="/shop" element={<Shop />} /> */}
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </div>
+          <WhatsAppButton />
+          <Footer />
         </div>
-        <WhatsAppButton />
-        <Footer />
-      </div>
-    </Router>
+      </Router>
     </CartProvider>
   );
 }
