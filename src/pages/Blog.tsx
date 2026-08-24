@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Search, X, Calendar, ArrowLeft, ArrowRight } from "lucide-react";
@@ -239,6 +239,24 @@ export function Blog() {
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Intercept internal links inside HTML content so React Router handles them
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el) return;
+    const handleClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest('a');
+      if (!target) return;
+      const href = target.getAttribute('href');
+      if (href && href.startsWith('/') && !href.startsWith('//')) {
+        e.preventDefault();
+        navigate(href);
+      }
+    };
+    el.addEventListener('click', handleClick);
+    return () => el.removeEventListener('click', handleClick);
+  }, [navigate]);
 
   const currentPost = blogPosts.find((post) => post.slug === slug);
   const currentIndex = blogPosts.findIndex((post) => post.slug === slug);
@@ -385,6 +403,7 @@ export function BlogPost() {
 
           {/* Full Article Content */}
           <motion.div
+            ref={contentRef}
             className="prose prose-lg max-w-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
