@@ -15,8 +15,9 @@ export default {
         alternativeR: '#EE373D',
       },
       fontFamily: {
-        anton: ['Anton', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
+        anton: ['Anton', 'sans-serif'],
+        sourceSans: ['Source Sans Pro', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
       backgroundImage: {

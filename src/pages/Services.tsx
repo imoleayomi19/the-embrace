@@ -127,7 +127,7 @@ export function Services() {
     {
       icon: Home,
       title: "Residential Solar",
-      desc: "With Embrace Technologies, Nigerian homes can enjoy dependable solar power through expertly designed residential systems tailored to individual energy needs — starting from 1.2kVA and scalable for greater capacity.",
+      desc: "With Embrace Technologies Limited, Nigerian homes can enjoy dependable solar power through expertly designed residential systems tailored to individual energy needs — starting from 1.2kVA and scalable for greater capacity.",
       features: [
         "Custom roof design",
         "Tier-1 monocrystalline panels",
@@ -138,7 +138,7 @@ export function Services() {
     {
       icon: Building2,
       title: "Commercial Solar",
-      desc: "At Embrace Technologies, we provide tailored and forward-thinking solar solutions for government bodies, businesses, and commercial, industrial, and educational organizations nationwide, serving clients across all 36 states of Nigeria.",
+      desc: "At Embrace Technologies Limited, we provide tailored and forward-thinking solar solutions for government bodies, businesses, and commercial, industrial, and educational organizations nationwide, serving clients across all 36 states of Nigeria.",
       features: [
         "Tax incentive guidance",
         "Demand charge reduction",
@@ -146,17 +146,6 @@ export function Services() {
         "Corporate sustainability",
       ],
     },
-    // {
-    //   icon: Battery,
-    //   title: "Battery Storage",
-    //   desc: "Store excess energy generated during the day to use at night or during grid outages. True energy independence.",
-    //   features: [
-    //     "Seamless backup power",
-    //     "Time-of-use optimization",
-    //     "Lithium-ion technology",
-    //     "Scalable capacity",
-    //   ],
-    // },
     {
       icon: Wrench,
       title: "Solar Maintenance",
@@ -168,56 +157,30 @@ export function Services() {
         "Pest abatement",
       ],
     },
-    // {
-    //   icon: Search,
-    //   title: "Energy Audits",
-    //   desc: "Comprehensive analysis of your property's energy consumption to identify efficiency improvements before going solar.",
-    //   features: [
-    //     "Thermal imaging",
-    //     "Insulation check",
-    //     "Appliance analysis",
-    //     "Detailed ROI report",
-    //   ],
-    // },
-    // {
-    //   icon: Zap,
-    //   title: "EV Charging",
-    //   desc: "Level 2 and DC fast charging station installation for homes and businesses, integrated with your solar system.",
-    //   features: [
-    //     "Smart load management",
-    //     "Multi-vehicle setups",
-    //     "Commercial fleet solutions",
-    //     "Rebate assistance",
-    //   ],
-    // },
   ];
 
-  const faqs = [
-    {
-      q: "How much does a solar system cost?",
-      a: "The cost varies depending on your energy needs, roof size, and location. However, with current tax incentives and financing options, many customers switch to solar for $0 down and pay less per month than their current utility bill.",
-    },
-    {
-      q: "What happens during a power outage?",
-      a: "Standard grid-tied solar systems automatically shut off during an outage for safety reasons. If you want backup power during outages, you'll need to add a battery storage system to your installation.",
-    },
-    {
-      q: "How long does installation take?",
-      a: "The physical installation usually takes 1-3 days. However, the entire process—including design, permitting, and utility interconnection—typically takes 4-8 weeks depending on your local municipality.",
-    },
-    {
-      q: "Do solar panels work on cloudy days?",
-      a: "Yes! While they produce the most power in direct sunlight, solar panels still generate electricity on cloudy or rainy days. They just produce at a lower capacity.",
-    },
-    // {
-    //   q: "What warranties do you offer?",
-    //   a: "We offer a comprehensive 25-year warranty that covers the panels, microinverters, racking, and our workmanship. We guarantee your system will perform as promised.",
-    // },
-    {
-      q: "Will solar panels damage my roof?",
-      a: "No. In fact, solar panels can actually protect the portion of the roof they cover from weather and UV damage. Our certified installers use specialized flashing to ensure your roof remains completely watertight.",
-    },
-  ];
+  // const faqs = [
+  //   {
+  //     q: "How much does a solar system cost?",
+  //     a: "The cost varies depending on your energy needs, roof size, and location. However, with current tax incentives and financing options, many customers switch to solar for $0 down and pay less per month than their current utility bill.",
+  //   },
+  //   {
+  //     q: "What happens during a power outage?",
+  //     a: "Standard grid-tied solar systems automatically shut off during an outage for safety reasons. If you want backup power during outages, you'll need to add a battery storage system to your installation.",
+  //   },
+  //   {
+  //     q: "How long does installation take?",
+  //     a: "The physical installation usually takes 1-3 days. However, the entire process—including design, permitting, and utility interconnection—typically takes 4-8 weeks depending on your local municipality.",
+  //   },
+  //   {
+  //     q: "Do solar panels work on cloudy days?",
+  //     a: "Yes! While they produce the most power in direct sunlight, solar panels still generate electricity on cloudy or rainy days. They just produce at a lower capacity.",
+  //   },
+  //   {
+  //     q: "Will solar panels damage my roof?",
+  //     a: "No. In fact, solar panels can actually protect the portion of the roof they cover from weather and UV damage. Our certified installers use specialized flashing to ensure your roof remains completely watertight.",
+  //   },
+  // ];
 
   return (
     <main className="w-full overflow-hidden">
@@ -227,7 +190,7 @@ export function Services() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./services-hero.webp')",
+              backgroundImage: "url('./service1.jpg')",
               backgroundPosition: "center 40%",
             }}
           />
@@ -368,7 +331,7 @@ export function Services() {
             {...fadeIn}
           >
             {/* Main Headline - Anton ExtraBold */}
-            <h3 className="text-2xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
+            <h3 className="text-2xl font-black mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase text-[#002060] font-anton">
               Our Solutions
             </h3>
             {/* Body Text - Source Sans Pro/Poppins Regular */}
@@ -431,7 +394,7 @@ export function Services() {
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <motion.div className="lg:w-1/2" {...fadeIn}>
               {/* Main Headline - Anton ExtraBold */}
-              <h3 className="text-3xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
+              <h3 className="text-3xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase text-[#002060] font-anton">
                 The Embrace Process
               </h3>
               {/* <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-6">
@@ -521,18 +484,18 @@ export function Services() {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
+      {/* FAQ SECTION
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6 max-w-4xl">
           <motion.div className="text-center mb-16" {...fadeIn}>
-            {/* Main Headline - Anton ExtraBold */}
-            <h3 className="text-2xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-anton">
+            Main Headline - Anton ExtraBold
+            <h3 className="text-2xl font-black  mb-4 sm:text-3xl md:text-4xl lg:text-5xl tracking-wider font-extrabold uppercase text-[#002060] font-anton">
               FREQUENTLY ASKED QUESTIONS
             </h3>
-            {/* <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4">
               Frequently Asked Questions
-            </h2> */}
-            {/* Body Text - Source Sans Pro/Poppins Regular */}
+            </h2>
+            Body Text - Source Sans Pro/Poppins Regular
             <p className="text-slate-600 font-poppins font-normal text-lg">
               Everything you need to know about switching to solar.
             </p>
@@ -554,7 +517,7 @@ export function Services() {
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
                 >
-                  {/* Section Title - Montserrat Bold */}
+                  Section Title - Montserrat Bold
                   <span className="font-montserrat font-bold text-lg text-primary">
                     {faq.q}
                   </span>
@@ -590,7 +553,7 @@ export function Services() {
                         duration: 0.3,
                       }}
                     >
-                      {/* Body Text - Source Sans Pro/Poppins Regular */}
+                      Body Text - Source Sans Pro/Poppins Regular
                       <div className="px-6 pb-6 pt-2 text-slate-600 font-poppins font-normal leading-relaxed border-t border-slate-50">
                         {faq.a}
                       </div>
@@ -599,9 +562,9 @@ export function Services() {
                 </AnimatePresence>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
+          </motion.div> */}
+      {/* </div>
+      </section> */}
 
       {/* CTA BANNER */}
       <section className="py-20 bg-primary relative overflow-hidden">

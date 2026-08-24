@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -9,7 +9,7 @@ import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Blog, BlogPost } from './pages/Blog';
 import { Contact } from './pages/Contact';
-import { Shop } from './pages/Shop';
+// import { HelmetProvider } from 'react-helmet-async';
 import { Cart } from './pages/Cart';
 
 export function App() {
@@ -25,8 +25,7 @@ export function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:id" element={<BlogPost />} />
-              {/* <Route path="/shop" element={<Shop />} /> */}
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>

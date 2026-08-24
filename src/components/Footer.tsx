@@ -67,13 +67,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 pt-12 md:pt-16 pb-12 border-b border-slate-800/60">
 
           {/* Column 1: Brand & About */}
-          <div className="lg:col-span-4 space-y-4 items-center flex-col">
+          <div className="lg:col-span-4 space-y-4 flex flex-col items-start">
             <Link
               to="/"
               className="inline-flex items-center justify-center rounded-2xl bg-white/5 p-3 shadow-lg transition hover:bg-white/10 border-white/5"
             >
               <img
-                src="./fotter-logo.jpg"
+                src="/fotter-logo.jpg"
                 alt="Embrace Technologies"
                 className="h-16 sm:h-20 md:h-24 w-auto max-w-[160px] sm:max-w-[200px] object-contain rounded-3xl"
               />
@@ -98,7 +98,7 @@ export function Footer() {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="lg:col-span-2 text-center lg:text-left flex-col items-center lg:items-start">
+          <div className="lg:col-span-2 text-left flex flex-col items-start">
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Quick Links
             </h4>
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
 
           {/* Column 3: Our Services */}
-          <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="lg:col-span-3 text-left flex flex-col items-start">
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Our Services
             </h4>
@@ -136,18 +136,18 @@ export function Footer() {
           </div>
 
           {/* Column 4: Contact Info */}
-          <div className="lg:col-span-3 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="lg:col-span-3 text-left flex flex-col items-start">
             <h4 className="text-sm font-montserrat font-bold uppercase tracking-widest text-white mb-4">
               Get In Touch
             </h4>
-            <ul className="space-y-3 text-sm text-slate-400 font-montserrat font-medium items-center lg:items-start flex flex-col">
-              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+            <ul className="space-y-3 text-sm text-slate-400 font-montserrat font-medium flex flex-col items-start">
+              <li className="flex flex-row items-start gap-3">
                 <MapPin className="w-5 h-5 text-secondary shrink-0" />
                 <span className="leading-relaxed font-poppins font-normal">
                   116 Ikorodu-Lagos Road, Haruna Bustop, <br /> Ikorodu, Lagos, Nigeria
                 </span>
               </li>
-              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+              <li className="flex flex-row items-start gap-3">
                 <Phone className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a href="tel:+2347061451583" className="transition-colors hover:text-secondary block font-poppins font-normal">
@@ -155,7 +155,7 @@ export function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center lg:items-start gap-3 flex-col lg:flex-row">
+              <li className="flex flex-row items-start gap-3">
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a
@@ -166,7 +166,7 @@ export function Footer() {
                   </a>
                 </div>
               </li>
-              <li className="flex items-center gap-3 flex-col lg:flex-row">
+              <li className="flex flex-row items-start gap-3">
                 <Globe className="w-5 h-5 text-secondary shrink-0" />
                 <a
                   href="https://www.embracetechng.com"

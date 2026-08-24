@@ -522,7 +522,7 @@ export function Contact() {
                   Message
                 </label>
                 <textarea
-                  placeholder="Tell us about your project"
+                  placeholder="Enter your message"
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
