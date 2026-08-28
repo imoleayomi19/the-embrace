@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
         <img src="/blog/get-started.webp" alt="Get Started" class="rounded-2xl mx-auto mb-6 max-w-md shadow-lg"/>
         <h2 class="text-3xl font-bold text-slate-800 mb-3">Be a part of this future</h2>
         <p class="text-slate-600 mb-6">Contact us now to get started</p>
-        <a href="/landing" class="inline-block bg-[#EA6936] text-white font-bold px-8 py-4 rounded-full hover:bg-[#EA6936]/90 transition">Get Started</a>
+        <a href="/contact" class="inline-block bg-[#EA6936] text-white font-bold px-8 py-4 rounded-full hover:bg-[#EA6936]/90 transition">Get Started</a>
       </div>
     `
   },
