@@ -343,24 +343,6 @@ export function BlogPost() {
 
       <main className="w-full bg-white min-h-screen">
         <article className="max-w-4xl mx-auto px-4 md:px-6 pt-32 pb-12 md:pt-40 md:pb-16">
-
-          {/* ✅ Breadcrumb Navigation */}
-          {/* <motion.nav
-            aria-label="Breadcrumb"
-            className="text-sm text-slate-500 mb-6 font-montserrat"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <ol className="flex items-center gap-2">
-              <li><Link to="/" className="hover:text-secondary transition-colors">Home</Link></li>
-              <li>›</li>
-              <li><Link to="/blog" className="hover:text-secondary transition-colors">Blog</Link></li>
-              <li>›</li>
-              <li className="text-slate-800 font-medium truncate">{currentPost.title}</li>
-            </ol>
-          </motion.nav> */}
-
           {/* Title */}
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl font-anton font-extrabold text-slate-700 mb-6 leading-tight"
