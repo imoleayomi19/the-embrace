@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -112,9 +112,7 @@ function CountUp({
 }
 
 export function Home() {
-  const [phraseIndex, setPhraseIndex] = useState(0);
   const [heroSlide, setHeroSlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
@@ -122,7 +120,7 @@ export function Home() {
   const [displayTextIndex, setDisplayTextIndex] = useState(0);
 
   // Hero slides data - 2 cards with navigation
-  const heroSlides = [
+  const heroSlides = useMemo(() => [
     {
       type: "video",
       content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787919331/hero-sec.webm",
@@ -131,7 +129,7 @@ export function Home() {
     },
     {
       type: "video",
-      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1786354189/hero-video.webm",
+      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4",
       // Replace with your surveillance video
       texts: [
         "securing your home with the best surveillance system",
@@ -140,17 +138,21 @@ export function Home() {
       ],
       duration: 15000, // 15 seconds for second slide
     },
-  ];
+  ], []);
 
   // Auto-cycle through texts on second slide
   useEffect(() => {
-    if (heroSlide === 1) {
-      const textInterval = setInterval(() => {
-        setDisplayTextIndex((prev) => (prev + 1) % heroSlides[1].texts.length);
-      }, 4000); // Change text every 4 seconds
-      return () => clearInterval(textInterval);
+    if (heroSlide === 1 && heroSlides.length > 1) {
+      const slide = heroSlides[1];
+      if ('texts' in slide && Array.isArray(slide.texts) && slide.texts.length > 0) {
+        const textsLength = slide.texts.length;
+        const textInterval = setInterval(() => {
+          setDisplayTextIndex((prev) => (prev + 1) % textsLength);
+        }, 4000); // Change text every 4 seconds
+        return () => clearInterval(textInterval);
+      }
     }
-  }, [heroSlide]);
+  }, [heroSlide, heroSlides]);
 
   const testimonials: { name: string; quote: string; role?: string }[] = [
     {
@@ -174,10 +176,8 @@ export function Home() {
   useEffect(() => {
     const currentSlideDuration = heroSlides[heroSlide].duration;
     const intervalId = window.setInterval(() => {
-      setIsTransitioning(true);
       setTimeout(() => {
         setHeroSlide((current) => (current + 1) % heroSlides.length);
-        setIsTransitioning(false);
       }, 300);
     }, currentSlideDuration);
     return () => window.clearInterval(intervalId);
@@ -185,18 +185,14 @@ export function Home() {
 
   // Manual navigation functions
   const nextSlide = () => {
-    setIsTransitioning(true);
     setTimeout(() => {
       setHeroSlide((current) => (current + 1) % heroSlides.length);
-      setIsTransitioning(false);
     }, 300);
   };
 
   const prevSlide = () => {
-    setIsTransitioning(true);
     setTimeout(() => {
       setHeroSlide((current) => (current - 1 + heroSlides.length) % heroSlides.length);
-      setIsTransitioning(false);
     }, 300);
   };
 
@@ -382,8 +378,8 @@ export function Home() {
               <h3
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
         bg-gradient-to-r from-white to-secondary bg-clip-text text-transparent
-        drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
-        leading-relaxed font-montserrat font-black drop-shadow-2xl
+        drop-shadow-2xl
+        leading-relaxed font-montserrat font-black
         overflow-visible pb-2"
                 style={{
                   WebkitBackgroundClip: 'text',
@@ -607,7 +603,7 @@ export function Home() {
                   className="text-white"
                 />
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
+              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
                 Installations Delivered
               </div>
             </motion.div>
@@ -628,7 +624,7 @@ export function Home() {
                   className="text-white"
                 />
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
+              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
                 Training Programs Delivered
               </div>
             </motion.div>
@@ -649,7 +645,7 @@ export function Home() {
                   className="text-white"
                 />
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
+              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
                 Years of Experience
               </div>
             </motion.div>
@@ -665,7 +661,7 @@ export function Home() {
               <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
                 1MW
               </div>
-              <div className="text-lg text-secondary sm:text-xl md:text-2xl font-semibold text-primary mb-3 font-montserrat">
+              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
                 Commercial Solar Capacity Installed
               </div>
             </motion.div>
@@ -771,7 +767,7 @@ export function Home() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Section Header - Removed "Our Process" badge */}
           <motion.div className="text-center max-w-3xl mx-auto mb-20" {...fadeIn}>
-            <h3 className="text-3xl sm:text-4xl font-black md:text-5xl tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
               How we work
             </h3>
 
@@ -787,7 +783,7 @@ export function Home() {
             {/* Animated connecting line (desktop) */}
             <div className="hidden lg:block absolute top-10 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-primary via-secondary via-alternativeO to-alternativeR rounded-full origin-left"
+                className="h-full bg-gradient-to-r from-primary via-secondary to-alternativeR rounded-full origin-left"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -909,7 +905,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-black md:text-3xl mb-4 tracking-wider font-extrabold uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+            <h3 className="text-2xl md:text-3xl mb-4 tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
               Leading Solar Installation Company in Nigeria
             </h3>
 
@@ -1160,7 +1156,7 @@ export function Home() {
             </p> */}
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 duration-300"
+              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               Request Free Consultation
               <ArrowRight className="w-6 h-6" />
