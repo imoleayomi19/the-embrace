@@ -125,18 +125,17 @@ export function Home() {
       type: "video",
       content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787919331/hero-sec.webm",
       text: "Stay on. Go beyond.",
-      duration: 17000, // 17 seconds for first slide
+      duration: 14000,
     },
     {
       type: "video",
       content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4",
-      // Replace with your surveillance video
       texts: [
         "securing your home with the best surveillance system",
         "power your future with the sun",
         "securing your home with the best surveillance system",
       ],
-      duration: 15000, // 15 seconds for second slide
+      duration: 13000,
     },
   ], []);
 
