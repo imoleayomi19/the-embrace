@@ -1,18 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Sun,
   Zap,
   Phone,
   MapPin,
   User,
   ChevronDown,
-  CheckCircle,
-  MessageCircle,
   ArrowRight,
-  Shield,
-  Star,
-  Clock,
 } from "lucide-react";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -188,8 +182,7 @@ export function LandingPage() {
               className="flex flex-col items-center text-center gap-4 mb-14"
             >
               <motion.p variants={fadeUp} className="text-slate-600 max-w-xl text-sm sm:text-base !normal-case !tracking-normal !font-montserrat">
-                From small home setups to large commercial installations — we design, supply, and
-                install the right system for you.
+                From small home setups to large commercial installations we design, supply, and install the right system for you.
               </motion.p>
             </motion.div>
 
