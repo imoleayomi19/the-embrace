@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate, Link } from "react-router-dom";
 import { Search, X, Calendar, BookOpen } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { blogPosts } from "../data/BlogPosts.ts";
+import { blogPosts } from "../data/blogPosts";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
