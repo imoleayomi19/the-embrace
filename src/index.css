@@ -28,7 +28,7 @@
   }
 
   h2 {
-    @apply text-2xl sm:text-3xl md:text-4xl;
+    @apply text-2xl sm:text-3xl md:text-4xl mt-4 mb-4;
   }
 
   h3 {

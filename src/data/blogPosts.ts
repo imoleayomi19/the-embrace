@@ -61,7 +61,7 @@ export const blogPosts: BlogPost[] = [
       <p>The right system depends on your appliances, daily usage and backup needs. Our team can assess your property and design the right solar system for your home or business.</p>
       <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited</a> to start planning a quieter, more reliable and more affordable power solution.</p>
     `
-  },  {
+  }, {
     id: 3,
     slug: "common-solar-myths-nigeria-debunked-2026-guide",
     title: "3 Common Solar Myths in Nigeria Debunked [2026 Guide]",
@@ -73,7 +73,7 @@ export const blogPosts: BlogPost[] = [
   <p>Thinking about <strong>solar in Nigeria</strong> but still hearing conflicting advice? You are not alone. From concerns about the solar cost in Nigeria to questions like "does solar work in rain?", many households and businesses delay a decision because of myths that no longer match today's technology.</p>
   <p>Modern solar systems are designed for the realities of Nigerian power: changing weather, unreliable grid supply, rising fuel prices and the everyday need for dependable electricity. In this guide, we separate the most common claims from the facts, so you can make a more confident decision for your home, office or business.</p>
 
-  <h2 class="mt-24 mb-8 text-[#1E3A5F]">Myth 1: Solar costs too much</h2>
+  <h2 class="mt-8 mb-4 text-[#1E3A5F]">Myth 1: Solar costs too much</h2>
   
   <figure class="my-10 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-[#1E3A5F] to-[#000000] py-10 px-6 text-center shadow-xl">
     <div class="flex flex-col items-center justify-center gap-2">
@@ -93,7 +93,7 @@ export const blogPosts: BlogPost[] = [
   <h3 class="text-[#1E3A5F] font-bold mt-8 mb-4">Look at lifetime value, not just the invoice</h3>
   <p>A good installer begins with your load profile and recommends only the capacity you need. You may choose a smaller system for essential appliances first, then expand later. Comparing the quote with your current monthly energy spend gives a more realistic payback picture than comparing solar with a single purchase price. There is also value in quieter nights, cleaner air and less dependence on NEPA.</p>
 
-  <h2 class="mt-24 mb-8 text-[#1E3A5F]">Myth 2: Solar does not work in rain</h2>
+  <h2 class="mt-8 mb-4 text-[#1E3A5F]">Myth 2: Solar does not work in rain</h2>
   
   <figure class="my-10 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-[#1E3A5F] to-[#000000] py-10 px-6 text-center shadow-xl">
     <div class="flex flex-col items-center justify-center gap-2">
@@ -113,7 +113,7 @@ export const blogPosts: BlogPost[] = [
   <h3 class="text-[#1E3A5F] font-bold mt-8 mb-4">Rain is not the same as system failure</h3>
   <p>Quality panels are built for outdoor conditions. The important considerations are correct mounting, safe cabling, drainage and an inverter with the right protection. Heavy rain may even help wash dust from a panel, although it does not replace periodic cleaning. For Nigerian homes and businesses, the goal is reliable power across changing conditions, not dependence on a single sunny hour.</p>
 
-  <h2 class="mt-20 mb-8 text-[#1E3A5F]">Myth 3: Solar is hard to maintain</h2>
+  <h2 class="mt-8 mb-4 text-[#1E3A5F]">Myth 3: Solar is hard to maintain</h2>
   
   <figure class="my-10 w-full overflow-hidden rounded-2xl bg-gradient-to-b from-[#1E3A5F] to-[#000000] py-10 px-6 text-center shadow-xl">
     <div class="flex flex-col items-center justify-center gap-2">
@@ -129,18 +129,17 @@ export const blogPosts: BlogPost[] = [
   <p><strong>Myth:</strong> Solar requires constant technical attention and expensive repairs.</p>
   <p><strong>Fact:</strong> Solar has fewer moving parts than a generator and needs relatively simple routine care. Most systems need panel cleaning, visual checks and periodic professional inspection. There is no engine oil to change, no exhaust to service and no fuel system to clog.</p>
   <p>For solar maintenance in Nigeria, dust and debris are the main everyday concerns. Panels should be cleaned with suitable tools and water when needed, while connections, mounting hardware, inverter alerts and battery performance should be checked by a qualified technician. Do not climb onto a roof without the right safety equipment. A maintenance visit can identify loose connections or unusual battery behaviour before they become a larger problem.</p>
-  
   <h3 class="text-[#1E3A5F] font-bold mt-8 mb-4">Installation quality makes maintenance easier</h3>
   <p>Good workmanship protects your investment. Neat cable routing, ventilation around the inverter, secure battery placement and clear system documentation all make future inspections quicker. Ask about warranty coverage, response times and after-sales support before choosing a provider. The cheapest installation can become expensive if nobody is available when you need help.</p>
 
-  <h2 class="mt-24 mb-16 text-[#1E3A5F]">State of Power: why these myths matter in 2026</h2>
+  <h2 class="mt-6 mb-4 text-[#1E3A5F]">State of Power: why these myths matter in 2026</h2>
   <p>For many Nigerians, power is not an abstract issue. It affects business hours, food storage, remote work, schoolwork, healthcare and security. The reality of frequent outages means households often pay twice: once for their electricity bill and again for fuel, generator repairs and the time spent managing interruptions.</p>
   <p>There is no single solar system for every property. A two-bedroom home, a salon, a cold-room operator and a multi-floor office have different energy patterns. The useful stat for your decision is your own daily load: what you power, for how long, and what must stay on during an outage. A professional assessment turns that information into the right panel, inverter and battery combination.</p>
   <p>The bigger picture is encouraging: solar technology is more accessible, battery options are improving and Nigerian installers have more experience designing systems for local conditions. Solar does not remove every energy decision, but it can replace a large share of fuel and NEPA dependence with predictable, quiet power.</p>
 
   <div id="solar-quote" class="my-8 py-4 text-center text-[#000000]">
     <p class="text-lg leading-relaxed">
-      <a href="/contact" class="text-[#1E3A5F] font-bold hover:underline transition-colors duration-200">At Embrace Technologies Limited</a>, we’re powering a greener Nigeria. Our home solar systems deliver efficiency, durability, and real savings — for you and the planet.
+      <a href="/contact" class="text-[#1E3A5F] font-bold hover:underline transition-colors duration-200">At Embrace Technologies Limited</a>, we're powering a greener Nigeria. Our home solar systems deliver efficiency, durability, and real savings — for you and the planet.
     </p>
   </div>`
   },
