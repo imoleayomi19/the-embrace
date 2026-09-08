@@ -78,9 +78,6 @@ type CategoryBanner = {
   description?: string;
 };
 
-// ─── Shop By Model chips — DIRECT LINKS to shop page with model parameter ──
-const shopByModels: string[] = ["IVEM", "IVPM", "IVGM", "DXLV", "DXHV", "FLEX"];
-
 // Residential product categories
 const residentialCategories: (ProductCategory & {
   products: ProductItem[];
@@ -98,19 +95,16 @@ const residentialCategories: (ProductCategory & {
       banners: [
         {
           title: "IVEM",
-          description: "Advanced energy management for homes.",
           image: "./product.webp",
           path: "/shop",
         },
         {
           title: "IVPM",
-          description: "Premium power management solutions.",
           image: "./product.webp",
           path: "/shop",
         },
         {
           title: "FLEX",
-          description: "Flexible hybrid solar configurations.",
           image: "./product.webp",
           path: "/shop",
         },
@@ -175,26 +169,17 @@ const commercialCategories: (ProductCategory & {
       ],
       banners: [
         {
-          title: "IVGM",
-          description: "Industrial grade grid management.",
-          image: "./product.webp",
-          path: "/shop",
-        },
-        {
           title: "DXLV",
-          description: "Low voltage commercial storage solutions.",
           image: "./product.webp",
           path: "/shop",
         },
         {
           title: "DXHV",
-          description: "High voltage industrial energy systems.",
           image: "./product.webp",
           path: "/shop",
         },
         {
           title: "FLEX",
-          description: "Scalable flexible commercial arrays.",
           image: "./product.webp",
           path: "/shop",
         },
@@ -299,9 +284,6 @@ function ProductsMegaMenu({
   productType: "residential" | "commercial" | "mini-grid";
   setProductType: (type: "residential" | "commercial" | "mini-grid") => void;
 }) {
-  // Local state for the "Shop By Model" dropdown button
-  const [isShopByModelOpen, setIsShopByModelOpen] = useState(false);
-
   const categories = productType === "residential"
     ? residentialCategories
     : productType === "commercial"
@@ -394,16 +376,16 @@ function ProductsMegaMenu({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.18 }}
-                    className="w-full h-full overflow-y-auto flex items-start justify-center"
+                    className="w-full h-full flex items-start justify-center"
                   >
-                    {/* Container: max-width 1200px, padding 20px 24px, bg white */}
-                    <div className="w-full max-w-[1200px] p-[20px_24px] bg-white">
-                      <div className="flex flex-wrap justify-center gap-4">
+                    <div className="w-full max-w-[1200px] p-4 md:p-5 bg-white">
+                      <div className="grid grid-cols-3 gap-2 sm:gap-4">
                         {activeCat.banners!.map((banner, idx) => (
                           <Link
                             key={idx}
                             to={banner.path}
-                            className="group relative block overflow-hidden rounded-[4px] shadow-sm hover:shadow-lg transition-shadow duration-300 aspect-[3/4] bg-slate-100 w-full md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
+                            aria-label={`Shop ${banner.title}`}
+                            className="group relative block overflow-hidden rounded-[4px] bg-slate-100 aspect-[3/4] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                           >
                             <img
                               src={banner.image}
@@ -413,22 +395,6 @@ function ProductsMegaMenu({
                                 (e.target as HTMLImageElement).style.display = "none";
                               }}
                             />
-                            {/* Overlay for text contrast > 4.5:1 */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
-
-                            <div className="absolute bottom-0 left-0 p-5 w-full">
-                              <h3 className="text-white font-montserrat font-bold text-lg mb-1">
-                                {banner.title}
-                              </h3>
-                              {banner.description && (
-                                <p className="text-slate-200 text-sm font-poppins line-clamp-2 mb-3">
-                                  {banner.description}
-                                </p>
-                              )}
-                              <span className="inline-flex items-center text-white text-sm font-semibold border-b-2 border-transparent group-hover:border-white transition-all pb-0.5">
-                                Explore Series <ChevronRight className="w-4 h-4 ml-1" />
-                              </span>
-                            </div>
                           </Link>
                         ))}
                       </div>
@@ -474,49 +440,6 @@ function ProductsMegaMenu({
                   >
                     All {activeCat.name} &gt;
                   </Link>
-                </div>
-              )}
-
-              {/* "Shop By Model" dropdown — chips are DIRECT LINKS to /shop?model=XXX */}
-              {hasBanners && (
-                <div className="mt-4 pt-4 border-t-2 border-dashed border-slate-300">
-                  <button
-                    type="button"
-                    onClick={() => setIsShopByModelOpen((v) => !v)}
-                    aria-expanded={isShopByModelOpen}
-                    aria-haspopup="true"
-                    className="flex items-center gap-2 font-mono text-sm font-semibold tracking-wider text-primary hover:text-secondary transition-colors"
-                  >
-                    [ Shop By Model ]
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-200 ${isShopByModelOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-
-                  <AnimatePresence>
-                    {isShopByModelOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="overflow-hidden"
-                      >
-                        {/* CHIPS: pill buttons that navigate directly to shop */}
-                        <div className="flex items-center flex-wrap gap-2 pt-3">
-                          {shopByModels.map((model) => (
-                            <Link
-                              key={model}
-                              to={`/shop?model=${model}`}
-                              className="inline-flex items-center rounded-full border border-slate-300 bg-white px-4 py-1.5 font-montserrat text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 transition-colors hover:border-secondary hover:text-secondary"
-                            >
-                              {model}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                 </div>
               )}
 
@@ -585,7 +508,7 @@ export function Navbar() {
       ],
     },
     {
-      name: "Shop Products",
+      name: "Shop",
       path: "/shop",
       // children intentionally empty — mega menu is handled separately
       children: [],
@@ -629,7 +552,7 @@ export function Navbar() {
           <nav className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center gap-4">
               {navLinks.map((link) => {
-                const isProducts = link.name === "Shop Products";
+                const isProducts = link.name === "Shop";
                 const isSolutions = link.name === "Solutions";
                 const isResources = link.name === "Resources";
                 const hasChildren = !!link.children?.length;
@@ -657,7 +580,7 @@ export function Navbar() {
                     <div
                       key={link.name}
                       className="relative"
-                      onMouseEnter={() => setOpenDropdown("Shop Products")}
+                      onMouseEnter={() => setOpenDropdown("Shop")}
                       onMouseLeave={() => setOpenDropdown(null)}
                     >
                       <button
@@ -667,17 +590,17 @@ export function Navbar() {
                           : "text-primary hover:text-secondary"
                           }`}
                         aria-haspopup="true"
-                        aria-expanded={openDropdown === "Shop Products"}
+                        aria-expanded={openDropdown === "Shop"}
                       >
-                        <span>Shop Products</span>
+                        <span>Shop</span>
                         <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === "Shop Products" ? "rotate-180" : ""
+                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === "Shop" ? "rotate-180" : ""
                             }`}
                         />
                       </button>
 
                       <AnimatePresence>
-                        {openDropdown === "Shop Products" && (
+                        {openDropdown === "Shop" && (
                           <ProductsMegaMenu
                             isScrolled={isScrolled}
                             activeCategory={activeProductCategory}
@@ -992,23 +915,23 @@ export function Navbar() {
             >
               <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
                 {navLinks.map((link) => {
-                  const isProducts = link.name === "Shop Products";
+                  const isProducts = link.name === "Shop";
                   const isResources = link.name === "Resources";
 
                   if (isProducts) {
-                    const isOpen = openMobileSub === "Shop Products";
+                    const isOpen = openMobileSub === "Shop";
                     return (
                       <div
-                        key="Shop Products"
+                        key="Shop"
                         className="transition-colors border-b border-slate-50"
                       >
                         <button
                           type="button"
-                          onClick={() => setOpenMobileSub(isOpen ? null : "Shop Products")}
+                          onClick={() => setOpenMobileSub(isOpen ? null : "Shop")}
                           className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
                           aria-expanded={isOpen}
                         >
-                          <span>Shop Products</span>
+                          <span>Shop</span>
                           <ChevronDown
                             className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
                               }`}
