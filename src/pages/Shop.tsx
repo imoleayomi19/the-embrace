@@ -17,9 +17,6 @@ function Hero() {
       />
       <div className="absolute inset-0 bg-black/40" />
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 text-center pt-20 md:pt-32">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-anton font-extrabold tracking-tight text-white drop-shadow-lg">
-          Embrace The Power
-        </h1>
         <div className="mt-10 flex w-full max-w-md flex-col items-center gap-4">
           <a
             href="#products"
@@ -54,9 +51,6 @@ function Recommender() {
     <section className="border-y border-slate-200 bg-white px-4 py-14 md:py-20">
       <div className="mx-auto max-w-5xl">
         <div className="max-w-2xl">
-          <p className="font-montserrat text-xs font-semibold uppercase tracking-[0.24em] text-secondary">
-            Start with your needs
-          </p>
           <h2 className="mt-3 font-anton text-3xl text-primary sm:text-4xl">What do you want to power?</h2>
           <p className="mt-4 font-poppins text-sm leading-7 text-slate-600">
             Tell us what matters most and we will point you toward a practical starting package.
@@ -217,10 +211,10 @@ function ProductDetail({ product }: { product: SolarProduct }) {
   return (
     <main className="min-h-screen bg-slate-50 pb-20 pt-24">
       <div className="mx-auto max-w-6xl px-4">
-        <Link to="/shop" className="inline-flex items-center gap-2 font-montserrat text-xs font-bold uppercase tracking-[0.16em] text-slate-600 hover:text-secondary">
+        <Link to="/shop" className="inline-flex mt-5 items-center gap-2 font-montserrat text-xs font-bold uppercase tracking-[0.16em] text-slate-600 hover:text-secondary">
           <ArrowLeft className="h-4 w-4" /> Back to shop
         </Link>
-        <div className="mt-6 overflow-hidden rounded-sm bg-gradient-to-br from-[#073b7a] via-[#0874b8] to-[#16b5c8] p-4 shadow-xl sm:p-8">
+        <div className="mt-6 overflow-hidden rounded-sm p-4 shadow-xl sm:p-8">
           <div className="aspect-[16/9] overflow-hidden rounded-sm bg-white/10">
             <img src={product.image} alt={product.name} className="h-full w-full object-contain" />
           </div>

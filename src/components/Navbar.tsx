@@ -95,32 +95,32 @@ const residentialCategories: (ProductCategory & {
       banners: [
         {
           title: "IVEM",
-          image: "./product.webp",
+          image: "./products.webp",
           path: "/shop",
         },
         {
           title: "IVPM",
-          image: "./product.webp",
+          image: "./products.webp",
           path: "/shop",
         },
         {
           title: "FLEX",
-          image: "./product.webp",
+          image: "./products.webp",
           path: "/shop",
         },
       ],
       products: [
-        { name: "IVPS3.5~10kVA", image: "./product.webp", path: "/shop" },
-        { name: "IVPS0712-1512", image: "./product.webp", path: "/shop" },
-        { name: "IVEM8~12kW", image: "./product.webp", path: "/shop" },
-        { name: "IVEM-3.6kW", image: "./product.webp", path: "/shop" },
-        { name: "IVCM1012-LV", image: "./product.webp", path: "/shop" },
-        { name: "IVPA-Pro", image: "./product.webp", path: "/shop" },
-        { name: "IVPS-Mini", image: "./product.webp", path: "/shop" },
-        { name: "IVPM-5kW", image: "./product.webp", path: "/shop" },
-        { name: "IVPM-8kW", image: "./product.webp", path: "/shop" },
-        { name: "FLEX-Home 5kVA", image: "./product.webp", path: "/shop" },
-        { name: "FLEX-Home 10kVA", image: "./product.webp", path: "/shop" },
+        { name: "IVPS3.5~10kVA", image: "./products.webp", path: "/shop" },
+        { name: "IVPS0712-1512", image: "./products.webp", path: "/shop" },
+        { name: "IVEM8~12kW", image: "./products.webp", path: "/shop" },
+        { name: "IVEM-3.6kW", image: "./products.webp", path: "/shop" },
+        { name: "IVCM1012-LV", image: "./products.webp", path: "/shop" },
+        { name: "IVPA-Pro", image: "./products.webp", path: "/shop" },
+        { name: "IVPS-Mini", image: "./products.webp", path: "/shop" },
+        { name: "IVPM-5kW", image: "./products.webp", path: "/shop" },
+        { name: "IVPM-8kW", image: "./products.webp", path: "/shop" },
+        { name: "FLEX-Home 5kVA", image: "./products.webp", path: "/shop" },
+        { name: "FLEX-Home 10kVA", image: "./products.webp", path: "/shop" },
       ],
     },
     {
@@ -132,11 +132,11 @@ const residentialCategories: (ProductCategory & {
         { label: "IVPM Series", path: "/shop" },
       ],
       products: [
-        { name: "IVCM1/2/3kW-PRO", image: "./product.webp", path: "/shop" },
-        { name: "IVCM5kW-Lite", image: "./product.webp", path: "/shop" },
-        { name: "IVHG-30kW", image: "./product.webp", path: "/shop" },
-        { name: "IVHG-50kW", image: "./product.webp", path: "/shop" },
-        { name: "IVHG-100kW", image: "./product.webp", path: "/shop" },
+        { name: "IVCM1/2/3kW-PRO", image: "./products.webp", path: "/shop" },
+        { name: "IVCM5kW-Lite", image: "./products.webp", path: "/shop" },
+        { name: "IVHG-30kW", image: "./products.webp", path: "/shop" },
+        { name: "IVHG-50kW", image: "./products.webp", path: "/shop" },
+        { name: "IVHG-100kW", image: "./products.webp", path: "/shop" },
       ],
     },
     {
@@ -147,9 +147,9 @@ const residentialCategories: (ProductCategory & {
         { label: "Micro-400W Series", path: "/shop" },
       ],
       products: [
-        { name: "IVEM8~12kW-II", image: "./product.webp", path: "/shop" },
-        { name: "IVEM-400W", image: "./product.webp", path: "/shop" },
-        { name: "IVEM-800W", image: "./product.webp", path: "/shop" },
+        { name: "IVEM8~12kW-II", image: "./products.webp", path: "/shop" },
+        { name: "IVEM-400W", image: "./products.webp", path: "/shop" },
+        { name: "IVEM-800W", image: "./products.webp", path: "/shop" },
       ],
     },
   ];
@@ -170,33 +170,33 @@ const commercialCategories: (ProductCategory & {
       banners: [
         {
           title: "DXLV",
-          image: "./product.webp",
+          image: "./products.webp",
           path: "/shop",
         },
         {
           title: "DXHV",
-          image: "./product.webp",
+          image: "./products.webp",
           path: "/shop",
         },
         {
           title: "FLEX",
-          image: "./product.webp",
+          image: "./products.webp",
           path: "/shop",
         },
       ],
       products: [
-        { name: "FLM500-125/261", image: "./product.webp", path: "/shop" },
-        { name: "FLH-E60", image: "./product.webp", path: "/shop" },
-        { name: "FLS-MES215AF-S", image: "./product.webp", path: "/shop" },
-        { name: "FLS-ES232LC-S", image: "./product.webp", path: "/shop" },
-        { name: "IVGM-50kW", image: "./product.webp", path: "/shop" },
-        { name: "IVGM-100kW", image: "./product.webp", path: "/shop" },
-        { name: "DXLV-100", image: "./product.webp", path: "/shop" },
-        { name: "DXLV-200", image: "./product.webp", path: "/shop" },
-        { name: "DXHV-200", image: "./product.webp", path: "/shop" },
-        { name: "DXHV-500", image: "./product.webp", path: "/shop" },
-        { name: "FLEX-C&I 100kVA", image: "./product.webp", path: "/shop" },
-        { name: "FLEX-C&I 250kVA", image: "./product.webp", path: "/shop" },
+        { name: "FLM500-125/261", image: "./products.webp", path: "/shop" },
+        { name: "FLH-E60", image: "./products.webp", path: "/shop" },
+        { name: "FLS-MES215AF-S", image: "./products.webp", path: "/shop" },
+        { name: "FLS-ES232LC-S", image: "./products.webp", path: "/shop" },
+        { name: "IVGM-50kW", image: "./products.webp", path: "/shop" },
+        { name: "IVGM-100kW", image: "./products.webp", path: "/shop" },
+        { name: "DXLV-100", image: "./products.webp", path: "/shop" },
+        { name: "DXLV-200", image: "./products.webp", path: "/shop" },
+        { name: "DXHV-200", image: "./products.webp", path: "/shop" },
+        { name: "DXHV-500", image: "./products.webp", path: "/shop" },
+        { name: "FLEX-C&I 100kVA", image: "./products.webp", path: "/shop" },
+        { name: "FLEX-C&I 250kVA", image: "./products.webp", path: "/shop" },
       ],
     },
   ];
@@ -211,10 +211,10 @@ const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: 
       { label: "Hybrid Mini Grid", path: "/shop" },
     ],
     products: [
-      { name: "MG-50kW System", image: "./product.webp", path: "/shop" },
-      { name: "MG-100kW System", image: "./product.webp", path: "/shop" },
-      { name: "MG-200kW System", image: "./product.webp", path: "/shop" },
-      { name: "MG-500kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-50kW System", image: "./products.webp", path: "/shop" },
+      { name: "MG-100kW System", image: "./products.webp", path: "/shop" },
+      { name: "MG-200kW System", image: "./products.webp", path: "/shop" },
+      { name: "MG-500kW System", image: "./products.webp", path: "/shop" },
     ],
   },
   {
@@ -225,10 +225,10 @@ const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: 
       { label: "Hybrid Mini Grid", path: "/shop" },
     ],
     products: [
-      { name: "MG-50kW System", image: "./product.webp", path: "/shop" },
-      { name: "MG-100kW System", image: "./product.webp", path: "/shop" },
-      { name: "MG-200kW System", image: "./product.webp", path: "/shop" },
-      { name: "MG-500kW System", image: "./product.webp", path: "/shop" },
+      { name: "MG-50kW System", image: "./products.webp", path: "/shop" },
+      { name: "MG-100kW System", image: "./products.webp", path: "/shop" },
+      { name: "MG-200kW System", image: "./products.webp", path: "/shop" },
+      { name: "MG-500kW System", image: "./products.webp", path: "/shop" },
     ],
   },
 ];
@@ -369,23 +369,26 @@ function ProductsMegaMenu({
 
               <AnimatePresence mode="wait">
                 {hasBanners ? (
-                  // Banner flyers layout — CENTERED via flex wrap
+                  // Banner flyers layout
                   <motion.div
                     key={`${activeCat.name}-banners`}
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -6 }}
                     transition={{ duration: 0.18 }}
-                    className="w-full h-full flex items-start justify-center"
+                    // CHANGE 1: h-full -> h-auto (This is crucial! It stops the container from stretching)
+                    className="w-full h-auto flex items-start justify-center"
                   >
-                    <div className="w-full max-w-[1200px] p-4 md:p-5 bg-white">
+                    {/* CHANGE 2: Added pb-6 for extra bottom padding */}
+                    <div className="w-full max-w-[1200px] p-4 md:p-5 bg-white pb-6">
                       <div className="grid grid-cols-3 gap-2 sm:gap-4">
                         {activeCat.banners!.map((banner, idx) => (
                           <Link
                             key={idx}
                             to={banner.path}
                             aria-label={`Shop ${banner.title}`}
-                            className="group relative block overflow-hidden rounded-[4px] bg-slate-100 aspect-[3/4] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                            // CHANGE 3: Replaced aspect-[3/4] with h-[350px] to force a shorter, fixed height
+                            className="group relative block overflow-hidden rounded-[4px] bg-slate-100 h-[350px] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                           >
                             <img
                               src={banner.image}
@@ -401,7 +404,7 @@ function ProductsMegaMenu({
                     </div>
                   </motion.div>
                 ) : (
-                  // Product Cards — Mini Grid uses LARGE cards (same size as
+                  // ... rest of your code (Product Cards) ...
                   // Residential / Commercial flyers); others stay compact.
                   <motion.div
                     key={`${activeCat.name}-products`}
@@ -503,7 +506,7 @@ export function Navbar() {
         { name: "Residential", path: "/services", image: "./residential.webp" },
         { name: "Commercial", path: "/services", image: "./commercial.webp" },
         { name: "C&I ESS Cabinet", path: "/services", image: "./cs-ess-cabinet.webp" },
-        { name: "Project Cases", path: "/services", image: "./project cases.webp" },
+        { name: "Project Cases", path: "/services", image: "./project-cases.webp" },
         { name: "System Config Plan", path: "/services", image: "./system-config.webp" },
       ],
     },

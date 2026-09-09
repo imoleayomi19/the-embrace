@@ -33,7 +33,7 @@ function AppShell() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/shop" element={<Shop />} />
+          {/* <Route path="/shop" element={<Shop />} /> */}
           <Route path="/shop/:slug" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           {/* Ad landing page — not in main menu, noindex */}

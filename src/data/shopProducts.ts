@@ -72,7 +72,7 @@ function product(
 }
 
 export const shopProducts: SolarProduct[] = [
-  product(201, "IVEM 3KW", "ivem-3kw", "Residential", "IVEM", "3KW", 1750000, "Compact home power for essential loads."),
+  // product(201, "IVEM 3KW", "ivem-3kw", "Residential", "IVEM", "3KW", 1750000, "Compact home power for essential loads."),
   product(202, "IVEM 4KW Classic Light - Complete Package", "ivem-4kw", "Residential", "IVEM", "4KW", 2100000, "Everything you need to power your home. Inverter, battery, and solar.", [
     { id: "ivem-4kw-1", solar: "2.3KW", battery: "2x 220Ah Battery", price: 2100000, storage: "5.12kWh LiFePO4" },
     { id: "ivem-4kw-2", solar: "3.5KW", battery: "2x 220Ah Battery", price: 2650000, storage: "10.24kWh LiFePO4" },

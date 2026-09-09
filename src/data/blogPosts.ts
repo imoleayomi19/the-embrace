@@ -15,7 +15,7 @@ export const blogPosts: BlogPost[] = [
     slug: "top-7-benefits-solar-energy-nigeria-2026",
     title: "Top 7 Benefits of Solar Energy in Nigeria in 2026",
     date: "September 7, 2026",
-    image: "/blogpost.jpg",
+    image: "/benefits-of-solar.webp",
     description: "From lower energy costs to reliable backup power, discover why more Nigerian homes and businesses are switching to solar in 2026.",
     metaDescription: "Discover the top 7 benefits of solar energy in Nigeria in 2026, including lower electricity bills, reliable power, generator savings and energy independence.",
     content: `
@@ -66,7 +66,7 @@ export const blogPosts: BlogPost[] = [
     slug: "common-solar-myths-nigeria-debunked-2026-guide",
     title: "3 Common Solar Myths in Nigeria Debunked [2026 Guide]",
     date: "September 4, 2026",
-    image: "/blogposttt.jpg",
+    image: "/solar-myths.webp",
     description: "Wondering whether solar is too expensive, unreliable in rain, or difficult to maintain? Here are three common solar myths in Nigeria, explained clearly.",
     metaDescription: "Are solar systems expensive or unreliable in rain? This 2026 guide debunks three common solar myths in Nigeria, including cost, weather and maintenance.",
     content: `

@@ -190,7 +190,7 @@ export function Services() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./service1.jpg')",
+              backgroundImage: "url('./service1.webp')",
               backgroundPosition: "center 40%",
             }}
           />

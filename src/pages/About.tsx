@@ -198,7 +198,7 @@ export function About() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('./aboutus-hero.jpg')",
+              backgroundImage: "url('./aboutus-hero.webp')",
               backgroundPosition: "center 40%",
             }}
           />
