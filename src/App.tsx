@@ -13,6 +13,7 @@ import { Contact } from './pages/Contact';
 // import { HelmetProvider } from 'react-helmet-async';
 import { Cart } from './pages/Cart';
 import { LandingPage } from './pages/LandingPage';
+import { Shop } from './pages/Shop';
 
 // Inner component so we can use useLocation inside Router context
 function AppShell() {
@@ -32,6 +33,8 @@ function AppShell() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:slug" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           {/* Ad landing page — not in main menu, noindex */}
           <Route path="/landing" element={<LandingPage />} />
