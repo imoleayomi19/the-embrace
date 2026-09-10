@@ -11,6 +11,104 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 5,
+    slug: "5-reasons-every-home-business-needs-cctv",
+    title: "5 Reasons Why Every Home and Business Needs CCTV",
+    date: "September 10, 2026",
+    image: "/cctv-post.webp",
+    description: "From preventing criminal activity to protecting your family, discover five practical reasons CCTV is a smart investment for every Nigerian home and business.",
+    metaDescription: "Discover five reasons every home and business needs CCTV, including crime prevention, remote monitoring, investigations, family protection and increased property value.",
+    content: `
+      <p>These days in Nigeria, security should not be a luxury, but a necessity. Every home and business deserves a security system they can rely on.</p>
+      <p>This is not just about catching thieves. It is about peace of mind, knowing you are protected in real time. CCTV is your first line of defence.</p>
+      <p>Here are five solid reasons why installing CCTV in your home or business is one of the smartest moves you can make.</p>
+
+      <h2 class="font-montserrat text-[#1E3A5F] font-bold">1. Prevents Criminal Activity</h2>
+      <ul>
+        <li>Criminals avoid homes and business outlets with CCTV.</li>
+        <li>Most burglars will not risk getting caught on camera.</li>
+        <li>Generally, a CCTV system reduces the chances of break-ins.</li>
+      </ul>
+
+      <h2 class="font-montserrat text-[#1E3A5F] font-bold">2. Provides 24/7 Remote Access and Monitoring</h2>
+      <ul>
+        <li>Watch live feeds from your phone or laptop.</li>
+        <li>Receive alerts for suspicious activities.</li>
+        <li>Enjoy real-time security at your fingertips, anytime and anywhere.</li>
+      </ul>
+      <p>With a properly connected system, you can monitor your property whether you are in Lagos, travelling abroad or simply away from the building.</p>
+
+      <h2 class="font-montserrat text-[#1E3A5F] font-bold">3. Supports Crime Investigation</h2>
+      <ul>
+        <li>If a crime happens, footage helps identify suspects.</li>
+        <li>It increases the chances of recovering stolen items.</li>
+      </ul>
+      <p>Recorded footage can provide useful evidence and help security teams or law enforcement understand what happened.</p>
+
+      <h2 class="font-montserrat text-[#1E3A5F] font-bold ">4. Protects You and Your Family</h2>
+      <ul>
+        <li>Monitor kids and family when you are away.</li>
+        <li>Keep an eye on visitors, delivery agents and strangers.</li>
+        <li>Verify who is at your door before opening it.</li>
+      </ul>
+      <p>CCTV gives you greater awareness around your home and helps you make safer decisions before allowing someone onto your property.</p>
+
+      <h2 class="font-montserrat text-[#1E3A5F] font-bold">5. Increases Property Value</h2>
+      <ul>
+        <li>A home or business outlet with a CCTV system is more valuable because buyers prefer properties with built-in security systems.</li>
+        <li>A well-secured home may reduce insurance costs.</li>
+        <li>CCTV is an investment in safety and property value.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F]">Your Home and Business Security Starts with CCTV</h2>
+      <p>At <strong>Embrace Technologies Limited</strong>, you can secure your home and business with smart CCTV solutions designed around your property and daily needs.</p>
+      <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited</a> to discuss a reliable CCTV installation for your home or business.</p>
+
+      <section class="mt-20">
+        <h2 class="text-[#1E3A5F]">Frequently Asked Questions About CCTV</h2>
+        <div class="mt-8 space-y-4">
+          <details class="group border border-slate-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
+              <span>Q1: Will CCTV work without internet?</span>
+              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="border-t border-slate-100 px-6 py-5">
+              <p><strong>A:</strong> Yes. Your CCTV system will still record 24/7 to a DVR, NVR or SD card even without internet.</p>
+              <p>However, you will need an internet connection to view the cameras remotely on your phone or to get mobile alerts. Think of it like this: recording works offline, but remote access needs internet.</p>
+            </div>
+          </details>
+
+          <details class="group border border-slate-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
+              <span>Q2: Can I view my CCTV cameras remotely?</span>
+              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="border-t border-slate-100 px-6 py-5">
+              <p><strong>A:</strong> Yes. Once your system is connected to your router, you can watch live and playback footage from anywhere using your smartphone, tablet or computer.</p>
+              <p>At Embrace Technologies, we set up secure mobile apps for you so you can monitor your home or business 24/7 from Lagos or abroad.</p>
+            </div>
+          </details>
+
+          <details class="group border border-slate-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
+              <span>Q3: Why is my CCTV showing as "Offline"?</span>
+              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="border-t border-slate-100 px-6 py-5">
+              <p><strong>A:</strong> "Offline" usually means the camera lost connection. The three most common causes are:</p>
+              <ul>
+                <li>A loose or damaged power or network cable.</li>
+                <li>A weak Wi-Fi connection or a router that needs restarting.</li>
+                <li>A power interruption affecting the camera, router or recorder.</li>
+              </ul>
+              <p>Check the power supply and connections first. If the camera remains offline, our technical team can help diagnose the issue and restore your system.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+    `
+  },
+  {
     id: 4,
     slug: "top-7-benefits-solar-energy-nigeria-2026",
     title: "Top 7 Benefits of Solar Energy in Nigeria in 2026",
@@ -23,35 +121,35 @@ export const blogPosts: BlogPost[] = [
       <p>In 2026, more Nigerians are done with that cycle. Solar energy is no longer only for big companies or luxury homes. It is how regular homes and businesses are staying on, saving money and getting peace of mind.</p>
       <p>Here are the <strong>top 7 benefits of switching to solar energy in Nigeria</strong> right now.</p>
 
-      <h2 class="text-[#1E3A5F]">1. Cut Your Electricity Bills</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">1. Cut Your Electricity Bills</h2>
       <p>This is the biggest pain point for many households and businesses. NEPA bills and generator fuel can take ₦50,000 to ₦200,000 every month. With solar, you pay for installation once, then the sun powers your home for free.</p>
       <p>Many families and SMEs can see a return on their investment within two to three years, depending on their energy usage and system design. After that, the reduction in fuel and grid-related costs can become significant savings.</p>
 
-      <h2 class="text-[#1E3A5F]">2. Enjoy Reliable Power Supply</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">2. Enjoy Reliable Power Supply</h2>
       <p>Imagine working, watching TV or running a business without constantly asking, "Up NEPA, down NEPA?" A properly designed solar system with battery backup gives you power even when the national grid is down.</p>
       <p>For hospitals, schools, shops and home offices, reliable power means fewer interruptions, less lost work and more confidence throughout the day.</p>
 
-      <h2 class="text-[#1E3A5F]">3. Save on Generator Costs</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">3. Save on Generator Costs</h2>
       <p>Diesel and petrol prices are not smiling. Generators also need servicing, make noise and pollute the air. Solar removes much of that ongoing cost and inconvenience: no fuel, no engine noise and fewer weekly mechanic visits.</p>
       <p>Instead of budgeting for every hour your generator runs, you can use stored solar energy for your essential appliances and reduce your dependence on backup fuel.</p>
 
-      <h2 class="text-[#1E3A5F]">4. Benefit from Low Maintenance and a Long Lifespan</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold ">4. Benefit from Low Maintenance and a Long Lifespan</h2>
       <p>Quality solar panels are built to last, with many carrying warranties of 25 years or more. Routine care is straightforward: occasional panel cleaning, visual checks and a battery inspection by a qualified technician.</p>
       <p>That is a very different maintenance experience from a generator that may break down every few months and requires oil, filters, fuel-system care and engine repairs.</p>
 
-      <h2 class="text-[#1E3A5F]">5. Use Cleaner, More Environmentally Friendly Energy</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">5. Use Cleaner, More Environmentally Friendly Energy</h2>
       <p>Every hour your generator is switched off, you reduce carbon emissions and noise pollution. Solar is clean energy that is better for your family, your community and the planet.</p>
       <p>As more Nigerians pay attention to air quality, noise and environmental responsibility, switching to solar becomes a practical way to make a positive difference without giving up the power your property needs.</p>
 
-      <h2 class="text-[#1E3A5F]">6. Increase Your Property Value</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">6. Increase Your Property Value</h2>
       <p>Homes and offices with solar power are in high demand in Lagos, Abuja, Port Harcourt and other growing cities. Tenants and buyers are willing to pay more for a property that already has stable, affordable power.</p>
       <p>Solar is therefore more than an energy solution. It is an investment that can make your building more attractive and add value over time.</p>
 
-      <h2 class="text-[#1E3A5F]">7. Gain Energy Independence</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">7. Gain Energy Independence</h2>
       <p>This is the biggest win. You stop depending entirely on NEPA or fuel stations. You control when you have power, which appliances you run and how much energy you use.</p>
       <p>In 2026, that kind of freedom matters. A well-sized solar system gives you more control over your daily routine and protects your home or business from unpredictable power interruptions.</p>
 
-      <h2 class="text-[#1E3A5F]">Who Should Switch to Solar in Nigeria?</h2>
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">Who Should Switch to Solar in Nigeria?</h2>
       <p>Solar is not just for mansions. It can work well for:</p>
       <ul>
         <li><strong>Homeowners</strong> tired of high electricity and generator bills</li>

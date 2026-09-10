@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, Link } from "react-router-dom";
-import { Search, X, Calendar, BookOpen } from "lucide-react";
+import { Search, X, Calendar, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "../data/BlogPosts";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -247,6 +247,30 @@ export function Blog() {
               </motion.article>
             ))}
           </div>
+
+          {totalPages > 1 && (
+            <div className="mt-10 flex items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                disabled={currentPage === 1}
+                aria-label="Previous page"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <span className="font-montserrat text-sm font-semibold text-slate-600">Page {currentPage} of {totalPages}</span>
+              <button
+                type="button"
+                onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                disabled={currentPage === totalPages}
+                aria-label="Next page"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-700 shadow-sm transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </main>
