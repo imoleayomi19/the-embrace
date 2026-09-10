@@ -255,12 +255,15 @@ function ProductDetail({ product }: { product: SolarProduct }) {
               </div>
               <Check className="h-7 w-7 text-secondary" />
             </div>
-            <h2 className="mt-7 font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">What's Included</h2>
+            <h2 className="mt-7 font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">Package Includes</h2>
             <ul className="mt-4 space-y-3 font-poppins text-sm leading-6 text-slate-600">
               <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />{product.name.split(" - ")[0]} Hybrid Inverter. 120A MPPT. Parallel up to 6 units</li>
               <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Battery Bank: {configuration.battery} LiFePO4</li>
               <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Solar Panels: {configuration.solar} Tier-1 Mono 550W-700W</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Cables, Breakers, Installation Kit, Monitoring App</li>
+              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />PV mounting rails, brackets & installation accessories</li>
+              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />AC/DC cabling, Installation materials & accessories</li>
+              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Protective Earthing & Equipment Bonding Kit</li>
+              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Professional Installation, Configuration & Commissioning</li>
             </ul>
 
             <div className="mt-8 border-t border-slate-100 pt-6">
@@ -269,7 +272,6 @@ function ProductDetail({ product }: { product: SolarProduct }) {
                 <div><dt className="font-semibold text-slate-900">Storage</dt><dd>{configuration.storage} option</dd></div>
                 <div><dt className="font-semibold text-slate-900">Solar input</dt><dd>65V-145V low-voltage</dd></div>
                 <div><dt className="font-semibold text-slate-900">Backup</dt><dd>ACs, pumps, fridge</dd></div>
-                <div><dt className="font-semibold text-slate-900">Monitoring</dt><dd>RS-232 + App</dd></div>
               </dl>
             </div>
 
@@ -279,11 +281,8 @@ function ProductDetail({ product }: { product: SolarProduct }) {
                 onClick={() => addItem(cartProduct)}
                 className="inline-flex flex-1 items-center justify-center rounded-sm bg-primary px-5 py-3 font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-secondary hover:text-primary"
               >
-                Add to Cart
+                Order Now
               </button>
-              <Link to="/contact" className="inline-flex flex-1 items-center justify-center rounded-sm border border-primary px-5 py-3 text-center font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-primary hover:text-white">
-                Book Free Site Visit
-              </Link>
             </div>
           </aside>
         </div>
