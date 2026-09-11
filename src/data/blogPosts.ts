@@ -11,6 +11,81 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 6,
+    slug: "best-solar-companies-lagos-nigeria-2026",
+    title: "Best Solar Companies in Lagos, Nigeria (2026)",
+    date: "September 11, 2026",
+    image: "/bands-photo.jpg",
+    description: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers based on quality, support, innovation and real project delivery.",
+    metaDescription: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers in Lagos based on quality, support, and innovation. See why Embrace Technologies leads the list.",
+    content: `
+      <p>Power in Lagos is expensive and unreliable in 2026. From Yaba startups to Lekki estates and Ikeja factories, more people are switching to solar.</p>
+      <p>But with so many solar companies in Lagos, how do you pick the right one?</p>
+      <p>We ranked the <strong>5 Best Solar Companies in Lagos for 2026</strong> based on installation quality, product range, after-sales support, warranty and real project delivery.</p>
+      <p>If you want a solar system that actually works in Lagos heat and dust, start with this list.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">Top 5 Best Solar Companies in Lagos (2026)</h2>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold">1. Embrace Technologies Limited - Best Overall Solar Company in Lagos</h3>
+      <p><strong>Embrace Technologies Limited</strong> takes the number-one position on our 2026 list because of its broad approach to energy and engineering solutions.</p>
+      <p>The Lagos-based company provides solar energy, energy storage, engineering, digital security and smart infrastructure solutions for residential, commercial, industrial and public-sector customers. Its solar portfolio includes hybrid, off-grid, grid-tied and backup power systems.</p>
+      <p>Embrace also provides end-to-end services covering design, procurement, installation, commissioning and maintenance. So you are not just buying equipment - you are getting a full energy partner.</p>
+      <p>As a tech company, Embrace also builds smart solar e-commerce and monitoring tools, so customers can track performance and buy components online.</p>
+      <p>According to the company's current website:</p>
+      <ul>
+        <li><strong>5,000+</strong> installations delivered</li>
+        <li><strong>12+</strong> training programmes</li>
+        <li><strong>1MW</strong> of commercial solar capacity installed</li>
+      </ul>
+      <p><strong>Best for:</strong> Homes, offices, businesses, institutions and larger engineering projects.</p>
+      <p><strong>Why consider Embrace:</strong> End-to-end engineering, solar installation, energy storage, maintenance and a broad range of power solutions.</p>
+      <p><strong>Location:</strong> Lagos, Nigeria</p>
+      <p><strong>Website:</strong> <a href="/" class="font-bold text-[#EA6936] hover:underline">embracetechnologies.com</a></p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold">2. Arnergy - Best for Solar and Battery Systems</h3>
+      <p>Arnergy is one of Nigeria's established solar-energy companies, with a strong focus on reliable solar and battery-storage solutions for homes and businesses.</p>
+      <p>Its current product range includes systems for residential customers as well as larger commercial and industrial applications. Arnergy also offers lithium battery storage, system monitoring and flexible funding options.</p>
+      <p>One notable feature is its Solarbase monitoring platform, which allows customers to monitor system performance and battery levels remotely.</p>
+      <p><strong>Best for:</strong> Residential customers, SMEs and businesses looking for solar-plus-storage solutions.</p>
+      <p><strong>Why consider Arnergy:</strong> Strong focus on battery storage and financing options.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold">3. Daystar Power - Best for Commercial and Industrial Solar</h3>
+      <p>For large businesses, Daystar Power is one of the strongest names to consider.</p>
+      <p>Daystar provides solar and hybrid energy solutions for businesses across Africa. Its offerings include Power-as-a-Service, Solar-as-a-Service, Lease-to-Own, battery storage and full EPC services.</p>
+      <p>The company's current website reports <strong>400+ installations</strong> across five countries and more than <strong>150MW</strong> of capacity.</p>
+      <p><strong>Best for:</strong> Factories, corporate offices, commercial facilities, schools, industrial businesses and large energy users.</p>
+      <p><strong>Why consider Daystar:</strong> Zero upfront cost models and experience with large-scale commercial and industrial projects.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold">4. Auxano Solar - Best for Locally Manufactured Solar Panels</h3>
+      <p>Auxano Solar stands out because it combines solar installation with local solar-panel manufacturing.</p>
+      <p>The company operates a solar-panel manufacturing facility in Ibeju-Lekki, Lagos, and says its panels are produced to IEC and TÜV Rheinland standards. Its services also include consultation, system design, installation, repairs and maintenance.</p>
+      <p>For customers interested in supporting local manufacturing while obtaining a complete solar solution, Auxano is an interesting option.</p>
+      <p><strong>Best for:</strong> Homeowners, businesses and projects interested in locally manufactured solar equipment.</p>
+      <p><strong>Why consider Auxano:</strong> Made-in-Nigeria panels with international certification.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold">5. RenSource Energy - Best for Large Commercial Projects</h3>
+      <p>RenSource Energy focuses heavily on commercial and industrial energy solutions.</p>
+      <p>The company provides solar, hybrid, battery-storage and financed energy solutions and has its Lagos office in Yaba. Its current website lists projects serving universities, healthcare institutions and industrial facilities across Nigeria.</p>
+      <p>This makes RenSource particularly relevant for organisations that need a larger-scale energy transition rather than a basic home inverter installation.</p>
+      <p><strong>Best for:</strong> Commercial, industrial and institutional customers.</p>
+      <p><strong>Why consider RenSource:</strong> Experience with universities, hospitals and large financed projects.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">How to Choose a Solar Company in Lagos in 2026</h2>
+      <p>Before you pay anyone, check these four things:</p>
+      <ul>
+        <li><strong>Warranty:</strong> Look for up to 25 years on panels and 5-10 years on inverters and batteries, depending on the product.</li>
+        <li><strong>After-sales support:</strong> Ask who fixes the system when there is a fault at 10pm.</li>
+        <li><strong>Real projects:</strong> Ask to see two or three installations the company has completed in Lagos.</li>
+        <li><strong>Monitoring:</strong> Check whether you can see your battery level and solar production on your phone.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">Embrace Technologies Limited Is the Best Overall Choice in Lagos</h2>
+      <p>For customers looking for one company that can handle design, installation, energy storage, maintenance and smart technology, Embrace Technologies Limited is the strongest all-round choice on this list.</p>
+      <p>Ready to switch to solar?</p>
+      <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Shop solar products and book a free site inspection</a>.</p>
+    `
+  },
+  {
     id: 5,
     slug: "5-reasons-every-home-business-needs-cctv",
     title: "5 Reasons Why Every Home and Business Needs CCTV",

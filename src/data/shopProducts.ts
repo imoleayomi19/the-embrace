@@ -10,6 +10,7 @@ export type ShopProduct = {
 export type SolarConfiguration = {
   id: string;
   solar: string;
+  label?: string;
   battery: string;
   price: number;
   storage: string;
@@ -74,9 +75,10 @@ function product(
 export const shopProducts: SolarProduct[] = [
   // product(201, "IVEM 3KW", "ivem-3kw", "Residential", "IVEM", "3KW", 1750000, "Compact home power for essential loads."),
   product(202, "IVEM 4KW Classic Light - Complete Package", "ivem-4kw", "Residential", "IVEM", "4KW", 2100000, "Everything you need to power your home. Inverter, battery, and solar.", [
-    { id: "ivem-4kw-1", solar: "2.3KW", battery: "2x 220Ah Battery", price: 2100000, storage: "5.12kWh LiFePO4" },
-    { id: "ivem-4kw-2", solar: "3.5KW", battery: "2x 220Ah Battery", price: 2650000, storage: "10.24kWh LiFePO4" },
-    { id: "ivem-4kw-3", solar: "4.6KW", battery: "3x 220Ah Battery", price: 3200000, storage: "15kWh LiFePO4" },
+    { id: "ivem-4kw-1", solar: "2.34kWp", label: "4 x 585W SolarSpace = 2.34kWp", battery: "2x 220Ah Battery", price: 2100000, storage: "5.12kWh LiFePO4" },
+    { id: "ivem-4kw-2", solar: "3.51kWp", label: "6 x 585W SolarSpace = 3.51kWp", battery: "2x 220Ah Battery", price: 2650000, storage: "10.24kWh LiFePO4" },
+    { id: "ivem-4kw-3", solar: "3.72kWp", label: "6 x 620W Jinko = 3.72kWp", battery: "3x 220Ah Battery", price: 2950000, storage: "15kWh LiFePO4" },
+    { id: "ivem-4kw-4", solar: "3.90kWp", label: "6 x 650W Jinko = 3.90kWp", battery: "3x 220Ah Battery", price: 3200000, storage: "15kWh LiFePO4" },
   ]),
   product(203, "IVEM 5KW", "ivem-5kw", "Residential", "IVEM", "5KW", 2850000, "Reliable hybrid energy for growing homes."),
   product(204, "IVEM 6KW", "ivem-6kw", "Residential", "IVEM", "6KW", 3250000, "Balanced solar backup for demanding homes."),

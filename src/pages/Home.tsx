@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import {
   Sun,
   ArrowRight,
-  Wrench,
   ChevronLeft,
   ChevronRight,
+  Wrench,
   Phone,
   Zap,
   Camera,
@@ -117,41 +117,20 @@ export function Home() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [isTrustedPaused, setIsTrustedPaused] = useState(false);
-  const [displayTextIndex, setDisplayTextIndex] = useState(0);
 
-  // Hero slides data - 2 cards with navigation
+  // Keep both existing background videos while the content stays consistent across slides.
   const heroSlides = useMemo(() => [
     {
       type: "video",
       content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787919331/hero-sec.webm",
-      text: "Stay on. Go beyond.",
       duration: 14000,
     },
     {
       type: "video",
       content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4",
-      texts: [
-        "securing your home with the best surveillance system",
-        "power your future with the sun",
-        "securing your home with the best surveillance system",
-      ],
       duration: 13000,
     },
   ], []);
-
-  // Auto-cycle through texts on second slide
-  useEffect(() => {
-    if (heroSlide === 1 && heroSlides.length > 1) {
-      const slide = heroSlides[1];
-      if ('texts' in slide && Array.isArray(slide.texts) && slide.texts.length > 0) {
-        const textsLength = slide.texts.length;
-        const textInterval = setInterval(() => {
-          setDisplayTextIndex((prev) => (prev + 1) % textsLength);
-        }, 4000); // Change text every 4 seconds
-        return () => clearInterval(textInterval);
-      }
-    }
-  }, [heroSlide, heroSlides]);
 
   const testimonials: { name: string; quote: string; role?: string }[] = [
     {
@@ -181,19 +160,6 @@ export function Home() {
     }, currentSlideDuration);
     return () => window.clearInterval(intervalId);
   }, [heroSlide, heroSlides]);
-
-  // Manual navigation functions
-  const nextSlide = () => {
-    setTimeout(() => {
-      setHeroSlide((current) => (current + 1) % heroSlides.length);
-    }, 300);
-  };
-
-  const prevSlide = () => {
-    setTimeout(() => {
-      setHeroSlide((current) => (current - 1 + heroSlides.length) % heroSlides.length);
-    }, 300);
-  };
 
   // Testimonial auto-advance
   useEffect(() => {
@@ -346,80 +312,29 @@ export function Home() {
           </AnimatePresence>
         </div>
 
-        {/* Navigation Arrows - White */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" />
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 hover:bg-white/40 backdrop-blur-sm flex items-center justify-center transition-all duration-200 group"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-8 h-8 text-white group-hover:scale-110 transition-transform duration-200" />
-        </button>
-
         {/* Content */}
         <div className="relative z-20 flex flex-col min-h-[110vh] md:min-h-[120vh]">
-          {/* Header Text - Top Middle (Moved Down) */}
-          <div className="w-full px-4 md:px-6 pt-32 sm:pt-36 md:pt-40 lg:pt-44 pb-4">
+          {/* Shared hero message aligned to the right on every video slide */}
+          <div className="flex w-full flex-1 items-center justify-end px-4 pb-24 pt-32 sm:px-8 md:px-12 lg:px-20">
             <motion.div
               key={`text-${heroSlide}`}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-center py-4"
+              initial={{ opacity: 0, x: 32 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="w-full max-w-2xl text-right"
             >
-              <h3
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-        bg-gradient-to-r from-white to-secondary bg-clip-text text-transparent
-        drop-shadow-2xl
-        leading-relaxed font-montserrat font-black
-        overflow-visible pb-2"
-                style={{
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textTransform: 'capitalize'
-                }}
-              >
-                {heroSlide === 0
-                  ? (heroSlides[0] as { text: string }).text.toLowerCase()
-                  : (heroSlides[1] as { texts: string[] }).texts[displayTextIndex].toLowerCase()
-                }
-              </h3>
-            </motion.div>
-          </div>
-
-          {/* Spacer to push content down */}
-          <div className="flex-1" />
-
-          {/* Hero Description and Button - Centered */}
-          <div className="container mx-auto px-4 md:px-6 pb-20 md:pb-28">
-            <div className="max-w-4xl mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="gpu-accelerate"
-              >
-                {/* Text Card - Less visible */}
-                <div className="inline-block bg-white p-4 sm:p-6 rounded-md border border-blue-200 mb-8 shadow-lg">
-                  <p
-                    className="text-[18px] font-source-sans-pro font-medium text-primary leading-snug"
-                    style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
-                  >
-                    Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage,
-                    <br />
-                    digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
-                  </p>
-                </div>
-
-                {/* Button */}
-                <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <h1 className="font-montserrat text-4xl font-black leading-tight text-white drop-shadow-2xl sm:text-5xl md:text-6xl lg:text-7xl">
+                Power Your Future With The Sun
+              </h1>
+              <p className="mt-3 font-montserrat text-xl font-bold italic text-white sm:text-2xl md:text-3xl">
+                Stay on. Go beyond
+              </p>
+              <div className="mt-7 rounded-md border border-white/40 bg-white p-4 text-left shadow-2xl sm:p-6">
+                <p className="font-source-sans-pro text-base font-medium leading-relaxed text-primary sm:text-lg">
+                  Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
+                </p>
+              </div>
+              <div className="mt-7 flex flex-col items-end justify-end gap-3 sm:flex-row">
                   <Link
                     to="/contact"
                     className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
@@ -434,10 +349,9 @@ export function Home() {
                     Shop Now
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                </div>
-              </motion.div>
+              </div>
+            </motion.div>
             </div>
-          </div>
 
           {/* Slide Indicators */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">

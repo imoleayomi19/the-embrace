@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Lightbulb, SlidersHorizontal } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { getShopProduct, shopProducts, type ShopProduct, type SolarProduct } from "../data/shopProducts";
-import { useCart } from "../hooks/useCart";
+import { getShopProduct, shopProducts, type SolarProduct } from "../data/shopProducts";
 
 function formatPrice(value: number) {
   return `₦${value.toLocaleString("en-NG")}`;
@@ -196,17 +195,9 @@ function Catalog() {
 }
 
 function ProductDetail({ product }: { product: SolarProduct }) {
-  const { addItem } = useCart();
   const [selectedConfiguration, setSelectedConfiguration] = useState(0);
   const configuration = product.configurations[selectedConfiguration] ?? product.configurations[0];
-  const cartProductName = product.slug === "ivem-4kw" ? "IVEM 4KW" : product.name;
-  const cartProduct: ShopProduct = {
-    ...product,
-    id: product.id * 100 + selectedConfiguration,
-    name: `${cartProductName} - ${configuration.solar} Solar Config`,
-    price: configuration.price,
-    description: `${configuration.solar} solar with ${configuration.battery}.`,
-  };
+  const whatsappMessage = `Hi Embrace Technologies, I would like to order ${product.name} with the ${configuration.solar} solar configuration at ${formatPrice(configuration.price)}.`;
 
   return (
     <main className="min-h-screen bg-slate-50 pb-20 pt-24">
@@ -227,7 +218,11 @@ function ProductDetail({ product }: { product: SolarProduct }) {
             <p className="mt-5 max-w-xl font-poppins text-base leading-8 text-slate-600">{product.tagline}</p>
 
             <div className="mt-8">
-              <h2 className="font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">Choose Your Solar Configuration:</h2>
+              <h2 className="font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">CHOOSE YOUR SOLAR CONFIGURATION</h2>
+              <p className="mt-3 font-montserrat text-base font-bold italic text-slate-800">How much solar power do you want?</p>
+              <p className="mt-2 max-w-2xl font-poppins text-sm italic leading-7 text-slate-600">
+                Your solar panels determine how much solar energy your system can harvest during the day and how quickly/adequately the batteries can be recharged, within the inverter&apos;s PV limits.
+              </p>
               <div className="mt-4 flex flex-col gap-3">
                 {product.configurations.map((option, index) => (
                   <button
@@ -239,7 +234,7 @@ function ProductDetail({ product }: { product: SolarProduct }) {
                       : "border-slate-200 bg-white hover:border-secondary"
                       }`}
                   >
-                    <span className="font-montserrat text-sm font-semibold text-slate-800">{option.solar} Solar + {option.battery}</span>
+                    <span className="font-montserrat text-sm font-semibold text-slate-800">{option.label ?? `${option.solar} Solar + ${option.battery}`}</span>
                     <span className="font-montserrat text-sm font-bold text-primary">{formatPrice(option.price)}</span>
                   </button>
                 ))}
@@ -255,30 +250,33 @@ function ProductDetail({ product }: { product: SolarProduct }) {
               </div>
               <Check className="h-7 w-7 text-secondary" />
             </div>
-            <h2 className="mt-7 font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">Package Includes</h2>
-            <ul className="mt-4 space-y-3 font-poppins text-sm leading-6 text-slate-600">
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />{product.name.split(" - ")[0]} Hybrid Inverter. 120A MPPT. Parallel up to 6 units</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Battery Bank: {configuration.battery} LiFePO4</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Solar Panels: {configuration.solar} Tier-1 Mono 550W-700W</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />PV mounting rails, brackets & installation accessories</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />AC/DC cabling, Installation materials & accessories</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Protective Earthing & Equipment Bonding Kit</li>
-              <li className="flex gap-3"><Check className="mt-1 h-4 w-4 shrink-0 text-secondary" />Professional Installation, Configuration & Commissioning</li>
+            <h2 className="mt-7 font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">Package Includes:</h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 font-poppins text-sm leading-6 text-slate-600 marker:text-slate-400">
+              <li>1 x Felicity 6kVA Hybrid Inverter</li>
+              <li>1 x Felicity 12.5kWh Lithium Battery</li>
+              <li>8 x 620W Jinko Grade-A Solar PV Modules (4.96kWp total)</li>
+              <li>PV mounting rails, brackets &amp; installation accessories</li>
+              <li>AC/DC protection, isolation &amp; surge protection</li>
+              <li>AC/DC cabling, installation materials &amp; accessories</li>
+              <li>Protective Earthing &amp; Equipment Bonding Kit</li>
+              <li>Professional Installation, Configuration &amp; Commissioning</li>
             </ul>
 
             <div className="mt-8 border-t border-slate-100 pt-6">
               <h2 className="font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">System Specs</h2>
-              <dl className="mt-4 grid grid-cols-2 gap-4 font-poppins text-xs text-slate-600">
-                <div><dt className="font-semibold text-slate-900">Storage</dt><dd>{configuration.storage} option</dd></div>
-                <div><dt className="font-semibold text-slate-900">Solar input</dt><dd>65V-145V low-voltage</dd></div>
-                <div><dt className="font-semibold text-slate-900">Backup</dt><dd>ACs, pumps, fridge</dd></div>
+              <dl className="mt-4 space-y-4 font-poppins text-sm leading-6 text-slate-600">
+                <div><dt className="font-semibold text-slate-900">Storage capacity (Type)</dt><dd>Storage Capacity = {configuration.storage} (Lithium)</dd></div>
+                <div><dt className="font-semibold text-slate-900">Inverter Cap</dt><dd>Inverter Cap = {product.powerSize.replace("KW", "kVA")} Hybrid</dd></div>
+                <div><dt className="font-semibold text-slate-900">Max Recommended Load (W)</dt><dd>70%</dd></div>
+                <div><dt className="font-semibold text-slate-900">Load</dt><dd>Pumping Machine, Washing machine, Fridge/Freezer, lightings, Fan, TVs, etc.</dd></div>
+                <div><dt className="font-semibold text-slate-900">Solar cap</dt><dd>Solar cap = {configuration.solar}</dd></div>
               </dl>
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <button
                 type="button"
-                onClick={() => addItem(cartProduct)}
+                onClick={() => window.open(`https://wa.me/2347061451583?text=${encodeURIComponent(whatsappMessage)}`, "_blank", "noopener,noreferrer")}
                 className="inline-flex flex-1 items-center justify-center rounded-sm bg-primary px-5 py-3 font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-secondary hover:text-primary"
               >
                 Order Now
