@@ -112,7 +112,8 @@ function CountUp({
 }
 
 export function Home() {
-  const [heroSlide, setHeroSlide] = useState(0);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const [heroTextStage, setHeroTextStage] = useState(0);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
@@ -152,14 +153,39 @@ export function Home() {
 
   // Auto-advance slides based on current slide duration
   useEffect(() => {
-    const currentSlideDuration = heroSlides[heroSlide].duration;
+    const currentSlideDuration = heroSlides[activeVideoIndex].duration;
     const intervalId = window.setInterval(() => {
       setTimeout(() => {
-        setHeroSlide((current) => (current + 1) % heroSlides.length);
+        setActiveVideoIndex((current) => (current + 1) % heroSlides.length);
       }, 300);
     }, currentSlideDuration);
     return () => window.clearInterval(intervalId);
-  }, [heroSlide, heroSlides]);
+  }, [activeVideoIndex, heroSlides]);
+
+  // Sequence the second slide's header and description before replacing its header.
+  // Give both headers an equal share of the slide's on-screen time: the first
+  // header runs from 1200ms to the midpoint of the remaining duration, and the
+  // second header runs from that midpoint to the end of the slide.
+  useEffect(() => {
+    setHeroTextStage(0);
+    const firstTextTimeoutId = window.setTimeout(() => {
+      setHeroTextStage(1);
+    }, 1200);
+
+    let finalTextTimeoutId: number | undefined;
+    if (activeVideoIndex === 1) {
+      const slideDuration = heroSlides[activeVideoIndex].duration;
+      const midpoint = 1200 + (slideDuration - 1200) / 2;
+      finalTextTimeoutId = window.setTimeout(() => {
+        setHeroTextStage(2);
+      }, midpoint);
+    }
+
+    return () => {
+      window.clearTimeout(firstTextTimeoutId);
+      if (finalTextTimeoutId !== undefined) window.clearTimeout(finalTextTimeoutId);
+    };
+  }, [activeVideoIndex, heroSlides]);
 
   // Testimonial auto-advance
   useEffect(() => {
@@ -261,26 +287,58 @@ export function Home() {
     },
   ];
 
+  const heroStats = [
+    {
+      label: "Installations Delivered",
+      isCountUp: true,
+      target: 10,
+      duration: 1300,
+      suffix: "k+",
+      format: (value: number) =>
+        value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString(),
+    },
+    {
+      label: "Training Programs Delivered",
+      isCountUp: true,
+      target: 25,
+      duration: 1300,
+      suffix: "+",
+    },
+    {
+      label: "Years of Experience",
+      isCountUp: true,
+      target: yearsOfExperience,
+      duration: 1200,
+      suffix: "+",
+    },
+    {
+      label: "Commercial Solar Capacity Installed",
+      isCountUp: false,
+      staticValue: "1MW+",
+    },
+  ];
+
   return (
     <main className="w-full overflow-hidden">
       {/* HERO SECTION WITH SLIDING CARDS */}
-      <section className="relative overflow-hidden min-h-[110vh] md:min-h-[120vh] bg-primary">
+      <section className="relative overflow-hidden min-h-[115vh] md:min-h-[130vh] bg-primary">
         {/* Sliding Cards Container */}
         <div className="absolute inset-0 overflow-hidden bg-primary">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync">
             <motion.div
-              key={heroSlide}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              key={activeVideoIndex}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.04 }}
               transition={{
-                opacity: { duration: 0.15 },
+                opacity: { duration: 1.2, ease: "easeInOut" },
+                scale: { duration: 1.6, ease: "easeInOut" },
               }}
               className="absolute inset-0 bg-primary"
             >
               {/* Card Content */}
               <div className="absolute inset-0 bg-cover bg-center">
-                {heroSlides[heroSlide].type === "video" ? (
+                {heroSlides[activeVideoIndex].type === "video" ? (
                   <video
                     autoPlay
                     loop
@@ -289,8 +347,8 @@ export function Home() {
                     className="absolute inset-0 w-full h-full object-cover"
                   >
                     <source
-                      src={heroSlides[heroSlide].content}
-                      type={heroSlides[heroSlide].content.endsWith('.webm') ? 'video/webm' : 'video/mp4'}
+                      src={heroSlides[activeVideoIndex].content}
+                      type={heroSlides[activeVideoIndex].content.endsWith('.webm') ? 'video/webm' : 'video/mp4'}
                     />
                     <img
                       src="./solar-4.jpg"
@@ -301,7 +359,7 @@ export function Home() {
                 ) : (
                   <div
                     className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${heroSlides[heroSlide].content}')` }}
+                    style={{ backgroundImage: `url('${heroSlides[activeVideoIndex].content}')` }}
                   />
                 )}
               </div>
@@ -314,44 +372,98 @@ export function Home() {
 
         {/* Content */}
         <div className="relative z-20 flex flex-col min-h-[110vh] md:min-h-[120vh]">
-          {/* Shared hero message aligned to the right on every video slide */}
-          <div className="flex w-full flex-1 items-center justify-end px-4 pb-24 pt-32 sm:px-8 md:px-12 lg:px-20">
-            <motion.div
-              key={`text-${heroSlide}`}
-              initial={{ opacity: 0, x: 32 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="w-full max-w-2xl text-right"
-            >
-              <h1 className="font-montserrat text-4xl font-black leading-tight text-white drop-shadow-2xl sm:text-5xl md:text-6xl lg:text-7xl">
-                Power Your Future With The Sun
-              </h1>
-              <p className="mt-3 font-montserrat text-xl font-bold italic text-white sm:text-2xl md:text-3xl">
-                Stay on. Go beyond
-              </p>
-              <div className="mt-7 rounded-md border border-white/40 bg-white p-4 text-left shadow-2xl sm:p-6">
-                <p className="font-source-sans-pro text-base font-medium leading-relaxed text-primary sm:text-lg">
-                  Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
-                </p>
+          {/* Shared hero message aligned more to the LEFT */}
+          <div className="flex w-full flex-1 items-center px-4 pb-24 pt-32 sm:px-6 md:px-8 lg:px-12">
+            {heroTextStage > 0 && (
+              <div
+                key={`text-${activeVideoIndex}`}
+                className="w-full max-w-3xl text-left ml-0 md:ml-4 lg:ml-8"
+              >
+                {activeVideoIndex === 0 ? (
+                  <>
+                    <h1 className="animate-fade-in-up font-montserrat text-3xl font-black leading-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl">
+                      STAY ON<br />GO BEYOND
+                    </h1>
+                    <div className="mt-4 max-w-2xl rounded-xl bg-black/20 p-4 backdrop-blur-sm sm:p-6">
+                      <p className="animate-fade-in-up font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg sm:text-lg">
+                        Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
+                      </p>
+                    </div>
+                    <div className="mt-7 flex flex-col items-start justify-start gap-3 sm:flex-row">
+                      <Link
+                        to="/contact"
+                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 text-base font-bold text-primary shadow-lg shadow-secondary/20 transition-all duration-300 hover:bg-white sm:px-8 sm:text-lg"
+                      >
+                        Request a Quote
+                        <ArrowRight className="h-5 w-5" />
+                      </Link>
+                      <Link
+                        to="/shop"
+                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-base font-bold text-primary shadow-lg transition-all duration-300 hover:bg-secondary sm:px-8 sm:text-lg"
+                      >
+                        Shop Now
+                        <ArrowRight className="h-5 w-5" />
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <AnimatePresence mode="wait" initial={false}>
+                      {heroTextStage === 1 && (
+                        <motion.h1
+                          key="power-future"
+                          initial={{ opacity: 0, y: 18 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -18 }}
+                          transition={{ duration: 0.55, ease: "easeOut" }}
+                          className="font-montserrat text-3xl font-black leading-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl"
+                        >
+                          Power Your <br /> Future With The Sun
+                        </motion.h1>
+                      )}
+                      {heroTextStage === 2 && (
+                        <motion.h1
+                          key="surveillance-system"
+                          initial={{ opacity: 0, y: 18 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -18 }}
+                          transition={{ duration: 0.55, ease: "easeOut" }}
+                          className="font-montserrat text-3xl font-black leading-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl"
+                        >
+                          Best Home Surveillance System
+                        </motion.h1>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Constant Description */}
+                    <div className="mt-4 max-w-2xl rounded-xl bg-black/20 p-4 backdrop-blur-sm sm:p-6">
+                      <p className="font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg sm:text-lg">
+                        Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
+                      </p>
+                    </div>
+
+                    {/* Buttons for Slide 2 */}
+                    <div className="mt-7 flex flex-col items-start justify-start gap-3 sm:flex-row">
+                      <Link
+                        to="/contact"
+                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 text-base font-bold text-primary shadow-lg shadow-secondary/20 transition-all duration-300 hover:bg-white sm:px-8 sm:text-lg"
+                      >
+                        Request a Quote
+                        <ArrowRight className="h-5 w-5" />
+                      </Link>
+                      <Link
+                        to="/shop"
+                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-base font-bold text-primary shadow-lg transition-all duration-300 hover:bg-secondary sm:px-8 sm:text-lg"
+                      >
+                        Shop Now
+                        <ArrowRight className="h-5 w-5" />
+                      </Link>
+                    </div>
+                  </>
+                )}
               </div>
-              <div className="mt-7 flex flex-col items-end justify-end gap-3 sm:flex-row">
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
-                  >
-                    Request a Quote
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                  <Link
-                    to="/shop"
-                    className="inline-flex items-center justify-center gap-2 bg-white text-primary font-montserrat font-bold text-base sm:text-lg px-8 sm:px-10 py-4 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 text-center shadow-lg shadow-secondary/20 group whitespace-nowrap"
-                  >
-                    Shop Now
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-              </div>
-            </motion.div>
-            </div>
+            )}
+          </div>
 
           {/* Slide Indicators */}
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
@@ -359,9 +471,9 @@ export function Home() {
               <button
                 key={idx}
                 onClick={() => {
-                  setHeroSlide(idx);
+                  setActiveVideoIndex(idx);
                 }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === heroSlide ? "bg-white w-8" : "bg-white/50"
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === activeVideoIndex ? "bg-white w-8" : "bg-white/50"
                   }`}
                 aria-label={`Go to slide ${idx + 1}`}
               />
@@ -370,8 +482,59 @@ export function Home() {
         </div>
       </section>
 
+      {/* STATS CARDS - pulled up over the hero's bottom edge via negative margin.
+          On mobile (single column) only the first card overlaps the hero;
+          on desktop (row of 4) the whole row overlaps evenly. */}
+      <div className="relative z-40 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-10 mb-10 md:mb-0 px-4 sm:px-6 md:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-7">
+            {heroStats.map((stat, idx) => {
+              const isLongLabel = stat.label.length > 30;
+              return (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.18)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 p-6 sm:p-7 md:p-9 lg:p-10 min-h-[170px] sm:min-h-[180px] md:min-h-[200px] lg:min-h-[220px] flex flex-col items-center justify-center text-center"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #FFFFFF 0%, #FFF9F0 30%, #FFEED9 60%, #FFE0BC 85%, #FFD5A3 100%)",
+                  }}
+                >
+                  <div
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 md:mb-3"
+                    style={{ fontFamily: "'Anton', sans-serif" }}
+                  >
+                    {stat.isCountUp ? (
+                      <CountUp
+                        target={stat.target as number}
+                        duration={stat.duration}
+                        suffix={stat.suffix}
+                        format={stat.format}
+                      />
+                    ) : (
+                      stat.staticValue
+                    )}
+                  </div>
+                  <div
+                    className={`text-[10px] sm:text-xs md:text-sm font-medium uppercase tracking-wide text-slate-500 font-montserrat ${isLongLabel
+                      ? "leading-snug max-w-[9rem] sm:max-w-[10.5rem] md:max-w-[12.5rem] mx-auto"
+                      : "whitespace-nowrap"
+                      }`}
+                  >
+                    {stat.label}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* WHAT DOES EMBRACE ACTUALLY DO? SECTION */}
-      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+      <section className="pt-16 md:pt-24 pb-16 md:pb-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Large Image/Video Container */}
@@ -487,108 +650,6 @@ export function Home() {
         </div>
       </section>
 
-      {/* STATS SECTION - All 4 items in one row */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-[#1a1a2e] via-[#0f0f1e] to-[#16213e]">
-        <div className="container mx-auto px-4 md:px-6">
-          {/* Impact + Numbers Focus Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl md:text-3xl font-montserrat font-medium text-white">
-              Impact + Numbers Focus
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
-            {/* Stats Item 1 - 10k+ Installations Delivered */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
-                <CountUp
-                  target={10}
-                  duration={1300}
-                  suffix="k+"
-                  format={(value) =>
-                    value >= 1000 ? `${Math.floor(value / 1000)}k` : value.toString()
-                  }
-                  className="text-white"
-                />
-              </div>
-              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
-                Installations Delivered
-              </div>
-            </motion.div>
-
-            {/* Stats Item 2 - 25+ Training Programs Delivered */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
-                <CountUp
-                  target={25}
-                  duration={1300}
-                  suffix="+"
-                  className="text-white"
-                />
-              </div>
-              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
-                Training Programs Delivered
-              </div>
-            </motion.div>
-
-            {/* Stats Item 3 - 7+ Years of Experience */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-center border-r-0 md:border-r border-slate-500 last:border-r-0"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-primary mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
-                <CountUp
-                  target={yearsOfExperience}
-                  duration={1200}
-                  suffix="+"
-                  className="text-white"
-                />
-              </div>
-              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
-                Years of Experience
-              </div>
-            </motion.div>
-
-            {/* Stats Item 4 - 1MW Commercial Solar Capacity Installed */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center"
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
-                1MW
-              </div>
-              <div className="text-lg sm:text-xl md:text-2xl font-semibold text-secondary mb-3 font-montserrat">
-                Commercial Solar Capacity Installed
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES PREVIEW */}
       <section className="pt-12 pb-20 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -690,7 +751,6 @@ export function Home() {
             <h3 className="text-3xl sm:text-4xl md:text-5xl tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
               How we work
             </h3>
-
 
             <p className="text-slate-600 font-montserrat text-lg" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
               A simple, transparent process from your first consultation to
@@ -1070,10 +1130,6 @@ export function Home() {
             <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
               READY TO EMBRACE CLEAN ENERGY?
             </h2>
-            {/* <p className="text-base sm:text-lg md:text-xl text-slate-200 font-montserrat mb-8 sm:mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-              Call To Action
-              Ready To Power Your Home or Business?
-            </p> */}
             <Link
               to="/contact"
               className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1"

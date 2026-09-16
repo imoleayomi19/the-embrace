@@ -20,6 +20,15 @@ export default {
         sourceSans: ['Source Sans Pro', 'sans-serif'],
         poppins: ['Poppins', 'sans-serif'],
       },
+      keyframes: {
+        fadeInUp: {
+          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in-up': 'fadeInUp 0.7s ease-out both',
+      },
       backgroundImage: {
         'hero-pattern': "linear-gradient(to right bottom, rgba(0, 32, 96, 0.6), rgba(0, 32, 96, 0.4)), url('/embrace_roof1.jpeg')",
         'cta-pattern': "linear-gradient(to right, rgba(0, 32, 96, 0.95), rgba(0, 32, 96, 0.85)), url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=1920&q=80')",
