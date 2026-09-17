@@ -533,6 +533,42 @@ export function Home() {
         </div>
       </div>
 
+      {/* ABOUT EMBRACE SECTION - simple heading + paragraph layout */}
+      <section className="pt-20 md:pt-28 pb-16 md:pb-20 bg-slate-50">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            {/* Left - Heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="font-montserrat font-bold text-primary text-3xl sm:text-4xl md:text-[2.75rem] leading-tight">
+                Powering Nigeria's<br />Future, Today
+              </h2>
+            </motion.div>
+
+            {/* Right - Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4 text-slate-600 text-base md:text-lg leading-relaxed"
+              style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+            >
+              <p>
+                Embrace Technologies Limited is a Nigerian engineering company delivering integrated solutions in solar energy, energy storage, digital security, and smart infrastructure for homes, businesses, and public-sector clients.
+              </p>
+              <p>
+                From system design and installation to training and after-sales support, we combine certified engineering expertise with globally recognized equipment to deliver power and security systems built for Nigerian conditions — reliable, scalable, and backed by long-term support.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* WHAT DOES EMBRACE ACTUALLY DO? SECTION */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
@@ -580,71 +616,49 @@ export function Home() {
               </div>
             </motion.div>
 
-            {/* Right Side - Service Cards Accordion */}
+
+            {/* Right Side - Service List (icon + title + description, always visible) */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative space-y-4"
+              className="relative space-y-3"
             >
-              {serviceCards.map((card, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: idx * 0.1 }}
-                  className="bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 overflow-hidden cursor-pointer border border-slate-100"
-                  onClick={() => setActiveServiceIndex(activeServiceIndex === idx ? null : idx)}
-                >
-                  {/* Card Header - Always Visible */}
-                  <div className="flex items-center justify-between p-6">
-                    <h4 className="font-montserrat font-bold text-primary text-base uppercase tracking-wide flex-1">
-                      {card.title}
-                    </h4>
-                    <motion.div
-                      animate={{ rotate: activeServiceIndex === idx ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex-shrink-0 ml-4"
-                    >
-                      <svg
-                        className="w-5 h-5 text-slate-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M19 9l-7 7-7-7"
-                        />
-                      </svg>
-                    </motion.div>
-                  </div>
-
-                  {/* Card Content - Expandable */}
+              {serviceCards.map((card, idx) => {
+                const Icon = card.icon;
+                return (
                   <motion.div
-                    initial={false}
-                    animate={{
-                      height: activeServiceIndex === idx ? "auto" : 0,
-                      opacity: activeServiceIndex === idx ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="overflow-hidden"
+                    key={idx}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.08 }}
+                    className="group flex items-start gap-4 rounded-xl bg-white p-5 border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    <div className="px-6 pb-6 pt-0 border-t border-slate-100">
+                    {/* Icon badge */}
+                    <div
+                      className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-sm"
+                      style={{ background: card.gradient }}
+                    >
+                      <Icon className="w-6 h-6 text-white" strokeWidth={2} />
+                    </div>
+
+                    {/* Text content */}
+                    <div className="flex-1 pt-0.5">
+                      <h4 className="font-montserrat font-bold text-primary text-sm md:text-base uppercase tracking-wide mb-1.5">
+                        {card.title}
+                      </h4>
                       <p
-                        className="text-slate-600 text-lg leading-relaxed pt-4"
+                        className="text-slate-600 text-sm md:text-[15px] leading-relaxed"
                         style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
                       >
                         {card.desc}
                       </p>
                     </div>
                   </motion.div>
-                </motion.div>
-              ))}
+                );
+              })}
             </motion.div>
           </div>
         </div>

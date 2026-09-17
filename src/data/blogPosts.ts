@@ -11,6 +11,70 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 7,
+    slug: "will-n1000000-buy-solar-system-home-nigeria-2026",
+    title: "Will N1,000,000 Buy a Solar System for My Home in Nigeria?",
+    date: "September 17, 2026",
+    image: "/blog.png",
+    description: "Yes! With N1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
+    metaDescription: "Yes! With N1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
+    content: `
+      <p>Short answer? <strong>Yes. It absolutely can.</strong></p>
+      <p>If you thought solar is only for millionaires with a duplex and four air conditioners, 2026 has proved that wrong. With N1,000,000, you can say goodbye to fuel queues, generator noise, and NEPA wahala - at least for your essential loads.</p>
+      <p>At Embrace Energy, we call this our <strong>Freedom Starter System</strong>. It is the most popular system for students, young couples, one-bedroom apartments, and work-from-home professionals in Lagos.</p>
+      <p>Let's break down what your N1,000,000 actually gets you.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">What N1,000,000 Can Buy You Today</h2>
+      <p>In early 2026, an entry-level home system (1kVA-1.5kVA) costs between N850,000 and N1.2 million fully installed. This is no longer just panels - it is a complete system. <a href="https://businessday.ng" target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">BusinessDay</a> reports similar pricing for entry-level solar systems.</p>
+      <p>For N1,000,000, you can get:</p>
+      <ul>
+        <li><strong>1kVA pure sine wave inverter:</strong> To give you clean, noiseless power.</li>
+        <li><strong>One 2.5kWh lithium or 220Ah tubular battery:</strong> Your power bank for the night.</li>
+        <li><strong>Two 350W-550W solar panels:</strong> To charge your battery for free from the sun.</li>
+        <li><strong>MPPT charge controller, cables and installation.</strong></li>
+      </ul>
+      <p>This is not a torch or small solar kit. This is a real home system.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">What Can It Power?</h2>
+      <p>This is the sweet part. Your N1,000,000 system will comfortably carry:</p>
+      <ul>
+        <li>All your LED lights (living room, bedroom, kitchen and bathroom)</li>
+        <li>Two to three ceiling or standing fans</li>
+        <li>One smart TV and decoder</li>
+        <li>Wi-Fi router, DStv and sound system</li>
+        <li>All phones and laptops charging</li>
+        <li>Clippers and small blenders for a few minutes</li>
+      </ul>
+      <p>In essence, your lights will never go off, your fans will keep spinning, you can work on your laptop all day and binge Netflix at night - with zero fuel cost.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">What It Will Not Power (Let's Be Honest)</h2>
+      <p>We at Embrace will never lie to you just to make a sale. With N1,000,000, you cannot power:</p>
+      <ul>
+        <li>A 1HP air conditioner. It alone needs almost what your whole N1,000,000 system costs in battery.</li>
+        <li>An electric iron, electric kettle or hot plate</li>
+        <li>A pumping machine (0.75HP and above)</li>
+        <li>A fridge or freezer 24/7. It can carry one for a few hours, but not all day. For a fridge, you need at least an N2 million-N3 million system. <a href="https://businessday.ng" target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">BusinessDay</a> provides further context on the cost of larger systems.</li>
+      </ul>
+      <p>If your main need is air conditioning and refrigeration, we will advise you to start with a bigger 3.5kVA system.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">How to Make Your N1M System Last Longer</h2>
+      <ul>
+        <li><strong>Go lithium if you can:</strong> A small 2.5kWh lithium battery now costs around N580,000-N700,000 but can last 10 years. Tubular is cheaper now, but you may replace it in two years.</li>
+        <li><strong>Use energy-saving appliances:</strong> Replace old bulbs with LEDs and use DC fans if possible.</li>
+        <li><strong>Do not add an iron:</strong> Please. That is the fastest way to kill your inverter.
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">So, Should You Buy It?</h2>
+      <p>If you spend N20,000 weekly on fuel for a generator, that is N80,000 per month and N960,000 per year.</p>
+      <p>Your N1,000,000 solar system could pay for itself in about 12 months, then give you reliable power for the next 10 or more years. It is not an expense. It is freedom.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold">Ready to Get Started?</h2>
+      <p>At Embrace Energy, we do not just sell solar; we design it for your exact needs. We have flexible payment plans - you can start with 70% upfront and spread the rest.</p>
+      <p>Send us your list of appliances on WhatsApp today and let's size your N1,000,000 freedom system for free.</p>
+      <p><a href="https://wa.me/2347061451583?text=Hello%20Embrace%20Energy%2C%20I%20want%20to%20size%20a%20N1%2C000%2C000%20solar%20system%20for%20my%20home." target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">Chat with Embrace now.</a></p>
+    `
+  },
+  {
     id: 6,
     slug: "best-solar-companies-lagos-nigeria-2026",
     title: "Best Solar Companies in Lagos, Nigeria (2026)",
