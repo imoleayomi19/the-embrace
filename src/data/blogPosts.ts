@@ -26,7 +26,7 @@ export const blogPosts: BlogPost[] = [
 
       <h2 class="text-[#1E3A5F] font-montserrat font-bold">What N1,000,000 Can Buy You Today</h2>
       <p>In early 2026, an entry-level home system (1kVA-1.5kVA) costs between N850,000 and N1.2 million fully installed. This is no longer just panels - it is a complete system. <a href="https://businessday.ng" target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">BusinessDay</a> reports similar pricing for entry-level solar systems.</p>
-      <p>For N1,000,000, you can get:</p>
+      <p>For #1,000,000, you can get:</p>
       <ul>
         <li><strong>1kVA pure sine wave inverter:</strong> To give you clean, noiseless power.</li>
         <li><strong>One 2.5kWh lithium or 220Ah tubular battery:</strong> Your power bank for the night.</li>
@@ -36,7 +36,7 @@ export const blogPosts: BlogPost[] = [
       <p>This is not a torch or small solar kit. This is a real home system.</p>
 
       <h2 class="text-[#1E3A5F] font-montserrat font-bold">What Can It Power?</h2>
-      <p>This is the sweet part. Your N1,000,000 system will comfortably carry:</p>
+      <p>This is the sweet part. Your #1,000,000 system will comfortably carry:</p>
       <ul>
         <li>All your LED lights (living room, bedroom, kitchen and bathroom)</li>
         <li>Two to three ceiling or standing fans</li>
@@ -48,9 +48,9 @@ export const blogPosts: BlogPost[] = [
       <p>In essence, your lights will never go off, your fans will keep spinning, you can work on your laptop all day and binge Netflix at night - with zero fuel cost.</p>
 
       <h2 class="text-[#1E3A5F] font-montserrat font-bold">What It Will Not Power (Let's Be Honest)</h2>
-      <p>We at Embrace will never lie to you just to make a sale. With N1,000,000, you cannot power:</p>
+      <p>We at Embrace will never lie to you just to make a sale. With #1,000,000, you cannot power:</p>
       <ul>
-        <li>A 1HP air conditioner. It alone needs almost what your whole N1,000,000 system costs in battery.</li>
+        <li>A 1HP air conditioner. It alone needs almost what your whole #1,000,000 system costs in battery.</li>
         <li>An electric iron, electric kettle or hot plate</li>
         <li>A pumping machine (0.75HP and above)</li>
         <li>A fridge or freezer 24/7. It can carry one for a few hours, but not all day. For a fridge, you need at least an N2 million-N3 million system. <a href="https://businessday.ng" target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">BusinessDay</a> provides further context on the cost of larger systems.</li>
