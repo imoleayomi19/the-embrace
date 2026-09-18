@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate, Link } from "react-router-dom";
 import { Search, X, Calendar, BookOpen, ChevronLeft, ChevronRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "../data/BlogPosts";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -236,7 +236,7 @@ export function Blog() {
             {currentPosts.map((post) => (
               <motion.article key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg" {...fadeIn}>
                 <div className="relative h-64 overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                  <img src={post.image} alt={post.title} className={`w-full h-full ${post.imageFit === "contain" ? "object-contain bg-slate-950" : "object-cover"}`} />
                 </div>
                 <div className="p-8 flex-col">
                   <h3 className="text-2xl font-montserrat font-bold mb-3 text-slate-800">{post.title}</h3>

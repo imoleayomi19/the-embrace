@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { blogPosts } from "../data/blogPosts";
+import { blogPosts } from "../data/BlogPosts";
 
 export function BlogPost() {
     const { slug } = useParams<{ slug: string }>();
@@ -51,8 +51,8 @@ export function BlogPost() {
                     <motion.h1 className="mb-6 text-3xl font-montserrat font-black leading-tight text-slate-700 sm:text-4xl md:text-5xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>{currentPost.title}</motion.h1>
                     <motion.time dateTime={isoDate} className="mb-5 block text-base italic text-slate-400" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>{currentPost.date}</motion.time>
                     <motion.p className="mb-10 max-w-3xl font-poppins text-lg leading-8 text-slate-600" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>{currentPost.description}</motion.p>
-                    <motion.div className="relative mb-16 h-64 overflow-hidden rounded-2xl shadow-xl sm:h-80 md:h-96 lg:h-[500px]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <img src={currentPost.image} alt={currentPost.title} className="h-full w-full object-cover" />
+                    <motion.div className="relative mb-16 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 shadow-xl sm:aspect-auto sm:h-80 md:h-96 lg:h-[500px]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                        <img src={currentPost.image} alt={currentPost.title} className={`h-full w-full ${currentPost.imageFit === "contain" ? "object-contain bg-slate-950" : "object-cover"}`} />
                     </motion.div>
                     <motion.div ref={contentRef} className="prose prose-lg max-w-none prose-headings:font-anton prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-[#063b75] prose-h2:mt-16 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-8 prose-strong:text-[#063b75]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} dangerouslySetInnerHTML={{ __html: currentPost.content }} style={{ fontFamily: "'poppins', sans-serif", lineHeight: "1.8" }} />
                 </article>

@@ -4,6 +4,7 @@ export type BlogPost = {
   title: string;
   date: string;
   image: string;
+  imageFit?: "cover" | "contain";
   description: string;
   metaDescription: string;
   content: string;
@@ -11,11 +12,77 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 8,
+    slug: "solar-power-vs-solar-energy-kw-kwh-explained",
+    title: "Solar Power vs Solar Energy: kW and kWh Explained Simply (Nigeria Guide)",
+    date: "September 19, 2026",
+    image: "/blog-8.webp",
+    description: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
+    metaDescription: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
+    content: `
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Solar Power vs Solar Energy: kW vs kWh Explained</h2>
+      <p>If you've ever shopped for solar in Nigeria, you've seen it: "3kW inverter", "5kWh battery". The numbers look similar, but they measure completely different things — and mixing them up is the #1 reason people end up with an undersized or oversized system.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">1. The Water Tank Analogy</h3>
+      <p>Think of electricity like water:</p>
+      <div class="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+        <table class="min-w-full border-collapse text-left text-sm sm:text-base">
+          <thead class="bg-[#063b75] text-white">
+            <tr><th class="px-4 py-3 font-semibold">Measure</th><th class="px-4 py-3 font-semibold">Meaning</th><th class="px-4 py-3 font-semibold">Think of it as</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            <tr><td class="px-4 py-3 font-semibold text-[#063b75]">kW (Kilowatt)</td><td class="px-4 py-3">POWER: how fast water flows</td><td class="px-4 py-3">The size of your pipe and the load your inverter can carry right now</td></tr>
+            <tr><td class="px-4 py-3 font-semibold text-[#063b75]">kWh (Kilowatt-hour)</td><td class="px-4 py-3">ENERGY: how much water is in the tank</td><td class="px-4 py-3">Your usage over time — what NEPA actually charges you for</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>In short: kW is SPEED. kWh is DISTANCE.</strong></p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">2. kW - Your System Size</h3>
+      <p>kW measures your capacity right now.</p>
+      <ul>
+        <li>A 3kW inverter can power a 1.5HP AC, fridge, lights and TV at the same time.</li>
+        <li>A 5kW solar panel array can generate up to 5kW of power when the sun is at its peak (12pm - 2pm in Lagos).</li>
+      </ul>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">3. kWh - Your Bill and Your Battery</h3>
+      <p>kWh measures total consumption.</p>
+      <ul>
+        <li>If you use 1kW for 1 hour = 1kWh</li>
+        <li>If you use a 2kW AC for 5 hours = 10kWh</li>
+      </ul>
+      <p>Most homes in Nigeria need 10-20kWh per day, while small businesses need 25-50kWh per day.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">4. Putting It Together: A Real Example</h3>
+      <p>Say your home runs a 1.5kW AC for 4 hours a night, plus 0.5kW of fans, lights and a fridge running most of the day (say 10 hours). Here's how the two numbers work side by side:</p>
+      <ul>
+        <li><strong>Peak load (kW):</strong> AC (1.5kW) + fans/lights/fridge (0.5kW) running together = <strong>2kW</strong>. Your inverter needs to comfortably carry at least this much.</li>
+        <li><strong>Daily energy (kWh):</strong> (1.5kW × 4 hours) + (0.5kW × 10 hours) = 6kWh + 5kWh = <strong>11kWh</strong> per day. Your battery and solar array need to cover this total.</li>
+      </ul>
+      <p>Notice the inverter only needs to be sized for the 2kW peak — but the battery needs to be sized for the full 11kWh used across the day. Same house, two very different numbers, two different jobs.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">5. Which Number Answers Your Question?</h3>
+      <ul>
+        <li><strong>"Can my system carry my AC?"</strong> — That's a kW question. Check your inverter's power rating against your combined running load.</li>
+        <li><strong>"How long will my battery last at night?"</strong> — That's a kWh question. Check your battery's stored energy against your nightly consumption.</li>
+        <li><strong>"How much will I save on fuel or NEPA bills?"</strong> — Also a kWh question, since that's what utility bills and generator running costs are calculated on.</li>
+      </ul>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Quick FAQ</h3>
+      <p><strong>Is a bigger inverter always better?</strong><br/>Not necessarily. A larger inverter lets you run more appliances at once, but it doesn't store more energy — that's the battery's job. Sizing one without the other leaves you either unable to start your AC, or able to start it but with a battery that drains in an hour.</p>
+      <p><strong>Can I run a 1.5HP air conditioner on a 3kW inverter?</strong><br/>Generally yes, alongside a fridge and a few lights, but always account for the AC's startup surge, which briefly draws more power than its running wattage. This is why proper load calculation matters more than looking at appliance labels alone.</p>
+
+      <p><strong>Final Takeaway:</strong> Before buying a solar system, ask two questions: 1. What is my peak load? (kW) 2. What is my daily consumption? (kWh)</p>
+      <p>Need help calculating your kW and kWh? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited.</a></p>
+    `
+  },
+  {
     id: 7,
     slug: "will-n1000000-buy-solar-system-home-nigeria-2026",
     title: "Will #1,000,000 Buy a Solar System for My Home in Nigeria?",
     date: "September 17, 2026",
     image: "/blog.png",
+    imageFit: "contain",
     description: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
     metaDescription: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
     content: `
