@@ -123,7 +123,7 @@ export function Home() {
   const heroSlides = useMemo(() => [
     {
       type: "video",
-      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787919331/hero-sec.webm",
+      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4",
       duration: 14000,
     },
     {
@@ -482,10 +482,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* STATS CARDS - pulled up over the hero's bottom edge via negative margin.
-          On mobile (single column) only the first card overlaps the hero;
-          on desktop (row of 4) the whole row overlaps evenly. */}
-      <div className="relative z-40 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-10 mb-10 md:mb-0 px-4 sm:px-6 md:px-8">
+      {/* STATS CARDS - pulled up over the hero's bottom edge via negative margin.*/}
+      <div className="relative z-40 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-10 px-4 sm:px-6 md:px-8">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-7">
             {heroStats.map((stat, idx) => {
@@ -533,18 +531,89 @@ export function Home() {
         </div>
       </div>
 
+      {/* TRUSTED BY ORGANISATIONS */}
+      <section className="pt-16 pb-16 bg-slate-50 border-t border-slate-200 overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6" onMouseEnter={() => setIsTrustedPaused(true)}
+          onMouseLeave={() => setIsTrustedPaused(false)}>
+
+          <div
+            className="relative w-full overflow-hidden"
+            onMouseEnter={() => setIsTrustedPaused(true)}
+            onMouseLeave={() => setIsTrustedPaused(false)}
+          >
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-slate-50 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-slate-50 to-transparent" />
+
+            <motion.div
+              className="flex items-center gap-20 md:gap-28 w-max"
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: isTrustedPaused ? 0 : 50,
+                  ease: "linear",
+                },
+              }}
+            >
+              {[...Array(2)].flatMap((_, dupIdx) =>
+                [
+                  { name: "Chint Power", src: "./chint-logo.webp" },
+                  { name: "Coleman Power", src: "./coleman-logo.webp" },
+                  { name: "Dahua Power", src: "./dahua-logo.webp" },
+                  { name: "Deye", src: "./deye-logo.webp" },
+                  { name: "Felicity Solar", src: "./felicity-logo.webp" },
+                  { name: "growatt", src: "./growatt-logo.webp" },
+                  { name: "Hikvision Power", src: "./hikvision-logo.webp" },
+                  { name: "Huawei Power", src: "./huawei-logo.webp" },
+                  { name: "ja-solar", src: "./ja-solar.webp" },
+                  { name: "jinko Power", src: "./jinko-solar.webp" },
+                  { name: "Lado Oil", src: "./lado-logo.webp" },
+                  { name: "longi Power", src: "./longi-logo.webp" },
+                  { name: "luxsun energy", src: "./luxsun-logo.webp" },
+                  { name: "Prado Power", src: "./prado-logo.webp" },
+                  { name: "Suntree Power", src: "./suntree-logo.webp" },
+                  { name: "Trina Power", src: "./trina-logo.webp" },
+                ].map((org, idx) => (
+                  <div
+                    key={`${dupIdx}-${idx}`}
+                    className="flex items-center justify-center h-20 w-40 md:w-52 shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    aria-hidden={dupIdx === 1 ? "true" : undefined}
+                  >
+                    <img
+                      src={org.src}
+                      alt={dupIdx === 0 ? `${org.name} logo` : ""}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                ))
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ABOUT EMBRACE SECTION - simple heading + paragraph layout */}
       <section className="pt-20 md:pt-28 pb-16 md:pb-20 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-            {/* Left - Heading */}
+            {/* Left - Heading with background image */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="relative rounded-2xl overflow-hidden min-h-[260px] md:min-h-[320px] flex items-center p-8 md:p-10"
             >
-              <h2 className="font-montserrat font-bold text-primary text-3xl sm:text-4xl md:text-[2.75rem] leading-tight">
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url('./solar-4.jpg')" }}
+              />
+              {/* Overlay so the heading stays readable */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/60" />
+
+              <h2 className="relative z-10 font-montserrat font-bold text-white text-3xl sm:text-4xl md:text-[2.75rem] leading-tight drop-shadow-lg">
                 Powering Nigeria's<br />Future, Today
               </h2>
             </motion.div>
@@ -636,12 +705,11 @@ export function Home() {
                     transition={{ duration: 0.4, delay: idx * 0.08 }}
                     className="group flex items-start gap-4 rounded-xl bg-white p-5 border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)] hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    {/* Icon badge */}
+                    {/* Icon badge — now shares the Learn More hover gradient (white → secondary) */}
                     <div
-                      className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-sm"
-                      style={{ background: card.gradient }}
+                      className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-sm bg-gradient-to-r from-white to-secondary"
                     >
-                      <Icon className="w-6 h-6 text-white" strokeWidth={2} />
+                      <Icon className="w-6 h-6 text-primary" strokeWidth={2} />
                     </div>
 
                     {/* Text content */}
@@ -1059,74 +1127,6 @@ export function Home() {
                 />
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TRUSTED BY ORGANISATIONS */}
-      <section className="py-16 bg-slate-50 border-t border-slate-200 overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6" onMouseEnter={() => setIsTrustedPaused(true)}
-          onMouseLeave={() => setIsTrustedPaused(false)}>
-          <motion.div className="text-center mb-12" {...fadeIn}>
-            <p className="font-montserrat font-medium text-sm uppercase tracking-[0.2em] text-slate-500 mb-2">
-              Trusted By Leading Partners
-            </p>
-            <div className="w-16 h-0.5 bg-secondary mx-auto"></div>
-          </motion.div>
-
-          <div
-            className="relative w-full overflow-hidden"
-            onMouseEnter={() => setIsTrustedPaused(true)}
-            onMouseLeave={() => setIsTrustedPaused(false)}
-          >
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-slate-50 to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-slate-50 to-transparent" />
-
-            <motion.div
-              className="flex items-center gap-20 md:gap-28 w-max"
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: isTrustedPaused ? 0 : 50,
-                  ease: "linear",
-                },
-              }}
-            >
-              {[...Array(2)].flatMap((_, dupIdx) =>
-                [
-                  { name: "Chint Power", src: "./chint-logo.webp" },
-                  { name: "Coleman Power", src: "./coleman-logo.webp" },
-                  { name: "Dahua Power", src: "./dahua-logo.webp" },
-                  { name: "Deye", src: "./deye-logo.webp" },
-                  { name: "Felicity Solar", src: "./felicity-logo.webp" },
-                  { name: "growatt", src: "./growatt-logo.webp" },
-                  { name: "Hikvision Power", src: "./hikvision-logo.webp" },
-                  { name: "Huawei Power", src: "./huawei-logo.webp" },
-                  { name: "ja-solar", src: "./ja-solar.webp" },
-                  { name: "jinko Power", src: "./jinko-solar.webp" },
-                  { name: "Lado Oil", src: "./lado-logo.webp" },
-                  { name: "longi Power", src: "./longi-logo.webp" },
-                  { name: "luxsun energy", src: "./luxsun-logo.webp" },
-                  { name: "Prado Power", src: "./prado-logo.webp" },
-                  { name: "Suntree Power", src: "./suntree-logo.webp" },
-                  { name: "Trina Power", src: "./trina-logo.webp" },
-                ].map((org, idx) => (
-                  <div
-                    key={`${dupIdx}-${idx}`}
-                    className="flex items-center justify-center h-20 w-40 md:w-52 shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300"
-                    aria-hidden={dupIdx === 1 ? "true" : undefined}
-                  >
-                    <img
-                      src={org.src}
-                      alt={dupIdx === 0 ? `${org.name} logo` : ""}
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                ))
-              )}
-            </motion.div>
           </div>
         </div>
       </section>
