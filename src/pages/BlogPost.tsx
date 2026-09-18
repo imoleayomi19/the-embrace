@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { blogPosts } from "../data/BlogPosts";
+import { blogPosts } from "../data/BlogPosts.ts";
 
 export function BlogPost() {
     const { slug } = useParams<{ slug: string }>();
