@@ -594,10 +594,10 @@ export function Home() {
       </section>
 
       {/* ABOUT EMBRACE SECTION - simple heading + paragraph layout */}
-      <section className="pt-20 md:pt-28 pb-16 md:pb-20 bg-slate-50">
+      {/* <section className="pt-15 md:pt-15 pb-16 md:pb-20 bg-slate-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-            {/* Left - Heading with background image */}
+            Left - Heading with background image
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -605,12 +605,12 @@ export function Home() {
               transition={{ duration: 0.6 }}
               className="relative rounded-2xl overflow-hidden min-h-[260px] md:min-h-[320px] flex items-center p-8 md:p-10"
             >
-              {/* Background image */}
+              Background image
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: "url('./solar-4.jpg')" }}
               />
-              {/* Overlay so the heading stays readable */}
+              Overlay so the heading stays readable
               <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/60" />
 
               <h2 className="relative z-10 font-montserrat font-bold text-white text-3xl sm:text-4xl md:text-[2.75rem] leading-tight drop-shadow-lg">
@@ -618,7 +618,7 @@ export function Home() {
               </h2>
             </motion.div>
 
-            {/* Right - Description */}
+            Right - Description
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -636,7 +636,7 @@ export function Home() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* WHAT DOES EMBRACE ACTUALLY DO? SECTION */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-24 bg-white relative overflow-hidden">
@@ -665,23 +665,25 @@ export function Home() {
                     type="video/webm"
                   />
                 </video>
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40" />
+
+                {/* Even dark overlay for the whole card, slightly heavier toward the text area */}
+                <div className="absolute inset-0 bg-primary/60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               </div>
 
               {/* Content - visible on top of video */}
-              <div className="relative z-10 h-full flex flex-col justify-center p-6 md:p-10">
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-montserrat font-bold text-white mb-4 leading-tight">
-                  Your Power, Our Priority
-                </h3>
-
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 text-white font-montserrat font-semibold border-2 border-white px-6 py-3 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-10">
+                {/* <div className="rounded-xl bg-black/30 p-5 backdrop-blur-sm md:p-6"> */}
+                <h2 className="text-center font-montserrat font-bold text-white text-2xl">About Us</h2>
+                <p className="font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg md:text-lg">
+                  Embrace Technologies Limited is a Nigerian engineering company delivering
+                  integrated solutions in solar energy,
+                  From system design and installation to training and after-sales support, we
+                  combine certified engineering expertise with globally recognized equipment to
+                  deliver power and security systems built for Nigerian conditions — reliable,
+                  scalable, and backed by long-term support.
+                </p>
+                {/* </div> */}
               </div>
             </motion.div>
 

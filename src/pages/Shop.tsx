@@ -171,7 +171,6 @@ function Catalog() {
       <section id="products" className="mx-auto max-w-7xl px-4 py-14 md:py-20">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-montserrat text-xs font-semibold uppercase tracking-[0.24em] text-secondary">Solar packages</p>
             <h2 className="mt-3 font-anton text-3xl text-primary sm:text-4xl">Choose your power system</h2>
           </div>
           <SlidersHorizontal className="hidden h-6 w-6 text-secondary md:block" />
