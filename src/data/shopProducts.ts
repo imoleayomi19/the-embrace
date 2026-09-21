@@ -74,7 +74,7 @@ function product(
 
 export const shopProducts: SolarProduct[] = [
   // product(201, "IVEM 3KW", "ivem-3kw", "Residential", "IVEM", "3KW", 1750000, "Compact home power for essential loads."),
-  product(202, "IVEM 4KW Classic Light - Complete Package", "ivem-4kw", "Residential", "IVEM", "4KW", 2100000, "Everything you need to power your home. Inverter, battery, and solar.", [
+  product(202, "IVEM 4KW Classic Lite - Complete Package", "ivem-4kw", "Residential", "IVEM", "4KW", 2100000, "Everything you need to power your home. Inverter, battery, and solar.", [
     { id: "ivem-4kw-1", solar: "2.34kWp", label: "4 x 585W SolarSpace = 2.34kWp", battery: "2x 220Ah Battery", price: 2100000, storage: "5.12kWh LiFePO4" },
     { id: "ivem-4kw-2", solar: "3.51kWp", label: "6 x 585W SolarSpace = 3.51kWp", battery: "2x 220Ah Battery", price: 2650000, storage: "10.24kWh LiFePO4" },
     { id: "ivem-4kw-3", solar: "3.72kWp", label: "6 x 620W Jinko = 3.72kWp", battery: "3x 220Ah Battery", price: 2950000, storage: "15kWh LiFePO4" },

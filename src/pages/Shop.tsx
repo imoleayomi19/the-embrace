@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Lightbulb, SlidersHorizontal } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Lightbulb, Phone, SlidersHorizontal, X } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { getShopProduct, shopProducts, type SolarProduct } from "../data/shopProducts";
 
@@ -33,6 +33,12 @@ function Hero() {
 function Recommender() {
   const [query, setQuery] = useState("");
   const [recommendation, setRecommendation] = useState<SolarProduct | null>(null);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [form, setForm] = useState({ fullName: "", phone: "", address: "" });
+
+  const salesEmail = "sales@embracetechng.com";
+  const salesPhone = "+2347061451583";
 
   function recommend() {
     const normalized = query.toLowerCase();
@@ -44,6 +50,22 @@ function Recommender() {
           ? "ivem-6kw"
           : "ivem-4kw";
     setRecommendation(getShopProduct(recommendedSlug) ?? null);
+    setIsSubmitted(false);
+    setIsFormOpen(true);
+  }
+
+  function submitRecommendation(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const subject = `New Power Recommendation Request - ${form.fullName}`;
+    const body = [
+      `Power Need: ${query}`,
+      `Name: ${form.fullName}`,
+      `Phone: ${form.phone}`,
+      `Address: ${form.address}`,
+    ].join("\n");
+
+    window.location.href = `mailto:${salesEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsSubmitted(true);
   }
 
   return (
@@ -86,6 +108,93 @@ function Recommender() {
           </div>
         )}
       </div>
+
+      {isFormOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-primary/70 px-4 py-6 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="recommendation-form-title"
+        >
+          <div className="relative max-h-full w-full max-w-lg overflow-y-auto rounded-sm bg-white p-6 shadow-2xl sm:p-8">
+            <button
+              type="button"
+              onClick={() => setIsFormOpen(false)}
+              className="absolute right-4 top-4 rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-primary"
+              aria-label="Close recommendation form"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {isSubmitted ? (
+              <div className="flex flex-col items-center gap-4 pt-4 text-center">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary/20 text-primary">
+                  <Lightbulb className="h-7 w-7" />
+                </div>
+                <h3 id="recommendation-form-title" className="font-anton text-2xl text-primary">Request Ready</h3>
+                <p className="font-poppins text-sm leading-6 text-slate-600">
+                  Your email app should now have a message addressed to our sales team. You can also call us directly.
+                </p>
+                <a
+                  href={`tel:${salesPhone}`}
+                  className="inline-flex items-center gap-2 rounded-sm bg-secondary px-6 py-3 font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-primary transition hover:bg-alternative"
+                >
+                  <Phone className="h-4 w-4" />
+                  Call sales
+                </a>
+              </div>
+            ) : (
+              <form onSubmit={submitRecommendation} className="flex flex-col gap-5">
+                <div className="pr-8">
+                  <h3 id="recommendation-form-title" className="font-anton text-2xl text-primary">Get your recommendation</h3>
+                  <p className="mt-2 font-poppins text-sm leading-6 text-slate-600">
+                    Share your details and our sales team will help you choose the right package.
+                  </p>
+                </div>
+                <div>
+                  <label htmlFor="recommendation-name" className="mb-2 block font-montserrat text-xs font-bold uppercase tracking-[0.12em] text-slate-600">Full Name</label>
+                  <input
+                    id="recommendation-name"
+                    required
+                    value={form.fullName}
+                    onChange={(event) => setForm({ ...form, fullName: event.target.value })}
+                    className="w-full rounded-sm border border-slate-300 px-4 py-3 font-poppins text-sm outline-none transition focus:border-secondary focus:ring-2 focus:ring-secondary/20"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="recommendation-phone" className="mb-2 block font-montserrat text-xs font-bold uppercase tracking-[0.12em] text-slate-600">Phone</label>
+                  <input
+                    id="recommendation-phone"
+                    required
+                    type="tel"
+                    value={form.phone}
+                    onChange={(event) => setForm({ ...form, phone: event.target.value })}
+                    className="w-full rounded-sm border border-slate-300 px-4 py-3 font-poppins text-sm outline-none transition focus:border-secondary focus:ring-2 focus:ring-secondary/20"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="recommendation-address" className="mb-2 block font-montserrat text-xs font-bold uppercase tracking-[0.12em] text-slate-600">Address</label>
+                  <textarea
+                    id="recommendation-address"
+                    required
+                    rows={3}
+                    value={form.address}
+                    onChange={(event) => setForm({ ...form, address: event.target.value })}
+                    className="w-full resize-none rounded-sm border border-slate-300 px-4 py-3 font-poppins text-sm outline-none transition focus:border-secondary focus:ring-2 focus:ring-secondary/20"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-primary px-6 font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-white transition hover:bg-secondary hover:text-primary"
+                >
+                  Send to sales
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -127,7 +236,7 @@ function ProductFilters({
   const selectClass = "w-full appearance-none rounded-sm border border-slate-300 bg-white px-4 py-3 font-montserrat text-xs font-semibold text-slate-700 outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20";
   const filters = [
     { label: "Application", value: application, setter: setApplication, options: ["All", "Residential", "Commercial / Industrial"] },
-    { label: "Brand", value: brand, setter: setBrand, options: ["All", "IVEM", "IVPM", "IVGM", "DEYE DXLV", "DEYE DXHV", "FLEX"] },
+    { label: "Brand", value: brand, setter: setBrand, options: ["All", "IVEM", "IVPM", "IVGM", "DEYE Low Voltage (DXLV)", "DEYE High Voltage (DXHV)", "FLEX"] },
     { label: "Power Size", value: powerSize, setter: setPowerSize, options: ["All", ...new Set(shopProducts.map((product) => product.powerSize))] },
   ];
 
