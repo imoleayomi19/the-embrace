@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -472,6 +472,21 @@ export function Navbar() {
     setOpenMobileSub(null);
   }, [location.pathname, location.search]);
 
+  const handleMobileNavClick = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
+    setIsMobileMenuOpen(false);
+    setOpenMobileSub(null);
+
+    if (location.pathname === path) {
+      event.preventDefault();
+      window.location.reload();
+    }
+  };
+
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    window.location.assign("/");
+  };
+
   // HOME | ABOUT | SOLUTIONS | SHOP PRODUCTS | PROJECTS | RESOURCES ▾
   const navLinks: NavLink[] = [
     {
@@ -551,7 +566,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between gap-3">
           {/* Logo - Far Left */}
-          <Link to="/" className="group flex-shrink-0 min-w-0">
+          <Link to="/" onClick={handleLogoClick} className="group flex-shrink-0 min-w-0">
             <img
               src="/nav-logo.webp"
               alt="Embrace Technologies"
@@ -915,6 +930,7 @@ export function Navbar() {
                                 <li key={cat.name}>
                                   <Link
                                     to={cat.path}
+                                    onClick={(event) => handleMobileNavClick(event, cat.path)}
                                     className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
                                   >
                                     {cat.name}
@@ -966,6 +982,7 @@ export function Navbar() {
                                       <li key={item.name}>
                                         <Link
                                           to={item.path}
+                                          onClick={(event) => handleMobileNavClick(event, item.path)}
                                           className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
                                         >
                                           {item.name}
@@ -993,6 +1010,7 @@ export function Navbar() {
                       <Link
                         key={link.name}
                         to={link.path}
+                        onClick={(event) => handleMobileNavClick(event, link.path)}
                         className="font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary border-b border-slate-50"
                       >
                         {link.name}
@@ -1033,6 +1051,7 @@ export function Navbar() {
                               <li key={child.name}>
                                 <Link
                                   to={child.path}
+                                  onClick={(event) => handleMobileNavClick(event, child.path)}
                                   className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
                                 >
                                   {child.name}
@@ -1055,6 +1074,7 @@ export function Navbar() {
                 <div className="flex items-center gap-3 mt-4">
                   <Link
                     to="/contact"
+                    onClick={(event) => handleMobileNavClick(event, "/contact")}
                     className="flex-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-3 rounded-sm text-center uppercase tracking-wide shadow-md transition-all duration-200 hover:from-orange-600 hover:to-amber-600"
                   >
                     Contact Us

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { Navbar } from './components/Navbar';
@@ -19,6 +20,11 @@ import { Shop } from './pages/Shop';
 function AppShell() {
   const { pathname } = useLocation();
   const isLandingPage = pathname === '/landing';
+
+  useEffect(() => {
+    window.history.scrollRestoration = 'manual';
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, [pathname]);
 
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
