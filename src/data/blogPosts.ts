@@ -12,6 +12,85 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 10,
+    slug: "solar-panel-efficiency-explained-nigeria",
+    title: "Solar Panel Efficiency Explained: Why It Matters for You in Nigeria",
+    date: "September 25, 2026",
+    image: "/blog-10.webp",
+    description: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
+    metaDescription: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
+    content: `
+      <p>You see 550W, 600W, 18% efficiency, 21% efficiency - but what does solar efficiency actually mean for you?</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What is Solar Cell / Panel Efficiency?</h2>
+      <p>Simply put, efficiency is how much sunlight a panel converts into electricity.</p>
+      <p>If a panel is 18% efficient, it means 18% of sunlight hitting it becomes power for your home. If it's 22% efficient, it produces <strong>MORE power from the SAME sunlight.</strong></p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Why Does Efficiency Matter So Much in Nigeria?</h2>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">1. Limited Roof Space</h3>
+      <p>High-efficiency panels (21-23%) give you more power from a small roof. Low-efficiency panels need more space to give you the same output. In Lagos, where roof space is tight, efficiency is king.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">2. More Power on Cloudy Days</h3>
+      <p>Nigeria has a rainy season and dust. High-efficiency monocrystalline panels perform better in low-light and high-heat conditions than cheap panels.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">3. Long-Term Value</h3>
+      <p>A high-efficiency Tier-1 panel degrades slower (0.4% per year) versus cheap panels (0.8% per year). After 10 years, you still get 90%+ power. Cheap panels will have dropped significantly.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Efficiency is NOT Everything</h2>
+      <p>Don't be tricked. A 600W low-quality panel with 19% efficiency is NOT better than a 550W Tier-1 panel with 22% efficiency. At Embrace Technologies, we balance:</p>
+      <ul>
+        <li>Efficiency rating</li>
+        <li>Brand &amp; Warranty (25 years)</li>
+        <li>Temperature coefficient (critical for Nigerian heat)</li>
+        <li>Real-world performance</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Our Advice at Embrace Technologies Limited</h2>
+      <p>Always go for Tier-1, high-efficiency monocrystalline panels - like we install. It may cost slightly more today, but it saves you from buying extra panels and batteries tomorrow.</p>
+      <p>Premium equipment alone is not enough. Precision design and proper installation is what gives you 24/7 power.</p>
+
+      <p>Want the best panel for your roof? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Talk to our engineers at Embrace Technologies Limited</a> for genuine, high-efficiency solar solutions.</p>
+    `
+  },
+  {
+    id: 9,
+    slug: "what-size-solar-system-should-i-choose-nigeria",
+    title: "What Size of Solar System Should I Choose for My Home or Business?",
+    date: "September 23, 2026",
+    image: "/blog-9.webp",
+    description: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
+    metaDescription: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
+    content: `
+      <p>Choosing a solar system in Nigeria can be confusing. 3kVA, 5kVA, 10kVA, 15kVA - what do you actually need? Installing a system that's too small will leave you in darkness, too big will waste money.</p>
+      <p>At Embrace Technologies Limited, we don't guess. We size based on your actual load.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">1. Start With an Energy Audit - Not Guesswork</h2>
+      <p>List what you want to power: ACs, fridge, freezer, pumping machine, lights, TV, business equipment. Each has a watt rating. We sum it up to get your total load and daily energy consumption (kWh).</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">2. Standard Sizes for Nigerian Homes &amp; Businesses</h2>
+      <ul>
+        <li><strong>2.5kVA - 3.5kVA System:</strong> Perfect for a small 2-bedroom flat. Powers lights, fans, TV, fridge. Good entry-level.</li>
+        <li><strong>5kVA System (Most Popular):</strong> Powers a standard 3-bedroom bungalow. Handles 1-1.5HP AC, fridge, freezer, and all essentials. Best for most families.</li>
+        <li><strong>7.5kVA - 10kVA System:</strong> For large duplexes and small businesses. Powers 2-3 ACs, multiple fridges, office equipment. Zero compromise.</li>
+        <li><strong>15kVA+ System:</strong> For estates, factories, hotels, supermarkets, and businesses running heavy machines and cold rooms.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">3. The 3 Mistakes Nigerians Make</h2>
+      <ul>
+        <li><strong>Buying inverter first, battery later.</strong> Your system must be balanced.</li>
+        <li><strong>Ignoring battery capacity.</strong> Your lithium battery determines how long power lasts at night, not just the inverter.</li>
+        <li><strong>No load analysis.</strong> Never buy based on what your neighbour bought.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Why Embrace Technologies is Different</h2>
+      <p>We perform a detailed energy audit, proper load analysis, and structured protection design before installation. We use globally certified panels, lithium batteries, and inverters - engineered for Nigerian conditions.</p>
+      <p>Not sure about your size? Send us your list of appliances on WhatsApp and we will size it for FREE within 10 minutes.</p>
+
+      <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Book a Free Energy Audit Today - Embrace Technologies Limited.</a></p>
+    `
+  },
+  {
     id: 8,
     slug: "solar-power-vs-solar-energy-kw-kwh-explained",
     title: "Solar Power vs Solar Energy: kW and kWh Explained Simply (Nigeria Guide)",
@@ -509,28 +588,4 @@ export const blogPosts: BlogPost[] = [
       </div>
     `
   },
-  // {
-  //   id: 4,
-  //   slug: "why-solar-energy-is-the-future",
-  //   title: "Why Solar Energy Is The Future",
-  //   date: "August 28, 2026",
-  //   image: "/why-solar.jpg",
-  //   description: "From cutting electricity bills to increasing property value. Here are 6 reasons why more Nigerians are switching to solar in 2026.",
-  //   metaDescription: "Discover 6 key benefits of solar energy in Nigeria: save money, reliable power, eco-friendly, low maintenance, increase property value.",
-  //   content: `
-  //     <p>Solar power is no longer just an alternative. In Nigeria, it’s becoming the smartest way to power homes and businesses. Here are 6 reasons why:</p>
-  //     <div class="grid gap-8 my-12">
-  //       <div class="flex flex-col md:flex-row items-center gap-6"><img src="/elephant.jpg" alt="Saves Money" class="rounded-2xl w-full md:w-1/2 shadow-lg"/><div><h2 class="text-2xl font-bold text-slate-800 mb-2">Saves Money</h2><p>Cut down on your electricity bills! With rising NEPA tariffs and fuel costs, solar pays for itself in 18-24 months.</p></div></div>
-  //       <div class="flex flex-col md:flex-row-reverse items-center gap-6"><img src="/solar1.jpg" alt="Reliable Power Supply" class="rounded-2xl w-full md:w-1/2 shadow-lg"/><div><h2 class="text-2xl font-bold text-slate-800 mb-2">Reliable Power Supply</h2><p>No more blackouts. Power your home 24/7 without depending on the grid or noisy generators.</p></div></div>
-  //       <div class="flex flex-col md:flex-row items-center gap-6"><img src="/solar.jpg" alt="Eco Friendly" class="rounded-2xl w-full md:w-1/2 shadow-lg"/><div><h2 class="text-2xl font-bold text-slate-800 mb-2">Eco-Friendly</h2><p>Reduce carbon footprint. Clean energy means cleaner air for your family and community.</p></div></div>
-  //       <div class="flex flex-col md:flex-row-reverse items-center gap-6"><img src="/solar2.jpg" alt="Low Maintenance" class="rounded-2xl w-full md:w-1/2 shadow-lg"/><div><h2 class="text-2xl font-bold text-slate-800 mb-2">Low Maintenance</h2><p>Set it and forget it! Solar systems need very little upkeep and come with 5-year warranties.</p></div></div>
-  //       <div class="flex flex-col md:flex-row items-center gap-6"><img src="/money-value.jpg" alt="Increases Property Value" class="rounded-2xl w-full md:w-1/2 shadow-lg"/><div><h2 class="text-2xl font-bold text-slate-800 mb-2">Increases Property Value</h2><p>Homes with solar sell for more! It’s an investment that adds value to your property.</p></div></div>
-  //     </div>
-  //     <div class="text-center bg-slate-100 rounded-2xl p-8 mt-12">
-  //       <h2 class="text-3xl font-bold text-slate-800 mb-3">Be a part of this future</h2>
-  //       <p class="text-slate-600 mb-6">Contact us now to get started</p>
-  //       <a href="/contact" class="inline-block bg-[#EA6936] text-white font-bold px-8 py-4 rounded-full hover:bg-[#EA6936]/90 transition">Get Started</a>
-  //     </div>
-  //   `
-  // },
 ];

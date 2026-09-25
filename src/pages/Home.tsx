@@ -790,34 +790,93 @@ export function Home() {
         </div>
       </section>
 
+      {/* THE GLOBAL SHIFT — dark, two-column: copy + stats on the left,
+          a dotted "globe" with our project locations on the right */}
+      <section className="relative overflow-hidden bg-[#ffffff] py-16 md:py-24">
+        {/* Soft ambient glow, purely decorative */}
+        <div className="pointer-events-none absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-secondary/10 blur-[120px]" />
+
+        <div className="container relative mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+
+            {/* Left: contents */}
+            <motion.div
+              className="flex flex-col justify-center text-left"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+                Leading Solar Installation Company in Nigeria
+              </h3>
+
+              <div className="space-y-2 text-slate-600 font-montserrat text-lg leading-relaxed" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+                <p>
+                  As a leading solar company in Nigeria, Embrace Technologies engineers reliable power systems built for Nigerian conditions. We use globally certified solar components, backed by precision design, structured wiring, and full system protection for long-term performance.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Right: dotted globe with location pins. */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="relative mx-auto lg:ml-auto lg:mr-0 aspect-square w-full max-w-[420px] sm:max-w-[480px]"
+            >
+              {/* Outer dashed orbit ring */}
+              <div className="absolute inset-0 rounded-full border border-dashed border-secondary/30" />
+
+              {/* Sphere */}
+              <div className="absolute inset-6 overflow-hidden rounded-full bg-[#0a1330] shadow-[0_0_90px_rgba(255,199,89,0.12)]">
+                {/* Dot texture */}
+                <div
+                  className="absolute inset-0 opacity-60"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(rgba(255,199,89,0.9) 1px, transparent 1.5px)",
+                    backgroundSize: "10px 10px",
+                  }}
+                />
+                {/* Vignette so the dots fade softly at the rim */}
+                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_35px_#0a1330]" />
+              </div>
+
+              {/* Location pins — our project locations */}
+              {[
+                { label: "Ogun", top: "46%", left: "26%" },
+                { label: "Lagos", top: "60%", left: "32%" },
+                { label: "Ibadan", top: "52%", left: "40%" },
+                { label: "Osun", top: "38%", left: "44%" },
+              ].map((pin) => (
+                <div
+                  key={pin.label}
+                  className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5"
+                  style={{ top: pin.top, left: pin.left }}
+                >
+                  <span className="relative flex h-2 w-2">
+                    <motion.span
+                      className="absolute inline-flex h-full w-full rounded-full bg-secondary opacity-60"
+                      animate={{ scale: [1, 2.4, 1], opacity: [0.6, 0, 0.6] }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
+                  </span>
+                  <span className="whitespace-nowrap rounded-full bg-[#0a1330]/90 px-2.5 py-1 font-montserrat text-[10px] font-semibold text-white shadow-md ring-1 ring-white/10">
+                    {pin.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* TESTIMONIALS & ABOUT SECTION */}
       <section className="py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          {/* Header Text - Reduced height */}
-          <motion.div
-            className="max-w-5xl mx-auto text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h3 className="text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
-              Leading Solar Installation Company in Nigeria
-            </h3>
-
-            <div className="space-y-2 text-slate-600 font-montserrat text-lg leading-relaxed max-w-4xl mx-auto" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
-              <p>
-                As a leading solar installation company in Nigeria, Embrace Technologies delivers more than solar products — we engineer reliable power systems built specifically for Nigerian conditions.
-              </p>
-              <p>
-                We partner with globally recognized solar manufacturers to source high-performance panels, lithium batteries, inverters, and protection components that meet international standards. But premium equipment alone is not enough. What truly defines our work is precision design, proper load analysis, structured wiring architecture, and complete system protection.
-              </p>
-              <p>
-                From detailed energy audits and system sizing to installation, configuration, and post-installation maintenance, we handle every stage with technical discipline and long-term performance in mind.
-              </p>
-            </div>
-          </motion.div>
-
           {/* Testimonial Slider with Paired Image + Card */}
           <div
             className="relative overflow-hidden rounded-3xl pb-2"
