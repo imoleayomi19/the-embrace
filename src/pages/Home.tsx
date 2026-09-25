@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
@@ -56,6 +56,21 @@ const staggerContainer = {
 const INSTALLATION_START_YEAR = 2019;
 const yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
 
+// The single hero background video (no more slide-switching).
+const HERO_VIDEO_SRC =
+  "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4";
+
+// The three rotating headlines. They cycle one after another, on a loop,
+// independent of everything else in the hero (video, description, buttons,
+// stats all stay put).
+const HERO_HEADLINES = [
+  { line1: "Stay on", line2: "go beyond" },
+  { line1: "Power your future", line2: "with the sun" },
+  { line1: "Best home", line2: "surveillance system" },
+];
+
+const HERO_HEADLINE_INTERVAL = 4500; // ms each headline stays on screen
+
 function CountUp({
   target,
   duration = 1200,
@@ -112,26 +127,12 @@ function CountUp({
 }
 
 export function Home() {
-  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-  const [heroTextStage, setHeroTextStage] = useState(0);
-  const [activeServiceIndex, setActiveServiceIndex] = useState<number | null>(null);
+  const [heroHeadlineIndex, setHeroHeadlineIndex] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [isTrustedPaused, setIsTrustedPaused] = useState(false);
-
-  // Keep both existing background videos while the content stays consistent across slides.
-  const heroSlides = useMemo(() => [
-    {
-      type: "video",
-      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4",
-      duration: 14000,
-    },
-    {
-      type: "video",
-      content: "https://res.cloudinary.com/ubznmcom/video/upload/v1787930923/herosec.mp4",
-      duration: 13000,
-    },
-  ], []);
+  const goldText =
+    "bg-gradient-to-r from-[#FFC759] to-[#EA9A1F] bg-clip-text text-transparent";
 
   const testimonials: { name: string; quote: string; role?: string }[] = [
     {
@@ -151,41 +152,15 @@ export function Home() {
     },
   ];
 
-  // Auto-advance slides based on current slide duration
+  // Cycle the hero headline text every HERO_HEADLINE_INTERVAL ms, looping
+  // through all three variants forever. Everything else in the hero
+  // (video, description, buttons, stats) is unaffected by this timer.
   useEffect(() => {
-    const currentSlideDuration = heroSlides[activeVideoIndex].duration;
     const intervalId = window.setInterval(() => {
-      setTimeout(() => {
-        setActiveVideoIndex((current) => (current + 1) % heroSlides.length);
-      }, 300);
-    }, currentSlideDuration);
+      setHeroHeadlineIndex((current) => (current + 1) % HERO_HEADLINES.length);
+    }, HERO_HEADLINE_INTERVAL);
     return () => window.clearInterval(intervalId);
-  }, [activeVideoIndex, heroSlides]);
-
-  // Sequence the second slide's header and description before replacing its header.
-  // Give both headers an equal share of the slide's on-screen time: the first
-  // header runs from 1200ms to the midpoint of the remaining duration, and the
-  // second header runs from that midpoint to the end of the slide.
-  useEffect(() => {
-    setHeroTextStage(0);
-    const firstTextTimeoutId = window.setTimeout(() => {
-      setHeroTextStage(1);
-    }, 1200);
-
-    let finalTextTimeoutId: number | undefined;
-    if (activeVideoIndex === 1) {
-      const slideDuration = heroSlides[activeVideoIndex].duration;
-      const midpoint = 1200 + (slideDuration - 1200) / 2;
-      finalTextTimeoutId = window.setTimeout(() => {
-        setHeroTextStage(2);
-      }, midpoint);
-    }
-
-    return () => {
-      window.clearTimeout(firstTextTimeoutId);
-      if (finalTextTimeoutId !== undefined) window.clearTimeout(finalTextTimeoutId);
-    };
-  }, [activeVideoIndex, heroSlides]);
+  }, []);
 
   // Testimonial auto-advance
   useEffect(() => {
@@ -320,216 +295,111 @@ export function Home() {
 
   return (
     <main className="w-full overflow-hidden">
-      {/* HERO SECTION WITH SLIDING CARDS */}
-      <section className="relative overflow-hidden min-h-[115vh] md:min-h-[130vh] bg-primary">
-        {/* Sliding Cards Container */}
+      {/* HERO SECTION — single persistent video, cycling headline only */}
+      <section className="relative overflow-hidden min-h-screen bg-primary">
+        {/* Single Video Background (no slide-switching) */}
         <div className="absolute inset-0 overflow-hidden bg-primary">
-          <AnimatePresence mode="sync">
-            <motion.div
-              key={activeVideoIndex}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.04 }}
-              transition={{
-                opacity: { duration: 1.2, ease: "easeInOut" },
-                scale: { duration: 1.6, ease: "easeInOut" },
-              }}
-              className="absolute inset-0 bg-primary"
-            >
-              {/* Card Content */}
-              <div className="absolute inset-0 bg-cover bg-center">
-                {heroSlides[activeVideoIndex].type === "video" ? (
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                  >
-                    <source
-                      src={heroSlides[activeVideoIndex].content}
-                      type={heroSlides[activeVideoIndex].content.endsWith('.webm') ? 'video/webm' : 'video/mp4'}
-                    />
-                    <img
-                      src="./solar-4.jpg"
-                      alt="Video fallback"
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  </video>
-                ) : (
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url('${heroSlides[activeVideoIndex].content}')` }}
-                  />
-                )}
-              </div>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={HERO_VIDEO_SRC} type="video/mp4" />
+            <img
+              src="./solar-4.jpg"
+              alt="Video fallback"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </video>
 
-              {/* Subtle Dark Gradient Overlay - Entire Section */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
-            </motion.div>
-          </AnimatePresence>
+          {/* Subtle Dark Gradient Overlay - Entire Section */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-20 flex flex-col min-h-[110vh] md:min-h-[120vh]">
-          {/* Shared hero message aligned more to the LEFT */}
-          <div className="flex w-full flex-1 items-center px-4 pb-24 pt-32 sm:px-6 md:px-8 lg:px-12">
-            {heroTextStage > 0 && (
-              <div
-                key={`text-${activeVideoIndex}`}
-                className="w-full max-w-3xl text-left ml-0 md:ml-4 lg:ml-8"
+        {/* Content — one flex column so nothing gets pushed off-screen.
+            pt-* clears the fixed navbar; justify-center keeps the whole
+            group (headline → description → buttons → stats) vertically
+            centered as a unit instead of stretching across min-h-[110vh]. */}
+        <div className="relative z-20 flex min-h-screen flex-col justify-center px-4 pb-16 pt-28 sm:px-6 sm:pt-32 md:px-8 md:pt-36 lg:px-12">
+          <div className="w-full max-w-3xl text-left md:ml-4 lg:ml-8">
+            {/* Cycling Headline — swaps every few seconds, on a loop */}
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={heroHeadlineIndex}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -18 }}
+                transition={{ duration: 0.55, ease: "easeOut" }}
+                className="font-montserrat text-3xl font-extrabold normal-case leading-[1.1] tracking-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl"
               >
-                {activeVideoIndex === 0 ? (
-                  <>
-                    <h1 className="animate-fade-in-up font-montserrat text-3xl font-black leading-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl">
-                      STAY ON<br />GO BEYOND
-                    </h1>
-                    <div className="mt-4 max-w-2xl rounded-xl bg-black/20 p-4 backdrop-blur-sm sm:p-6">
-                      <p className="animate-fade-in-up font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg sm:text-lg">
-                        Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
-                      </p>
-                    </div>
-                    <div className="mt-7 flex flex-col items-start justify-start gap-3 sm:flex-row">
-                      <Link
-                        to="/contact"
-                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 text-base font-bold text-primary shadow-lg shadow-secondary/20 transition-all duration-300 hover:bg-white sm:px-8 sm:text-lg"
-                      >
-                        Request a Quote
-                        <ArrowRight className="h-5 w-5" />
-                      </Link>
-                      <Link
-                        to="/shop"
-                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-base font-bold text-primary shadow-lg transition-all duration-300 hover:bg-secondary sm:px-8 sm:text-lg"
-                      >
-                        Shop Now
-                        <ArrowRight className="h-5 w-5" />
-                      </Link>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <AnimatePresence mode="wait" initial={false}>
-                      {heroTextStage === 1 && (
-                        <motion.h1
-                          key="power-future"
-                          initial={{ opacity: 0, y: 18 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -18 }}
-                          transition={{ duration: 0.55, ease: "easeOut" }}
-                          className="font-montserrat text-3xl font-black leading-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl"
-                        >
-                          Power Your <br /> Future With The Sun
-                        </motion.h1>
-                      )}
-                      {heroTextStage === 2 && (
-                        <motion.h1
-                          key="surveillance-system"
-                          initial={{ opacity: 0, y: 18 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -18 }}
-                          transition={{ duration: 0.55, ease: "easeOut" }}
-                          className="font-montserrat text-3xl font-black leading-tight text-white drop-shadow-2xl sm:text-4xl md:text-5xl lg:text-6xl"
-                        >
-                          Best Home Surveillance System
-                        </motion.h1>
-                      )}
-                    </AnimatePresence>
+                {HERO_HEADLINES[heroHeadlineIndex].line1}
+                <br />
+                <span className={goldText}>
+                  {HERO_HEADLINES[heroHeadlineIndex].line2}
+                </span>
+              </motion.h1>
+            </AnimatePresence>
 
-                    {/* Constant Description */}
-                    <div className="mt-4 max-w-2xl rounded-xl bg-black/20 p-4 backdrop-blur-sm sm:p-6">
-                      <p className="font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg sm:text-lg">
-                        Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
-                      </p>
-                    </div>
+            {/* Constant Description */}
+            <div className="mt-4 max-w-2xl rounded-xl bg-black/20 p-4 backdrop-blur-sm sm:p-6">
+              <p className="font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg sm:text-lg">
+                Embrace Technologies Limited delivers integrated engineering solutions in solar energy, energy storage, digital security, and smart infrastructure for residential, commercial, industrial, and public-sector clients.
+              </p>
+            </div>
 
-                    {/* Buttons for Slide 2 */}
-                    <div className="mt-7 flex flex-col items-start justify-start gap-3 sm:flex-row">
-                      <Link
-                        to="/contact"
-                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 text-base font-bold text-primary shadow-lg shadow-secondary/20 transition-all duration-300 hover:bg-white sm:px-8 sm:text-lg"
-                      >
-                        Request a Quote
-                        <ArrowRight className="h-5 w-5" />
-                      </Link>
-                      <Link
-                        to="/shop"
-                        className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-base font-bold text-primary shadow-lg transition-all duration-300 hover:bg-secondary sm:px-8 sm:text-lg"
-                      >
-                        Shop Now
-                        <ArrowRight className="h-5 w-5" />
-                      </Link>
-                    </div>
-                  </>
-                )}
+            {/* Constant Buttons */}
+            <div className="mt-7 flex flex-col items-start justify-start gap-3 sm:flex-row">
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 text-base font-bold text-primary shadow-lg shadow-secondary/20 transition-all duration-300 hover:bg-white sm:px-8 sm:text-lg"
+              >
+                Request a Quote
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link
+                to="/shop"
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-base font-bold text-primary shadow-lg transition-all duration-300 hover:bg-secondary sm:px-8 sm:text-lg"
+              >
+                Shop Now
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Stats: directly under the buttons, same left edge — no longer
+              a separate block pushed ~110vh down the page. */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-10 grid w-full max-w-6xl grid-cols-2 gap-x-8 gap-y-8 border-t border-white/20 pt-8 md:ml-4 md:mt-12 md:grid-cols-4 md:gap-x-10 lg:ml-8"
+          >
+            {heroStats.map((stat) => (
+              <div key={stat.label} className="text-left">
+                <div
+                  className={`font-montserrat text-4xl font-bold leading-none md:text-5xl ${goldText}`}
+                >
+                  {stat.isCountUp ? (
+                    <CountUp
+                      target={stat.target as number}
+                      duration={stat.duration}
+                      suffix={stat.suffix}
+                      format={stat.format}
+                    />
+                  ) : (
+                    stat.staticValue
+                  )}
+                </div>
+                <div className="mt-3 max-w-[15rem] font-montserrat text-[11px] font-semibold uppercase leading-snug tracking-wider text-white/80 md:text-[13px]">
+                  {stat.label}
+                </div>
               </div>
-            )}
-          </div>
-
-          {/* Slide Indicators */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-            {heroSlides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setActiveVideoIndex(idx);
-                }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === activeVideoIndex ? "bg-white w-8" : "bg-white/50"
-                  }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
-
-      {/* STATS CARDS - pulled up over the hero's bottom edge via negative margin.*/}
-      <div className="relative z-40 -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-10 px-4 sm:px-6 md:px-8">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-7">
-            {heroStats.map((stat, idx) => {
-              const isLongLabel = stat.label.length > 30;
-              return (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.18)] hover:shadow-[0_15px_50px_rgba(0,0,0,0.25)] hover:-translate-y-1 transition-all duration-300 p-6 sm:p-7 md:p-9 lg:p-10 min-h-[170px] sm:min-h-[180px] md:min-h-[200px] lg:min-h-[220px] flex flex-col items-center justify-center text-center"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #FFFFFF 0%, #FFF9F0 30%, #FFEED9 60%, #FFE0BC 85%, #FFD5A3 100%)",
-                  }}
-                >
-                  <div
-                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 md:mb-3"
-                    style={{ fontFamily: "'Anton', sans-serif" }}
-                  >
-                    {stat.isCountUp ? (
-                      <CountUp
-                        target={stat.target as number}
-                        duration={stat.duration}
-                        suffix={stat.suffix}
-                        format={stat.format}
-                      />
-                    ) : (
-                      stat.staticValue
-                    )}
-                  </div>
-                  <div
-                    className={`text-[10px] sm:text-xs md:text-sm font-medium uppercase tracking-wide text-slate-500 font-montserrat ${isLongLabel
-                      ? "leading-snug max-w-[9rem] sm:max-w-[10.5rem] md:max-w-[12.5rem] mx-auto"
-                      : "whitespace-nowrap"
-                      }`}
-                  >
-                    {stat.label}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
 
       {/* TRUSTED BY ORGANISATIONS */}
       <section className="pt-16 pb-16 bg-slate-50 border-t border-slate-200 overflow-hidden">
@@ -545,7 +415,7 @@ export function Home() {
             <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-slate-50 to-transparent" />
 
             <motion.div
-              className="flex items-center gap-20 md:gap-28 w-max"
+              className="flex items-center gap-10 md:gap-14 w-max"
               animate={{ x: ["0%", "-50%"] }}
               transition={{
                 x: {
@@ -577,13 +447,13 @@ export function Home() {
                 ].map((org, idx) => (
                   <div
                     key={`${dupIdx}-${idx}`}
-                    className="flex items-center justify-center h-20 w-40 md:w-52 shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    className="flex items-center justify-center h-10 w-20 md:h-12 md:w-24 shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300"
                     aria-hidden={dupIdx === 1 ? "true" : undefined}
                   >
                     <img
                       src={org.src}
                       alt={dupIdx === 0 ? `${org.name} logo` : ""}
-                      className="max-h-full max-w-full object-contain"
+                      className="max-h-8 md:max-h-10 max-w-full w-auto object-contain"
                     />
                   </div>
                 ))
@@ -592,51 +462,6 @@ export function Home() {
           </div>
         </div>
       </section>
-
-      {/* ABOUT EMBRACE SECTION - simple heading + paragraph layout */}
-      {/* <section className="pt-15 md:pt-15 pb-16 md:pb-20 bg-slate-50">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-            Left - Heading with background image
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative rounded-2xl overflow-hidden min-h-[260px] md:min-h-[320px] flex items-center p-8 md:p-10"
-            >
-              Background image
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: "url('./solar-4.jpg')" }}
-              />
-              Overlay so the heading stays readable
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/60" />
-
-              <h2 className="relative z-10 font-montserrat font-bold text-white text-3xl sm:text-4xl md:text-[2.75rem] leading-tight drop-shadow-lg">
-                Powering Nigeria's<br />Future, Today
-              </h2>
-            </motion.div>
-
-            Right - Description
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="space-y-4 text-slate-600 text-base md:text-lg leading-relaxed"
-              style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
-            >
-              <p>
-                Embrace Technologies Limited is a Nigerian engineering company delivering integrated solutions in solar energy, energy storage, digital security, and smart infrastructure for homes, businesses, and public-sector clients.
-              </p>
-              <p>
-                From system design and installation to training and after-sales support, we combine certified engineering expertise with globally recognized equipment to deliver power and security systems built for Nigerian conditions — reliable, scalable, and backed by long-term support.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
 
       {/* WHAT DOES EMBRACE ACTUALLY DO? SECTION */}
       <section className="pt-16 md:pt-24 pb-16 md:pb-24 bg-white relative overflow-hidden">
@@ -648,7 +473,7 @@ export function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative rounded-2xl overflow-hidden h-[400px] md:h-[500px] lg:h-[550px]"
+              className="relative rounded-2xl overflow-hidden h-[460px] md:h-[520px] lg:h-[570px]"
             >
               {/* Video Background */}
               <div className="absolute inset-0 overflow-hidden">
@@ -666,27 +491,34 @@ export function Home() {
                   />
                 </video>
 
-                {/* Even dark overlay for the whole card, slightly heavier toward the text area */}
-                <div className="absolute inset-0 bg-primary/60" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                {/* Light brand tint over the whole video, so more of the footage shows through */}
+                <div className="absolute inset-0 bg-primary/20" />
+                {/* Darkening is concentrated at the bottom, where the text sits */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-transparent" />
               </div>
 
-              {/* Content - visible on top of video */}
-              <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-10">
-                {/* <div className="rounded-xl bg-black/30 p-5 backdrop-blur-sm md:p-6"> */}
-                <h2 className="text-center font-montserrat font-bold text-white text-2xl">About Us</h2>
-                <p className="font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg md:text-lg">
-                  Embrace Technologies Limited is a Nigerian engineering company delivering
-                  integrated solutions in solar energy,
-                  From system design and installation to training and after-sales support, we
-                  combine certified engineering expertise with globally recognized equipment to
-                  deliver power and security systems built for Nigerian conditions — reliable,
-                  scalable, and backed by long-term support.
+              {/* Content - left aligned throughout */}
+              <div className="relative z-10 h-full flex flex-col items-start justify-end p-6 md:p-10">
+                <div className="mb-3 h-1 w-12 rounded-full bg-secondary" />
+                <h2 className="mb-3 text-left font-montserrat text-2xl font-bold text-white md:text-3xl">
+                  About Us
+                </h2>
+                <p className="max-w-xl text-left font-source-sans-pro text-base font-medium leading-relaxed text-white drop-shadow-lg md:text-lg">
+                  Embrace Technologies is a Nigerian engineering company delivering integrated
+                  solar, energy storage and security solutions. From design and installation to
+                  training and after-sales support, we build reliable, scalable systems for
+                  Nigerian conditions.
                 </p>
-                {/* </div> */}
+                {/* Update the route if your About page uses a different path */}
+                <Link
+                  to="/about"
+                  className="mt-5 inline-flex w-fit items-center gap-2 rounded-sm bg-secondary px-5 py-2.5 font-montserrat text-sm font-bold text-primary shadow-lg transition-all duration-300 hover:bg-gradient-to-r hover:from-white hover:to-secondary"
+                >
+                  Learn more
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
             </motion.div>
-
 
             {/* Right Side - Service List (icon + title + description, always visible) */}
             <motion.div
@@ -969,7 +801,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl md:text-3xl mb-4 tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
               Leading Solar Installation Company in Nigeria
             </h3>
 
@@ -1143,7 +975,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
+            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-montserrat font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
               READY TO EMBRACE CLEAN ENERGY?
             </h2>
             <Link

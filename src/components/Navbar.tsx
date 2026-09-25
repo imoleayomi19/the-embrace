@@ -8,6 +8,10 @@ type NavChild = {
   name: string;
   path: string;
   image?: string;
+  // Short one-line description shown under the title in the minimal
+  // dropdown card (Solutions). Optional so other dropdowns (About) can
+  // keep using plain text-only rows.
+  description?: string;
 };
 
 type NavLink = {
@@ -37,23 +41,6 @@ const resourcesGroups: ResourceGroup[] = [
       { name: "Corporate Training", path: "/academy" },
       { name: "Certification Programs", path: "/academy" },
       { name: "Register Now Form", path: "/academy/register" },
-    ],
-  },
-  {
-    title: "Support Center",
-    items: [
-      { name: "FAQs", path: "/faqs" },
-      { name: "Troubleshooting", path: "/troubleshooting" },
-      { name: "Submit a Ticket", path: "/support/ticket" },
-    ],
-  },
-  {
-    title: "Knowledge Hub",
-    items: [
-      { name: "Blog", badge: "New!", path: "/blog" },
-      { name: "Datasheets", path: "/downloads" },
-      { name: "User Manuals", path: "/downloads" },
-      { name: "Product Catalogs", path: "/downloads" },
     ],
   },
 ];
@@ -497,17 +484,43 @@ export function Navbar() {
       children: [
         { name: "Our Company", path: "/about" },
         { name: "Team", path: "/team" },
+        {
+          name: "Projects",
+          path: "/projects",
+          description: "See our completed installations and case work",
+        },
       ],
     },
     {
       name: "Solutions",
       path: "/services",
+      // Minimal dropdown: title + one-line description, no images.
       children: [
-        { name: "Residential", path: "/services", image: "./residential.webp" },
-        { name: "Commercial", path: "/services", image: "./commercial.webp" },
-        { name: "C&I ESS Cabinet", path: "/services", image: "./cs-ess-cabinet.webp" },
-        { name: "Project Cases", path: "/services", image: "./project-cases.webp" },
-        { name: "System Config Plan", path: "/services", image: "./system-config.webp" },
+        {
+          name: "Residential",
+          path: "/services",
+          description: "Homes, estates, duplexes and apartments",
+        },
+        {
+          name: "Commercial",
+          path: "/services",
+          description: "Offices, hospitals, schools and retail",
+        },
+        {
+          name: "C&I ESS Cabinet",
+          path: "/services",
+          description: "Containerized energy storage for commercial & industrial sites",
+        },
+        {
+          name: "Project Cases",
+          path: "/services",
+          description: "Real installations and case studies from our work",
+        },
+        {
+          name: "System Config Plan",
+          path: "/services",
+          description: "Custom system sizing and configuration for your site",
+        },
       ],
     },
     {
@@ -517,8 +530,8 @@ export function Navbar() {
       children: [],
     },
     {
-      name: "Projects",
-      path: "/projects",
+      name: "Blog",
+      path: "/blog",
     },
     {
       name: "Resources",
@@ -556,7 +569,6 @@ export function Navbar() {
             <div className="flex items-center gap-4">
               {navLinks.map((link) => {
                 const isProducts = link.name === "Shop";
-                const isSolutions = link.name === "Solutions";
                 const isResources = link.name === "Resources";
                 const hasChildren = !!link.children?.length;
                 const active = isActive(link);
@@ -654,9 +666,9 @@ export function Navbar() {
                             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                             className={`absolute top-full right-0 pt-2 z-50 ${isScrolled ? "mt-0" : "mt-2"}`}
                           >
-                            <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden w-[720px] max-w-[92vw] ${isScrolled ? "mt-4" : "mt-5"}`}>                              <div className="grid grid-cols-3 gap-8 px-7 py-6">
+                            <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden w-64 ${isScrolled ? "mt-4" : "mt-5"}`}>
                               {resourcesGroups.map((group) => (
-                                <div key={group.title}>
+                                <div key={group.title} className="px-6 py-5">
                                   <h4 className="font-montserrat font-bold text-xs uppercase tracking-widest text-primary border-b border-slate-200 pb-2 mb-3">
                                     {group.title}
                                   </h4>
@@ -683,7 +695,6 @@ export function Navbar() {
                                 </div>
                               ))}
                             </div>
-                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -691,7 +702,10 @@ export function Navbar() {
                   );
                 }
 
-                // Dropdowns with children (Solutions, About)
+                // Dropdowns with children (Solutions, About) — same box
+                // styling as the Resources dropdown: white panel,
+                // shadow-2xl, border-t-2 border-gray-400, bulleted list.
+                // Solutions items additionally show a one-line description.
                 return (
                   <div
                     key={link.name}
@@ -719,87 +733,35 @@ export function Navbar() {
                     </button>
 
                     <AnimatePresence>
-                      {/* Mega Menu for Solutions - Full Width */}
-                      {openDropdown === link.name && isSolutions && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 20 }}
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                          style={{
-                            top: isScrolled ? "48px" : "72px",
-                            height: isScrolled
-                              ? "calc(100vh - 88px)"
-                              : "calc(100vh - 112px)",
-                          }}
-                          className="fixed left-0 right-0 z-[100]"
-                        >
-                          <div className="bg-white shadow-2xl w-full h-full overflow-y-auto mt-7 border-t-2 border-gray-400">
-                            <div className="px-4 py-6">
-                              <h3 className="text-2xl font-anton font-extrabold text-primary mb-6 uppercase tracking-wide text-center">
-                                Our Solutions
-                              </h3>
-                              <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                                {link.children!.map((child, idx) => (
-                                  <Link key={idx} to={child.path} className="group block">
-                                    <div className="relative overflow-hidden rounded-lg aspect-[4/3] w-[250px] h-[200px] mb-0 bg-gradient-to-br from-slate-100 to-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
-                                      {child.image ? (
-                                        <>
-                                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                                          <img
-                                            src={child.image}
-                                            alt={child.name}
-                                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                                            onError={(e) => {
-                                              (e.target as HTMLImageElement).style.display =
-                                                "none";
-                                            }}
-                                          />
-                                        </>
-                                      ) : (
-                                        <div className="w-full h-full bg-gradient-to-br from-slate-300 to-slate-400 flex items-center justify-center">
-                                          <span className="text-slate-600 font-poppins font-normal text-xs">
-                                            View Details
-                                          </span>
-                                        </div>
-                                      )}
-                                    </div>
-                                    <div className="text-center">
-                                      <span className="inline-block font-montserrat font-bold text-primary text-xs capitalize tracking-wide group-hover:text-secondary transition-colors duration-300">
-                                        {child.name}
-                                      </span>
-                                    </div>
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {/* Regular dropdown for About */}
-                      {openDropdown === link.name && !isSolutions && (
+                      {openDropdown === link.name && (
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 8 }}
                           transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                          className={`absolute top-full left-2/2 -translate-x-1/2 pt-2 w-64 z-50 ${isScrolled ? "mt-0" : "mt-2"}`}
+                          className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 w-72 z-50 ${isScrolled ? "mt-0" : "mt-2"}`}
                         >
-                          <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden ${isScrolled ? "mt-4" : "mt-5"}`}>                            <ul className="py-1">
-                            {link.children!.map((child, index) => (
-                              <li key={child.name}>
-                                <Link
-                                  to={child.path}
-                                  className={`block px-5 py-3 font-montserrat font-medium text-sm text-slate-700 hover:text-secondary hover:bg-slate-50 transition-all duration-200
-                ${index !== link.children!.length - 1 ? "border-b border-slate-300" : ""}
-              `}
-                                >
-                                  {child.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
+                          <div className={`bg-white shadow-2xl border-t-2 border-gray-400 overflow-hidden ${isScrolled ? "mt-4" : "mt-5"}`}>
+                            <ul className="py-4 px-6 space-y-3">
+                              {link.children!.map((child) => (
+                                <li key={child.name}>
+                                  <Link
+                                    to={child.path}
+                                    className="group flex items-baseline gap-2 font-poppins font-normal text-sm text-slate-700 hover:text-secondary transition-colors"
+                                  >
+                                    <span className="text-secondary text-xs leading-none">•</span>
+                                    <span>
+                                      <span className="block">{child.name}</span>
+                                      {child.description && (
+                                        <span className="mt-0.5 block text-xs text-slate-500 group-hover:text-secondary/80">
+                                          {child.description}
+                                        </span>
+                                      )}
+                                    </span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </motion.div>
                       )}
@@ -1075,6 +1037,11 @@ export function Navbar() {
                                 >
                                   {child.name}
                                 </Link>
+                                {child.description && (
+                                  <p className="pb-2 -mt-1 text-xs text-slate-400">
+                                    {child.description}
+                                  </p>
+                                )}
                               </li>
                             ))}
                           </motion.ul>
