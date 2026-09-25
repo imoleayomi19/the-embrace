@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
     slug: "solar-panel-efficiency-explained-nigeria",
     title: "Solar Panel Efficiency Explained: Why It Matters for You in Nigeria",
     date: "September 25, 2026",
-    image: "/blog-10.webp",
+    image: "/post-2.jpeg",
     description: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
     metaDescription: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
     content: `
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
     slug: "what-size-solar-system-should-i-choose-nigeria",
     title: "What Size of Solar System Should I Choose for My Home or Business?",
     date: "September 23, 2026",
-    image: "/blog-9.webp",
+    image: "/post.png",
     description: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
     metaDescription: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
     content: `
