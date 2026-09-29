@@ -517,7 +517,7 @@ export function Navbar() {
           description: "Homes, estates, duplexes and apartments",
         },
         {
-          name: "Commercial",
+          name: "Commercial & Industrial",
           path: "/services",
           description: "Offices, hospitals, schools and retail",
         },

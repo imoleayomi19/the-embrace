@@ -12,6 +12,7 @@ import {
   Camera,
   GraduationCap,
   ShoppingBag,
+  ShieldCheck,
 } from "lucide-react";
 
 // Custom Solar Panel with Settings Icon
@@ -62,13 +63,12 @@ const HERO_VIDEO_SRC =
 
 // The three rotating headlines. They cycle one after another, on a loop,
 // independent of everything else in the hero (video, description, buttons,
-// stats all stay put).
+// stats all stay put).n
 const HERO_HEADLINES = [
-  { line1: "Stay on", line2: "go beyond" },
-  { line1: "Power your future", line2: "with the sun" },
-  { line1: "Best home", line2: "surveillance system" },
+  { line1: "Stay On", line2: "Go Beyond" },
+  { line1: "Power Your Future", line2: "With The Sun" },
+  { line1: "Best Home", line2: "Surveillance System" },
 ];
-
 const HERO_HEADLINE_INTERVAL = 4500; // ms each headline stays on screen
 
 function CountUp({
@@ -325,6 +325,26 @@ export function Home() {
         <div className="relative z-20 flex min-h-screen flex-col justify-center px-4 pb-16 pt-28 sm:px-6 sm:pt-32 md:px-8 md:pt-36 lg:px-12">
           <div className="w-full max-w-3xl text-left md:ml-4 lg:ml-8">
             {/* Cycling Headline — swaps every few seconds, on a loop */}
+            {/* CR Number badge — glass pill with gold shield */}
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-secondary/40 bg-white/10 py-1.5 pl-1.5 pr-4 shadow-lg shadow-black/20 backdrop-blur-md"
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-primary">
+                <ShieldCheck className="h-4 w-4" strokeWidth={2.5} />
+              </span>
+              <span className="font-montserrat text-[11px] font-semibold uppercase tracking-[0.18em] text-white/100 sm:text-xs">
+                CR No.
+              </span>
+              <span className="h-4 w-px bg-white/30" />
+              <span
+                className={`font-montserrat text-sm font-bold tracking-widest sm:text-base ${goldText}`}
+              >
+                9276838
+              </span>
+            </motion.div>
             <AnimatePresence mode="wait">
               <motion.h1
                 key={heroHeadlineIndex}
@@ -428,6 +448,7 @@ export function Home() {
             >
               {[...Array(2)].flatMap((_, dupIdx) =>
                 [
+                  { name: "Coren", src: "./coren.jpg" },
                   { name: "Chint Power", src: "./chint-logo.webp" },
                   { name: "Coleman Power", src: "./coleman-logo.webp" },
                   { name: "Dahua Power", src: "./dahua-logo.webp" },
@@ -444,16 +465,18 @@ export function Home() {
                   { name: "Prado Power", src: "./prado-logo.webp" },
                   { name: "Suntree Power", src: "./suntree-logo.webp" },
                   { name: "Trina Power", src: "./trina-logo.webp" },
+                  { name: "Nemsa Power", src: "./nemsa-logo.webp" },
+
                 ].map((org, idx) => (
                   <div
                     key={`${dupIdx}-${idx}`}
-                    className="flex items-center justify-center h-10 w-20 md:h-12 md:w-24 shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    className="flex items-center justify-center h-12 w-24 md:h-14 md:w-28 shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300"
                     aria-hidden={dupIdx === 1 ? "true" : undefined}
                   >
                     <img
                       src={org.src}
                       alt={dupIdx === 0 ? `${org.name} logo` : ""}
-                      className="max-h-8 md:max-h-10 max-w-full w-auto object-contain"
+                      className="max-h-10 md:max-h-12 max-w-full w-auto object-contain"
                     />
                   </div>
                 ))
