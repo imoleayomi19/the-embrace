@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ProjectsMap } from "../components/ProjectsMap"; // adjust the path to your structure
 import { Link } from "react-router-dom";
 import {
   Sun,
@@ -842,56 +843,15 @@ export function Home() {
             </motion.div>
 
             {/* Right: dotted globe with location pins. */}
+            {/* Right: real project map */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mx-auto lg:ml-auto lg:mr-0 aspect-square w-full max-w-[420px] sm:max-w-[480px]"
+              className="w-full"
             >
-              {/* Outer dashed orbit ring */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-secondary/30" />
-
-              {/* Sphere */}
-              <div className="absolute inset-6 overflow-hidden rounded-full bg-[#0a1330] shadow-[0_0_90px_rgba(255,199,89,0.12)]">
-                {/* Dot texture */}
-                <div
-                  className="absolute inset-0 opacity-60"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(rgba(255,199,89,0.9) 1px, transparent 1.5px)",
-                    backgroundSize: "10px 10px",
-                  }}
-                />
-                {/* Vignette so the dots fade softly at the rim */}
-                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_60px_35px_#0a1330]" />
-              </div>
-
-              {/* Location pins — our project locations */}
-              {[
-                { label: "Ogun", top: "46%", left: "26%" },
-                { label: "Lagos", top: "60%", left: "32%" },
-                { label: "Ibadan", top: "52%", left: "40%" },
-                { label: "Osun", top: "38%", left: "44%" },
-              ].map((pin) => (
-                <div
-                  key={pin.label}
-                  className="absolute flex -translate-x-1/2 -translate-y-1/2 items-center gap-1.5"
-                  style={{ top: pin.top, left: pin.left }}
-                >
-                  <span className="relative flex h-2 w-2">
-                    <motion.span
-                      className="absolute inline-flex h-full w-full rounded-full bg-secondary opacity-60"
-                      animate={{ scale: [1, 2.4, 1], opacity: [0.6, 0, 0.6] }}
-                      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
-                  </span>
-                  <span className="whitespace-nowrap rounded-full bg-[#0a1330]/90 px-2.5 py-1 font-montserrat text-[10px] font-semibold text-white shadow-md ring-1 ring-white/10">
-                    {pin.label}
-                  </span>
-                </div>
-              ))}
+              <ProjectsMap />
             </motion.div>
           </div>
         </div>

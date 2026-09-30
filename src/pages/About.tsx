@@ -1,12 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  ArrowRightCircle,
-  Globe,
-  Headphones,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 
 // Add this CountUp component
@@ -157,7 +152,8 @@ const glowVariants = {
 };
 
 const INSTALLATION_START_YEAR = 2019;
-const yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
+const _yearsOfExperience = new Date().getFullYear() - INSTALLATION_START_YEAR;
+void _yearsOfExperience; // reserved for future use
 
 export function About() {
   const title = "ABOUT US";

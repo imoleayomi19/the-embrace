@@ -189,7 +189,7 @@ const commercialCategories: (ProductCategory & {
   ];
 
 // Mini Grid product categories
-const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[] })[] = [
+const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[]; banners?: CategoryBanner[] })[] = [
   {
     name: "Mini Grid Systems",
     path: "/shop/mini-grid",
@@ -369,7 +369,7 @@ function ProductsMegaMenu({
                     {/* CHANGE 2: Added pb-6 for extra bottom padding */}
                     <div className="w-full max-w-[1200px] p-4 md:p-5 bg-white pb-6">
                       <div className="grid grid-cols-3 gap-2 sm:gap-4">
-                        {activeCat.banners!.map((banner, idx) => (
+                        {activeCat.banners!.map((banner: CategoryBanner, idx: number) => (
                           <Link
                             key={idx}
                             to={banner.path}

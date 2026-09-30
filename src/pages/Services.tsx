@@ -1,13 +1,11 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Home,
   Building2,
   Wrench,
   ArrowRight,
-  Plus,
-  Minus,
   CheckCircle2,
   Settings,
 } from "lucide-react";
@@ -120,7 +118,6 @@ const glowVariants = {
 };
 
 export function Services() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const title = "OUR SERVICES";
 
   const services = [
