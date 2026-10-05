@@ -1,6 +1,6 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../hooks/useCart";
 
@@ -44,403 +44,6 @@ const resourcesGroups: ResourceGroup[] = [
     ],
   },
 ];
-// ─── Products mega-menu data ────────────────────────────────────────────────
-
-type ProductCategory = {
-  name: string;
-  path: string;
-};
-
-type ProductItem = {
-  name: string;
-  image: string;
-  path: string;
-};
-
-// Banner Type for the specific category view
-type CategoryBanner = {
-  title: string;
-  image: string;
-  path: string;
-  description?: string;
-};
-
-// Residential product categories
-const residentialCategories: (ProductCategory & {
-  products: ProductItem[];
-  series: { label: string; path: string }[];
-  banners?: CategoryBanner[];
-})[] = [
-    {
-      name: "Complete Hybrid Solar Systems",
-      path: "/shop/off-grid-inverter",
-      series: [
-        { label: "IVPS Series", path: "/shop" },
-        { label: "IVGM Series", path: "/shop" },
-        { label: "IVPM Series", path: "/shop" },
-      ],
-      banners: [
-        {
-          title: "IVEM",
-          image: "./products.webp",
-          path: "/shop",
-        },
-        {
-          title: "IVPM",
-          image: "./products.webp",
-          path: "/shop",
-        },
-        {
-          title: "FLEX",
-          image: "./products.webp",
-          path: "/shop",
-        },
-      ],
-      products: [
-        { name: "IVPS3.5~10kVA", image: "./products.webp", path: "/shop" },
-        { name: "IVPS0712-1512", image: "./products.webp", path: "/shop" },
-        { name: "IVEM8~12kW", image: "./products.webp", path: "/shop" },
-        { name: "IVEM-3.6kW", image: "./products.webp", path: "/shop" },
-        { name: "IVCM1012-LV", image: "./products.webp", path: "/shop" },
-        { name: "IVPA-Pro", image: "./products.webp", path: "/shop" },
-        { name: "IVPS-Mini", image: "./products.webp", path: "/shop" },
-        { name: "IVPM-5kW", image: "./products.webp", path: "/shop" },
-        { name: "IVPM-8kW", image: "./products.webp", path: "/shop" },
-        { name: "FLEX-Home 5kVA", image: "./products.webp", path: "/shop" },
-        { name: "FLEX-Home 10kVA", image: "./products.webp", path: "/shop" },
-      ],
-    },
-    {
-      name: "CCTV Surveillance Systems",
-      path: "/shop/hybrid-inverter",
-      series: [
-        { label: "IVCM Series", path: "/shop" },
-        { label: "IVHG Series", path: "/shop" },
-        { label: "IVPM Series", path: "/shop" },
-      ],
-      products: [
-        { name: "IVCM1/2/3kW-PRO", image: "./products.webp", path: "/shop" },
-        { name: "IVCM5kW-Lite", image: "./products.webp", path: "/shop" },
-        { name: "IVHG-30kW", image: "./products.webp", path: "/shop" },
-        { name: "IVHG-50kW", image: "./products.webp", path: "/shop" },
-        { name: "IVHG-100kW", image: "./products.webp", path: "/shop" },
-      ],
-    },
-    {
-      name: "Shop All Products",
-      path: "/shop/micro-inverter",
-      series: [
-        { label: "IVEM Series", path: "/shop" },
-        { label: "Micro-400W Series", path: "/shop" },
-      ],
-      products: [
-        { name: "IVEM8~12kW-II", image: "./products.webp", path: "/shop" },
-        { name: "IVEM-400W", image: "./products.webp", path: "/shop" },
-        { name: "IVEM-800W", image: "./products.webp", path: "/shop" },
-      ],
-    },
-  ];
-
-// Commercial product categories
-const commercialCategories: (ProductCategory & {
-  products: ProductItem[];
-  series: { label: string; path: string }[];
-  banners?: CategoryBanner[];
-})[] = [
-    {
-      name: "Commercial Hybrid Solar Systems",
-      path: "/shop/cabinet-ess",
-      series: [
-        { label: "Liquid Cooling Series", path: "/shop" },
-        { label: "Air Cooling Series", path: "/shop" },
-      ],
-      banners: [
-        {
-          title: "DXLV",
-          image: "./products.webp",
-          path: "/shop",
-        },
-        {
-          title: "DXHV",
-          image: "./products.webp",
-          path: "/shop",
-        },
-        {
-          title: "FLEX",
-          image: "./products.webp",
-          path: "/shop",
-        },
-      ],
-      products: [
-        { name: "FLM500-125/261", image: "./products.webp", path: "/shop" },
-        { name: "FLH-E60", image: "./products.webp", path: "/shop" },
-        { name: "FLS-MES215AF-S", image: "./products.webp", path: "/shop" },
-        { name: "FLS-ES232LC-S", image: "./products.webp", path: "/shop" },
-        { name: "IVGM-50kW", image: "./products.webp", path: "/shop" },
-        { name: "IVGM-100kW", image: "./products.webp", path: "/shop" },
-        { name: "DXLV-100", image: "./products.webp", path: "/shop" },
-        { name: "DXLV-200", image: "./products.webp", path: "/shop" },
-        { name: "DXHV-200", image: "./products.webp", path: "/shop" },
-        { name: "DXHV-500", image: "./products.webp", path: "/shop" },
-        { name: "FLEX-C&I 100kVA", image: "./products.webp", path: "/shop" },
-        { name: "FLEX-C&I 250kVA", image: "./products.webp", path: "/shop" },
-      ],
-    },
-  ];
-
-// Mini Grid product categories
-const miniGridCategories: (ProductCategory & { products: ProductItem[]; series: { label: string; path: string }[]; banners?: CategoryBanner[] })[] = [
-  {
-    name: "Mini Grid Systems",
-    path: "/shop/mini-grid",
-    series: [
-      { label: "Off-Grid Mini Grid", path: "/shop" },
-      { label: "Hybrid Mini Grid", path: "/shop" },
-    ],
-    products: [
-      { name: "MG-50kW System", image: "./products.webp", path: "/shop" },
-      { name: "MG-100kW System", image: "./products.webp", path: "/shop" },
-      { name: "MG-200kW System", image: "./products.webp", path: "/shop" },
-      { name: "MG-500kW System", image: "./products.webp", path: "/shop" },
-    ],
-  },
-  {
-    name: "Mini Grid Tied",
-    path: "/shop/mini-grid",
-    series: [
-      { label: "Off-Grid Mini Grid", path: "/shop" },
-      { label: "Hybrid Mini Grid", path: "/shop" },
-    ],
-    products: [
-      { name: "MG-50kW System", image: "./products.webp", path: "/shop" },
-      { name: "MG-100kW System", image: "./products.webp", path: "/shop" },
-      { name: "MG-200kW System", image: "./products.webp", path: "/shop" },
-      { name: "MG-500kW System", image: "./products.webp", path: "/shop" },
-    ],
-  },
-];
-
-// ─── Product card ───────────────────────────────────────────────────────────
-// large = same footprint as the Residential / Commercial banner flyers
-// (aspect-[3/4] + 1/2/4-column responsive widths inside the 1200px container).
-// default = compact fixed-size centered card (flex-none w-40 md:w-44).
-function ProductCard({ product, large = false }: { product: ProductItem; large?: boolean }) {
-  return (
-    <Link
-      to={product.path}
-      className={`group flex flex-col items-center gap-2 ${large
-        ? "w-full md:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]"
-        : "flex-none w-40 md:w-44"
-        }`}
-    >
-      <div
-        className={`w-full overflow-hidden rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-center hover:border-secondary/40 hover:shadow-md transition-all duration-200 ${large ? "aspect-[3/4]" : "aspect-square"
-          }`}
-      >
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          onError={(e) => {
-            (e.target as HTMLImageElement).style.display = "none";
-          }}
-        />
-      </div>
-      <span
-        className={`font-montserrat text-center text-slate-600 group-hover:text-secondary transition-colors leading-tight ${large ? "font-semibold text-sm" : "font-medium text-xs"
-          }`}
-      >
-        {product.name}
-      </span>
-    </Link>
-  );
-}
-
-// ─── Products Mega Menu Component ───────────────────────────────────────────
-
-function ProductsMegaMenu({
-  isScrolled,
-  activeCategory,
-  setActiveCategory,
-  productType,
-  setProductType,
-}: {
-  isScrolled: boolean;
-  activeCategory: string;
-  setActiveCategory: (c: string) => void;
-  productType: "residential" | "commercial" | "mini-grid";
-  setProductType: (type: "residential" | "commercial" | "mini-grid") => void;
-}) {
-  const categories = productType === "residential"
-    ? residentialCategories
-    : productType === "commercial"
-      ? commercialCategories
-      : miniGridCategories;
-
-  const activeCat = categories.find((c) => c.name === activeCategory) ?? categories[0];
-  const hasBanners = !!activeCat.banners && activeCat.banners.length > 0;
-  const isMiniGrid = productType === "mini-grid";
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 12 }}
-      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-      style={{ top: isScrolled ? "56px" : "80px" }}
-      className="fixed left-0 right-0 z-[100] shadow-2xl"
-    >
-      <div className="bg-white border-t-2 border-gray-400 mt-5 mb-2">
-        <div className="max-w-[1400px] mx-auto">
-
-          {/* Product Type Tabs - Montserrat Bold */}
-          <div className="flex items-center justify-center gap-8 py-5 border-b border-slate-100">
-            <button
-              onClick={() => setProductType("residential")}
-              className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "residential"
-                ? "text-secondary"
-                : "text-slate-700 hover:text-secondary"
-                }`}
-            >
-              Residential <ChevronRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setProductType("commercial")}
-              className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "commercial"
-                ? "text-secondary"
-                : "text-slate-700 hover:text-secondary"
-                }`}
-            >
-              Commercial & Industrial <ChevronRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setProductType("mini-grid")}
-              className={`font-montserrat font-bold text-base transition-colors flex items-center gap-1 ${productType === "mini-grid"
-                ? "text-secondary"
-                : "text-slate-700 hover:text-secondary"
-                }`}
-            >
-              Mini Grid <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Sidebar and Products side by side */}
-          <div className="flex" style={{ height: "calc(100vh - 180px)" }}>
-            {/* ─ Left sidebar: categories - Montserrat Medium ─ */}
-            <aside className="w-52 flex-shrink-0 border-r border-slate-100 py-4">
-              {categories.map((cat) => {
-                const active = activeCategory === cat.name;
-                return (
-                  <button
-                    key={cat.name}
-                    type="button"
-                    onMouseEnter={() => setActiveCategory(cat.name)}
-                    onClick={() => setActiveCategory(cat.name)}
-                    className={`w-full flex items-center justify-between px-5 py-3 font-montserrat text-sm font-medium transition-colors group
-                      ${active
-                        ? "text-secondary font-semibold"
-                        : "text-slate-700 hover:text-secondary"
-                      }`}
-                  >
-                    <span>{cat.name}</span>
-                    <ChevronRight
-                      className={`w-3.5 h-3.5 transition-colors ${active ? "text-secondary" : "text-slate-300 group-hover:text-secondary"}`}
-                    />
-                  </button>
-                );
-              })}
-            </aside>
-
-            {/* ── Right: Content Area (Banners OR Product Cards) ── */}
-            <div className="flex-1 px-6 py-5 flex flex-col overflow-hidden">
-
-              <AnimatePresence mode="wait">
-                {hasBanners ? (
-                  // Banner flyers layout
-                  <motion.div
-                    key={`${activeCat.name}-banners`}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.18 }}
-                    // CHANGE 1: h-full -> h-auto (This is crucial! It stops the container from stretching)
-                    className="w-full h-auto flex items-start justify-center"
-                  >
-                    {/* CHANGE 2: Added pb-6 for extra bottom padding */}
-                    <div className="w-full max-w-[1200px] p-4 md:p-5 bg-white pb-6">
-                      <div className="grid grid-cols-3 gap-2 sm:gap-4">
-                        {activeCat.banners!.map((banner: CategoryBanner, idx: number) => (
-                          <Link
-                            key={idx}
-                            to={banner.path}
-                            aria-label={`Shop ${banner.title}`}
-                            // CHANGE 3: Replaced aspect-[3/4] with h-[350px] to force a shorter, fixed height
-                            className="group relative block overflow-hidden rounded-[4px] bg-slate-100 h-[350px] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                          >
-                            <img
-                              src={banner.image}
-                              alt={banner.title}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = "none";
-                              }}
-                            />
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                ) : (
-                  // ... rest of your code (Product Cards) ...
-                  // Residential / Commercial flyers); others stay compact.
-                  <motion.div
-                    key={`${activeCat.name}-products`}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.18 }}
-                    className="flex-1 overflow-y-auto"
-                  >
-                    <div className={isMiniGrid ? "w-full max-w-[1200px] mx-auto p-[20px_24px]" : ""}>
-                      <div className="flex flex-wrap justify-center gap-4">
-                        {activeCat.products.map((product) => (
-                          <ProductCard key={product.name} product={product} large={isMiniGrid} />
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-
-              {/* Series links row — only for non-banner views */}
-              {!hasBanners && (
-                <div className="flex items-center gap-2 flex-wrap border-t border-slate-100 pt-3 mt-4">
-                  {activeCat.series.map((s) => (
-                    <Link
-                      key={s.label}
-                      to={s.path}
-                      className="font-poppins font-normal text-xs text-slate-500 hover:text-secondary transition-colors"
-                    >
-                      {s.label} &gt;
-                    </Link>
-                  ))}
-                  <Link
-                    to={activeCat.path}
-                    className="ml-auto font-montserrat font-semibold text-xs text-secondary hover:underline"
-                  >
-                    All {activeCat.name} &gt;
-                  </Link>
-                </div>
-              )}
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 // ── Main Navbar ────────────────────────────────────────────────────────────
 
 export function Navbar() {
@@ -448,10 +51,6 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
-  const [activeProductCategory, setActiveProductCategory] = useState(
-    residentialCategories[0].name
-  );
-  const [productType, setProductType] = useState<"residential" | "commercial" | "mini-grid">("residential");
   const location = useLocation();
   const { totalItems } = useCart();
 
@@ -541,8 +140,32 @@ export function Navbar() {
     {
       name: "Shop",
       path: "/shop",
-      // children intentionally empty — mega menu is handled separately
-      children: [],
+      children: [
+        {
+          name: "Complete Hybrid Solar Package",
+          path: "/shop",
+          description: "Felicity, Deye, Growth",
+        },
+        {
+          name: "IVEM Series",
+          path: "/shop",
+          description: "IVEM, IVGM, IVPM, FLEX, DXLV, DXHV",
+        },
+        {
+          name: "CCTV Surveillance Package",
+          path: "/shop",
+          description: "Full CCTV kits for homes and businesses",
+        },
+        {
+          name: "Equipment & Component Store",
+          path: "/shop",
+          description: "Inverters, batteries, panels, breakers, etc.",
+        },
+        {
+          name: "All Products",
+          path: "/shop",
+        },
+      ],
     },
     {
       name: "Blog",
@@ -583,13 +206,12 @@ export function Navbar() {
           <nav className="hidden lg:flex items-center justify-center flex-1">
             <div className="flex items-center gap-4">
               {navLinks.map((link) => {
-                const isProducts = link.name === "Shop";
                 const isResources = link.name === "Resources";
                 const hasChildren = !!link.children?.length;
                 const active = isActive(link);
 
-                // Simple link (no children) - Montserrat Bold
-                if (!hasChildren && !isProducts && !isResources) {
+                // Simple link (no children, not Resources)
+                if (!hasChildren && !isResources) {
                   return (
                     <Link
                       key={link.name}
@@ -604,45 +226,7 @@ export function Navbar() {
                   );
                 }
 
-                // Shop Products — dedicated mega menu trigger - Montserrat Bold
-                if (isProducts) {
-                  return (
-                    <div
-                      key={link.name}
-                      className="relative"
-                      onMouseEnter={() => setOpenDropdown("Shop")}
-                      onMouseLeave={() => setOpenDropdown(null)}
-                    >
-                      <button
-                        type="button"
-                        className={`flex items-center gap-1 font-montserrat font-bold text-sm capitalize tracking-wide transition-colors py-2 px-1 ${active
-                          ? "text-secondary"
-                          : "text-primary hover:text-secondary"
-                          }`}
-                        aria-haspopup="true"
-                        aria-expanded={openDropdown === "Shop"}
-                      >
-                        <span>Shop</span>
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform duration-200 ${openDropdown === "Shop" ? "rotate-180" : ""
-                            }`}
-                        />
-                      </button>
 
-                      <AnimatePresence>
-                        {openDropdown === "Shop" && (
-                          <ProductsMegaMenu
-                            isScrolled={isScrolled}
-                            activeCategory={activeProductCategory}
-                            setActiveCategory={setActiveProductCategory}
-                            productType={productType}
-                            setProductType={setProductType}
-                          />
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
 
                 // Resources — medium hover dropdown (3 columns)
                 if (isResources) {
@@ -895,54 +479,7 @@ export function Navbar() {
             >
               <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
                 {navLinks.map((link) => {
-                  const isProducts = link.name === "Shop";
                   const isResources = link.name === "Resources";
-
-                  if (isProducts) {
-                    const isOpen = openMobileSub === "Shop";
-                    return (
-                      <div
-                        key="Shop"
-                        className="transition-colors border-b border-slate-50"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => setOpenMobileSub(isOpen ? null : "Shop")}
-                          className="w-full flex items-center justify-between font-montserrat font-medium text-lg py-3 capitalize tracking-wide transition-colors text-primary"
-                          aria-expanded={isOpen}
-                        >
-                          <span>Shop</span>
-                          <ChevronDown
-                            className={`w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
-                              }`}
-                          />
-                        </button>
-                        <AnimatePresence>
-                          {isOpen && (
-                            <motion.ul
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden pl-4 border-l-2 border-secondary ml-1 mb-3"
-                            >
-                              {residentialCategories.map((cat) => (
-                                <li key={cat.name}>
-                                  <Link
-                                    to={cat.path}
-                                    onClick={(event) => handleMobileNavClick(event, cat.path)}
-                                    className="block font-montserrat font-medium text-sm py-2 transition-colors text-slate-600"
-                                  >
-                                    {cat.name}
-                                  </Link>
-                                </li>
-                              ))}
-                            </motion.ul>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  }
 
                   if (isResources) {
                     const isOpen = openMobileSub === "Resources";

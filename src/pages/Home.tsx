@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ProjectsMap } from "../components/ProjectsMap"; // adjust the path to your structure
+import { ProjectsMap } from "../components/ProjectsMap";
 import { Link } from "react-router-dom";
 import {
   Sun,
@@ -814,8 +814,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* THE GLOBAL SHIFT — dark, two-column: copy + stats on the left,
-          a dotted "globe" with our project locations on the right */}
+      {/* THE GLOBAL SHIFT — two-column: copy on the left and a Nigeria project map on the right */}
       <section className="relative overflow-hidden bg-[#ffffff] py-16 md:py-24">
         {/* Soft ambient glow, purely decorative */}
         <div className="pointer-events-none absolute -right-40 top-1/2 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-secondary/10 blur-[120px]" />
@@ -842,7 +841,6 @@ export function Home() {
               </div>
             </motion.div>
 
-            {/* Right: dotted globe with location pins. */}
             {/* Right: real project map */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}

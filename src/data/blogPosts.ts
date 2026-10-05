@@ -12,6 +12,51 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 11,
+    slug: "causes-of-solar-fire-outbreaks-and-how-to-prevent-them",
+    title: "Causes of Solar Fire Outbreaks and How to Prevent Them",
+    date: "September 30, 2026",
+    image: "/solar-maintenance-service.webp",
+    description: "Solar systems are safe when correctly designed and maintained. Learn what can cause a solar fire and how to reduce the risks in your home or business.",
+    metaDescription: "Learn the common causes of solar fires, including faulty wiring, poor-quality components and battery issues, plus practical ways to keep your solar system safe in Nigeria.",
+    content: `
+      <p>Installing solar is one of the best decisions for homes and businesses in Nigeria, but like any electrical system, a poorly designed, installed or maintained system can be dangerous. One of the most serious risks is fire.</p>
+      <p><strong>Can solar cause a fire?</strong> Solar panels do not catch fire on their own under normal operation. Fires can occur when electrical faults, poor installation, damaged or unsuitable components, or neglected maintenance create unsafe conditions. Here are some common causes.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Common Causes of Solar Fires</h2>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">1. Poor Wiring and Loose Connections</h3>
+      <p>Loose, incorrectly terminated or undersized cables can create resistance and heat. If the problem is left unchecked, heat can damage cable insulation and nearby materials. Wiring should be correctly sized for the system and terminated using the right tools and connectors.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">2. Fake or Substandard Components</h3>
+      <p>Inverters, cables, connectors and circuit breakers that are counterfeit, damaged or incorrectly rated may not safely handle the system's voltage and current. Quality components must be selected to match the system design; Nigeria's high temperatures make correct ratings and installation especially important.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">3. Battery Overheating or Incorrect Installation</h3>
+      <p>Lithium and lead-acid batteries need to be installed according to their manufacturer's instructions. Poor ventilation, excessive heat, damaged batteries, incorrect charging settings or inadequate clearance can increase the risk of overheating. Keep batteries in a dry, suitable, well-ventilated location and do not stack or enclose them unless the manufacturer permits it.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">4. Inadequate Earthing and Surge Protection</h3>
+      <p>Incorrect earthing and missing or unsuitable surge protection can leave equipment more vulnerable to lightning and electrical surges. A qualified installer should assess the site and provide appropriate earthing and surge protective devices for the system.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">5. Skipped Maintenance</h3>
+      <p>Dust, water ingress, rodent damage, corroded terminals and loose connections can go unnoticed without inspections. These issues can affect performance and, in some cases, become electrical hazards if they are not addressed.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">How to Prevent Solar Fires</h2>
+      <ul>
+        <li>Use a qualified installer and verify the relevant professional credentials, such as COREN registration for engineering professionals.</li>
+        <li>Choose genuine, quality-assured equipment rated for your system's voltage, current and operating conditions.</li>
+        <li>Ensure cables are correctly sized, routed, protected and securely terminated.</li>
+        <li>Install appropriate earthing and surge protection based on a site assessment.</li>
+        <li>Place batteries in a dry, cool, well-ventilated location and follow the manufacturer's installation and clearance guidance.</li>
+        <li>Schedule professional inspections and maintenance at least every six months, or as recommended by your installer and equipment manufacturer.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Make Safety Part of Your Solar Plan</h2>
+      <p>At Embrace Technologies Limited, safety is part of every installation. Our team uses suitable equipment and follows professional installation practices to help give homes and businesses reliable power with greater peace of mind.</p>
+      <p>If you notice a burning smell, unusual heat, smoke, crackling sounds or visible damage, keep away from the equipment and contact a qualified solar professional. If there is an active fire, evacuate and call the appropriate emergency services. Do not touch or attempt to disconnect damaged electrical equipment.</p>
+      <p>Is your solar system due for a safety check? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited to request an inspection.</a></p>
+    `
+  },
+  {
     id: 10,
     slug: "solar-panel-efficiency-explained-nigeria",
     title: "Solar Panel Efficiency Explained: Why It Matters for You in Nigeria",

@@ -62,6 +62,51 @@ export function Footer() {
       {/* Subtle background gradient for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 to-slate-950 pointer-events-none"></div>
 
+      {/* Newsletter */}
+      <div className="relative z-10 bg-slate-900 border-b border-slate-800/60">
+        <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
+          <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-left flex-shrink-0">
+              <div>
+                <h3 className="text-base md:text-lg font-montserrat font-bold text-white leading-snug">
+                  Subscribe to Our Newsletter
+                </h3>
+                <p className="text-xs md:text-sm text-slate-300 font-poppins font-normal mt-0.5">
+                  Get latest solar insights, installation tips, &amp; product updates
+                </p>
+              </div>
+            </div>
+
+            <form
+              onSubmit={handleSubscribe}
+              className="w-full max-w-md lg:max-w-lg lg:ml-auto"
+            >
+              <div className="relative flex flex-col gap-2 sm:block">
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                  className="w-full rounded-sm bg-slate-200 px-4 py-2.5 sm:pr-32 text-slate-800 placeholder-slate-500 font-poppins font-normal text-sm focus:outline-none focus:ring-2 focus:ring-secondary/70"
+                />
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto sm:absolute sm:top-1/2 sm:right-1 sm:-translate-y-1/2 rounded-sm bg-secondary px-5 py-2.5 sm:py-1.5 text-white font-montserrat font-semibold text-xs md:text-sm whitespace-nowrap shadow-sm transition-all duration-200 hover:bg-alternativeO hover:text-primary"
+                >
+                  Subscribe
+                </button>
+              </div>
+              {subscribed && (
+                <p className="mt-1.5 text-xs text-secondary font-poppins font-normal text-center sm:text-left">
+                  Thanks for subscribing! Check your inbox for a confirmation.
+                </p>
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col flex-grow justify-between">
         {/* Main Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-6 pt-12 md:pt-16 pb-12 border-b border-slate-800/60">
@@ -186,55 +231,6 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
-        </div>
-
-        {/* ── NEWSLETTER BAND — MOVED TO BOTTOM ─────────────────────────────── */}
-        <div className="relative z-10 bg-slate-900 border-t border-slate-800/60 mt-8">
-          <div className="container mx-auto px-4 md:px-6 py-6 md:py-8">
-            <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
-
-              {/* Left: Icon + Copy */}
-              <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 text-center sm:text-left flex-shrink-0">
-                <div>
-                  <h3 className="text-base md:text-lg font-montserrat font-bold text-white leading-snug">
-                    Subscribe to Our Newsletter
-                  </h3>
-                  <p className="text-xs md:text-sm text-slate-300 font-poppins font-normal mt-0.5">
-                    Get latest solar insights, installation tips, &amp; product updates
-                  </p>
-                </div>
-              </div>
-
-              {/* Right: Email Form */}
-              <form
-                onSubmit={handleSubscribe}
-                className="w-full max-w-md lg:max-w-lg lg:ml-auto"
-              >
-                <div className="relative flex flex-col gap-2 sm:block">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="w-full rounded-sm bg-slate-200 px-4 py-2.5 sm:pr-32 text-slate-800 placeholder-slate-500 font-poppins font-normal text-sm focus:outline-none focus:ring-2 focus:ring-secondary/70"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto sm:absolute sm:top-1/2 sm:right-1 sm:-translate-y-1/2 rounded-sm bg-secondary px-5 py-2.5 sm:py-1.5 text-white font-montserrat font-semibold text-xs md:text-sm whitespace-nowrap shadow-sm transition-all duration-200 hover:bg-alternativeO hover:text-primary"
-                  >
-                    Subscribe
-                  </button>
-                </div>
-                {subscribed && (
-                  <p className="mt-1.5 text-xs text-secondary font-poppins font-normal text-center sm:text-left">
-                    Thanks for subscribing! Check your inbox for a confirmation.
-                  </p>
-                )}
-              </form>
-
-            </div>
           </div>
         </div>
 

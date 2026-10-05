@@ -1,0 +1,483 @@
+P: IVEM PRODUCT RANGE, CONFIGURATIONS AND PRICING
+P: IVEM-4 PRODUCT SERIES
+P: IVEM-4 CLASSIC LITE
+P: 4kVA Hybrid Inverter | 2 x 240Ah Tubular Batteries | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+CLite-2K36 | 2.36 kWp | 4 x 590W | Jinko | ₦1,850,000
+CLite-2K48 | 2.48 kWp | 4 x 620W | Jinko | ₦1,900,000
+CLite-2K60 | 2.60 kWp | 4 x 650W | Aiko | ₦1,920,000
+CLite-3K54 | 3.54 kWp | 6 x 590W | Jinko | ₦2,150,000
+CLite-3K72 | 3.72kWp | 6 x 620W | Jinko | ₦2,225,000
+CLite-3K90 | 3.90 kWp | 6 x 650W | Aiko | ₦2,255,000
+System Price Without Solar: | ₦1,095,000
+--- TABLE END ---
+P: IVEM-4 CLASSIC PLUS
+P: 4kVA Hybrid Inverter | 4 x 220Ah Tubular Batteries | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+CPlus-3K54 | 3.54 kWp | 6 x 590W | Jinko | ₦2,730,000
+CPlus-3k72 | 3.72 kWp | 6 x 620W | Jinko | ₦2,805,000
+CPlus-3K90 | 3.90 kWp | 6 x 650W | Jinko | ₦2,835,000
+CPlus-4K72 | 4.72 kWp | 8 x 590W | Jinko | ₦3,235,000
+CPlus-5K31 | 5.31 kWp | 9 x 590W | Jinko | ₦3,155,000
+CPlus-5.58 | 5.58 kWp | 9 x 620W | Jinko | ₦3,265,000
+CPlus-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦3,310,000
+System Price Without Solar: | ₦1,605,000
+--- TABLE END ---
+P: IVEM-4 SMART LITE
+P: 4kVA Hybrid Inverter | 5kWh Lithium Batteries | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SLite-2K36 | 2.36 kWp | 4 x 590W | Jinko | ₦2,595,000
+SLite-2K48 | 2.48 kWp | 4 x 620W | Jinko | ₦2,645,000
+SLite-2K60 | 2.60 kWp | 4 x 650W | Aiko | ₦2,665,000
+SLite-3K54 | 3.54 kWp | 6 x 590W | Jinko | ₦2,900,000
+SLite-3K72 | 3.72kWp | 6 x 620W | Jinko | ₦2,970,000
+SLite-3K90 | 3.90 kWp | 6 x 650W | Aiko | ₦3,000,000
+System Price Without Solar: | ₦1,780,000
+--- TABLE END ---
+P: IVEM-4 DUAL LITE
+P: 4kVA Hybrid Inverter | 2 x 5kWh Lithium Batteries | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DLite-3K54 | 3.54 kWp | 6 x 590W | Jinko | ₦4,105,000
+DLite-3K72 | 3.72kWp | 6 x 620W | Jinko | ₦4,180,000
+DLite-3k90 | 3.90kWp | 6 x 650W | Jinko | ₦4,210,000
+DLite-4K72 | 4.72kWp | 8 x 590W | Jinko | ₦4,385,000
+DLite-5K31 | 5.31kWp | 9 x 590W | Jinko | ₦4,525,000
+DLite-5K58 | 5.58kWp | 9 x 620W | Jinko | ₦4,640,000
+DLite-5K85 | 5.85kWp | 9 x 650W | Jinko | ₦4,680,000
+System Price Without Solar: | ₦2,985,000
+--- TABLE END ---
+P: IVEM-6 PRODUCT SERIES
+P: IVEM-6 CLASSIC PLUS
+P: 6kVA Hybrid Inverter | 4 x 220Ah Tubular Batteries | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+CPlus-4K13 | 4.13 kWp | 7 x 590W | Jinko | ₦3,065,000
+CPlus-4K34 | 4.34 kWp | 7 x 620W | Jinko | ₦3,150,000
+CPlus-4K55 | 4.55 kWp | 7 x 650W | Aiko | ₦3,185,000
+CPlus-4K72 | 4.72 kWp | 8 x 590W | Jinko | ₦3,205,000
+CPlus-4K96 | 4.96 kWp | 8 x 620W | Jinko | ₦3,305,000
+CPlus-5K20 | 5.20 kWp | 8 x 650W | Aiko | ₦3,345,000
+CPlus-5K31 | 5.31 kWp | 9 x 590W | Jinko | ₦3,345,000
+CPlus-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦3,455,000
+CPlus-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦3,500,000
+System Price Without Solar: | ₦1,805,000
+--- TABLE END ---
+P: IVEM-6 SMART PLUS
+P: 6kVA Hybrid Inverter | 10kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SPlus-4K13 | 4.13 kWp | 7 x 590W | Jinko | ₦3,970,000
+SPlus-4K34 | 4.34 kWp | 7 x 620W | Jinko | ₦4,055,000
+SPlus-4K55 | 4.55 kWp | 7 x 650W | Aiko | ₦4,090,000
+SPlus-4K72 | 4.72 kWp | 8 x 590W | Jinko | ₦4,110,000
+SPlus-4K96 | 4.96 kWp | 8 x 620W | Jinko | ₦4,210,000
+SPlus-5K20 | 5.20 kWp | 8 x 650W | Jinko | ₦4,250,000
+SPlus-5K31 | 5.31 kWp | 9 x 590W | Jinko | ₦4,250,000
+SPlus-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦4,360,000
+SPlus-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦4,405,000
+System Price Without Solar: | ₦2,710,000
+--- TABLE END ---
+P: IVEM-6 SMART PRO
+P: 6kVA Hybrid Inverter | 12.5kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SPro-4K55 | 4.55 kWp | 7 x 650W | Aiko | ₦4,275,000
+SPro-4K72 | 4.72 kWp | 8 x 590W | Jinko | ₦4,295,000
+SPro-4K96 | 4.96 kWp | 8 x 620W | Jinko | ₦4,395,000
+SPro-5K20 | 5.20 kWp | 8 x 650W | Jinko | ₦4,435,000
+SPro-5K31 | 5.31 kWp | 9 x 590W | Jinko | ₦4,435,000
+SPro-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦4,545,000
+SPro-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦4,590,000
+System Price Without Solar: | ₦2,895,000
+--- TABLE END ---
+P: IVEM-6 SMART FORCE
+P: 6kVA Hybrid Inverter | 15kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SForce-4K55 | 4.55 kWp | 7 x 650W | Aiko | ₦4,585,000
+SForce-4K72 | 4.72 kWp | 8 x 590W | Jinko | ₦4,605,000
+SForce-4K96 | 4.96 kWp | 8 x 620W | Jinko | ₦4,700,000
+SForce-5K20 | 5.20 kWp | 8 x 650W | Aiko | ₦4,740,000
+SForce-5K31 | 5.31 kWp | 9 x 590W | Jinko | ₦4,740,000
+SForce-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦4,855,000
+SForce-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦4,895,000
+SForce-6K53 | 6.53 kWp | 9 x 725W | Jinko | ₦5,260,000
+System Price Without Solar: | ₦3,200,000
+--- TABLE END ---
+P: IVEM-6 SMART BOOST
+P: 6kVA Hybrid Inverter | 17.5kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SBoost-5K20 | 5.20 kWp | 8 x 650W | Aiko | ₦4,800,000
+SBoost-5K31 | 5.31 kWp | 9 x 590W | Jinko | ₦4,805,000
+SBoost-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦4,915,000
+SBoost-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦4,960,000
+SBoost-6K53 | 6.53 kWp | 9 x 725W | Jinko | ₦5,325,000
+System Price Without Solar: | ₦3,265,000
+--- TABLE END ---
+P: IVEM-6 SMART MAX
+P: 6kVA Hybrid Inverter | 25kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SMax-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦7,560,000
+SMax-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦7,605,000
+SMax-6K53 | 6.53 kWp | 9 x 725W | Jinko | ₦7,970,000
+SMax-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦7,870,000
+System Price Without Solar: | ₦5,910,000
+--- TABLE END ---
+P: IVEM-6 DUAL PLUS
+P: 6kVA Hybrid Inverter | 2 x 10kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPlus-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦6,265,000
+DPlus-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦6,310,000
+DPlus-6K53 | 6.53 kWp | 9 x 725W | Jinko | ₦6,675,000
+DPlus-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦6,580,000
+System Price Without Solar: | ₦4,615,000
+--- TABLE END ---
+P: IVEM-6 DUAL PRO
+P: 6kVA Hybrid Inverter | 2 x 12.5kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPro-5K58 | 5.58 kWp | 9 x 620W | Jinko | ₦6,635,000
+DPro-5K85 | 5.85 kWp | 9 x 650W | Aiko | ₦6,680,000
+DPro-6K53 | 6.53 kWp | 9 x 725W | Jinko | ₦7,045,000
+DPro-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦6,950,000
+System Price Without Solar: | ₦4,985,000
+--- TABLE END ---
+P: IVEM-8 PRODUCT SERIES
+P: IVEM-8 SMART PLUS
+P: 8kVA Hybrid Inverter | 10kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SPlus-4K96 | 4.96 kWp | 8 x 620W | Jinko | ₦4,480,000
+SPlus-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦5,070,000
+SPlus-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦5,220,000
+SPlus-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦5,280,000
+SPlus-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦5,350,000
+SPlus-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦5,525,000
+SPlus-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦5,595,000
+SPlus-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦5,635,000
+SPlus-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦5,830,000
+System Price Without Solar: | ₦2,980,000
+--- TABLE END ---
+P: IVEM-8 SMART PRO
+P: 8kVA Hybrid Inverter | 12.5kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SPro-4K96 | 4.96 kWp | 8 x 620W | Jinko | ₦4,665,000
+SPro-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦5,255,000
+SPro-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦5,405,000
+SPro-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦5,465,000
+SPro-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦5,535,000
+SPro-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦5,710,000
+SPro-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦5,775,000
+SPro-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦5,820,000
+SPro-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦6,015,000
+System Price Without Solar: | ₦3,165,000
+UNDERSTANDING THE PRODUCT NAME:SMART – Indicates a system with 1 Lithium BatteryPRO – Indicates a 12/12.5kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 SMART FORCE
+P: 8kVA Hybrid Inverter | 15kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SForce-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦5,565,000
+SForce-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦5,710,000
+SForce-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦5,770,000
+SForce-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦5,845,000
+SForce-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦6,015,000
+SForce-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦6,085,000
+SForce-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦6,125,000
+SForce-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦6,325,000
+System Price Without Solar: | ₦3,470,000
+UNDERSTANDING THE PRODUCT NAME:SMART – Indicates a system with 1 Lithium BatteryFORCE – Indicates a 15kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 SMART BOOST
+P: 8kVA Hybrid Inverter | 17.5kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SBoost-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦5,625,000
+SBoost-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦5,775,000
+SBoost-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦5,830,000
+SBoost-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦5,905,000
+SBoost-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦6,075,000
+SBoost-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦6,145,000
+SBoost-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦6,185,000
+SBoost-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦6,385,000
+System Price Without Solar: | ₦3,535,000
+UNDERSTANDING THE PRODUCT NAME:SMART – Indicates a system with 1 Lithium BatteryBOOST – Indicates a 17.5kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 SMART MAX
+P: 8kVA Hybrid Inverter | 25kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SMax-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦8,270,000
+SMax-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦8,415,000
+SMax-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦8,475,000
+SMax-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦8,550,000
+SMax-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦8,720,000
+SMax-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦8,790,000
+SMax-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦8,830,000
+SMax-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦9,030,000
+System Price Without Solar: | ₦6,175,000
+UNDERSTANDING THE PRODUCT NAME:SMART – Indicates a system with 1 Lithium BatteryMAX – Indicates a 25kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 DUAL PLUS
+P: 8kVA Hybrid Inverter | 2 x 10kWh (20kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPlus-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦7,015 ,000
+DPlus-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦7,160,000
+DPlus-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦7,220,000
+DPlus-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦7,290,000
+DPlus-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦7,465,000
+DPlus-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦7,535,000
+DPlus-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦7,575,000
+DPlus-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦7,770,000
+System Price Without Solar: | ₦4,920,000
+UNDERSTANDING THE PRODUCT NAME:DUAL – Indicates a system with 2 Lithium BatteryPLUS – Indicates a 10 kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 DUAL PRO
+P: 8kVA Hybrid Inverter | 2 x 12.5kWh (25kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPro-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦7,380,000
+DPro-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦7,530,000
+DPro-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦7,590,000
+DPro-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦7,660,000
+DPro-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦7,835,000
+DPro-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦7,900,000
+DPro-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦7,945,000
+DPro-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦8,140,000
+System Price Without Solar: | ₦5,290,000
+UNDERSTANDING THE PRODUCT NAME:DUAL – Indicates a system with 2 Lithium BatteryPRO – Indicates a 12.5 kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 DUAL FORCE
+P: 8kVA Hybrid Inverter | 2 x 15kWh (30kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DForce-7K44 | 7.44 kWp | 12 x 620W | Jinko | ₦8,145,000
+DForce-7K80 | 7.80 kWp | 12 x 650W | Aiko | ₦8,205,000
+DForce-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦8,275,000
+DForce-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦8,450,000
+DForce-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦8,515,000
+DForce-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦8,560,000
+DForce-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦8,755,000
+System Price Without Solar: | ₦5,905,000
+UNDERSTANDING THE PRODUCT NAME:DUAL – Indicates a system with 2 Lithium BatteryFORCE – Indicates a 15 kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-8 DUAL BOOST
+P: 8kVA Hybrid Inverter | 2 x 17.5kWh (35kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DBoost-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦8,640,000
+DBoost-9K36 | 9.44 kWp | 16 x 590W | Jinko | ₦8,680,000
+DBoost-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦8,880,000
+System Price Without Solar: | ₦6,025,000
+UNDERSTANDING THE PRODUCT NAME:DUAL – Indicates a system with 2 Lithium BatteryBOOST – Indicates a 17.5 kWh Lithium Battery CapacitykWp – Indicates total solar panel capacity for your system (e.g., 16 x 620W = 9,920Wp = 9.92kWp)
+--- TABLE END ---
+P: IVEM-12 PRODUCT SERIES
+P: IVEM-12 SMART FORCE
+P: 12kVA Hybrid Inverter | 15kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SForce-7K08 | 7.08 kWp | 12 x 590W | Jinko | ₦5,610,000
+SForce-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦6,050,000
+SForce-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦6,225,000
+SForce-8K89 | 8.89 kWp | 14 x 635W | Jinko | ₦6,295,000
+SForce-8K96 | 8.96 kWp | 14 x 640W | Jinko | ₦6,325,000
+SForce-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦6,295,000
+SForce-9K44 | 9.44 kWp | 16 x 590W | Jinko | ₦6,330,000
+SForce-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦6,530,000
+SForce-10K16 | 10.16 kWp | 16 x 635W | Jinko | ₦6,610,000
+SForce-10K24 | 10.24 kWp | 16 x 640W | Jinko | ₦6,645,000
+SForce-10K40 | 10.40 kWp | 16 x 650W | Aiko | ₦6,610,000
+System Price Without Solar: | ₦3,650,000
+--- TABLE END ---
+P: IVEM-12 SMART BOOST
+P: 12kVA Hybrid Inverter | 17.5kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SBoost-8K26 | 8.26 kWp | 14 x 590W | Jinko | ₦6,115,000
+SBoost-8K68 | 8.68 kWp | 14 x 620W | Jinko | ₦6,285,000
+SBoost-8K89 | 8.89 kWp | 14 x 635W | Jinko | ₦6,355,000
+SBoost-8K96 | 8.96 kWp | 14 x 640W | Jinko | ₦6,390,000
+SBoost-9K10 | 9.10 kWp | 14 x 650W | Aiko | ₦6,355,000
+SBoost-9K44 | 9.44 kWp | 16 x 590W | Jinko | ₦6,395,000
+SBoost-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦6,590,000
+SBoost-10K16 | 10.16 kWp | 16 x 635W | Jinko | ₦6,670,000
+SBoost-10K24 | 10.24 kWp | 16 x 640W | Jinko | ₦6,710,000
+SBoost-10K40 | 10.40 kWp | 16 x 650W | Aiko | ₦6,670,000
+System Price Without Solar: | ₦3,710,000
+--- TABLE END ---
+P: IVEM-12 SMART MAX
+P: 12kVA Hybrid Inverter | 25kWh Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SMax-9K44 | 9.44 kWp | 16 x 590W | Jinko | ₦9,040,000
+SMax-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦9,235,000
+SMax-10K16 | 10.16 kWp | 16 x 635W | Jinko | ₦9,315,000
+SMax-10K24 | 10.24 kWp | 16 x 640W | Jinko | ₦9,355,000
+SMax-10K40 | 10.40 kWp | 16 x 650W | Aiko | ₦9,315,000
+SMax-11K16 | 11.16 kWp | 18 x 620W | Jinko | ₦9,540,000
+SMax-11K43 | 11.43 kWp | 18 x 635W | Jinko | ₦9,630,000
+SMax-11K52 | 11.52 kWp | 18 x 640W | Jinko | ₦9,670,000
+SMax-11K60 | 11.60 kWp | 16 x 725W | Jinko | ₦9,965,000
+SMax-11K70 | 11.70 kWp | 18 x 650W | Aiko | ₦9,630,000
+DPro-12K98 | 12.98 kWp | 22 x 590W | Jinko | ₦9,935,000
+SMax-13K05 | 13.05 kWp | 18 x 725W | Jinko | ₦10,360,000
+System Price Without Solar: | ₦6,355,000
+--- TABLE END ---
+P: IVEM-12 DUAL PLUS
+P: 12kVA Hybrid Inverter | 2 x 10kWh (20kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPlus-9K44 | 9.44 kWp | 16 x 590W | Jinko | ₦7,745,000
+DPlus-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦7,945,000
+DPlus-10K16 | 10.16 kWp | 16 x 635W | Jinko | ₦8,020,000
+DPlus-10K24 | 10.24 kWp | 16 x 640W | Jinko | ₦8,060,000
+DPlus-10K40 | 10.40 kWp | 16 x 650W | Aiko | ₦8,020,000
+DPlus-11K16 | 11.16 kWp | 18 x 620W | Jinko | ₦8,250,000
+DPlus-11K43 | 11.43 kWp | 18 x 635W | Jinko | ₦8,335,000
+DPlus-11K52 | 11.52 kWp | 18 x 640W | Jinko | ₦8,380,000
+DPlus-11K60 | 11.60 kWp | 16 x 725W | Jinko | ₦8,670,000
+DPlus-11K70 | 11.70 kWp | 18 x 650W | Aiko | ₦8,335,000
+DPro-12K98 | 12.98 kWp | 22 x 590W | Jinko | ₦8,645,000
+DPlus-13K05 | 13.05 kWp | 18 x 725W | Jinko | ₦9,065,000
+System Price Without Solar: | ₦5,065,000
+--- TABLE END ---
+P: IVEM-12 DUAL PRO
+P: 12kVA Hybrid Inverter | 2 x 12.5kWh (25kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPro-9K44 | 9.44 kWp | 16 x 590W | Jinko | ₦8,115,000
+DPro-9K92 | 9.92 kWp | 16 x 620W | Jinko | ₦8,310,000
+DPro-10K16 | 10.16 kWp | 16 x 635W | Jinko | ₦8,390,000
+DPro-10K24 | 10.24 kWp | 16 x 640W | Jinko | ₦8,430,000
+DPro-10K40 | 10.40 kWp | 16 x 650W | Aiko | ₦8,390,000
+DPro-11K16 | 11.16 kWp | 18 x 620W | Jinko | ₦8,615,000
+DPro-11K43 | 11.43 kWp | 18 x 635W | Jinko | ₦8,705,000
+DPro-11K52 | 11.52 kWp | 18 x 640W | Jinko | ₦8,750,000
+DPro-11K60 | 11.60 kWp | 16 x 725W | Jinko | ₦9,040,000
+DPro-11K70 | 11.70 kWp | 18 x 650W | Aiko | ₦8,705,000
+DPro-12K98 | 12.98 kWp | 22 x 590W | Jinko | ₦9,015,000
+DPro-13K05 | 13.05 kWp | 18 x 725W | Jinko | ₦9,435,000
+System Price Without Solar: | ₦5,435,000
+--- TABLE END ---
+P: IVEM-12 DUAL FORCE
+P: 12kVA Hybrid Inverter | 2 x 15kWh (30kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DForce-11K70 | 11.70 kWp | 18 x 650W | Aiko | ₦9,320,000
+DForce-12K98 | 12.98 kWp | 22 x 590W | Jinko | ₦9,640,000
+DForce-13K05 | 13.05 kWp | 18 x 725W | Jinko | ₦10,050,000
+DForce-14K16 | 14.16 kWp | 24 x 590W | Jinko | ₦9,935,000
+System Price Without Solar: | ₦6,050,000
+--- TABLE END ---
+P: IVEM-12 DUAL BOOST
+P: 12kVA Hybrid Inverter | 2 x 17.5kWh (35kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DBoost-12K98 | 12.98 kWp | 22 x 590W | Jinko | ₦9,765,000
+DBoost-13K05 | 13.05 kWp | 18 x 725W | Jinko | ₦10,175,000
+DBoost-14K16 | 14.16 kWp | 24 x 590W | Jinko | ₦10,060,000
+System Price Without Solar: | ₦6,170,000
+--- TABLE END ---
+P: IVEM-16 PARALLEL PRODUCT SERIES
+P: IVEM-16P DUAL PRO
+P: 2 x 8kVA Hybrid Inverter | 2 x 12.5kWh (25kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DPro-14K88 | 14.88 kWp | 24 x 620W | Jinko | ₦
+DPro-19K84 | 19.84 kWp | 32 x 620W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-16P DUAL FORCE
+P: 2 x 8kVA Hybrid Inverter | 2 x 15kWh (30kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DForce-14K88 | 14.88 kWp | 24 x 620W | Jinko | ₦
+DForce-19K84 | 19.84 kWp | 32 x 620W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-16P DUAL BOOST
+P: 2 x 8kVA Hybrid Inverter | 2 x 17.5kWh (35kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DBoost-14K88 | 14.88 kWp | 24 x 620W | Jinko | ₦
+DBoost-19K84 | 19.84 kWp | 32 x 620W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-16P SQUAD FORCE
+P: 2 x 8kVA Hybrid Inverter | 3 x 15kWh (45kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SQForce-14K88 | 14.88 kWp | 24 x 620W | Jinko | ₦
+SQForce-19K84 | 19.84 kWp | 32 x 620W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-16P SQUAD BOOST
+P: 2 x 8kVA Hybrid Inverter | 3 x 17.5kWh (52.5kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SQBoost-14K88 | 14.88 kWp | 24 x 620W | Jinko | ₦
+SQBoost-19K84 | 19.84 kWp | 32 x 620W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-24 PARALLEL PRODUCT SERIES
+P: IVEM-24P DUAL FORCE
+P: 2 x 12kVA Hybrid Inverter | 2 x 15kWh (30kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DForce-18K88 | 18.88 kWp | 32 x 590W | Jinko | ₦
+DForce-21K24 | 21.24 kWp | 36 x 590W | Jinko | ₦
+DForce-28K32 | 28.32 kWp | 48 x 590W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-24P DUAL BOOST
+P: 2 x 12kVA Hybrid Inverter | 2 x 17.5kWh (35kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+DBoost-18K88 | 18.88 kWp | 32 x 590W | Jinko | ₦
+DBoost-21K24 | 21.24 kWp | 36 x 590W | Jinko | ₦
+DBoost-28K32 | 28.32 kWp | 48 x 590W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-24P SQUAD FORCE
+P: 2 x 12kVA Hybrid Inverter | 3 x 15kWh (45kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SQForce-18K88 | 18.88 kWp | 32 x 590W | Jinko | ₦
+SQForce-21K24 | 21.24 kWp | 36 x 590W | Jinko | ₦
+SQForce-28K32 | 28.32 kWp | 48 x 590W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-24P SQUAD BOOST
+P: 2 x 12kVA Hybrid Inverter | 3 x 17.5kWh (52.5kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+SQBoost-18K88 | 18.88 kWp | 32 x 590W | Jinko | ₦
+SQBoost-21K24 | 21.24 kWp | 36 x 590W | Jinko | ₦
+SQBoost-28K32 | 28.32 kWp | 48 x 590W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-24P ULTRA FORCE
+P: 2 x 12kVA Hybrid Inverter | 4 x 15kWh (60kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+UForce-21K24 | 21.24 kWp | 36 x 590W | Jinko | ₦
+UForce-28K32 | 28.32 kWp | 48 x 590W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
+P: IVEM-24P ULTRA BOOST
+P: 2 x 12kVA Hybrid Inverter | 4 x 17.5kWh (70kWh) Lithium Battery | Available Solar Configurations
+--- TABLE START ---
+Configuration | Solar Power | Panels | Panel Brand | System Price
+UBoost-21K24 | 21.24 kWp | 36 x 590W | Jinko | ₦
+UBoost-28K32 | 28.32 kWp | 48 x 590W | Jinko | ₦
+System Price Without Solar: | ₦
+--- TABLE END ---
