@@ -1,6 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+
+// ---------------------------------------------------------------------------
+// FORM DELIVERY SETTINGS
+// Messages are sent through FormSubmit (https://formsubmit.co), so no backend
+// or npm package is needed. While testing they go to the address below.
+// When you are ready, replace it with the Embrace email (e.g. info@embracetechng.com).
+// The first submission to a new address sends an activation email - click the
+// link in it once, and every later submission is delivered normally.
+// ---------------------------------------------------------------------------
+const CONTACT_RECIPIENT = "Sales@embracetechng.com";
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
+
+const serviceOptions = [
+  { value: "solar", label: "Solar Energy System" },
+  { value: "cctv", label: "CCTV Surveillance System" },
+  { value: "spvi-training", label: "SPVI Training and Certification" },
+  { value: "cctv-training", label: "CCTV Installation Training" },
+  { value: "partnership", label: "Partnership" },
+  { value: "other", label: "Other" },
+];
+
+const initialForm = {
+  name: "",
+  phone: "",
+  email: "",
+  service: "solar",
+  message: "",
+  honeypot: "", // hidden spam trap - real people never fill this in
+};
+
+type SubmitStatus = "idle" | "sending" | "success" | "error" | "activation_required";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -89,11 +120,142 @@ export function Contact() {
 
   const [selectedState, setSelectedState] = useState<string | null>(null);
   const [address, setAddress] = useState("");
+  const [form, setForm] = useState(initialForm);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [lastSubmission, setLastSubmission] = useState<{
+    name: string;
+    phone: string;
+    email: string;
+    state: string;
+    address: string;
+    service: string;
+    message: string;
+  } | null>(null);
 
   // Scroll to top when location changes (fires every time, even on same route)
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname, location.search]);
+
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = event.target;
+    setForm((current) => ({ ...current, [name]: value }));
+    if (status !== "idle" && status !== "sending") {
+      setStatus("idle");
+      setErrorMessage("");
+    }
+  }
+
+  const activeSubmission = lastSubmission ?? {
+    name: form.name,
+    phone: form.phone,
+    email: form.email,
+    state: selectedState ?? "Not provided",
+    address: address || "Not provided",
+    service:
+      serviceOptions.find((option) => option.value === form.service)?.label ?? form.service,
+    message: form.message,
+  };
+
+  const whatsappMessage = [
+    "🌞 *New Website Enquiry – Embrace Technologies*",
+    `👤 *Name:* ${activeSubmission.name || "Customer"}`,
+    `📞 *Phone:* ${activeSubmission.phone || "Not provided"}`,
+    `📧 *Email:* ${activeSubmission.email || "Not provided"}`,
+    `📍 *Location:* ${activeSubmission.state || "Not provided"}`,
+    activeSubmission.address && activeSubmission.address !== "Not provided"
+      ? `🏠 *Address:* ${activeSubmission.address}`
+      : null,
+    `⚡ *Service Needed:* ${activeSubmission.service}`,
+    `💬 *Message:* ${activeSubmission.message || "Hi, I would like to make an enquiry."}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const whatsappUrl = `https://wa.me/2347061451583?text=${encodeURIComponent(whatsappMessage)}`;
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "sending") return;
+
+    // Spam bots fill the hidden field; pretend it worked and send nothing.
+    if (form.honeypot) {
+      setStatus("success");
+      return;
+    }
+
+    setStatus("sending");
+    setErrorMessage("");
+
+    const serviceLabel =
+      serviceOptions.find((option) => option.value === form.service)?.label ?? form.service;
+
+    const snapshot = {
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      state: selectedState ?? "Not provided",
+      address: address || "Not provided",
+      service: serviceLabel,
+      message: form.message,
+    };
+    setLastSubmission(snapshot);
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          email: form.email, // FormSubmit uses this as the reply-to address
+          state: selectedState ?? "Not provided",
+          property_address: address || "Not provided",
+          service_needed: serviceLabel,
+          message: form.message,
+          _subject: `New website enquiry from ${form.name} - ${serviceLabel}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      // Check if FormSubmit requires email activation
+      if (
+        result?.message &&
+        typeof result.message === "string" &&
+        result.message.toLowerCase().includes("activation")
+      ) {
+        setStatus("activation_required");
+        return;
+      }
+
+      const isSuccess =
+        response.ok &&
+        (String(result?.success).toLowerCase() === "true" ||
+          (result?.message && String(result.message).toLowerCase().includes("success")));
+
+      if (!isSuccess) {
+        const errorMsg =
+          result?.message ||
+          (response.statusText ? `${response.status} ${response.statusText}` : "Submission failed");
+        throw new Error(errorMsg);
+      }
+
+      setStatus("success");
+      setForm(initialForm);
+      setSelectedState(null);
+      setAddress("");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Your request could not be sent.";
+      setErrorMessage(msg);
+      setStatus("error");
+    }
+  }
 
   // Nigerian states
   const nigerianStates = [
@@ -438,45 +600,84 @@ export function Contact() {
             {/* RIGHT COLUMN: Form */}
             <motion.form
               {...fadeIn}
+              onSubmit={handleSubmit}
               className="space-y-6 bg-white p-8 shadow-[0_0_60px_rgba(0,32,96,0.15)] border border-slate-200 transition-all duration-300 hover:shadow-[0_0_80px_rgba(0,32,96,0.15)]"
             >
+              {/* Hidden spam trap */}
+              <div className="hidden" aria-hidden="true">
+                <label>
+                  Leave this field empty
+                  <input
+                    type="text"
+                    name="honeypot"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.honeypot}
+                    onChange={handleChange}
+                  />
+                </label>
+              </div>
+
               <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                <label htmlFor="contact-name" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Name
                 </label>
                 <input
+                  id="contact-name"
+                  name="name"
                   type="text"
+                  required
+                  value={form.name}
+                  onChange={handleChange}
                   placeholder="Your full name"
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                <label htmlFor="contact-phone" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Phone
                 </label>
                 <input
+                  id="contact-phone"
+                  name="phone"
                   type="tel"
+                  required
+                  value={form.phone}
+                  onChange={handleChange}
                   placeholder="+234 000 000 0000"
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                <label htmlFor="contact-email" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Email
                 </label>
                 <input
+                  id="contact-email"
+                  name="email"
                   type="email"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
                   placeholder="you@example.com"
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                <label htmlFor="contact-state" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Location
                 </label>
                 <select
+                  id="contact-state"
+                  required
                   value={selectedState || ""}
-                  onChange={(e) => setSelectedState(e.target.value)}
+                  onChange={(e) => {
+                    setSelectedState(e.target.value);
+                    if (status !== "idle" && status !== "sending") {
+                      setStatus("idle");
+                      setErrorMessage("");
+                    }
+                  }}
                   className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 >
                   <option value="" disabled>Select your state</option>
@@ -489,49 +690,134 @@ export function Contact() {
 
                 {selectedState && (
                   <div className="mt-4">
-                    <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                    <label htmlFor="contact-address" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                       Property Address
                     </label>
                     <input
+                      id="contact-address"
                       type="text"
                       value={address}
-                      onChange={(e) => setAddress(e.target.value)}
+                      onChange={(e) => {
+                        setAddress(e.target.value);
+                        if (status !== "idle" && status !== "sending") {
+                          setStatus("idle");
+                          setErrorMessage("");
+                        }
+                      }}
                       placeholder="Enter your full address"
-                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                      className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                     />
                   </div>
                 )}
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                <label htmlFor="contact-service" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Service Needed
                 </label>
                 <select
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                  id="contact-service"
+                  name="service"
+                  value={form.service}
+                  onChange={handleChange}
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 >
-                  <option value="solar">Solar Energy System </option>
-                  <option value="cctv">CCTV Surveillance System </option>
-                  <option value="training">SPVI Training and Certification</option>
-                  <option value="training">CCTV Installation Training</option>
-                  <option value="training">Partnership </option>
-                  <option value="other">Other</option>
+                  {serviceOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
-                <label className="block text-slate-700 mb-2 font-montserrat font-semibold">
+                <label htmlFor="contact-message" className="block text-slate-700 mb-2 font-montserrat font-semibold">
                   Message
                 </label>
                 <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  value={form.message}
+                  onChange={handleChange}
                   placeholder="Enter your message"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
                 />
               </div>
+
+              {status === "success" && (
+                <div
+                  role="status"
+                  className="rounded-2xl border border-green-200 bg-green-50 p-4 font-poppins text-sm text-green-900 shadow-sm"
+                >
+                  <p className="font-semibold text-green-900">Thank you! Your request has been sent.</p>
+                  <p className="mt-1 text-green-800 text-xs sm:text-sm">
+                    Our team has received your message and will get back to you shortly.
+                  </p>
+                </div>
+              )}
+
+              {status === "activation_required" && (
+                <div
+                  role="alert"
+                  className="rounded-2xl border border-amber-300 bg-amber-50 p-4 font-poppins text-sm text-amber-900 shadow-sm"
+                >
+                  <p className="font-semibold text-amber-900">Email Activation Required (One-Time Setup)</p>
+                  <p className="mt-1 text-xs sm:text-sm text-amber-800 leading-relaxed">
+                    FormSubmit sent an activation link to <strong>{CONTACT_RECIPIENT}</strong>. Please open that email and click <strong>"Activate Form"</strong> to start receiving messages directly from the website.
+                  </p>
+                  <div className="mt-3">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 font-montserrat text-xs font-bold uppercase tracking-wider text-white shadow transition hover:bg-green-700"
+                    >
+                      <span>Send request via WhatsApp now →</span>
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {status === "error" && (
+                <div
+                  role="alert"
+                  className="rounded-2xl border border-red-200 bg-red-50 p-4 font-poppins text-sm text-red-900 shadow-sm"
+                >
+                  <p className="font-semibold text-red-900">Submission could not be completed</p>
+                  <p className="mt-1 text-xs sm:text-sm text-red-800">
+                    {errorMessage || "Your request could not be sent. Please try again or reach us directly on WhatsApp."}
+                  </p>
+                  <div className="mt-3">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 font-montserrat text-xs font-bold uppercase tracking-wider text-white shadow transition hover:bg-green-700"
+                    >
+                      <span>Send via WhatsApp (+234 706 145 1583) →</span>
+                    </a>
+                  </div>
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-sm px-8 py-4 hover:bg-alternativeO transition-colors"
+                disabled={status === "sending"}
+                className="inline-flex items-center justify-center w-full bg-secondary text-primary font-montserrat font-semibold rounded-sm px-8 py-4 hover:bg-alternativeO transition-colors disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Submit Request
+                {status === "sending" ? "Sending..." : "Submit Request"}
               </button>
+
+              <div className="text-center pt-1">
+                <span className="font-poppins text-xs text-slate-500">Need immediate assistance? </span>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-montserrat text-xs font-bold text-green-700 hover:text-green-800 underline underline-offset-2 ml-1"
+                >
+                  Chat with Customer Care on WhatsApp →
+                </a>
+              </div>
             </motion.form>
 
           </div>
