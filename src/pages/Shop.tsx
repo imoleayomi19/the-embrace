@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Lightbulb, Phone, SlidersHorizontal, X } from "lucide-react";
+// Lightbulb, Phone and X are only used by the Recommender, which is commented out below.
+import { ArrowLeft, ArrowRight, Check } from "lucide-react";
+// import { ArrowLeft, ArrowRight, Check, Lightbulb, Phone, SlidersHorizontal, X } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { getShopProduct, shopProducts, type SolarProduct } from "../data/shopProducts";
 
@@ -29,6 +31,9 @@ function Hero() {
     </section>
   );
 }
+
+/* "What do you want to power?" section - commented out. Uncomment this block,
+   the <Recommender /> line in Catalog, and the full lucide-react import to restore it.
 
 function Recommender() {
   const [query, setQuery] = useState("");
@@ -199,6 +204,8 @@ function Recommender() {
   );
 }
 
+*/
+
 function ProductCard({ product }: { product: SolarProduct }) {
   const startingPrice = product.configurations.reduce<number | null>((lowest, option) =>
     option.price === null ? lowest : lowest === null ? option.price : Math.min(lowest, option.price), null);
@@ -228,7 +235,7 @@ function ProductCard({ product }: { product: SolarProduct }) {
           From {formatPrice(startingPrice ?? product.price)}
         </p>
         <p className="mt-1 text-xs text-slate-500">
-          {product.configurations.length} Solar {product.configurations.length === 1 ? "Option" : "Options"} Available
+          {product.configurations.length} {product.configurations.length === 1 ? "Configuration" : "Configurations"} Available
         </p>
         <span className="mt-4 inline-flex rounded-sm border border-secondary px-4 py-2 font-montserrat text-xs font-bold text-secondary transition group-hover:bg-secondary group-hover:text-primary">
           View Full Price Chart
@@ -296,13 +303,20 @@ function Catalog() {
   return (
     <main className="min-h-screen bg-slate-50">
       <Hero />
-      <Recommender />
+      {/* <Recommender /> */}
       <section id="products" className="mx-auto max-w-7xl px-4 py-14 md:py-20">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <h2 className="mt-3 font-anton text-3xl text-primary sm:text-4xl">Choose your power system</h2>
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-secondary/70" aria-hidden="true" />
+            <p className="font-montserrat text-sm font-medium text-secondary">Complete hybrid packages</p>
           </div>
-          <SlidersHorizontal className="hidden h-6 w-6 text-secondary md:block" />
+          <h2 className="mt-4 font-montserrat text-3xl font-bold tracking-tight text-primary sm:text-4xl md:text-5xl">
+            Choose your power system
+          </h2>
+          <p className="mt-5 max-w-2xl font-poppins text-base leading-7 text-slate-500">
+            Each package is a complete hybrid system with installation included. Filter by application,
+            brand or power size, then open a system to compare its configurations and prices.
+          </p>
         </div>
         <div className="mt-8">
           <ProductFilters
@@ -328,9 +342,8 @@ function ProductDetail({ product }: { product: SolarProduct }) {
   const isWithoutSolar = selectedConfiguration === null && product.withoutSolarPrice !== undefined;
   const selectedPrice = isWithoutSolar ? product.withoutSolarPrice ?? product.price : configuration?.price ?? product.price;
   const priceLabel = selectedPrice === null ? "Price on request" : formatPrice(selectedPrice);
-  const moduleDescription = configuration?.panels && configuration.panelBrand
-    ? `${configuration.panels} ${configuration.panelBrand} Grade-A Solar PV Modules (${configuration.solar} total)`
-    : `${configuration?.label ?? configuration?.solar ?? "Solar configuration"} Solar PV Modules`;
+  const inverterKva = Number.parseFloat(product.powerSize);
+  const maxRecommendedLoadKw = (inverterKva * 1000 * 0.7 * 0.8 / 1000).toFixed(1);
   const whatsappMessage = `Hi Embrace Technologies, I would like to order ${product.name}${isWithoutSolar ? " without solar" : ` with the ${configuration?.solar} solar configuration`} at ${priceLabel}.`;
 
   return (
@@ -360,6 +373,7 @@ function ProductDetail({ product }: { product: SolarProduct }) {
                     key={option.id}
                     type="button"
                     onClick={() => setSelectedConfiguration(option.id)}
+                    aria-pressed={selectedConfiguration === option.id}
                     className={`flex flex-col gap-2 rounded-sm border p-4 text-left transition sm:flex-row sm:items-center sm:justify-between ${selectedConfiguration === option.id
                       ? "border-secondary bg-orange-50 ring-2 ring-secondary/20"
                       : "border-slate-200 bg-white hover:border-secondary"
@@ -392,39 +406,38 @@ function ProductDetail({ product }: { product: SolarProduct }) {
             </div>
           </div>
 
-          <aside className="self-start rounded-sm border border-slate-200 bg-white p-6 shadow-sm sm:p-8 lg:sticky lg:top-20">
-            <div className="flex items-end justify-between border-b border-slate-100 pb-5">
+          <aside className="self-start rounded-sm border border-slate-200 bg-white p-5 shadow-sm sm:p-6 lg:sticky lg:top-24">
+            <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-4">
               <div>
-                <p className="font-montserrat text-xs uppercase tracking-[0.18em] text-slate-500">Price</p>
-                <p className="mt-2 font-anton text-3xl text-primary">From {priceLabel}</p>
+                <p className="font-montserrat text-xs uppercase tracking-[0.18em] text-slate-500">Selected configuration price</p>
+                <p className="mt-1 font-anton text-2xl text-primary sm:text-3xl">{priceLabel}</p>
               </div>
-              <Check className="h-7 w-7 text-secondary" />
+              <Check className="h-6 w-6 shrink-0 text-secondary" />
             </div>
-            <h2 className="mt-7 font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">Package Includes:</h2>
-            <ul className="mt-4 list-disc space-y-2 pl-5 font-poppins text-sm leading-6 text-slate-600 marker:text-slate-400">
-              <li>1x Felicity {product.powerSize.replace("KW", "kVA")} Hybrid Inverter</li>
-              <li>{configuration?.battery ?? product.systemStorage ?? "Battery storage"}</li>
-              {!isWithoutSolar && <li>{moduleDescription}</li>}
-              {product.systemStorageAlternative && <li>{product.systemStorageAlternative}</li>}
-              <li>PV mounting rails, brackets &amp; installation accessories</li>
-              <li>AC/DC protection, isolation &amp; surge protection</li>
-              <li>AC/DC cabling, installation materials &amp; accessories</li>
-              <li>Protective Earthing &amp; Equipment Bonding Kit</li>
-              <li>Professional Installation, Configuration &amp; Commissioning</li>
-            </ul>
+            <div className="mt-4">
+              <h2 className="font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-slate-900">Package Includes</h2>
+              <p className="mt-2 font-poppins text-xs leading-5 text-slate-600">
+                {product.powerSize.replace("KW", "kVA")} hybrid inverter, {configuration?.battery ?? product.systemStorage ?? "battery storage"}
+                {!isWithoutSolar && configuration && `, ${configuration.panels && configuration.panelBrand
+                  ? `${configuration.panels} ${configuration.panelBrand} PV modules`
+                  : `${configuration.solar} solar PV modules`}`}
+                , mounting accessories, system protection, cabling, earthing kit, and professional installation.
+                {product.systemStorageAlternative && ` ${product.systemStorageAlternative}.`}
+              </p>
+            </div>
 
-            <div className="mt-8 border-t border-slate-100 pt-6">
-              <h2 className="font-montserrat text-sm font-bold uppercase tracking-[0.14em] text-slate-900">System Specs</h2>
-              <dl className="mt-4 space-y-4 font-poppins text-sm leading-6 text-slate-600">
-                <div><dt className="font-semibold text-slate-900">Storage capacity (Type)</dt><dd>{isWithoutSolar ? product.systemStorage : configuration?.storage ?? product.systemStorage}</dd></div>
+            <div className="mt-4 border-t border-slate-100 pt-4">
+              <h2 className="font-montserrat text-xs font-bold uppercase tracking-[0.14em] text-slate-900">System Specs</h2>
+              <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-2 font-poppins text-xs leading-5 text-slate-600">
+                <div><dt className="font-semibold text-slate-900">Storage capacity</dt><dd>{isWithoutSolar ? product.systemStorage : configuration?.storage ?? product.systemStorage}</dd></div>
                 <div><dt className="font-semibold text-slate-900">Inverter Cap</dt><dd>{product.powerSize.replace("KW", "kVA")} Hybrid</dd></div>
-                <div><dt className="font-semibold text-slate-900">Max Recommended Load (W)</dt><dd>70%</dd></div>
-                <div><dt className="font-semibold text-slate-900">Load</dt><dd>Pumping Machine, Washing machine, Fridge/Freezer, lightings, Fan, TV, etc.</dd></div>
+                <div className="col-span-2 max-load"><dt className="inline font-semibold text-slate-900">Max Recommended Load (70% safety): </dt><dd className="inline">{maxRecommendedLoadKw}kW</dd></div>
                 <div><dt className="font-semibold text-slate-900">Solar cap</dt><dd>{isWithoutSolar ? "No solar modules" : configuration?.solar}</dd></div>
+                <div className="col-span-2"><dt className="font-semibold text-slate-900">Load</dt><dd>Pumping machine, washing machine, fridge/freezer, lights, fan, TV, etc.</dd></div>
               </dl>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-4 flex flex-col gap-3">
               <button
                 type="button"
                 onClick={() => window.open(`https://wa.me/2347061451583?text=${encodeURIComponent(whatsappMessage)}`, "_blank", "noopener,noreferrer")}

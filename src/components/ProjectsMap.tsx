@@ -12,18 +12,10 @@ const projectLocations = [
 export function ProjectsMap() {
   return (
     <figure className="w-full">
-      <div className="mb-4 flex items-center justify-between gap-3 px-1">
-        <div>
-          <h4 className="font-montserrat text-sm font-bold text-slate-900 sm:text-base">
-            Project locations across Nigeria
-          </h4>
-          <p className="mt-1 font-montserrat text-xs text-slate-500">
-            Select a marker to see its state
-          </p>
-        </div>
-        <span className="shrink-0 rounded-full bg-blue-50 px-3 py-1 font-montserrat text-xs font-semibold text-blue-800">
-          {projectLocations.length} locations
-        </span>
+      <div className="mb-4 px-1 text-center">
+        <h4 className="font-montserrat text-base font-bold text-slate-900 sm:text-lg">
+          Project locations across Nigeria
+        </h4>
       </div>
 
       <div className="relative z-0 isolate mx-auto aspect-square w-full max-w-[440px] overflow-hidden rounded-full border-4 border-white shadow-xl ring-1 ring-slate-200">
@@ -62,18 +54,6 @@ export function ProjectsMap() {
           ))}
         </MapContainer>
       </div>
-      <figcaption className="mt-3 px-1 font-montserrat text-xs text-slate-500">
-        ©{" "}
-        <a
-          href="https://www.openstreetmap.org/copyright"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-slate-700"
-        >
-          OpenStreetMap contributors
-        </a>
-        . Markers identify the city and state or territory for each listed location.
-      </figcaption>
     </figure>
   );
 }

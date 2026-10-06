@@ -2,7 +2,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useCart } from "../hooks/useCart";
+// import { useCart } from "../hooks/useCart";
 
 type NavChild = {
   name: string;
@@ -52,7 +52,7 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [openMobileSub, setOpenMobileSub] = useState<string | null>(null);
   const location = useLocation();
-  const { totalItems } = useCart();
+  // const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -373,6 +373,7 @@ export function Navbar() {
 
           {/* Cart and Contact Us - Far Right */}
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+            {/* Cart Icon - commented out since Buy Now goes directly to WhatsApp customer care
             <Link
               to="/cart"
               className="group relative inline-flex items-center justify-center p-2"
@@ -403,6 +404,7 @@ export function Navbar() {
                 )}
               </span>
             </Link>
+            */}
 
             <Link
               to="/contact"
@@ -414,7 +416,7 @@ export function Navbar() {
 
           {/* Mobile: Cart icon + Hamburger toggle */}
           <div className="lg:hidden flex items-center gap-1 flex-shrink-0">
-            {/* Cart icon — left of hamburger */}
+            {/* Cart icon — commented out since Buy Now goes directly to WhatsApp customer care
             <Link
               to="/cart"
               className="relative inline-flex items-center justify-center p-2 text-primary"
@@ -445,6 +447,7 @@ export function Navbar() {
                 )}
               </span>
             </Link>
+            */}
 
             {/* Hamburger */}
             <button
