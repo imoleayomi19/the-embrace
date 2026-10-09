@@ -25,10 +25,10 @@ export function BlogPost() {
         return () => element.removeEventListener("click", handleClick);
     }, [navigate]);
 
-    const currentPost = blogPosts.find((post) => post.slug === slug);
-    const currentIndex = blogPosts.findIndex((post) => post.slug === slug);
+    const currentPost = blogPosts.find((post) => post.slug === slug || (slug === "5-reasons-every-home-business-needs-cctv" && post.slug === "why-every-home-business-needs-cctv-system"));
+    const currentIndex = currentPost ? blogPosts.indexOf(currentPost) : -1;
     const previousPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
-    const nextPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
+    const nextPost = currentIndex >= 0 && currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
     const isoDate = currentPost ? new Date(currentPost.date).toISOString() : "";
     const siteUrl = "https://www.embracetechng.com";
     const postUrl = currentPost ? `${siteUrl}/blog/${currentPost.slug}` : "";

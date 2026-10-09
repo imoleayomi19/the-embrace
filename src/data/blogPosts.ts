@@ -12,6 +12,107 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 12,
+    slug: "why-every-home-business-needs-cctv-system",
+    title: "Why Every Home & Business Needs a CCTV System",
+    date: "October 9, 2026",
+    image: "/cctv-post.webp",
+    description: "In today's world, security is no longer a luxury - it's a necessity. Whether it's your home in Lagos or your business outlet, discover why a CCTV system is one of the smartest investments you can make.",
+    metaDescription: "Discover why every home and business needs a CCTV system in Nigeria: crime prevention, 24/7 remote monitoring, investigations, family protection, and higher property value.",
+    content: `
+      <p>In today's world, security is no longer a luxury &mdash; it's a necessity. Whether it's your home in Lagos or your business outlet, a CCTV system is one of the smartest investments you can make. Here is why:</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">1. Prevents Criminal Activity</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Prevention is better than cure.</p>
+      <ul>
+        <li><strong>Criminals avoid CCTV:</strong> Most thieves and burglars will skip a property that has visible CCTV cameras. They don't want to risk getting caught on camera.</li>
+        <li><strong>Reduces break-ins:</strong> The mere presence of a CCTV system drastically reduces the chance of theft, vandalism, and break-ins.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">2. 24/7 Remote Access &amp; Monitoring</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Your security should move with you.</p>
+      <ul>
+        <li><strong>Watch from anywhere:</strong> View live feeds directly from your phone or laptop, whether you are at work, traveling, or at home.</li>
+        <li><strong>Instant alerts:</strong> Get immediate notifications for any suspicious movement or activity.</li>
+        <li><strong>Real-time peace of mind:</strong> Enjoy complete control and security at your fingertips, anytime and anywhere.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">3. Supports Crime Investigation</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">If the unexpected happens, your CCTV becomes your best witness.</p>
+      <ul>
+        <li><strong>Identify suspects:</strong> Clear footage helps security agencies and police quickly identify culprits.</li>
+        <li><strong>Recover stolen items:</strong> Recorded evidence significantly increases the chances of recovering stolen properties.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">4. Protects You &amp; Your Family</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">CCTV is not just for catching thieves, it's for caring for your loved ones.</p>
+      <ul>
+        <li><strong>Monitor your family:</strong> Keep an eye on your kids, elderly parents, and home help when you are away.</li>
+        <li><strong>Screen visitors:</strong> See who is at your gate &mdash; whether it's a delivery agent, visitor, or stranger &mdash; before you open the door.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">5. Increases Property Value</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">CCTV is an investment that pays you back.</p>
+      <ul>
+        <li><strong>Higher resale value:</strong> Homes and business spaces with built-in security systems are more attractive to buyers and tenants.</li>
+        <li><strong>Lower insurance cost:</strong> A well-secured property can reduce your insurance premiums.</li>
+        <li><strong>Long-term value:</strong> CCTV is not an expense, it's an investment in safety and property value.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
+      <p>Don't wait until something happens. A CCTV system gives you prevention, protection, and peace of mind all in one.</p>
+
+      <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+        <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+          Need a reliable CCTV installation for your home or business? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact us today for a free consultation and site inspection.</a>
+        </p>
+      </div>
+
+      <section class="mt-16">
+        <h2 class="text-[#1E3A5F] font-montserrat font-bold mb-6">Frequently Asked Questions About CCTV</h2>
+        <div class="mt-8 space-y-4">
+          <details class="group border border-slate-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
+              <span>Q1: Will CCTV work without internet?</span>
+              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="border-t border-slate-100 px-6 py-5">
+              <p><strong>A:</strong> Yes. Your CCTV system will still record 24/7 to a DVR, NVR or SD card even without internet.</p>
+              <p>However, you will need an internet connection to view the cameras remotely on your phone or to get mobile alerts. Think of it like this: recording works offline, but remote access needs internet.</p>
+            </div>
+          </details>
+
+          <details class="group border border-slate-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
+              <span>Q2: Can I view my CCTV cameras remotely?</span>
+              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="border-t border-slate-100 px-6 py-5">
+              <p><strong>A:</strong> Yes. Once your system is connected to your router, you can watch live and playback footage from anywhere using your smartphone, tablet or computer.</p>
+              <p>At Embrace Technologies, we set up secure mobile apps for you so you can monitor your home or business 24/7 from Lagos or abroad.</p>
+            </div>
+          </details>
+
+          <details class="group border border-slate-200 bg-white shadow-sm">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
+              <span>Q3: Why is my CCTV showing as "Offline"?</span>
+              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="border-t border-slate-100 px-6 py-5">
+              <p><strong>A:</strong> "Offline" usually means the camera lost connection. The three most common causes are:</p>
+              <ul>
+                <li>A loose or damaged power or network cable.</li>
+                <li>A weak Wi-Fi connection or a router that needs restarting.</li>
+                <li>A power interruption affecting the camera, router or recorder.</li>
+              </ul>
+              <p>Check the power supply and connections first. If the camera remains offline, our technical team can help diagnose the issue and restore your system.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+    `
+  },
+  {
     id: 11,
     slug: "causes-of-solar-fire-outbreaks-and-how-to-prevent-them",
     title: "Causes of Solar Fire Outbreaks and How to Prevent Them",
@@ -338,104 +439,6 @@ export const blogPosts: BlogPost[] = [
       <p>For customers looking for one company that can handle design, installation, energy storage, maintenance and smart technology, Embrace Technologies Limited is the strongest all-round choice on this list.</p>
       <p>Ready to switch to solar?</p>
       <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Shop solar products and book a free site inspection</a>.</p>
-    `
-  },
-  {
-    id: 5,
-    slug: "5-reasons-every-home-business-needs-cctv",
-    title: "5 Reasons Why Every Home and Business Needs CCTV",
-    date: "September 10, 2026",
-    image: "/cctv-post.webp",
-    description: "From preventing criminal activity to protecting your family, discover five practical reasons CCTV is a smart investment for every Nigerian home and business.",
-    metaDescription: "Discover five reasons every home and business needs CCTV, including crime prevention, remote monitoring, investigations, family protection and increased property value.",
-    content: `
-      <p>These days in Nigeria, security should not be a luxury, but a necessity. Every home and business deserves a security system they can rely on.</p>
-      <p>This is not just about catching thieves. It is about peace of mind, knowing you are protected in real time. CCTV is your first line of defence.</p>
-      <p>Here are five solid reasons why installing CCTV in your home or business is one of the smartest moves you can make.</p>
-
-      <h2 class="font-montserrat text-[#1E3A5F] font-bold">1. Prevents Criminal Activity</h2>
-      <ul>
-        <li>Criminals avoid homes and business outlets with CCTV.</li>
-        <li>Most burglars will not risk getting caught on camera.</li>
-        <li>Generally, a CCTV system reduces the chances of break-ins.</li>
-      </ul>
-
-      <h2 class="font-montserrat text-[#1E3A5F] font-bold">2. Provides 24/7 Remote Access and Monitoring</h2>
-      <ul>
-        <li>Watch live feeds from your phone or laptop.</li>
-        <li>Receive alerts for suspicious activities.</li>
-        <li>Enjoy real-time security at your fingertips, anytime and anywhere.</li>
-      </ul>
-      <p>With a properly connected system, you can monitor your property whether you are in Lagos, travelling abroad or simply away from the building.</p>
-
-      <h2 class="font-montserrat text-[#1E3A5F] font-bold">3. Supports Crime Investigation</h2>
-      <ul>
-        <li>If a crime happens, footage helps identify suspects.</li>
-        <li>It increases the chances of recovering stolen items.</li>
-      </ul>
-      <p>Recorded footage can provide useful evidence and help security teams or law enforcement understand what happened.</p>
-
-      <h2 class="font-montserrat text-[#1E3A5F] font-bold ">4. Protects You and Your Family</h2>
-      <ul>
-        <li>Monitor kids and family when you are away.</li>
-        <li>Keep an eye on visitors, delivery agents and strangers.</li>
-        <li>Verify who is at your door before opening it.</li>
-      </ul>
-      <p>CCTV gives you greater awareness around your home and helps you make safer decisions before allowing someone onto your property.</p>
-
-      <h2 class="font-montserrat text-[#1E3A5F] font-bold">5. Increases Property Value</h2>
-      <ul>
-        <li>A home or business outlet with a CCTV system is more valuable because buyers prefer properties with built-in security systems.</li>
-        <li>A well-secured home may reduce insurance costs.</li>
-        <li>CCTV is an investment in safety and property value.</li>
-      </ul>
-
-      <h2 class="text-[#1E3A5F]">Your Home and Business Security Starts with CCTV</h2>
-      <p>At <strong>Embrace Technologies Limited</strong>, you can secure your home and business with smart CCTV solutions designed around your property and daily needs.</p>
-      <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited</a> to discuss a reliable CCTV installation for your home or business.</p>
-
-      <section class="mt-20">
-        <h2 class="text-[#1E3A5F]">Frequently Asked Questions About CCTV</h2>
-        <div class="mt-8 space-y-4">
-          <details class="group border border-slate-200 bg-white shadow-sm">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
-              <span>Q1: Will CCTV work without internet?</span>
-              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
-            </summary>
-            <div class="border-t border-slate-100 px-6 py-5">
-              <p><strong>A:</strong> Yes. Your CCTV system will still record 24/7 to a DVR, NVR or SD card even without internet.</p>
-              <p>However, you will need an internet connection to view the cameras remotely on your phone or to get mobile alerts. Think of it like this: recording works offline, but remote access needs internet.</p>
-            </div>
-          </details>
-
-          <details class="group border border-slate-200 bg-white shadow-sm">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
-              <span>Q2: Can I view my CCTV cameras remotely?</span>
-              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
-            </summary>
-            <div class="border-t border-slate-100 px-6 py-5">
-              <p><strong>A:</strong> Yes. Once your system is connected to your router, you can watch live and playback footage from anywhere using your smartphone, tablet or computer.</p>
-              <p>At Embrace Technologies, we set up secure mobile apps for you so you can monitor your home or business 24/7 from Lagos or abroad.</p>
-            </div>
-          </details>
-
-          <details class="group border border-slate-200 bg-white shadow-sm">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 font-montserrat font-bold text-slate-800 marker:hidden">
-              <span>Q3: Why is my CCTV showing as "Offline"?</span>
-              <span class="text-xl font-normal text-slate-400 transition-transform duration-200 group-open:rotate-180">⌄</span>
-            </summary>
-            <div class="border-t border-slate-100 px-6 py-5">
-              <p><strong>A:</strong> "Offline" usually means the camera lost connection. The three most common causes are:</p>
-              <ul>
-                <li>A loose or damaged power or network cable.</li>
-                <li>A weak Wi-Fi connection or a router that needs restarting.</li>
-                <li>A power interruption affecting the camera, router or recorder.</li>
-              </ul>
-              <p>Check the power supply and connections first. If the camera remains offline, our technical team can help diagnose the issue and restore your system.</p>
-            </div>
-          </details>
-        </div>
-      </section>
     `
   },
   {
