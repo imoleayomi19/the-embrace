@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 
 // The map artwork. Save the image in your /public folder with this name
 // (other assets on the site use the same "./" style paths).
-const MAP_IMAGE_SRC = "./map-project.png";
+const MAP_IMAGE_SRC = "./project-map.webp";
 const MAP_IMAGE_SIZE = { width: 919, height: 541 };
 
 // Animation timing (seconds). Higher = slower.

@@ -191,6 +191,7 @@ export function Home() {
       ringColor: "ring-primary/30",
       textColor: "text-primary",
       dotColor: "bg-primary",
+      image: "/consult.webp",
     },
     {
       step: "02",
@@ -201,6 +202,7 @@ export function Home() {
       ringColor: "ring-secondary/30",
       textColor: "text-secondary",
       dotColor: "bg-secondary",
+      image: "/installation.webp",
     },
     {
       step: "03",
@@ -211,6 +213,7 @@ export function Home() {
       ringColor: "ring-alternativeO/30",
       textColor: "text-alternativeO",
       dotColor: "bg-alternativeO",
+      image: "/eng-design.webp",
     },
     {
       step: "04",
@@ -221,6 +224,7 @@ export function Home() {
       ringColor: "ring-alternativeR/30",
       textColor: "text-alternativeR",
       dotColor: "bg-alternativeR",
+      image: "/commercial-solar-service.webp",
     },
   ];
 
@@ -680,132 +684,68 @@ export function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS — ENHANCED */}
-      <section className="py-8 md:py-10 bg-slate-50 overflow-hidden relative">
-        {/* Subtle background decoration */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          {/* Section Header - Removed "Our Process" badge */}
-          <motion.div className="text-center max-w-3xl mx-auto mb-20" {...fadeIn}>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+      {/* HOW IT WORKS — checkerboard cards */}
+      <section className="py-12 md:py-16 bg-white overflow-hidden relative">
+        <div className="container mx-auto px-4 md:px-6">
+          {/* Section Header */}
+          <motion.div className="text-center max-w-3xl mx-auto mb-12 md:mb-16" {...fadeIn}>
+            <h3 className="text-3xl sm:text-4xl md:text-5xl tracking-wider font-black uppercase text-[#002060] font-montserrat">
               How we work
             </h3>
-
-            <p className="text-slate-600 font-montserrat text-lg" style={{ fontFamily: "'Source Sans Pro', sans-serif" }}>
+            <p
+              className="mt-3 text-slate-600 text-lg"
+              style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+            >
               A simple, transparent process from your first consultation to
               flipping the switch.
             </p>
           </motion.div>
 
-          {/* Steps with animated progress line */}
-          <div className="relative max-w-6xl mx-auto">
-            {/* Animated connecting line (desktop) */}
-            <div className="hidden lg:block absolute top-10 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-gradient-to-r from-primary via-secondary to-alternativeR rounded-full origin-left"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-              />
-            </div>
+          {/* Grid wrapper with the tan accent block behind it */}
+          <div className="relative py-8 md:py-12">
+            {/* Accent block: starts ~1/3 across, bleeds above and below the grid */}
+            <div className="absolute inset-y-0 right-0 w-[65%] bg-alternativeO rounded-sm" />
 
-            {/* Steps grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 relative">
+            <div className="relative mx-auto grid max-w-6xl grid-cols-2 lg:grid-cols-4 px-3 sm:px-6 lg:px-10">
               {steps.map((item, idx) => {
                 const StepIcon = item.icon;
                 return (
+                  // Each step = photo tile + text card, spanning 2 columns
                   <motion.div
                     key={idx}
-                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.2 + idx * 0.15,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    whileHover={{ y: -8 }}
-                    className="relative flex flex-col items-center text-center group"
+                    transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                    className={`col-span-2 flex ${item.order}`}
                   >
-                    {/* Animated dot on the line (desktop) */}
-                    <motion.div
-                      className={`hidden lg:block absolute top-10 w-3 h-3 rounded-full ${item.dotColor} -translate-y-1/2 z-20`}
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + idx * 0.15, duration: 0.4 }}
-                    />
-
-                    {/* Step circle with pulsing ring */}
-                    <div className="relative mb-6">
-                      {/* Pulsing ring */}
-                      <motion.div
-                        className={`absolute inset-0 rounded-full ${item.bgColor} opacity-30`}
-                        animate={{
-                          scale: [1, 1.6, 1],
-                          opacity: [0.3, 0, 0.3],
-                        }}
-                        transition={{
-                          duration: 2.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          delay: idx * 0.3,
-                        }}
+                    {/* Photo tile */}
+                    <div className="group relative w-1/2 min-h-[190px] sm:min-h-[260px] lg:aspect-square lg:min-h-0 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-
-                      {/* Main circle */}
-                      <motion.div
-                        className={`relative w-20 h-20 ${item.bgColor} rounded-full flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-shadow duration-300`}
-                        whileHover={{ rotate: [0, -10, 10, 0] }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <StepIcon className="w-8 h-8 text-white" strokeWidth={2} />
-                      </motion.div>
-
-                      {/* Step number badge */}
-                      <motion.div
-                        className="absolute -top-2 -right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-md border-2 border-slate-100"
-                        initial={{ scale: 0, rotate: -180 }}
-                        whileInView={{ scale: 1, rotate: 0 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          delay: 0.4 + idx * 0.15,
-                          type: "spring",
-                          stiffness: 200,
-                        }}
-                      >
-                        <span className={`font-anton font-extrabold text-xs ${item.textColor}`}>
-                          {item.step}
-                        </span>
-                      </motion.div>
                     </div>
 
-                    {/* Content */}
-                    <motion.h3
-                      className="text-xl font-montserrat font-bold text-primary mb-3 group-hover:text-secondary transition-colors duration-300"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + idx * 0.15 }}
-                    >
-                      {item.title}
-                    </motion.h3>
-                    <motion.p
-                      className="text-slate-600 font-montserrat text-sm leading-relaxed max-w-xs"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.4 + idx * 0.15 }}
-                    >
-                      {item.desc}
-                    </motion.p>
-
-                    {/* Hover underline accent */}
-                    <motion.div
-                      className={`mt-4 h-0.5 w-12 ${item.bgColor} rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                    />
+                    {/* Text card */}
+                    <div className="flex w-1/2 min-h-[190px] sm:min-h-[260px] lg:aspect-square lg:min-h-0 flex-col justify-center bg-white p-4 sm:p-8 lg:p-8 xl:p-10">
+                      <div className="mb-3 flex items-center gap-2">
+                        <StepIcon className="h-6 w-6 text-secondary" strokeWidth={2.25} />
+                        <span className="font-montserrat text-sm font-bold tracking-[0.2em] text-slate-500">
+                          {item.step}
+                        </span>
+                      </div>
+                      <h4 className="mb-3 font-montserrat text-base font-bold uppercase tracking-[0.12em] text-primary sm:text-lg lg:text-xl">
+                        {item.title}
+                      </h4>
+                      <p
+                        className="text-sm font-semibold leading-relaxed text-slate-800 sm:text-base lg:text-[17px]"
+                        style={{ fontFamily: "'Source Sans Pro', sans-serif" }}
+                      >
+                        {item.desc}
+                      </p>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -830,7 +770,7 @@ export function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wider font-black uppercase bg-gradient-to-r from-[#003399] via-[#0057D9] to-[#00A3FF] bg-clip-text text-transparent font-montserrat">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wider font-black uppercase text-[#002060]  font-montserrat">
                 Leading Solar Installation Company in Nigeria
               </h3>
 

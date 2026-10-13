@@ -14,7 +14,7 @@ function Hero() {
     <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
       <div
         className="absolute inset-0 bg-contain bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/solar-panels.webp)" }}
+        style={{ backgroundImage: "url(/shop-hero.webp)" }}
       />
       <div className="absolute inset-0 bg-black/40" />
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-4 text-center pt-20 md:pt-32">
