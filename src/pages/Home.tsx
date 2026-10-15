@@ -271,7 +271,7 @@ export function Home() {
       ringColor: "ring-secondary/30",
       textColor: "text-secondary",
       dotColor: "bg-secondary",
-      image: "/installation.webp",
+      image: "/custome.webp",
     },
     {
       step: "03",
