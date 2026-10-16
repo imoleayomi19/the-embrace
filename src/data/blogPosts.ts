@@ -12,6 +12,124 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    id: 14,
+    slug: "6-warning-signs-your-solar-battery-is-about-to-fail",
+    title: "6 Warning Signs Your Solar Battery Is About to Fail",
+    date: "October 16, 2026",
+    image: "/blog-post.webp",
+    description: "Most batteries don't die suddenly. They warn you first. Learn the 6 warning signs that your solar battery is declining, and what to do before it fails completely.",
+    metaDescription: "Learn the 6 warning signs your solar battery is about to fail, from shrinking backup time and overheating to swelling and leaks, and what to do next in Nigeria.",
+    content: `
+      <p>Most batteries don't die suddenly &mdash; they warn you first. The problem is that many people ignore those warnings until the system shuts down in the middle of the night. Your battery is the heart of your solar system, and catching the early signs can save you from a total failure and an expensive replacement.</p>
+      <p>Here are the <strong>6 warning signs</strong> to watch for.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">1. Your Backup Time Is Shrinking</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">When it was new, it lasted all night. Now it barely makes it through the evening.</p>
+      <p>A battery that runs out much faster than before is losing storage capacity. This is one of the earliest signs of ageing or stress, and it usually gets worse over time rather than better.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">2. Your Battery Takes Too Long to Charge</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">It used to be full by afternoon. Now it struggles even by evening.</p>
+      <p>If your battery cannot absorb energy as efficiently as it used to, something is wrong inside it. Common causes include overheating and repeated deep discharges, where the battery is drained too low too often.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">3. Your Inverter Keeps Showing Battery Warnings</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Those alerts are not random.</p>
+      <p>Pay attention to messages such as:</p>
+      <ul>
+        <li>Low battery warnings</li>
+        <li>Battery voltage errors</li>
+        <li>System shutdown messages</li>
+      </ul>
+      <p>Your inverter is telling you the battery's health is declining. Frequent alerts mean it is time for a professional check, not a reset and a hope for the best.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">4. Your Battery Feels Too Hot</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Warm is normal. Very hot to the touch is not.</p>
+      <p>Excessive heat can come from poor ventilation, an overloaded system or internal damage. Heat kills batteries fast, and in Nigeria's climate, proper placement and airflow matter even more. A battery that is too hot to keep your hand on should be checked as soon as possible.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">5. Power Drops Suddenly at Night</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Fine during the day, but drains very quickly after sunset.</p>
+      <p>When the battery cells can no longer hold a stable voltage under load, power can fall sharply once the sun goes down. This is a strong failure warning and should not be ignored.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">6. The Battery Looks Different</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Never ignore physical changes.</p>
+      <ul>
+        <li><strong>Swelling</strong> or a bulging case</li>
+        <li><strong>A strange smell</strong></li>
+        <li><strong>Corrosion</strong> around the terminals</li>
+        <li><strong>Leaking fluid</strong></li>
+      </ul>
+      <p>These are safety warnings, not just performance issues.</p>
+
+      <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+        <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+          <strong>Safety first:</strong> If you notice swelling, leaking, a burning or chemical smell, smoke or unusual heat, keep away from the battery, ventilate the area and contact a qualified solar professional. Do not touch or try to move a damaged battery. If there is smoke or fire, evacuate and call the emergency services.
+        </p>
+      </div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What to Do If You Notice These Signs</h2>
+      <ul>
+        <li><strong>Don't wait for total failure.</strong> Early checks are cheaper than emergency replacements.</li>
+        <li><strong>Book a professional inspection.</strong> A technician can test the battery's real capacity and check the connections, charging settings and ventilation.</li>
+        <li><strong>Review your load.</strong> Adding appliances without upgrading your battery is one of the most common causes of early battery stress.</li>
+        <li><strong>Keep it cool and ventilated.</strong> Install batteries in a dry, well-ventilated place, following the manufacturer's guidance.</li>
+        <li><strong>Monitor regularly.</strong> Check your battery levels and inverter alerts often, not only when something goes wrong.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
+      <p>Your battery is the heart of your solar system. Ignoring these signs can lead to total failure, system shutdown and an expensive replacement. A solar battery needs monitoring and maintenance, not just installation.</p>
+
+      <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+        <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+          Noticing any of these signs? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited to book a battery health check.</a>
+        </p>
+      </div>
+    `
+  },
+  {
+    id: 13,
+    slug: "how-solar-panels-create-electricity-sunlight-to-socket",
+    title: "From Sunlight to Socket: How Your Solar Panels Actually Create Electricity",
+    date: "October 14, 2026",
+    image: "/sunlight.webp",
+    description: "How does the Lagos sun on your roof become the power for your AC, fridge and lights at night? Here is the simple science behind every solar panel.",
+    metaDescription: "How do solar panels create electricity? Learn how sunlight becomes usable power through the photovoltaic effect, the inverter and your battery, explained simply for Nigeria.",
+    content: `
+      <p>If you live in Lagos, you know the sun is never in short supply. But how does that fierce afternoon sun sitting on your roof become the cool breeze from your AC and the bright light your children use to read at night?</p>
+      <p>It is not magic. It is a quiet, powerful process happening inside every single panel we install at Embrace Technologies Limited, and once you understand it, you will understand why quality matters.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">The First Touch: When Light Becomes Power</h2>
+      <p>It all begins the moment sunlight touches the panel. A solar panel is made of many small cells built from silicon, a material that reacts strongly to light.</p>
+      <p>Sunlight carries tiny packets of energy called photons. Think of them as small hammers knocking on a door. When they hit the silicon cells, they knock electrons loose from their atoms. This moment is called the <strong>Photovoltaic Effect</strong>, and it is the birth of electricity. Once those electrons are free, they move, and that constant movement is an electric current.</p>
+      <p>At this stage, the electricity is <strong>Direct Current (DC)</strong>, the same type of power found inside a battery. It is powerful, but your home appliances cannot use it directly in that form.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">The Heart of the System: Making It Usable for Your Home</h2>
+      <p>That is where the inverter comes in. The DC power flows from your roof down into the inverter, and in a split second the inverter converts it into <strong>Alternating Current (AC)</strong>.</p>
+      <p>AC is the standard electricity that your fridge, television, pumping machine and every socket in your house understands. Without this conversion, the power from the sun would be useless to you. This is why we pay so much attention to inverter quality: even the best panels are nothing without a clean, efficient conversion.</p>
+      <p>From the inverter, this AC power moves to your distribution board and spreads across your home instantly, with no waiting and no noise.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Power That Stays After Sunset</h2>
+      <p>On a bright day, if your panels are producing more power than you are using, the extra energy does not go to waste. It is stored in your batteries, especially the lithium storage systems we recommend, and waits for you to use at night when the grid takes light.</p>
+      <p>This is what gives you real 24-hour power, where your living room stays bright and comfortable even when the whole street is in darkness.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Why Not All Solar Systems Are Equal</h2>
+      <p>The quality of your conversion matters a great deal. A low-quality panel may convert only a small fraction of the sunlight it receives, while a premium Tier-1 panel, like the ones we use, can convert over 20% of that same sunlight.</p>
+      <p>So under the exact same Lagos sun, one house may have light for a few hours and another all night long. The difference is never the sun. It is the efficiency of the conversion and how well the system was designed for that specific roof and that specific family's usage.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">The Journey in Short</h2>
+      <ul>
+        <li><strong>The sun shines</strong> and your panels catch the light.</li>
+        <li><strong>The cells</strong> turn that light into moving electrons (DC power).</li>
+        <li><strong>The inverter</strong> converts it into AC power your home can use.</li>
+        <li><strong>The battery</strong> keeps the extra energy for the night.</li>
+      </ul>
+      <p>No fuel queue, no generator noise, no blackout anxiety. Just sunlight becoming socket power, every single day. That is the freedom Embrace brings to your home.</p>
+
+      <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+        <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+          Ready to turn your roof into your own power station? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited for a free consultation and site inspection.</a>
+        </p>
+      </div>
+    `
+  }, {
     id: 12,
     slug: "why-every-home-business-needs-cctv-system",
     title: "Why Every Home & Business Needs a CCTV System",
