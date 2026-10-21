@@ -10,7 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 // The first submission to a new address sends an activation email - click the
 // link in it once, and every later submission is delivered normally.
 // ---------------------------------------------------------------------------
-const CONTACT_RECIPIENT = "Sales@embracetechng.com";
+const CONTACT_RECIPIENT = "Info@embracetechng.com";
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
 
 const serviceOptions = [

@@ -266,15 +266,8 @@ export function Projects() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-anton font-extrabold mb-4 bg-gradient-to-r from-primary via-blue-600 to-secondary bg-clip-text text-transparent">
-              How we have delivered in the past
-            </h2>
-            <p className="text-slate-600 font-poppins font-normal text-base md:text-lg leading-relaxed">
-              Take a look at our past projects in the Solar power sector from Solar PV Systems to Off grid Systems.
-            </p>
           </motion.div>
 
-          {/* Category Cards */}
           {/* Category Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
             {projectCategories.map((category, index) => {
