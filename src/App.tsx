@@ -10,7 +10,6 @@ import { Services } from './pages/Services';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Contact } from './pages/Contact';
-import { Shop } from './pages/Shop';
 
 // Inner component so we can use useLocation inside Router context
 function AppShell() {

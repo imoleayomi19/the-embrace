@@ -2,17 +2,6 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 
-// ---------------------------------------------------------------------------
-// FORM DELIVERY SETTINGS
-// Messages are sent through FormSubmit (https://formsubmit.co), so no backend
-// or npm package is needed. While testing they go to the address below.
-// When you are ready, replace it with the Embrace email (e.g. info@embracetechng.com).
-// The first submission to a new address sends an activation email - click the
-// link in it once, and every later submission is delivered normally.
-// ---------------------------------------------------------------------------
-const CONTACT_RECIPIENT = "Info@embracetechng.com";
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_RECIPIENT}`;
-
 const serviceOptions = [
   { value: "solar", label: "Solar Energy System" },
   { value: "cctv", label: "CCTV Surveillance System" },
@@ -31,7 +20,7 @@ const initialForm = {
   honeypot: "", // hidden spam trap - real people never fill this in
 };
 
-type SubmitStatus = "idle" | "sending" | "success" | "error" | "activation_required";
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -123,15 +112,6 @@ export function Contact() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [lastSubmission, setLastSubmission] = useState<{
-    name: string;
-    phone: string;
-    email: string;
-    state: string;
-    address: string;
-    service: string;
-    message: string;
-  } | null>(null);
 
   // Scroll to top when location changes (fires every time, even on same route)
   useEffect(() => {
@@ -149,34 +129,6 @@ export function Contact() {
     }
   }
 
-  const activeSubmission = lastSubmission ?? {
-    name: form.name,
-    phone: form.phone,
-    email: form.email,
-    state: selectedState ?? "Not provided",
-    address: address || "Not provided",
-    service:
-      serviceOptions.find((option) => option.value === form.service)?.label ?? form.service,
-    message: form.message,
-  };
-
-  const whatsappMessage = [
-    "🌞 *New Website Enquiry – Embrace Technologies*",
-    `👤 *Name:* ${activeSubmission.name || "Customer"}`,
-    `📞 *Phone:* ${activeSubmission.phone || "Not provided"}`,
-    `📧 *Email:* ${activeSubmission.email || "Not provided"}`,
-    `📍 *Location:* ${activeSubmission.state || "Not provided"}`,
-    activeSubmission.address && activeSubmission.address !== "Not provided"
-      ? `🏠 *Address:* ${activeSubmission.address}`
-      : null,
-    `⚡ *Service Needed:* ${activeSubmission.service}`,
-    `💬 *Message:* ${activeSubmission.message || "Hi, I would like to make an enquiry."}`,
-  ]
-    .filter(Boolean)
-    .join("\n");
-
-  const whatsappUrl = `https://wa.me/2347061451583?text=${encodeURIComponent(whatsappMessage)}`;
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status === "sending") return;
@@ -193,57 +145,40 @@ export function Contact() {
     const serviceLabel =
       serviceOptions.find((option) => option.value === form.service)?.label ?? form.service;
 
-    const snapshot = {
-      name: form.name,
-      phone: form.phone,
-      email: form.email,
-      state: selectedState ?? "Not provided",
-      address: address || "Not provided",
-      service: serviceLabel,
-      message: form.message,
-    };
-    setLastSubmission(snapshot);
-
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const formData = {
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        company: "",
+        service: serviceLabel,
+        state: selectedState ?? "Not provided",
+        property_address: address || "Not provided",
+        message: form.message,
+        honeypot: form.honeypot,
+      };
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          phone: form.phone,
-          email: form.email, // FormSubmit uses this as the reply-to address
-          state: selectedState ?? "Not provided",
-          property_address: address || "Not provided",
-          service_needed: serviceLabel,
-          message: form.message,
-          _subject: `New website enquiry from ${form.name} - ${serviceLabel}`,
-          _template: "table",
-          _captcha: "false",
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
 
-      const result = await response.json().catch(() => null);
-
-      // Check if FormSubmit requires email activation
-      if (
-        result?.message &&
-        typeof result.message === "string" &&
-        result.message.toLowerCase().includes("activation")
-      ) {
-        setStatus("activation_required");
-        return;
-      }
-
+      const result: unknown = await response.json().catch(() => null);
       const isSuccess =
-        response.ok &&
-        (String(result?.success).toLowerCase() === "true" ||
-          (result?.message && String(result.message).toLowerCase().includes("success")));
+        typeof result === "object" &&
+        result !== null &&
+        "success" in result &&
+        result.success === true;
+      const errorMessage =
+        typeof result === "object" &&
+          result !== null &&
+          "error" in result &&
+          typeof result.error === "string"
+          ? result.error
+          : "Your request could not be sent. Please try again.";
 
-      if (!isSuccess) {
-        const errorMsg =
-          result?.message ||
-          (response.statusText ? `${response.status} ${response.statusText}` : "Submission failed");
-        throw new Error(errorMsg);
+      if (!response.ok || !isSuccess) {
+        throw new Error(errorMessage);
       }
 
       setStatus("success");
@@ -739,7 +674,7 @@ export function Contact() {
                   value={form.message}
                   onChange={handleChange}
                   placeholder="Enter your message"
-                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal"
+                  className="w-full rounded-2xl border border-slate-200 px-4 py-3 min-h-[180px] focus:border-secondary focus:outline-none focus:shadow-[0_0_0_4px_rgba(255,199,89,0.1)] transition-all duration-300 font-poppins font-normal text-slate-800 text-base resize-y"
                 />
               </div>
 
@@ -748,32 +683,9 @@ export function Contact() {
                   role="status"
                   className="rounded-2xl border border-green-200 bg-green-50 p-4 font-poppins text-sm text-green-900 shadow-sm"
                 >
-                  <p className="font-semibold text-green-900">Thank you! Your request has been sent.</p>
-                  <p className="mt-1 text-green-800 text-xs sm:text-sm">
-                    Our team has received your message and will get back to you shortly.
+                  <p className="font-semibold text-green-900">
+                    Message sent successfully! We will contact you shortly.
                   </p>
-                </div>
-              )}
-
-              {status === "activation_required" && (
-                <div
-                  role="alert"
-                  className="rounded-2xl border border-amber-300 bg-amber-50 p-4 font-poppins text-sm text-amber-900 shadow-sm"
-                >
-                  <p className="font-semibold text-amber-900">Email Activation Required (One-Time Setup)</p>
-                  <p className="mt-1 text-xs sm:text-sm text-amber-800 leading-relaxed">
-                    FormSubmit sent an activation link to <strong>{CONTACT_RECIPIENT}</strong>. Please open that email and click <strong>"Activate Form"</strong> to start receiving messages directly from the website.
-                  </p>
-                  <div className="mt-3">
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 font-montserrat text-xs font-bold uppercase tracking-wider text-white shadow transition hover:bg-green-700"
-                    >
-                      <span>Send request via WhatsApp now →</span>
-                    </a>
-                  </div>
                 </div>
               )}
 
@@ -784,18 +696,8 @@ export function Contact() {
                 >
                   <p className="font-semibold text-red-900">Submission could not be completed</p>
                   <p className="mt-1 text-xs sm:text-sm text-red-800">
-                    {errorMessage || "Your request could not be sent. Please try again or reach us directly on WhatsApp."}
+                    {errorMessage || "Your request could not be sent. Please try again."}
                   </p>
-                  <div className="mt-3">
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 font-montserrat text-xs font-bold uppercase tracking-wider text-white shadow transition hover:bg-green-700"
-                    >
-                      <span>Send via WhatsApp (+234 706 145 1583) →</span>
-                    </a>
-                  </div>
                 </div>
               )}
 
@@ -806,18 +708,6 @@ export function Contact() {
               >
                 {status === "sending" ? "Sending..." : "Submit Request"}
               </button>
-
-              <div className="text-center pt-1">
-                <span className="font-poppins text-xs text-slate-500">Need immediate assistance? </span>
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-montserrat text-xs font-bold text-green-700 hover:text-green-800 underline underline-offset-2 ml-1"
-                >
-                  Chat with Customer Care on WhatsApp →
-                </a>
-              </div>
             </motion.form>
 
           </div>
