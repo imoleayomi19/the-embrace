@@ -10,188 +10,283 @@ export type BlogPost = {
   content: string;
 };
 
-export const blogPosts: BlogPost[] = [{
-  // {
-  //   id: 16,
-  //   slug: "who-is-making-the-most-efficient-solar-panels-2026-2027",
-  //   title: "Who Is Making the Most Efficient Solar Panels in 2026/2027?",
-  //   date: "October 26, 2026",
-  //   image: "/efficient-solar-panels.webp",
-  //   description: "AIKO and LONGi now sell 25% efficient panels, and perovskite tandems are close behind. Here is who leads in 2026, what is coming in 2027, and what it means for Nigerian roofs.",
-  //   metaDescription: "Who makes the most efficient solar panels in 2026 and 2027? See how AIKO, LONGi, JA Solar and perovskite tandems compare, and what efficiency means for your home or business in Nigeria.",
-  //   content: `
-  //     <p>Every year, solar manufacturers announce a new efficiency record, and every year buyers ask the same question: <em>does it matter for me?</em> In 2026 the answer is more interesting than usual, because the industry has just crossed a real commercial milestone.</p>
-  //     <p>Here is who is leading the efficiency race right now, what to expect in 2027, and how to use this information when buying panels in Nigeria.</p>
+export const blogPosts: BlogPost[] = [
+  {
+    //   id: 16,
+    //   slug: "who-is-making-the-most-efficient-solar-panels-2026-2027",
+    //   title: "Who Is Making the Most Efficient Solar Panels in 2026/2027?",
+    //   date: "October 26, 2026",
+    //   image: "/efficient-solar-panels.webp",
+    //   description: "AIKO and LONGi now sell 25% efficient panels, and perovskite tandems are close behind. Here is who leads in 2026, what is coming in 2027, and what it means for Nigerian roofs.",
+    //   metaDescription: "Who makes the most efficient solar panels in 2026 and 2027? See how AIKO, LONGi, JA Solar and perovskite tandems compare, and what efficiency means for your home or business in Nigeria.",
+    //   content: `
+    //     <p>Every year, solar manufacturers announce a new efficiency record, and every year buyers ask the same question: <em>does it matter for me?</em> In 2026 the answer is more interesting than usual, because the industry has just crossed a real commercial milestone.</p>
+    //     <p>Here is who is leading the efficiency race right now, what to expect in 2027, and how to use this information when buying panels in Nigeria.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">The Short Answer</h2>
-  //     <p>As of October 2026, <strong>AIKO and LONGi</strong> share the top spot for commercially available panels, both at around <strong>25% module efficiency</strong>. Both use <strong>back-contact</strong> cell technology, and both reached 25% in mass production in April 2026, according to the TaiyangNews commercial module rankings.</p>
-  //     <p>Behind them, <strong>TOPCon</strong> panels have passed 24% for the first time, with JA Solar leading that group at about 24.1%. <strong>HJT</strong> panels sit at roughly 23.8%, with some models, such as Risen Energy's, pushing output as high as 740W.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">The Short Answer</h2>
+    //     <p>As of October 2026, <strong>AIKO and LONGi</strong> share the top spot for commercially available panels, both at around <strong>25% module efficiency</strong>. Both use <strong>back-contact</strong> cell technology, and both reached 25% in mass production in April 2026, according to the TaiyangNews commercial module rankings.</p>
+    //     <p>Behind them, <strong>TOPCon</strong> panels have passed 24% for the first time, with JA Solar leading that group at about 24.1%. <strong>HJT</strong> panels sit at roughly 23.8%, with some models, such as Risen Energy's, pushing output as high as 740W.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Efficiency by Technology (2026)</h2>
-  //     <div class="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
-  //       <table class="min-w-full border-collapse text-left text-sm sm:text-base">
-  //         <thead class="bg-[#063b75] text-white">
-  //           <tr><th class="px-4 py-3 font-semibold">Technology</th><th class="px-4 py-3 font-semibold">Top commercial efficiency</th><th class="px-4 py-3 font-semibold">Who leads</th></tr>
-  //         </thead>
-  //         <tbody class="divide-y divide-slate-200 bg-white">
-  //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Back-contact (BC)</td><td class="px-4 py-3">About 25%</td><td class="px-4 py-3">AIKO and LONGi</td></tr>
-  //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">TOPCon</td><td class="px-4 py-3">About 24.1%</td><td class="px-4 py-3">JA Solar</td></tr>
-  //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">HJT</td><td class="px-4 py-3">About 23.8%</td><td class="px-4 py-3">Several manufacturers, including Risen Energy</td></tr>
-  //         </tbody>
-  //       </table>
-  //     </div>
-  //     <p>Rankings shift month to month as new models are released, so treat these as a snapshot rather than a permanent league table.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Efficiency by Technology (2026)</h2>
+    //     <div class="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+    //       <table class="min-w-full border-collapse text-left text-sm sm:text-base">
+    //         <thead class="bg-[#063b75] text-white">
+    //           <tr><th class="px-4 py-3 font-semibold">Technology</th><th class="px-4 py-3 font-semibold">Top commercial efficiency</th><th class="px-4 py-3 font-semibold">Who leads</th></tr>
+    //         </thead>
+    //         <tbody class="divide-y divide-slate-200 bg-white">
+    //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Back-contact (BC)</td><td class="px-4 py-3">About 25%</td><td class="px-4 py-3">AIKO and LONGi</td></tr>
+    //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">TOPCon</td><td class="px-4 py-3">About 24.1%</td><td class="px-4 py-3">JA Solar</td></tr>
+    //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">HJT</td><td class="px-4 py-3">About 23.8%</td><td class="px-4 py-3">Several manufacturers, including Risen Energy</td></tr>
+    //         </tbody>
+    //       </table>
+    //     </div>
+    //     <p>Rankings shift month to month as new models are released, so treat these as a snapshot rather than a permanent league table.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Why Back-Contact Panels Win</h2>
-  //     <p>On a normal panel, thin metal lines on the front of each cell cast tiny shadows and block some sunlight. Back-contact panels move all the electrical contacts to the rear of the cell, so more of the surface can catch light. It is a simple idea, and it is why this design is now at the top of the table.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Why Back-Contact Panels Win</h2>
+    //     <p>On a normal panel, thin metal lines on the front of each cell cast tiny shadows and block some sunlight. Back-contact panels move all the electrical contacts to the rear of the cell, so more of the surface can catch light. It is a simple idea, and it is why this design is now at the top of the table.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Lab Records vs What You Can Actually Buy</h2>
-  //     <p>You will see bigger numbers in the news. It is important to know what they mean.</p>
-  //     <ul>
-  //       <li><strong>LONGi</strong> announced a certified silicon cell efficiency of 28.13% in June 2026, and a module built on the same technology at 26.4%. These are laboratory results. The panels you can buy today are at about 25%.</li>
-  //       <li><strong>LONGi's perovskite-silicon tandem cell</strong> reached 35.5% in July 2026, a world record. This is a small laboratory cell, not a product, and the company has said it has no active mass-production plan for tandem cells at this stage.</li>
-  //       <li><strong>Oxford PV</strong> already sells perovskite-silicon tandem modules in small volumes, and has said it plans mass production from around 2027 to 2028.</li>
-  //     </ul>
-  //     <p>The lesson: a record headline does not mean a panel is on a shelf in Lagos. Always ask whether a number comes from a lab cell, a prototype module or a panel in mass production.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Lab Records vs What You Can Actually Buy</h2>
+    //     <p>You will see bigger numbers in the news. It is important to know what they mean.</p>
+    //     <ul>
+    //       <li><strong>LONGi</strong> announced a certified silicon cell efficiency of 28.13% in June 2026, and a module built on the same technology at 26.4%. These are laboratory results. The panels you can buy today are at about 25%.</li>
+    //       <li><strong>LONGi's perovskite-silicon tandem cell</strong> reached 35.5% in July 2026, a world record. This is a small laboratory cell, not a product, and the company has said it has no active mass-production plan for tandem cells at this stage.</li>
+    //       <li><strong>Oxford PV</strong> already sells perovskite-silicon tandem modules in small volumes, and has said it plans mass production from around 2027 to 2028.</li>
+    //     </ul>
+    //     <p>The lesson: a record headline does not mean a panel is on a shelf in Lagos. Always ask whether a number comes from a lab cell, a prototype module or a panel in mass production.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What to Expect in 2027</h2>
-  //     <ul>
-  //       <li><strong>25% becomes normal for premium panels.</strong> Back-contact production is scaling, and TOPCon makers are closing the gap.</li>
-  //       <li><strong>Tandem panels start to appear.</strong> Early perovskite-silicon modules should reach more markets, but expect them to be expensive and limited at first. Long-term durability is the main thing buyers and engineers will be watching.</li>
-  //       <li><strong>Prices for mainstream high-efficiency panels should keep easing</strong> as production grows.</li>
-  //     </ul>
-  //     <p>These are industry targets and expectations, not guarantees. Timelines for new technology often slip.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What to Expect in 2027</h2>
+    //     <ul>
+    //       <li><strong>25% becomes normal for premium panels.</strong> Back-contact production is scaling, and TOPCon makers are closing the gap.</li>
+    //       <li><strong>Tandem panels start to appear.</strong> Early perovskite-silicon modules should reach more markets, but expect them to be expensive and limited at first. Long-term durability is the main thing buyers and engineers will be watching.</li>
+    //       <li><strong>Prices for mainstream high-efficiency panels should keep easing</strong> as production grows.</li>
+    //     </ul>
+    //     <p>These are industry targets and expectations, not guarantees. Timelines for new technology often slip.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Does the Most Efficient Panel Mean the Best Panel for Nigeria?</h2>
-  //     <p>Not automatically. Efficiency is only one line on the datasheet. Before paying extra for the top number, check:</p>
-  //     <ul>
-  //       <li><strong>Roof space.</strong> Efficiency matters most when your roof is small. If you have plenty of space, a slightly less efficient Tier-1 panel can give you the same total power for less money.</li>
-  //       <li><strong>Temperature coefficient.</strong> Panels lose output as they heat up, and Nigerian roofs get very hot. A panel with a better temperature coefficient can beat a higher-rated panel in real conditions.</li>
-  //       <li><strong>Degradation and warranty.</strong> Look for a strong 25-year performance warranty and a low yearly power loss.</li>
-  //       <li><strong>Availability and support.</strong> A panel is only useful if it can be supplied, replaced and serviced locally.</li>
-  //       <li><strong>The rest of the system.</strong> The best panels cannot fix a badly sized inverter or an undersized battery.</li>
-  //     </ul>
-  //     <p>If you want to understand the basics first, read our guide on <a href="/blog/solar-panel-efficiency-explained-nigeria" class="font-bold text-[#EA6936] hover:underline">solar panel efficiency and why it matters in Nigeria</a>.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Does the Most Efficient Panel Mean the Best Panel for Nigeria?</h2>
+    //     <p>Not automatically. Efficiency is only one line on the datasheet. Before paying extra for the top number, check:</p>
+    //     <ul>
+    //       <li><strong>Roof space.</strong> Efficiency matters most when your roof is small. If you have plenty of space, a slightly less efficient Tier-1 panel can give you the same total power for less money.</li>
+    //       <li><strong>Temperature coefficient.</strong> Panels lose output as they heat up, and Nigerian roofs get very hot. A panel with a better temperature coefficient can beat a higher-rated panel in real conditions.</li>
+    //       <li><strong>Degradation and warranty.</strong> Look for a strong 25-year performance warranty and a low yearly power loss.</li>
+    //       <li><strong>Availability and support.</strong> A panel is only useful if it can be supplied, replaced and serviced locally.</li>
+    //       <li><strong>The rest of the system.</strong> The best panels cannot fix a badly sized inverter or an undersized battery.</li>
+    //     </ul>
+    //     <p>If you want to understand the basics first, read our guide on <a href="/blog/solar-panel-efficiency-explained-nigeria" class="font-bold text-[#EA6936] hover:underline">solar panel efficiency and why it matters in Nigeria</a>.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Our Advice at Embrace Technologies Limited</h2>
-  //     <p>For most homes and businesses, the smart choice today is a genuine <strong>Tier-1, high-efficiency monocrystalline panel</strong> with a strong warranty and a good temperature rating, matched to a properly designed inverter and battery. Paying a large premium for the very top efficiency figure only makes sense when roof space is your biggest limit.</p>
-  //     <p>Not sure which panel suits your roof? Our engineers can compare options based on your space, load and budget.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Our Advice at Embrace Technologies Limited</h2>
+    //     <p>For most homes and businesses, the smart choice today is a genuine <strong>Tier-1, high-efficiency monocrystalline panel</strong> with a strong warranty and a good temperature rating, matched to a properly designed inverter and battery. Paying a large premium for the very top efficiency figure only makes sense when roof space is your biggest limit.</p>
+    //     <p>Not sure which panel suits your roof? Our engineers can compare options based on your space, load and budget.</p>
 
-  //     <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
-  //       <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
-  //         Want high-efficiency panels designed around your roof? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited for a free consultation and site inspection.</a>
-  //       </p>
-  //     </div>
-  //   `
-  // },
-  // {
-  //   id: 15,
-  //   slug: "how-to-know-which-solar-system-to-choose-for-home-or-business",
-  //   title: "How Do I Know Which Solar System to Choose for My Home or Business?",
-  //   date: "October 21, 2026",
-  //   image: "/choose-solar-system.webp",
-  //   description: "Hybrid, grid-tied or off-grid? 5kVA or 10kVA? Lithium or tubular? Here is a simple step-by-step way to choose the right solar system for your home or business in Nigeria.",
-  //   metaDescription: "How do you choose the right solar system in Nigeria? Learn how to pick between hybrid, off-grid and grid-tied systems, size your inverter, battery and panels, and avoid costly mistakes.",
-  //   content: `
-  //     <p>Walk into any solar shop in Nigeria and you will hear a lot of numbers and terms: 5kVA, 10kWh, hybrid, lithium, MPPT. It is easy to feel lost, and that is exactly when people end up buying a system that is too small, too big or simply wrong for their needs.</p>
-  //     <p>The good news is that choosing a solar system follows a clear order. Answer these questions one by one and the right system becomes much easier to see.</p>
+    //     <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+    //       <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+    //         Want high-efficiency panels designed around your roof? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited for a free consultation and site inspection.</a>
+    //       </p>
+    //     </div>
+    //   `
+    // },
+    // {
+    //   id: 15,
+    //   slug: "how-to-know-which-solar-system-to-choose-for-home-or-business",
+    //   title: "How Do I Know Which Solar System to Choose for My Home or Business?",
+    //   date: "October 21, 2026",
+    //   image: "/choose-solar-system.webp",
+    //   description: "Hybrid, grid-tied or off-grid? 5kVA or 10kVA? Lithium or tubular? Here is a simple step-by-step way to choose the right solar system for your home or business in Nigeria.",
+    //   metaDescription: "How do you choose the right solar system in Nigeria? Learn how to pick between hybrid, off-grid and grid-tied systems, size your inverter, battery and panels, and avoid costly mistakes.",
+    //   content: `
+    //     <p>Walk into any solar shop in Nigeria and you will hear a lot of numbers and terms: 5kVA, 10kWh, hybrid, lithium, MPPT. It is easy to feel lost, and that is exactly when people end up buying a system that is too small, too big or simply wrong for their needs.</p>
+    //     <p>The good news is that choosing a solar system follows a clear order. Answer these questions one by one and the right system becomes much easier to see.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 1: List What You Want to Power</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Everything starts with your load.</p>
-  //     <p>Write down every appliance you want your system to run, and divide them into two groups:</p>
-  //     <ul>
-  //       <li><strong>Essentials:</strong> lights, fans, TV, Wi-Fi, phone and laptop charging, fridge.</li>
-  //       <li><strong>Heavy loads:</strong> air conditioners, freezers, pumping machines, welding or workshop equipment, electric cookers and irons.</li>
-  //     </ul>
-  //     <p>Heavy loads are what push a system from affordable to expensive. Decide honestly which ones you must run on solar and which can stay on the grid or wait for a later upgrade.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 1: List What You Want to Power</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Everything starts with your load.</p>
+    //     <p>Write down every appliance you want your system to run, and divide them into two groups:</p>
+    //     <ul>
+    //       <li><strong>Essentials:</strong> lights, fans, TV, Wi-Fi, phone and laptop charging, fridge.</li>
+    //       <li><strong>Heavy loads:</strong> air conditioners, freezers, pumping machines, welding or workshop equipment, electric cookers and irons.</li>
+    //     </ul>
+    //     <p>Heavy loads are what push a system from affordable to expensive. Decide honestly which ones you must run on solar and which can stay on the grid or wait for a later upgrade.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 2: Know When You Use Power</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Day users and night users need different systems.</p>
-  //     <p>A shop or office that mostly works in the daytime can use much of its solar power directly from the panels and needs less battery. A family that uses most of its power in the evening and overnight needs a larger battery to carry the load after sunset. Same total usage, very different system.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 2: Know When You Use Power</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Day users and night users need different systems.</p>
+    //     <p>A shop or office that mostly works in the daytime can use much of its solar power directly from the panels and needs less battery. A family that uses most of its power in the evening and overnight needs a larger battery to carry the load after sunset. Same total usage, very different system.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 3: Choose the Right Type of System</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">This is the decision most people skip.</p>
-  //     <div class="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
-  //       <table class="min-w-full border-collapse text-left text-sm sm:text-base">
-  //         <thead class="bg-[#063b75] text-white">
-  //           <tr><th class="px-4 py-3 font-semibold">System type</th><th class="px-4 py-3 font-semibold">How it works</th><th class="px-4 py-3 font-semibold">Best for</th></tr>
-  //         </thead>
-  //         <tbody class="divide-y divide-slate-200 bg-white">
-  //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Hybrid</td><td class="px-4 py-3">Solar, battery and grid work together. The system uses solar first, then battery, and can fall back on the grid.</td><td class="px-4 py-3">Most homes and small businesses. The most popular choice in Nigeria.</td></tr>
-  //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Off-grid</td><td class="px-4 py-3">Fully independent of the grid. Solar and battery supply everything.</td><td class="px-4 py-3">Locations with no grid, or owners who want complete independence.</td></tr>
-  //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Grid-tied</td><td class="px-4 py-3">Panels feed power directly into the grid system, usually with no battery.</td><td class="px-4 py-3">Businesses with reliable grid supply that mainly want to cut bills. Not useful during outages.</td></tr>
-  //         </tbody>
-  //       </table>
-  //     </div>
-  //     <p>In Nigeria, where outages are the main problem, a plain grid-tied system without a battery will not keep you on when the grid goes off. For most people, a <strong>hybrid system</strong> gives the best balance of cost and reliability.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 3: Choose the Right Type of System</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">This is the decision most people skip.</p>
+    //     <div class="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+    //       <table class="min-w-full border-collapse text-left text-sm sm:text-base">
+    //         <thead class="bg-[#063b75] text-white">
+    //           <tr><th class="px-4 py-3 font-semibold">System type</th><th class="px-4 py-3 font-semibold">How it works</th><th class="px-4 py-3 font-semibold">Best for</th></tr>
+    //         </thead>
+    //         <tbody class="divide-y divide-slate-200 bg-white">
+    //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Hybrid</td><td class="px-4 py-3">Solar, battery and grid work together. The system uses solar first, then battery, and can fall back on the grid.</td><td class="px-4 py-3">Most homes and small businesses. The most popular choice in Nigeria.</td></tr>
+    //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Off-grid</td><td class="px-4 py-3">Fully independent of the grid. Solar and battery supply everything.</td><td class="px-4 py-3">Locations with no grid, or owners who want complete independence.</td></tr>
+    //           <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Grid-tied</td><td class="px-4 py-3">Panels feed power directly into the grid system, usually with no battery.</td><td class="px-4 py-3">Businesses with reliable grid supply that mainly want to cut bills. Not useful during outages.</td></tr>
+    //         </tbody>
+    //       </table>
+    //     </div>
+    //     <p>In Nigeria, where outages are the main problem, a plain grid-tied system without a battery will not keep you on when the grid goes off. For most people, a <strong>hybrid system</strong> gives the best balance of cost and reliability.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 4: Size the Three Main Parts</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Inverter, battery and panels each do a different job.</p>
-  //     <ul>
-  //       <li><strong>Inverter (kVA or kW):</strong> sets how much you can run at the same time. Size it for your combined peak load, with room for the startup surge of motors such as ACs and pumps.</li>
-  //       <li><strong>Battery (kWh):</strong> sets how long you can run, especially at night. Size it for the energy you use when the sun is not shining.</li>
-  //       <li><strong>Solar panels (kWp):</strong> set how much energy you can collect each day. They must be able to run your daytime load and recharge the battery.</li>
-  //     </ul>
-  //     <p>For a closer look at how these numbers differ, read our guides on <a href="/blog/solar-power-vs-solar-energy-kw-kwh-explained" class="font-bold text-[#EA6936] hover:underline">kW vs kWh</a> and <a href="/blog/what-size-solar-system-should-i-choose-nigeria" class="font-bold text-[#EA6936] hover:underline">what size of solar system to choose</a>.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 4: Size the Three Main Parts</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Inverter, battery and panels each do a different job.</p>
+    //     <ul>
+    //       <li><strong>Inverter (kVA or kW):</strong> sets how much you can run at the same time. Size it for your combined peak load, with room for the startup surge of motors such as ACs and pumps.</li>
+    //       <li><strong>Battery (kWh):</strong> sets how long you can run, especially at night. Size it for the energy you use when the sun is not shining.</li>
+    //       <li><strong>Solar panels (kWp):</strong> set how much energy you can collect each day. They must be able to run your daytime load and recharge the battery.</li>
+    //     </ul>
+    //     <p>For a closer look at how these numbers differ, read our guides on <a href="/blog/solar-power-vs-solar-energy-kw-kwh-explained" class="font-bold text-[#EA6936] hover:underline">kW vs kWh</a> and <a href="/blog/what-size-solar-system-should-i-choose-nigeria" class="font-bold text-[#EA6936] hover:underline">what size of solar system to choose</a>.</p>
 
-  //     <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">A Simple Example</h3>
-  //     <p>Imagine a family home that runs lights, fans, TV, a fridge and one 1.5HP AC for a few hours each night.</p>
-  //     <ul>
-  //       <li><strong>Peak load:</strong> the AC, fridge, fans and lights together might reach about 3kW at the same time, so a 5kVA inverter gives comfortable headroom.</li>
-  //       <li><strong>Daily energy:</strong> if the home uses about 12kWh per day, with most of it in the evening, you need a battery large enough for that night-time share, plus panels able to generate the full day's energy and recharge the battery.</li>
-  //     </ul>
-  //     <p>These figures are only an illustration. Real sizing depends on your actual appliances, how long they run and your local sun conditions, which is why a proper energy audit matters.</p>
+    //     <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">A Simple Example</h3>
+    //     <p>Imagine a family home that runs lights, fans, TV, a fridge and one 1.5HP AC for a few hours each night.</p>
+    //     <ul>
+    //       <li><strong>Peak load:</strong> the AC, fridge, fans and lights together might reach about 3kW at the same time, so a 5kVA inverter gives comfortable headroom.</li>
+    //       <li><strong>Daily energy:</strong> if the home uses about 12kWh per day, with most of it in the evening, you need a battery large enough for that night-time share, plus panels able to generate the full day's energy and recharge the battery.</li>
+    //     </ul>
+    //     <p>These figures are only an illustration. Real sizing depends on your actual appliances, how long they run and your local sun conditions, which is why a proper energy audit matters.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 5: Pick the Right Battery</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">The battery is usually the biggest long-term cost.</p>
-  //     <ul>
-  //       <li><strong>Lithium:</strong> higher upfront price, but typically a longer lifespan, deeper usable capacity, less maintenance and lighter weight.</li>
-  //       <li><strong>Tubular (lead-acid):</strong> cheaper to start, but usually needs replacing sooner and offers less usable capacity.</li>
-  //     </ul>
-  //     <p>Compare the cost over the whole life of the system, not only the price on the invoice. A cheaper battery that is replaced twice can cost more than a lithium battery bought once.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 5: Pick the Right Battery</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">The battery is usually the biggest long-term cost.</p>
+    //     <ul>
+    //       <li><strong>Lithium:</strong> higher upfront price, but typically a longer lifespan, deeper usable capacity, less maintenance and lighter weight.</li>
+    //       <li><strong>Tubular (lead-acid):</strong> cheaper to start, but usually needs replacing sooner and offers less usable capacity.</li>
+    //     </ul>
+    //     <p>Compare the cost over the whole life of the system, not only the price on the invoice. A cheaper battery that is replaced twice can cost more than a lithium battery bought once.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 6: Set a Budget and Plan for Growth</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">You do not have to buy everything on day one.</p>
-  //     <p>A good design lets you start with your essential loads and expand later by adding panels or batteries. Ask your installer whether the inverter you are buying can accept more batteries and panels in future. If it cannot, you may have to replace it when your needs grow.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 6: Set a Budget and Plan for Growth</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">You do not have to buy everything on day one.</p>
+    //     <p>A good design lets you start with your essential loads and expand later by adding panels or batteries. Ask your installer whether the inverter you are buying can accept more batteries and panels in future. If it cannot, you may have to replace it when your needs grow.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 7: Choose the Installer as Carefully as the Equipment</h2>
-  //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Good equipment installed badly will still fail.</p>
-  //     <ul>
-  //       <li>Ask for a written load analysis, not just a price.</li>
-  //       <li>Check warranties on panels, inverter, battery and workmanship.</li>
-  //       <li>Ask who responds when there is a fault at night or on a weekend.</li>
-  //       <li>Ask to see completed installations similar to yours.</li>
-  //       <li>Make sure the quote includes proper cabling, protection, earthing and surge protection.</li>
-  //     </ul>
-  //     <p>We cover this in more detail in our guide to <a href="/blog/key-factors-choosing-solar-company-nigeria" class="font-bold text-[#EA6936] hover:underline">key factors to consider before choosing a solar company</a>.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Step 7: Choose the Installer as Carefully as the Equipment</h2>
+    //     <p class="text-slate-600 font-medium italic -mt-1 mb-4">Good equipment installed badly will still fail.</p>
+    //     <ul>
+    //       <li>Ask for a written load analysis, not just a price.</li>
+    //       <li>Check warranties on panels, inverter, battery and workmanship.</li>
+    //       <li>Ask who responds when there is a fault at night or on a weekend.</li>
+    //       <li>Ask to see completed installations similar to yours.</li>
+    //       <li>Make sure the quote includes proper cabling, protection, earthing and surge protection.</li>
+    //     </ul>
+    //     <p>We cover this in more detail in our guide to <a href="/blog/key-factors-choosing-solar-company-nigeria" class="font-bold text-[#EA6936] hover:underline">key factors to consider before choosing a solar company</a>.</p>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Common Mistakes to Avoid</h2>
-  //     <ul>
-  //       <li><strong>Copying a neighbour's system.</strong> Their load is not your load.</li>
-  //       <li><strong>Buying the inverter first and the battery later,</strong> without checking that they match.</li>
-  //       <li><strong>Choosing only on price.</strong> The cheapest quote often leaves out protection, proper cabling or support.</li>
-  //       <li><strong>Forgetting startup surges</strong> from ACs, freezers and pumps.</li>
-  //       <li><strong>Ignoring future growth.</strong> Adding appliances later without upgrading the system overloads it.</li>
-  //     </ul>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Common Mistakes to Avoid</h2>
+    //     <ul>
+    //       <li><strong>Copying a neighbour's system.</strong> Their load is not your load.</li>
+    //       <li><strong>Buying the inverter first and the battery later,</strong> without checking that they match.</li>
+    //       <li><strong>Choosing only on price.</strong> The cheapest quote often leaves out protection, proper cabling or support.</li>
+    //       <li><strong>Forgetting startup surges</strong> from ACs, freezers and pumps.</li>
+    //       <li><strong>Ignoring future growth.</strong> Adding appliances later without upgrading the system overloads it.</li>
+    //     </ul>
 
-  //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
-  //     <p>The right solar system is not the biggest or the cheapest one. It is the one designed around your appliances, your hours of use and your budget. Start with your load, choose the right type of system, size the inverter, battery and panels separately, and work with an installer who can show their calculations.</p>
+    //     <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
+    //     <p>The right solar system is not the biggest or the cheapest one. It is the one designed around your appliances, your hours of use and your budget. Start with your load, choose the right type of system, size the inverter, battery and panels separately, and work with an installer who can show their calculations.</p>
 
-  //     <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
-  //       <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
-  //         Not sure which system fits your home or business? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited for a free energy audit and site inspection.</a>
-  //       </p>
-  //     </div>
-  //   `
-  // }, {
-  id: 14,
-  slug: "6-warning-signs-your-solar-battery-is-about-to-fail",
-  title: "6 Warning Signs Your Solar Battery Is About to Fail",
-  date: "October 16, 2026",
-  image: "/blog-post.webp",
-  description: "Most batteries don't die suddenly. They warn you first. Learn the 6 warning signs that your solar battery is declining, and what to do before it fails completely.",
-  metaDescription: "Learn the 6 warning signs your solar battery is about to fail, from shrinking backup time and overheating to swelling and leaks, and what to do next in Nigeria.",
-  content: `
+    //     <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+    //       <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+    //         Not sure which system fits your home or business? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited for a free energy audit and site inspection.</a>
+    //       </p>
+    //     </div>
+    //   `
+    // }, {
+
+    id: 15,
+    slug: "ivem-8-smart-boost-8kva-solar-system-explained",
+    title: "Meet the IVEM-8 Smart Boost: The 8kVA, 17.5kWh Solar System Built to Keep Your Lagos Home or Business On",
+    date: "October 27, 2026",
+    image: "/ivem-8-smart-boost.webp",
+    imageFit: "contain",
+    description: "8kVA, 17.5kWh, 9.92kWp: three numbers, three different jobs. Follow one day with the IVEM-8 Smart Boost and see exactly what you are buying, what it costs and how to order.",
+    metaDescription: "What is the IVEM-8 Smart Boost solar system? Learn what 8kVA, 17.5kWh and 9.92kWp mean, its features, who it suits, and how to order in Lagos, Nigeria.",
+    content: `
+      <p>Picture a Saturday morning in Lagos. The sun is already high, the street generators are warming up, and in one house a family is deciding whether the AC can run now or must wait until the evening.</p>
+      <p>In the house next door, that question does not exist. Their <strong>IVEM-8 Smart Boost</strong> was installed last month. Let us follow a day with it, so you understand exactly what those numbers on the label mean and what you would be buying.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What Is the IVEM-8 Smart Boost?</h2>
+      <p>The IVEM-8 Smart Boost is a complete hybrid solar system installed by Embrace Technologies Limited. It combines three parts that are designed to work together:</p>
+      <div class="my-8 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+        <table class="min-w-full border-collapse text-left text-sm sm:text-base">
+          <thead class="bg-[#063b75] text-white">
+            <tr><th class="px-4 py-3 font-semibold">Part</th><th class="px-4 py-3 font-semibold">Size</th><th class="px-4 py-3 font-semibold">Its job</th></tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white">
+            <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Inverter</td><td class="px-4 py-3">8kVA</td><td class="px-4 py-3">The engine. It decides how much you can run at the same time.</td></tr>
+            <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Battery</td><td class="px-4 py-3">17.5kWh</td><td class="px-4 py-3">The fuel tank. It decides how long you can run, especially at night.</td></tr>
+            <tr><td class="px-4 py-3 font-semibold text-[#063b75]">Solar panels</td><td class="px-4 py-3">9.92kWp</td><td class="px-4 py-3">The farm. They collect the sunlight that fills the tank every day.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Remember this one line: <strong>the inverter is the engine, the battery is the tank, and the panels are the farm that keeps the tank full.</strong> For a deeper explanation of these units, read our guide on <a href="/blog/solar-power-vs-solar-energy-kw-kwh-explained" class="font-bold text-[#EA6936] hover:underline">kW vs kWh</a>.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">A Day With the System</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">The household below is an illustration, not a real customer. Actual results depend on your appliances and the weather.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Morning: The Farm Wakes Up</h3>
+      <p>As the sun rises, the panels start collecting light. At 9.92kWp, they can produce close to 10kW at the sun's peak. That is enough to run the house during the day and still send the surplus into the battery.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Midday: The Engine Shows Its Strength</h3>
+      <p>Now the house is busy: fridge, freezer, fans, laptops and the AC, all at once. This is where the <strong>8kVA inverter</strong> matters. It sets how many appliances can run together without the system struggling. Motors such as ACs and pumping machines pull extra power for a moment when they start, and an 8kVA inverter gives you headroom for that.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Afternoon: The Tank Fills Up</h3>
+      <p>Whatever the house does not use goes into the <strong>17.5kWh battery</strong>. For comparison, many Nigerian homes use roughly 10 to 20kWh in a day, so this is a serious store of energy, not a small backup.</p>
+
+      <h3 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Night: The System Takes Over</h3>
+      <p>When the sun goes down, the battery takes over. Lights, fridge, TV and Wi-Fi stay on, and nobody listens for a generator. If the battery runs low, the system can fall back on the grid when it is available.</p>
+      <p>How long the battery lasts depends on what you run. Lights, fans and a fridge will stretch it much further than an AC running all night, which is why we start every project with a load analysis.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Product Features</h2>
+      <ul>
+        <li><strong>8kVA hybrid inverter:</strong> wall-mounted, with a display that shows what the system is doing.</li>
+        <li><strong>17.5kWh battery:</strong> a floor-standing cabinet on wheels, with its own status display, so it is neat and easy to position and service.</li>
+        <li><strong>9.92kWp solar array:</strong> enough generation to power the day and recharge the battery.</li>
+        <li><strong>Protection board:</strong> a breaker and distribution unit installed between the inverter and the battery, so the whole system is organised and protected.</li>
+        <li><strong>Felicity Solar equipment:</strong> inverter and battery from the same brand, so the parts are designed to work together.</li>
+        <li><strong>Clean, tidy installation:</strong> neat mounting and cabling, ready to power a home or a business.</li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What Does It Cost?</h2>
+      <p>The IVEM-8 Smart Boost is priced at <strong>₦[] fully installed</strong>.</p>
+      <p>The final cost can change slightly depending on your site: the distance between the panels and the inverter, the mounting type for your roof, and any extra protection or accessories you need. After a free site inspection we give you one clear quotation, so you know the full cost before you commit.</p>
+      <p>Compare that with what you spend today. Add up your monthly generator fuel, servicing and repairs, and you will see why many customers treat solar as an investment, not an expense.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Who Is This System For?</h2>
+      <ul>
+        <li><strong>Large homes and duplexes</strong> that run more than one AC, plus fridges, freezers and a pumping machine.</li>
+        <li><strong>Small businesses and offices</strong> such as supermarkets, clinics, salons and workshops that cannot afford to lose power during trading hours.</li>
+        <li><strong>Families tired of fuel costs and generator noise</strong> who want quiet, reliable power through the night.</li>
+      </ul>
+      <p>If you only need lights, fans, TV and a fridge, a smaller system may suit you better and cost less. Our guide on <a href="/blog/what-size-solar-system-should-i-choose-nigeria" class="font-bold text-[#EA6936] hover:underline">what size of solar system to choose</a> will help you decide.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">How to Order</h2>
+      <ol class="list-decimal pl-6 space-y-2">
+        <li><strong>Send us a message.</strong> Tell us what you want to power. A list of your appliances on WhatsApp is enough to start.</li>
+        <li><strong>Free energy audit and site inspection.</strong> Our engineers check your load, your roof and your space.</li>
+        <li><strong>Receive your quotation.</strong> You get a clear price and a system design built around your needs.</li>
+        <li><strong>Confirm and pay.</strong> Once you approve the quotation, we schedule your installation.</li>
+        <li><strong>Installation and handover.</strong> We install, test and commission the system, then show you how to use and monitor it.</li>
+      </ol>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Where to Order</h2>
+      <ul>
+        <li><strong>Call or WhatsApp:</strong> 07061451583 or 09110152566</li>
+        <li><strong>Instagram:</strong> @embracetechnologies</li>
+        <li><strong>Location:</strong> Lagos, Nigeria</li>
+        <li><strong>Online:</strong> <a href="/contact" class="font-bold text-[#EA6936] hover:underline">our contact page</a></li>
+      </ul>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
+      <p>Behind the name IVEM-8 Smart Boost are three simple ideas: <strong>8kVA to run a lot at once, 17.5kWh to keep you going after sunset, and 9.92kWp to fill the tank every day.</strong> When all three work together, you stop thinking about power and get on with your life.</p>
+
+      <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+        <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+          Ready to stay on? <a href="https://wa.me/2347061451583?text=Hello%20Embrace%20Technologies%2C%20I%20am%20interested%20in%20the%20IVEM-8%20Smart%20Boost%20solar%20system." target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">Chat with Embrace Technologies Limited on WhatsApp</a> for a free energy audit and site inspection.
+        </p>
+      </div>
+    `
+  }, {
+    id: 14,
+    slug: "6-warning-signs-your-solar-battery-is-about-to-fail",
+    title: "6 Warning Signs Your Solar Battery Is About to Fail",
+    date: "October 16, 2026",
+    image: "/blog-post.webp",
+    description: "Most batteries don't die suddenly. They warn you first. Learn the 6 warning signs that your solar battery is declining, and what to do before it fails completely.",
+    metaDescription: "Learn the 6 warning signs your solar battery is about to fail, from shrinking backup time and overheating to swelling and leaks, and what to do next in Nigeria.",
+    content: `
       <p>Most batteries don't die suddenly &mdash; they warn you first. The problem is that many people ignore those warnings until the system shuts down in the middle of the night. Your battery is the heart of your solar system, and catching the early signs can save you from a total failure and an expensive replacement.</p>
       <p>Here are the <strong>6 warning signs</strong> to watch for.</p>
 
@@ -255,16 +350,16 @@ export const blogPosts: BlogPost[] = [{
         </p>
       </div>
     `
-},
-{
-  id: 13,
-  slug: "how-solar-panels-create-electricity-sunlight-to-socket",
-  title: "From Sunlight to Socket: How Your Solar Panels Actually Create Electricity",
-  date: "October 14, 2026",
-  image: "/sunlight.webp",
-  description: "How does the Lagos sun on your roof become the power for your AC, fridge and lights at night? Here is the simple science behind every solar panel.",
-  metaDescription: "How do solar panels create electricity? Learn how sunlight becomes usable power through the photovoltaic effect, the inverter and your battery, explained simply for Nigeria.",
-  content: `
+  },
+  {
+    id: 13,
+    slug: "how-solar-panels-create-electricity-sunlight-to-socket",
+    title: "From Sunlight to Socket: How Your Solar Panels Actually Create Electricity",
+    date: "October 14, 2026",
+    image: "/sunlight.webp",
+    description: "How does the Lagos sun on your roof become the power for your AC, fridge and lights at night? Here is the simple science behind every solar panel.",
+    metaDescription: "How do solar panels create electricity? Learn how sunlight becomes usable power through the photovoltaic effect, the inverter and your battery, explained simply for Nigeria.",
+    content: `
       <p>If you live in Lagos, you know the sun is never in short supply. But how does that fierce afternoon sun sitting on your roof become the cool breeze from your AC and the bright light your children use to read at night?</p>
       <p>It is not magic. It is a quiet, powerful process happening inside every single panel we install at Embrace Technologies Limited, and once you understand it, you will understand why quality matters.</p>
 
@@ -301,15 +396,15 @@ export const blogPosts: BlogPost[] = [{
         </p>
       </div>
     `
-}, {
-  id: 12,
-  slug: "why-every-home-business-needs-cctv-system",
-  title: "Why Every Home & Business Needs a CCTV System",
-  date: "October 9, 2026",
-  image: "/cctv-post.webp",
-  description: "In today's world, security is no longer a luxury - it's a necessity. Whether it's your home in Lagos or your business outlet, discover why a CCTV system is one of the smartest investments you can make.",
-  metaDescription: "Discover why every home and business needs a CCTV system in Nigeria: crime prevention, 24/7 remote monitoring, investigations, family protection, and higher property value.",
-  content: `
+  }, {
+    id: 12,
+    slug: "why-every-home-business-needs-cctv-system",
+    title: "Why Every Home & Business Needs a CCTV System",
+    date: "October 9, 2026",
+    image: "/cctv-post.webp",
+    description: "In today's world, security is no longer a luxury - it's a necessity. Whether it's your home in Lagos or your business outlet, discover why a CCTV system is one of the smartest investments you can make.",
+    metaDescription: "Discover why every home and business needs a CCTV system in Nigeria: crime prevention, 24/7 remote monitoring, investigations, family protection, and higher property value.",
+    content: `
       <p>In today's world, security is no longer a luxury &mdash; it's a necessity. Whether it's your home in Lagos or your business outlet, a CCTV system is one of the smartest investments you can make. Here is why:</p>
 
       <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">1. Prevents Criminal Activity</h2>
@@ -401,16 +496,16 @@ export const blogPosts: BlogPost[] = [{
         </div>
       </section>
     `
-},
-{
-  id: 11,
-  slug: "causes-of-solar-fire-outbreaks-and-how-to-prevent-them",
-  title: "Causes of Solar Fire Outbreaks and How to Prevent Them",
-  date: "September 30, 2026",
-  image: "/solar-maintenance-service.webp",
-  description: "Solar systems are safe when correctly designed and maintained. Learn what can cause a solar fire and how to reduce the risks in your home or business.",
-  metaDescription: "Learn the common causes of solar fires, including faulty wiring, poor-quality components and battery issues, plus practical ways to keep your solar system safe in Nigeria.",
-  content: `
+  },
+  {
+    id: 11,
+    slug: "causes-of-solar-fire-outbreaks-and-how-to-prevent-them",
+    title: "Causes of Solar Fire Outbreaks and How to Prevent Them",
+    date: "September 30, 2026",
+    image: "/solar-maintenance-service.webp",
+    description: "Solar systems are safe when correctly designed and maintained. Learn what can cause a solar fire and how to reduce the risks in your home or business.",
+    metaDescription: "Learn the common causes of solar fires, including faulty wiring, poor-quality components and battery issues, plus practical ways to keep your solar system safe in Nigeria.",
+    content: `
       <p>Installing solar is one of the best decisions for homes and businesses in Nigeria, but like any electrical system, a poorly designed, installed or maintained system can be dangerous. One of the most serious risks is fire.</p>
       <p><strong>Can solar cause a fire?</strong> Solar panels do not catch fire on their own under normal operation. Fires can occur when electrical faults, poor installation, damaged or unsuitable components, or neglected maintenance create unsafe conditions. Here are some common causes.</p>
 
@@ -446,16 +541,16 @@ export const blogPosts: BlogPost[] = [{
       <p>If you notice a burning smell, unusual heat, smoke, crackling sounds or visible damage, keep away from the equipment and contact a qualified solar professional. If there is an active fire, evacuate and call the appropriate emergency services. Do not touch or attempt to disconnect damaged electrical equipment.</p>
       <p>Is your solar system due for a safety check? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited to request an inspection.</a></p>
     `
-},
-{
-  id: 10,
-  slug: "solar-panel-efficiency-explained-nigeria",
-  title: "Solar Panel Efficiency Explained: Why It Matters for You in Nigeria",
-  date: "September 25, 2026",
-  image: "/post-2.jpeg",
-  description: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
-  metaDescription: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
-  content: `
+  },
+  {
+    id: 10,
+    slug: "solar-panel-efficiency-explained-nigeria",
+    title: "Solar Panel Efficiency Explained: Why It Matters for You in Nigeria",
+    date: "September 25, 2026",
+    image: "/post-2.jpeg",
+    description: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
+    metaDescription: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
+    content: `
       <p>You see 550W, 600W, 18% efficiency, 21% efficiency - but what does solar efficiency actually mean for you?</p>
 
       <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">What is Solar Cell / Panel Efficiency?</h2>
@@ -488,16 +583,16 @@ export const blogPosts: BlogPost[] = [{
 
       <p>Want the best panel for your roof? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Talk to our engineers at Embrace Technologies Limited</a> for genuine, high-efficiency solar solutions.</p>
     `
-},
-{
-  id: 9,
-  slug: "what-size-solar-system-should-i-choose-nigeria",
-  title: "What Size of Solar System Should I Choose for My Home or Business?",
-  date: "September 23, 2026",
-  image: "/post.png",
-  description: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
-  metaDescription: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
-  content: `
+  },
+  {
+    id: 9,
+    slug: "what-size-solar-system-should-i-choose-nigeria",
+    title: "What Size of Solar System Should I Choose for My Home or Business?",
+    date: "September 23, 2026",
+    image: "/post.png",
+    description: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
+    metaDescription: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
+    content: `
       <p>Choosing a solar system in Nigeria can be confusing. 3kVA, 5kVA, 10kVA, 15kVA - what do you actually need? Installing a system that's too small will leave you in darkness, too big will waste money.</p>
       <p>At Embrace Technologies Limited, we don't guess. We size based on your actual load.</p>
 
@@ -525,16 +620,16 @@ export const blogPosts: BlogPost[] = [{
 
       <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Book a Free Energy Audit Today - Embrace Technologies Limited.</a></p>
     `
-},
-{
-  id: 8,
-  slug: "solar-power-vs-solar-energy-kw-kwh-explained",
-  title: "Solar Power vs Solar Energy: kW and kWh Explained Simply (Nigeria Guide)",
-  date: "September 19, 2026",
-  image: "/blog-8.webp",
-  description: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
-  metaDescription: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
-  content: `
+  },
+  {
+    id: 8,
+    slug: "solar-power-vs-solar-energy-kw-kwh-explained",
+    title: "Solar Power vs Solar Energy: kW and kWh Explained Simply (Nigeria Guide)",
+    date: "September 19, 2026",
+    image: "/blog-8.webp",
+    description: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
+    metaDescription: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
+    content: `
       <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Solar Power vs Solar Energy: kW vs kWh Explained</h2>
       <p>If you've ever shopped for solar in Nigeria, you've seen it: "3kW inverter", "5kWh battery". The numbers look similar, but they measure completely different things — and mixing them up is the #1 reason people end up with an undersized or oversized system.</p>
 
@@ -590,17 +685,17 @@ export const blogPosts: BlogPost[] = [{
       <p><strong>Final Takeaway:</strong> Before buying a solar system, ask two questions: 1. What is my peak load? (kW) 2. What is my daily consumption? (kWh)</p>
       <p>Need help calculating your kW and kWh? <a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited.</a></p>
     `
-},
-{
-  id: 7,
-  slug: "will-n1000000-buy-solar-system-home-nigeria-2026",
-  title: "Will #1,000,000 Buy a Solar System for My Home in Nigeria?",
-  date: "September 17, 2026",
-  image: "/blog.png",
-  imageFit: "contain",
-  description: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
-  metaDescription: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
-  content: `
+  },
+  {
+    id: 7,
+    slug: "will-n1000000-buy-solar-system-home-nigeria-2026",
+    title: "Will #1,000,000 Buy a Solar System for My Home in Nigeria?",
+    date: "September 17, 2026",
+    image: "/blog.png",
+    imageFit: "contain",
+    description: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
+    metaDescription: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
+    content: `
       <p>Short answer? <strong>Yes. It absolutely can.</strong></p>
       <p>If you thought solar is only for millionaires with a duplex and four air conditioners, 2026 has proved that wrong. With #1,000,000, you can say goodbye to fuel queues, generator noise, and NEPA wahala - at least for your essential loads.</p>
       <p>At Embrace Energy, we call this our <strong>Freedom Starter System</strong>. It is the most popular system for students, young couples, one-bedroom apartments, and work-from-home professionals in Lagos.</p>
@@ -655,16 +750,16 @@ export const blogPosts: BlogPost[] = [{
       <p>Send us your list of appliances on WhatsApp today and let's size your #1,000,000 freedom system for free.</p>
       <p><a href="https://wa.me/2347061451583?text=Hello%20Embrace%20Energy%2C%20I%20want%20to%20size%20a%20%231%2C000%2C000%20solar%20system%20for%20my%20home." target="_blank" rel="noopener noreferrer" class="font-bold text-[#EA6936] hover:underline">Chat with Embrace now.</a></p>
     `
-},
-{
-  id: 6,
-  slug: "best-solar-companies-lagos-nigeria-2026",
-  title: "Best Solar Companies in Lagos, Nigeria (2026)",
-  date: "September 11, 2026",
-  image: "/bands-photo.jpg",
-  description: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers based on quality, support, innovation and real project delivery.",
-  metaDescription: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers in Lagos based on quality, support, and innovation. See why Embrace Technologies leads the list.",
-  content: `
+  },
+  {
+    id: 6,
+    slug: "best-solar-companies-lagos-nigeria-2026",
+    title: "Best Solar Companies in Lagos, Nigeria (2026)",
+    date: "September 11, 2026",
+    image: "/bands-photo.jpg",
+    description: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers based on quality, support, innovation and real project delivery.",
+    metaDescription: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers in Lagos based on quality, support, and innovation. See why Embrace Technologies leads the list.",
+    content: `
       <p>Power in Lagos is expensive and unreliable in 2026. From Yaba startups to Lekki estates and Ikeja factories, more people are switching to solar.</p>
       <p>But with so many solar companies in Lagos, how do you pick the right one?</p>
       <p>We ranked the <strong>5 Best Solar Companies in Lagos for 2026</strong> based on installation quality, product range, after-sales support, warranty and real project delivery.</p>
@@ -730,16 +825,16 @@ export const blogPosts: BlogPost[] = [{
       <p>Ready to switch to solar?</p>
       <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Shop solar products and book a free site inspection</a>.</p>
     `
-},
-{
-  id: 4,
-  slug: "top-7-benefits-solar-energy-nigeria-2026",
-  title: "Top 7 Benefits of Solar Energy in Nigeria in 2026",
-  date: "September 7, 2026",
-  image: "/benefits-of-solar.webp",
-  description: "From lower energy costs to reliable backup power, discover why more Nigerian homes and businesses are switching to solar in 2026.",
-  metaDescription: "Discover the top 7 benefits of solar energy in Nigeria in 2026, including lower electricity bills, reliable power, generator savings and energy independence.",
-  content: `
+  },
+  {
+    id: 4,
+    slug: "top-7-benefits-solar-energy-nigeria-2026",
+    title: "Top 7 Benefits of Solar Energy in Nigeria in 2026",
+    date: "September 7, 2026",
+    image: "/benefits-of-solar.webp",
+    description: "From lower energy costs to reliable backup power, discover why more Nigerian homes and businesses are switching to solar in 2026.",
+    metaDescription: "Discover the top 7 benefits of solar energy in Nigeria in 2026, including lower electricity bills, reliable power, generator savings and energy independence.",
+    content: `
       <p>If you live in Nigeria, you know the story too well: NEPA takes light, fuel prices go up, and the generator makes noise all night.</p>
       <p>In 2026, more Nigerians are done with that cycle. Solar energy is no longer only for big companies or luxury homes. It is how regular homes and businesses are staying on, saving money and getting peace of mind.</p>
       <p>Here are the <strong>top 7 benefits of switching to solar energy in Nigeria</strong> right now.</p>
@@ -782,15 +877,15 @@ export const blogPosts: BlogPost[] = [{
       <p>The right system depends on your appliances, daily usage and backup needs. Our team can assess your property and design the right solar system for your home or business.</p>
       <p><a href="/contact" class="font-bold text-[#EA6936] hover:underline">Contact Embrace Technologies Limited</a> to start planning a quieter, more reliable and more affordable power solution.</p>
     `
-}, {
-  id: 3,
-  slug: "common-solar-myths-nigeria-debunked-2026-guide",
-  title: "3 Common Solar Myths in Nigeria Debunked [2026 Guide]",
-  date: "September 4, 2026",
-  image: "/solar-myths.webp",
-  description: "Wondering whether solar is too expensive, unreliable in rain, or difficult to maintain? Here are three common solar myths in Nigeria, explained clearly.",
-  metaDescription: "Are solar systems expensive or unreliable in rain? This 2026 guide debunks three common solar myths in Nigeria, including cost, weather and maintenance.",
-  content: `
+  }, {
+    id: 3,
+    slug: "common-solar-myths-nigeria-debunked-2026-guide",
+    title: "3 Common Solar Myths in Nigeria Debunked [2026 Guide]",
+    date: "September 4, 2026",
+    image: "/solar-myths.webp",
+    description: "Wondering whether solar is too expensive, unreliable in rain, or difficult to maintain? Here are three common solar myths in Nigeria, explained clearly.",
+    metaDescription: "Are solar systems expensive or unreliable in rain? This 2026 guide debunks three common solar myths in Nigeria, including cost, weather and maintenance.",
+    content: `
   <p>Thinking about <strong>solar in Nigeria</strong> but still hearing conflicting advice? You are not alone. From concerns about the solar cost in Nigeria to questions like "does solar work in rain?", many households and businesses delay a decision because of myths that no longer match today's technology.</p>
   <p>Modern solar systems are designed for the realities of Nigerian power: changing weather, unreliable grid supply, rising fuel prices and the everyday need for dependable electricity. In this guide, we separate the most common claims from the facts, so you can make a more confident decision for your home, office or business.</p>
 
@@ -863,16 +958,16 @@ export const blogPosts: BlogPost[] = [{
       <a href="/contact" class="text-[#1E3A5F] font-bold hover:underline transition-colors duration-200">At Embrace Technologies Limited</a>, we're powering a greener Nigeria. Our home solar systems deliver efficiency, durability, and real savings — for you and the planet.
     </p>
   </div>`
-},
-{
-  id: 1,
-  slug: "key-factors-choosing-solar-company-nigeria",
-  title: "Key Factors to Consider Before Choosing a Solar Company",
-  date: "August 19, 2026",
-  image: "/blog-post-1.webp",
-  description: "Investing in solar is a big decision. The right solar company will give you power, savings, and peace of mind for 10+ years. The wrong one? Frustration and extra costs.",
-  metaDescription: "Choosing the right solar company in Nigeria? Learn 7 key factors to check before buying solar: warranty, support, product quality, and installation.",
-  content: `
+  },
+  {
+    id: 1,
+    slug: "key-factors-choosing-solar-company-nigeria",
+    title: "Key Factors to Consider Before Choosing a Solar Company",
+    date: "August 19, 2026",
+    image: "/blog-post-1.webp",
+    description: "Investing in solar is a big decision. The right solar company will give you power, savings, and peace of mind for 10+ years. The wrong one? Frustration and extra costs.",
+    metaDescription: "Choosing the right solar company in Nigeria? Learn 7 key factors to check before buying solar: warranty, support, product quality, and installation.",
+    content: `
 <p>Choosing the right <strong>solar company in Nigeria</strong> can make the difference between years of reliable power and constant system failures. Whether you're looking for a <strong>solar provider in Nigeria</strong> for your home or office, you need more than just cheap panels. In this guide, we break down the <strong>7 key factors to consider before choosing the best solar company</strong> so you get quality, warranty, and after-sales support that actually lasts.</p>
 
 <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: normal; font-size: 24px; color: #0f172a;">1. Customer Service</h3>
@@ -901,16 +996,16 @@ export const blogPosts: BlogPost[] = [{
 
 <p>Ready to go solar? <a href="/contact" style="text-decoration: underline; color: #F97316;">Contact us</a> today</p>`,
 
-},
-{
-  id: 2,
-  slug: "why-solar-energy-is-the-future",
-  title: "Why Solar Energy Is The Future",
-  date: "August 28, 2026",
-  image: "/why-solar.webp",
-  description: "From cutting electricity bills to increasing property value. Here are 6 reasons why more Nigerians are switching to solar in 2026.",
-  metaDescription: "Discover 6 key benefits of solar energy in Nigeria: save money, reliable power, eco-friendly, low maintenance, increase property value.",
-  content: `
+  },
+  {
+    id: 2,
+    slug: "why-solar-energy-is-the-future",
+    title: "Why Solar Energy Is The Future",
+    date: "August 28, 2026",
+    image: "/why-solar.webp",
+    description: "From cutting electricity bills to increasing property value. Here are 6 reasons why more Nigerians are switching to solar in 2026.",
+    metaDescription: "Discover 6 key benefits of solar energy in Nigeria: save money, reliable power, eco-friendly, low maintenance, increase property value.",
+    content: `
       <p>Solar power is no longer just an alternative. In Nigeria, it’s becoming the smartest way to power homes and businesses. Here are 6 reasons why:</p>
       <div class="grid gap-8 my-12">
         <div class="flex flex-col md:flex-row items-center gap-6"><img src="/elephant.webp" alt="Saves Money" class="rounded-t-3xl w-full md:w-1/2 shadow-lg"/><div><h2 class="text-2xl font-bold text-slate-800 mb-2">Saves Money</h2><p>Cut down on your electricity bills! With rising NEPA tariffs and fuel costs, solar pays for itself in 18-24 months.</p></div></div>
@@ -925,5 +1020,5 @@ export const blogPosts: BlogPost[] = [{
         <a href="/contact" class="inline-block bg-[#EA6936] text-white font-bold px-8 py-4 rounded-full hover:bg-[#EA6936]/90 transition">Get Started</a>
       </div>
     `
-},
+  },
 ];

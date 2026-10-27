@@ -46,13 +46,25 @@ export function BlogPost() {
                 <link rel="canonical" href={postUrl} />
                 {isMythsGuide && <meta name="keywords" content="solar in Nigeria, solar cost Nigeria, does solar work in rain, solar maintenance Nigeria" />}
             </Helmet>
-{isMythsGuide && <a href="#solar-quote" className="fixed right-4 top-1/2 z-40 -translate-y-1/2 rounded-l-xl bg-[#fd8d07] px-3 py-4 text-center font-montserrat text-xs font-bold uppercase tracking-wide text-[#063b75] shadow-lg [writing-mode:vertical-rl] hover:bg-[#e57a00]">Get Free Solar Quote</a>}            <main className="min-h-screen w-full bg-white">
+            {isMythsGuide && <a href="#solar-quote" className="fixed right-4 top-1/2 z-40 -translate-y-1/2 rounded-l-xl bg-[#fd8d07] px-3 py-4 text-center font-montserrat text-xs font-bold uppercase tracking-wide text-[#063b75] shadow-lg [writing-mode:vertical-rl] hover:bg-[#e57a00]">Get Free Solar Quote</a>}            <main className="min-h-screen w-full bg-white">
                 <article className="mx-auto max-w-4xl px-4 pb-12 pt-32 md:px-6 md:pb-16 md:pt-40">
                     <motion.h1 className="mb-6 text-3xl font-montserrat font-black leading-tight text-slate-700 sm:text-4xl md:text-5xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>{currentPost.title}</motion.h1>
                     <motion.time dateTime={isoDate} className="mb-5 block text-base italic text-slate-400" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>{currentPost.date}</motion.time>
                     <motion.p className="mb-10 max-w-3xl font-poppins text-lg leading-8 text-slate-600" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>{currentPost.description}</motion.p>
-                    <motion.div className="relative mb-16 aspect-[4/3] overflow-hidden rounded-2xl bg-slate-100 shadow-xl sm:aspect-auto sm:h-80 md:h-96 lg:h-[500px]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <img src={currentPost.image} alt={currentPost.title} className={`h-full w-full ${currentPost.imageFit === "contain" ? "object-contain bg-slate-950" : "object-cover"}`} />
+                    <motion.div className="relative mb-16 aspect-[4/3] overflow-hidden rounded-2xl bg-[#FFF9E0] shadow-xl sm:aspect-auto sm:h-80 md:h-96 lg:h-[500px]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+                        {currentPost.imageFit === "contain" && (
+                            <img
+                                src={currentPost.image}
+                                alt=""
+                                aria-hidden="true"
+                                className="absolute inset-0 h-full w-full scale-110 object-cover opacity-80 blur-2xl"
+                            />
+                        )}
+                        <img
+                            src={currentPost.image}
+                            alt={currentPost.title}
+                            className={`relative h-full w-full ${currentPost.imageFit === "contain" ? "object-contain" : "object-cover"}`}
+                        />
                     </motion.div>
                     <motion.div ref={contentRef} className="prose prose-lg max-w-none prose-headings:font-anton prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-[#063b75] prose-h2:mt-16 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-8 prose-strong:text-[#063b75]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} dangerouslySetInnerHTML={{ __html: currentPost.content }} style={{ fontFamily: "'poppins', sans-serif", lineHeight: "1.8" }} />
                 </article>

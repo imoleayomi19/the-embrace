@@ -235,8 +235,20 @@ export function Blog() {
           <div className="grid gap-8 md:grid-cols-2">
             {currentPosts.map((post) => (
               <motion.article key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg" {...fadeIn}>
-                <div className="relative h-64 overflow-hidden">
-                  <img src={post.image} alt={post.title} className={`w-full h-full ${post.imageFit === "contain" ? "object-contain bg-slate-950" : "object-cover"}`} />
+                <div className="relative h-64 overflow-hidden bg-[#FFF9E0]">
+                  {post.imageFit === "contain" && (
+                    <img
+                      src={post.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 h-full w-full scale-110 object-cover opacity-80 blur-2xl"
+                    />
+                  )}
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className={`relative w-full h-full ${post.imageFit === "contain" ? "object-contain" : "object-cover"}`}
+                  />
                 </div>
                 <div className="p-8 flex-col">
                   <h3 className="text-2xl font-montserrat font-bold mb-3 text-slate-800">{post.title}</h3>
