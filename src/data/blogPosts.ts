@@ -378,7 +378,7 @@ export const blogPosts: BlogPost[] = [
       <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-4">A Complete Installation, with Support Beyond the Sale</h2>
       <p>Choosing solar involves more than purchasing equipment. The components must work together, the installation must be properly executed, and the system must suit the customer's needs.</p>
       <p>The IVEM-8 SMART BOOST package includes procurement, supply and installation.</p>
-      <p>At Embrace Technologies Limited, our services include <a href="/projects" class="font-bold text-[#EA6936] hover:underline">solar equipment supply</a>, <a href="/services" class="font-bold text-[#EA6936] hover:underline">hybrid solar installation</a>, <a href="/services" class="font-bold text-[#EA6936] hover:underline">maintenance and troubleshooting</a>. We want you to understand what you are buying, why a particular configuration is recommended, and what support is included.</p>
+      <p>At Embrace Technologies Limited, our services include solar equipment supply, <a href="/services" class="font-bold text-[#EA6936] hover:underline">hybrid solar installation</a>, <a href="/services" class="font-bold text-[#EA6936] hover:underline">maintenance and troubleshooting</a>. We want you to understand what you are buying, why a particular configuration is recommended, and what support is included.</p>
       <p>Because a solar system should be an investment you understand—not a collection of specifications you are expected to figure out alone.</p>
 
       <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-4">Why Choose Embrace Technologies Limited?</h2>
