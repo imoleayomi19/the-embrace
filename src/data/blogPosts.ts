@@ -190,8 +190,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 15,
     slug: "ivem-8-smart-boost-hybrid-solar-system-nigeria",
-    title: "Ivem-8 Smart Boost: A Smarter Way To Power Your Home Or Business In Nigeria",
-    seoTitle: "Ivem-8 Smart Boost: 8kVA Solar System In Nigeria",
+    title: "IVEM-8 SMART BOOST: A Smarter Way To Power Your Home Or Business In Nigeria",
+    seoTitle: "IVEM-8 SMART BOOST: 8kVA Solar System In Nigeria",
     date: "October 28, 2026",
     image: "/ivem-8-smart-boost.webp",
     imageFit: "contain",
