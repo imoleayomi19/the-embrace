@@ -251,7 +251,7 @@ export function Blog() {
                   />
                 </div>
                 <div className="p-8 flex-col">
-                  <h3 className="text-2xl font-montserrat font-bold mb-3 text-slate-800">{post.title}</h3>
+                  <h3 className="text-2xl font-montserrat font-bold mb-3 text-slate-800 normal-case">{post.title}</h3>
                   <div className="flex items-center gap-2 text-slate-500 text-sm italic mb-4"><Calendar className="w-4 h-4" /><span>{post.date}</span></div>
                   <p className="text-slate-600 mb-6">{post.description}</p>
                   <button onClick={() => navigate(`/blog/${post.slug}`)} className="text-[#EA6936] font-semibold hover:gap-3">Read More →</button>

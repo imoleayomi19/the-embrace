@@ -1,9 +1,31 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { blogPosts } from "../data/blogPosts";
+
+// Words that must keep their capital letters inside a sentence-case heading.
+const KEEP_CAPITALISED = new Set([
+    "i", "lagos", "nigeria", "nigerian", "nigerians", "abuja", "embrace", "technologies",
+    "limited", "smart", "boost", "max", "jinko", "aiko", "felicity", "nepa", "cctv",
+    "dstv", "netflix", "whatsapp", "instagram", "arnergy", "daystar", "auxano", "rensource",
+]);
+
+// "What Is The IVEM-8 Smart Boost?" -> "What is the IVEM-8 Smart Boost?"
+function toSentenceCase(text: string) {
+    let isFirstWord = true;
+    return text.replace(/[A-Za-z][A-Za-z0-9'’\-/]*/g, (word) => {
+        const keep =
+            /[A-Z]/.test(word.slice(1)) ||
+            /\d/.test(word) ||
+            KEEP_CAPITALISED.has(word.toLowerCase());
+        let result = keep ? word : word.toLowerCase();
+        if (isFirstWord && !keep) result = result.charAt(0).toUpperCase() + result.slice(1);
+        isFirstWord = false;
+        return result;
+    });
+}
 
 export function BlogPost() {
     const { slug } = useParams<{ slug: string }>();
@@ -25,7 +47,23 @@ export function BlogPost() {
         return () => element.removeEventListener("click", handleClick);
     }, [navigate]);
 
-    const currentPost = blogPosts.find((post) => post.slug === slug || (slug === "5-reasons-every-home-business-needs-cctv" && post.slug === "why-every-home-business-needs-cctv-system"));
+    // Convert article headings (h2/h3) to sentence case after the content renders.
+    useLayoutEffect(() => {
+        const element = contentRef.current;
+        if (!element) return;
+        element.querySelectorAll("h2, h3").forEach((heading) => {
+            if (heading.children.length === 0 && heading.textContent) {
+                heading.textContent = toSentenceCase(heading.textContent);
+            }
+        });
+    }, [slug]);
+
+    const currentPost = blogPosts.find(
+        (post) =>
+            post.slug === slug ||
+            (slug === "5-reasons-every-home-business-needs-cctv" && post.slug === "why-every-home-business-needs-cctv-system") ||
+            (slug === "ivem-8-smart-boost-hybrid-solar-system-8kva-17-5kwh" && post.slug === "ivem-8-smart-boost-hybrid-solar-system-nigeria")
+    );
     const currentIndex = currentPost ? blogPosts.indexOf(currentPost) : -1;
     const previousPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
     const nextPost = currentIndex >= 0 && currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
@@ -41,14 +79,19 @@ export function BlogPost() {
     return (
         <>
             <Helmet>
-                <title>{currentPost.title} | Embrace Technologies Blog</title>
+                <title>{currentPost.seoTitle ? `${currentPost.seoTitle} | Embrace Technologies` : `${currentPost.title} | Embrace Technologies Blog`}</title>
                 <meta name="description" content={currentPost.metaDescription} />
                 <link rel="canonical" href={postUrl} />
-                {isMythsGuide && <meta name="keywords" content="solar in Nigeria, solar cost Nigeria, does solar work in rain, solar maintenance Nigeria" />}
+                {currentPost.keywords ? (
+                    <meta name="keywords" content={currentPost.keywords} />
+                ) : isMythsGuide ? (
+                    <meta name="keywords" content="solar in Nigeria, solar cost Nigeria, does solar work in rain, solar maintenance Nigeria" />
+                ) : null}
             </Helmet>
-            {isMythsGuide && <a href="#solar-quote" className="fixed right-4 top-1/2 z-40 -translate-y-1/2 rounded-l-xl bg-[#fd8d07] px-3 py-4 text-center font-montserrat text-xs font-bold uppercase tracking-wide text-[#063b75] shadow-lg [writing-mode:vertical-rl] hover:bg-[#e57a00]">Get Free Solar Quote</a>}            <main className="min-h-screen w-full bg-white">
+            {isMythsGuide && <a href="#solar-quote" className="fixed right-4 top-1/2 z-40 -translate-y-1/2 rounded-l-xl bg-[#fd8d07] px-3 py-4 text-center font-montserrat text-xs font-bold uppercase tracking-wide text-[#063b75] shadow-lg [writing-mode:vertical-rl] hover:bg-[#e57a00]">Get Free Solar Quote</a>}
+            <main className="min-h-screen w-full bg-white">
                 <article className="mx-auto max-w-4xl px-4 pb-12 pt-32 md:px-6 md:pb-16 md:pt-40">
-                    <motion.h1 className="mb-6 text-3xl font-montserrat font-black leading-tight text-slate-700 sm:text-4xl md:text-5xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>{currentPost.title}</motion.h1>
+                    <motion.h1 className="mb-6 text-3xl font-montserrat font-black leading-tight text-slate-700 normal-case sm:text-4xl md:text-5xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>{currentPost.title}</motion.h1>
                     <motion.time dateTime={isoDate} className="mb-5 block text-base italic text-slate-400" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>{currentPost.date}</motion.time>
                     <motion.p className="mb-10 max-w-3xl font-poppins text-lg leading-8 text-slate-600" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>{currentPost.description}</motion.p>
                     <motion.div className="relative mb-16 aspect-[4/3] overflow-hidden rounded-2xl bg-[#FFF9E0] shadow-xl sm:aspect-auto sm:h-80 md:h-96 lg:h-[500px]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
@@ -62,11 +105,11 @@ export function BlogPost() {
                         )}
                         <img
                             src={currentPost.image}
-                            alt={currentPost.title}
+                            alt={currentPost.imageAlt || currentPost.title}
                             className={`relative h-full w-full ${currentPost.imageFit === "contain" ? "object-contain" : "object-cover"}`}
                         />
                     </motion.div>
-                    <motion.div ref={contentRef} className="prose prose-lg max-w-none prose-headings:font-anton prose-headings:uppercase prose-headings:tracking-wide prose-headings:text-[#063b75] prose-h2:mt-16 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-8 prose-strong:text-[#063b75]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} dangerouslySetInnerHTML={{ __html: currentPost.content }} style={{ fontFamily: "'poppins', sans-serif", lineHeight: "1.8" }} />
+                    <motion.div ref={contentRef} className="prose prose-lg max-w-none prose-headings:font-anton prose-headings:normal-case prose-headings:tracking-wide prose-headings:text-[#063b75] prose-h2:mt-16 prose-h2:text-3xl prose-h3:text-xl prose-p:leading-8 prose-strong:text-[#063b75]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} dangerouslySetInnerHTML={{ __html: currentPost.content }} style={{ fontFamily: "'poppins', sans-serif", lineHeight: "1.8" }} />
                 </article>
                 {(previousPost || nextPost) && <motion.div className="mx-auto max-w-4xl px-4 pb-16 md:px-6" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}><div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                     {previousPost ? <button onClick={() => navigate(`/blog/${previousPost.slug}`)} className="inline-flex w-full items-center gap-3 rounded-full bg-slate-100 px-6 py-4 hover:bg-slate-200 sm:w-auto"><ArrowLeft className="h-5 w-5 text-primary" /><span className="text-sm font-semibold text-slate-800">Previous Article</span></button> : <div className="w-full sm:w-auto" />}
