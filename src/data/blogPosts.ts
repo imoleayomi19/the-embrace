@@ -395,14 +395,14 @@ export const blogPosts: BlogPost[] = [
       <div class="my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 shadow-sm">
         <h3 class="text-[#1E3A5F] font-montserrat font-bold text-xl mb-4">Request your quotation today:</h3>
         <ul class="space-y-3 mb-6">
-          <li class="flex items-center gap-2">
-            <strong>Website:</strong> <a href="https://www.embracetechng.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EA6936] hover:underline">https://www.embracetechng.com</a>
+          <li class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+            <strong class="shrink-0">Website:</strong> <a href="https://www.embracetechng.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EA6936] hover:underline break-all">www.embracetechng.com</a>
           </li>
-          <li class="flex items-center gap-2">
-            <strong>WhatsApp:</strong> <a href="https://wa.me/2347061451583" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EA6936] hover:underline">https://wa.me/7061451583</a>
+          <li class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+            <strong class="shrink-0">WhatsApp:</strong> <a href="https://wa.me/2347061451583" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EA6936] hover:underline break-all">https://wa.me/7061451583</a>
           </li>
-          <li class="flex items-center gap-2">
-            <strong>Phone:</strong> <a href="tel:+2347061451583" class="font-semibold text-[#EA6936] hover:underline">+234 706 145 1583</a>
+          <li class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
+            <strong class="shrink-0">Phone:</strong> <a href="tel:+2347061451583" class="font-semibold text-[#EA6936] hover:underline">+234 706 145 1583</a>
           </li>
         </ul>
         <p class="italic text-slate-600 mb-6 font-medium">Your energy needs deserve more than a guess. Let's find the right solution for you.</p>

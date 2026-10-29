@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Link } from 'react-router-dom';
 import {
@@ -28,15 +30,40 @@ const TikTok = ({ className }: { className?: string }) => (
 
 export function Footer() {
   const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    // TODO: hook this up to your newsletter API / backend endpoint
-    setSubscribed(true);
-    setEmail("");
-    setTimeout(() => setSubscribed(false), 4000);
+    if (!email.trim() || status === "loading") return;
+
+    setStatus("loading");
+    setMessage("Subscribing...");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error || "Failed to subscribe. Please try again.");
+      }
+
+      setStatus("success");
+      setMessage("Thanks for subscribing! Check your inbox for a confirmation.");
+      setEmail("");
+    } catch (err: unknown) {
+      setStatus("error");
+      const errorMsg =
+        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setMessage(errorMsg);
+    }
   };
 
   const quickLinks = [
@@ -86,20 +113,36 @@ export function Footer() {
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === "loading"}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status !== "idle" && status !== "loading") {
+                      setStatus("idle");
+                      setMessage("");
+                    }
+                  }}
                   placeholder="Enter your email"
-                  className="w-full rounded-sm bg-slate-200 px-4 py-2.5 sm:pr-32 text-slate-800 placeholder-slate-500 font-poppins font-normal text-sm focus:outline-none focus:ring-2 focus:ring-secondary/70"
+                  className="w-full rounded-sm bg-slate-200 px-4 py-2.5 sm:pr-32 text-slate-800 placeholder-slate-500 font-poppins font-normal text-sm focus:outline-none focus:ring-2 focus:ring-secondary/70 disabled:opacity-75"
                 />
                 <button
                   type="submit"
-                  className="w-full sm:w-auto sm:absolute sm:top-1/2 sm:right-1 sm:-translate-y-1/2 rounded-sm bg-secondary px-5 py-2.5 sm:py-1.5 text-white font-montserrat font-semibold text-xs md:text-sm whitespace-nowrap shadow-sm transition-all duration-200 hover:bg-alternativeO hover:text-primary"
+                  disabled={status === "loading"}
+                  className="w-full sm:w-auto sm:absolute sm:top-1/2 sm:right-1 sm:-translate-y-1/2 rounded-sm bg-secondary px-5 py-2.5 sm:py-1.5 text-white font-montserrat font-semibold text-xs md:text-sm whitespace-nowrap shadow-sm transition-all duration-200 hover:bg-alternativeO hover:text-primary disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Subscribe
+                  {status === "loading" ? "Subscribing..." : "Subscribe"}
                 </button>
               </div>
-              {subscribed && (
-                <p className="mt-1.5 text-xs text-secondary font-poppins font-normal text-center sm:text-left">
-                  Thanks for subscribing! Check your inbox for a confirmation.
+              {message && (
+                <p
+                  className={`mt-1.5 text-xs font-poppins font-normal text-center sm:text-left ${
+                    status === "error"
+                      ? "text-red-400"
+                      : status === "success"
+                      ? "text-secondary"
+                      : "text-slate-300"
+                  }`}
+                >
+                  {message}
                 </p>
               )}
             </form>
