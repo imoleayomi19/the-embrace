@@ -398,9 +398,7 @@ export const blogPosts: BlogPost[] = [
           <li class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
             <strong class="shrink-0">Website:</strong> <a href="https://www.embracetechng.com" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EA6936] hover:underline break-all">www.embracetechng.com</a>
           </li>
-          <li class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
-            <strong class="shrink-0">WhatsApp:</strong> <a href="https://wa.me/2347061451583" target="_blank" rel="noopener noreferrer" class="font-semibold text-[#EA6936] hover:underline break-all">https://wa.me/7061451583</a>
-          </li>
+         
           <li class="flex flex-wrap items-baseline gap-x-2 gap-y-1 min-w-0">
             <strong class="shrink-0">Phone:</strong> <a href="tel:+2347061451583" class="font-semibold text-[#EA6936] hover:underline">+234 706 145 1583</a>
           </li>
