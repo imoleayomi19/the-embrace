@@ -1,6 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { getApiUrl } from "../utils/api";
 
 const serviceOptions = [
   { value: "solar", label: "Solar Energy System" },
@@ -157,7 +158,7 @@ export function Contact() {
         message: form.message,
         honeypot: form.honeypot,
       };
-      const response = await fetch("/api/contact", {
+      const response = await fetch(getApiUrl("/api/contact"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

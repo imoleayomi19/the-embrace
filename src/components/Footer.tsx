@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import { getApiUrl } from '../utils/api';
 import {
   Mail,
   Phone,
@@ -41,7 +42,7 @@ export function Footer() {
     setMessage("Subscribing...");
 
     try {
-      const response = await fetch("/api/subscribe", {
+      const response = await fetch(getApiUrl("/api/subscribe"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

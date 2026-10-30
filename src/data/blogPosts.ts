@@ -185,7 +185,7 @@ export const blogPosts: BlogPost[] = [
   //       </p>
   //     </div>
   //   `
-  // }, {
+  // },
 
   {
     id: 15,
