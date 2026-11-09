@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { getApiUrl } from "../utils/api";
 import {
   Sun,
   ArrowRight,
@@ -13,6 +14,8 @@ import {
   GraduationCap,
   ShoppingBag,
   ShieldCheck,
+  MapPin,
+  CheckCircle2,
 } from "lucide-react";
 
 // Custom Solar Panel with Settings Icon
@@ -45,13 +48,6 @@ const fadeIn = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
   transition: { duration: 0.6 },
-};
-
-const staggerContainer = {
-  initial: { opacity: 0 },
-  whileInView: { opacity: 1 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { staggerChildren: 0.2 },
 };
 
 const INSTALLATION_START_YEAR = 2019;
@@ -130,6 +126,7 @@ function CountUp({
 // (other assets on the site use the same "./" style paths).
 const MAP_IMAGE_SRC = "./project-map.webp";
 const MAP_IMAGE_SIZE = { width: 919, height: 541 };
+const CTA_BG_IMAGE = "./cta.png";
 
 // Animation timing (seconds). Higher = slower.
 const ORBIT_DURATION = 10; // light travelling around the frame
@@ -196,11 +193,82 @@ function ProjectsMap() {
   );
 }
 
+function SlidingServiceBackground({
+  images,
+}: {
+  images: readonly [string, string];
+}) {
+  const [imageIndex, setImageIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setImageIndex((current) => (current + 1) % images.length);
+    }, 5000);
+    return () => window.clearInterval(intervalId);
+  }, [images.length]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={images[imageIndex]}
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
+            style={{ backgroundImage: `url('${images[imageIndex]}')` }}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function Home() {
   const [heroHeadlineIndex, setHeroHeadlineIndex] = useState(0);
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [isTestimonialPaused, setIsTestimonialPaused] = useState(false);
   const [isTrustedPaused, setIsTrustedPaused] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterMessage, setNewsletterMessage] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim() || newsletterStatus === "loading") return;
+
+    setNewsletterStatus("loading");
+    setNewsletterMessage("Subscribing...");
+
+    try {
+      const response = await fetch(getApiUrl("/api/subscribe"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: newsletterEmail.trim() }),
+      });
+
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.error || "Failed to subscribe. Please try again.");
+      }
+
+      setNewsletterStatus("success");
+      setNewsletterMessage("Thanks for subscribing! Check your inbox for a confirmation.");
+      setNewsletterEmail("");
+    } catch (err: unknown) {
+      setNewsletterStatus("error");
+      const errorMsg =
+        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setNewsletterMessage(errorMsg);
+    }
+  };
   const goldText =
     "bg-gradient-to-r from-[#FFC759] to-[#EA9A1F] bg-clip-text text-transparent";
 
@@ -667,16 +735,14 @@ export function Home() {
       <section className="pt-12 pb-20 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           {/* Service Cards Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             {[
               {
                 title: "Residential Solar Service",
-                image: "./residential-solar-service.webp",
+                images: [
+                  "./residential-solar-service.webp",
+                  "./services-roof-project.webp",
+                ] as const,
                 features: [
                   "Power your home with clean energy",
                   "Reduce utility bills",
@@ -685,7 +751,10 @@ export function Home() {
               },
               {
                 title: "Commercial Solar Service",
-                image: "./commercial-solar-service.webp",
+                images: [
+                  "./commercial-solar-service.webp",
+                  "./project.webp",
+                ] as const,
                 features: [
                   "Maximize your ROI",
                   "Access tax incentives",
@@ -694,7 +763,10 @@ export function Home() {
               },
               {
                 title: "Solar Maintenance Service",
-                image: "./solar-maintenance-service.webp",
+                images: [
+                  "./solar-maintenance-service.webp",
+                  "./eng-design.webp",
+                ] as const,
                 features: [
                   "Keep your system running at peak efficiency",
                   "Get comprehensive maintenance plans",
@@ -704,15 +776,15 @@ export function Home() {
             ].map((service, idx) => (
               <motion.div
                 key={idx}
-                variants={fadeIn}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.6, delay: 0.5 + idx * 0.55 }}
                 className="relative bg-primary rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,32,96,0.15)] hover:shadow-[0_0_40px_rgba(255,199,89,0.25)] transition-all duration-300 group"
               >
                 {/* Background Image - Spreads across most of card */}
                 <div className="relative h-[400px] md:h-[450px] overflow-hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                    style={{ backgroundImage: `url('${service.image}')` }}
-                  />
+                  <SlidingServiceBackground images={service.images} />
                   {/* Dark overlay for better text readability */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-primary" />
 
@@ -749,7 +821,7 @@ export function Home() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1014,26 +1086,86 @@ export function Home() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
-      <section className="py-16 md:py-24 bg-cta-pattern bg-cover bg-center relative">
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
+      {/* FINAL CTA — photo background, orange overlay, glass card */}
+      <section className="relative overflow-hidden py-16 sm:py-20 lg:py-28">
+        {/* Background photo */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${CTA_BG_IMAGE}')` }}
+        />
+        {/* Orange overlay. Lower the /xx numbers to make the photo even clearer. */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f97d14]/70 via-[#EA6936]/60 to-[#c2410c]/75" />
+
+        <div className="container relative z-10 mx-auto px-4 md:px-6">
           <motion.div
-            className="max-w-4xl mx-auto text-center bg-white/10 backdrop-blur-md p-6 sm:p-10 md:p-16 rounded-2xl border border-white/20 shadow-2xl"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
+            className="mx-auto flex max-w-3xl flex-col items-center rounded-2xl border border-white/30 bg-white/15 p-6 text-center shadow-2xl backdrop-blur-md sm:p-10 lg:p-12"
           >
-            <h2 className="mb-4 text-3xl md:text-4xl lg:text-5xl font-montserrat font-extrabold uppercase tracking-tight text-white drop-shadow-lg">
-              READY TO EMBRACE CLEAN ENERGY?
+            <h2 className="font-montserrat text-3xl font-extrabold uppercase leading-tight tracking-tight text-white drop-shadow-lg sm:text-4xl lg:text-5xl">
+              Ready to embrace clean energy?
             </h2>
+
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-secondary text-primary font-montserrat font-semibold px-6 sm:px-10 py-4 sm:py-5 rounded-sm hover:bg-gradient-to-r hover:from-white hover:to-secondary hover:text-primary transition-all duration-300 w-fit text-base sm:text-lg md:text-xl shadow-lg hover:shadow-xl hover:-translate-y-1"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 font-poppins text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-primary sm:px-8 sm:text-lg"
             >
               Request Free Consultation
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="h-5 w-5" />
             </Link>
+
+            {/* Divider */}
+            <div className="my-7 h-px w-full max-w-md bg-white/30" />
+
+            <p className="mb-3 font-montserrat text-sm font-bold uppercase tracking-wide text-white sm:text-base">
+              Subscribe to our newsletter
+            </p>
+            <p className="mb-4 font-poppins text-xs text-white/90 sm:text-sm">
+              Get latest solar insights, installation tips, &amp; product updates
+            </p>
+
+            {/* Combined pill: input + button */}
+            <form onSubmit={handleNewsletterSubmit} className="w-full max-w-lg">
+              <div className="relative flex items-center rounded-full bg-white p-1.5 shadow-2xl sm:p-2">
+                <input
+                  type="email"
+                  required
+                  value={newsletterEmail}
+                  disabled={newsletterStatus === "loading"}
+                  onChange={(e) => {
+                    setNewsletterEmail(e.target.value);
+                    if (newsletterStatus !== "idle" && newsletterStatus !== "loading") {
+                      setNewsletterStatus("idle");
+                      setNewsletterMessage("");
+                    }
+                  }}
+                  placeholder="Enter your email"
+                  className="w-full bg-transparent py-2 pl-4 pr-3 font-poppins text-sm text-slate-800 placeholder-slate-400 outline-none disabled:opacity-75 sm:pl-6 sm:text-base"
+                />
+                <button
+                  type="submit"
+                  disabled={newsletterStatus === "loading"}
+                  className="shrink-0 rounded-full bg-primary px-6 py-2.5 font-montserrat text-xs font-bold tracking-wide text-white shadow-md transition-all duration-200 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60 sm:px-8 sm:py-3 sm:text-sm"
+                >
+                  {newsletterStatus === "loading" ? "Subscribing..." : "Subscribe"}
+                </button>
+              </div>
+
+              {newsletterMessage && (
+                <p
+                  className={`mx-auto mt-3 w-fit rounded-lg px-3 py-1 font-poppins text-xs font-medium text-white sm:text-sm ${newsletterStatus === "error"
+                    ? "bg-alternativeR"
+                    : newsletterStatus === "success"
+                      ? "bg-primary/80 backdrop-blur-sm"
+                      : ""
+                    }`}
+                >
+                  {newsletterMessage}
+                </p>
+              )}
+            </form>
           </motion.div>
         </div>
       </section>

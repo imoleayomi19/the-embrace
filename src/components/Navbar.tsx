@@ -1,7 +1,8 @@
 import { useEffect, useState, type MouseEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../context/cartStore";
 
 type NavChild = {
   name: string;
@@ -44,6 +45,90 @@ const resourcesGroups: ResourceGroup[] = [
   },
 ];
 // ── Main Navbar ────────────────────────────────────────────────────────────
+
+function CartControl() {
+  const { items, itemCount, removeFromCart } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+  const subtotal = items.reduce((total, item) => total + (item.price ?? 0) * item.quantity, 0);
+  const hasQuoteItem = items.some((item) => item.price === null);
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-label={itemCount ? `Shopping cart, ${itemCount} ${itemCount === 1 ? "item" : "items"}` : "Shopping cart, empty"}
+        aria-expanded={isOpen}
+        aria-controls="navbar-cart"
+        className="relative inline-flex h-10 w-10 items-center justify-center rounded-sm text-primary transition hover:bg-slate-100 hover:text-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-secondary"
+      >
+        <ShoppingCart className="h-5 w-5" />
+        {itemCount > 0 && (
+          <span className="absolute -right-1 -top-1 inline-flex min-h-5 min-w-5 items-center justify-center rounded-full bg-secondary px-1 font-montserrat text-[10px] font-bold leading-none text-primary">
+            {itemCount > 99 ? "99+" : itemCount}
+          </span>
+        )}
+      </button>
+
+      {isOpen && (
+        <div
+          id="navbar-cart"
+          className="absolute right-0 top-full z-[60] mt-2 w-[min(20rem,calc(100vw-2rem))] rounded-sm border border-slate-200 bg-white p-4 text-left shadow-xl"
+        >
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h2 className="m-0 font-montserrat text-sm font-bold text-primary">Your Cart ({itemCount})</h2>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="rounded-sm p-1 text-slate-500 transition hover:bg-slate-100 hover:text-primary"
+              aria-label="Close cart"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+          {items.length === 0 ? (
+            <p className="py-5 text-center font-poppins text-sm text-slate-500">Your cart is empty.</p>
+          ) : (
+            <>
+              <ul className="max-h-64 divide-y divide-slate-100 overflow-y-auto">
+                {items.map((item) => (
+                  <li key={item.id} className="flex items-start justify-between gap-3 py-3">
+                    <div className="min-w-0">
+                      <p className="font-montserrat text-xs font-bold text-slate-800">{item.productName}</p>
+                      <p className="mt-1 font-poppins text-xs text-slate-500">
+                        {item.configurationName} · Qty {item.quantity}
+                      </p>
+                      <p className="mt-1 font-montserrat text-xs font-semibold text-primary">
+                        {item.price === null ? "Price on request" : `₦${(item.price * item.quantity).toLocaleString("en-NG")}`}
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeFromCart(item.id)}
+                      className="shrink-0 rounded-sm px-2 py-1 font-montserrat text-[10px] font-bold uppercase text-slate-500 transition hover:bg-red-50 hover:text-red-700"
+                      aria-label={`Remove ${item.productName} from cart`}
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div className="border-t border-slate-100 pt-3">
+                <p className="flex justify-between gap-3 font-montserrat text-xs font-bold text-slate-800">
+                  <span>{hasQuoteItem ? "Subtotal (priced items)" : "Subtotal"}</span>
+                  <span>₦{subtotal.toLocaleString("en-NG")}</span>
+                </p>
+                {hasQuoteItem && (
+                  <p className="mt-2 font-poppins text-[11px] text-slate-500">Some items require a price quote.</p>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -142,7 +227,7 @@ export function Navbar() {
         {
           name: "Complete Hybrid Solar Package",
           path: "/shop",
-          description: "Felicity, Deye, Growth",
+          description: "Felicity, Deye, Growatt, Luxsun, Itel, SMS, LvTopson",
         },
         {
           name: "IVEM Series",
@@ -369,25 +454,21 @@ export function Navbar() {
             </div>
           </nav>
 
-          {/* Contact Us - Far Right */}
-          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
-
+          <div className="flex flex-shrink-0 items-center gap-2">
+            <CartControl />
             <Link
               to="/contact"
-              className="inline-block bg-gradient-to-r from-orange-500 to-amber-500 text-white font-montserrat font-semibold px-6 py-2.5 rounded-sm shadow-md uppercase text-sm tracking-wide transition-all duration-200 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg hover:-translate-y-0.5"
+              className="hidden lg:inline-block rounded-sm bg-gradient-to-r from-orange-500 to-amber-500 px-6 py-2.5 font-montserrat text-sm font-semibold uppercase tracking-wide text-white shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:from-orange-600 hover:to-amber-600 hover:shadow-lg"
             >
               Contact Us
             </Link>
-          </div>
 
-          {/* Mobile: Hamburger toggle */}
-          <div className="lg:hidden flex items-center gap-1 flex-shrink-0">
-
-            {/* Hamburger */}
             <button
-              className="p-2 transition-colors text-primary"
+              type="button"
+              className="p-2 text-primary transition-colors lg:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? (
                 <X className="w-6 h-6" />

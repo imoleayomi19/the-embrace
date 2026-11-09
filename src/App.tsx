@@ -10,6 +10,8 @@ import { Services } from './pages/Services';
 import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Contact } from './pages/Contact';
+import { Shop } from './pages/Shop';
+import { CartProvider } from './context/CartContext';
 
 // Inner component so we can use useLocation inside Router context
 function AppShell() {
@@ -31,8 +33,8 @@ function AppShell() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
-          {/* <Route path="/shop" element={<Shop />} /> */}
-          {/* <Route path="/shop/:slug" element={<Shop />} /> */}
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/shop/:slug" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </div>
@@ -45,7 +47,9 @@ function AppShell() {
 export function App() {
   return (
     <Router>
-      <AppShell />
+      <CartProvider>
+        <AppShell />
+      </CartProvider>
     </Router>
   );
 }

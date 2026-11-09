@@ -3,7 +3,8 @@ export type ShopProduct = {
   name: string;
   category: string;
   price: number;
-  image: string;
+  image: string;      // first image, still used by the cart etc.
+  images: string[];   // all images for the slider
   description: string;
 };
 
@@ -32,7 +33,60 @@ export type SolarProduct = ShopProduct & {
   systemBadge?: string;
 };
 
+// Fallback used for any product that has no image of its own yet.
 const flyerImage = "/product.webp";
+
+// One image per product, keyed by slug. Products not listed here use the fallback.
+const productImages: Record<string, string> = {
+  "ivem-4-classic-lite": "/products/ivem-4-classic-lite.webp",
+  "ivem-4-classic-plus": "/products/ivem-4-classic-plus.webp",
+  "ivem-4-smart-lite": "/products/ivem-4-smart-lite.webp",
+  "ivem-4-dual-lite": "/products/ivem-4-dual-lite.webp",
+  "ivem-6-classic-plus": "/products/ivem-6-classic-plus.webp",
+  "ivem-6-smart-plus": "/products/ivem-6-smart-plus.webp",
+  "ivem-6-smart-pro": "/products/ivem-6-smart-pro.webp",
+  "ivem-6-smart-force": "/products/ivem-6-smart-force.webp",
+  "ivem-6-smart-boost": "/products/ivem-6-smart-boost.webp",
+  "ivem-6-smart-max": "/products/ivem-6-smart-max.webp",
+  "ivem-6-dual-plus": "/products/ivem-6-dual-plus.webp",
+  "ivem-6-dual-pro": "/products/ivem-6-dual-pro.webp",
+  "ivem-8-smart-plus": "/products/ivem-8-smart-plus.webp",
+  "ivem-8-smart-pro": "/products/ivem-8-smart-pro.webp",
+  "ivem-8-smart-force": "/products/ivem-8-smart-force.webp",
+  "ivem-8-smart-boost": "/products/ivem-8-smart-boost.webp",
+  "ivem-8-smart-max": "/products/ivem-8-smart-max.webp",
+  "ivem-8-dual-plus": "/products/ivem-8-dual-plus.webp",
+  "ivem-8-dual-pro": "/products/ivem-8-dual-pro.webp",
+  "ivem-8-dual-force": "/products/ivem-8-dual-force.webp",
+  "ivem-8-dual-boost": "/products/ivem-8-dual-boost.webp",
+  "ivem-12-smart-force": "/products/ivem-12-smart-force.webp",
+  "ivem-12-smart-boost": "/products/ivem-12-smart-boost.webp",
+  "ivem-12-smart-max": "/products/ivem-12-smart-max.webp",
+  "ivem-12-dual-plus": "/products/ivem-12-dual-plus.webp",
+  "ivem-12-dual-pro": "/products/ivem-12-dual-pro.webp",
+  "ivem-12-dual-force": "/products/ivem-12-dual-force.webp",
+  "ivem-12-dual-boost": "/products/ivem-12-dual-boost.webp",
+};
+
+// Additional photos, shown after the main one. Add more slugs as you get photos.
+const extraImages: Record<string, string[]> = {
+  "ivem-4-classic-plus": [
+    // "/products/ivem-4-classic-plus-2.webp",
+    // "/products/ivem-4-classic-plus-3.webp",
+  ],
+  "ivem-4-smart-lite": [
+    "/products/ivem-4-smart-lite-2.webp",
+    "/products/ivem-4-smart-lite-3.webp",
+  ],
+  "ivem-6-smart-pro": [
+    "/products/ivem-6-smart-pro-2.webp",
+    // "/products/ivem-4-smart-lite-3.webp",
+  ],
+  "ivem-8-smart-boost": [
+    "/products/ivem-8-smart-boost-2.webp",
+    // "/products/ivem-4-classic-plus-3.webp",
+  ],
+};
 
 function configurations(power: number, startingPrice: number): SolarConfiguration[] {
   const solarSizes = power <= 4 ? ["2.3KW", "3.5KW", "4.6KW"] : [
@@ -73,7 +127,8 @@ function product(
     brand,
     powerSize,
     price: startingPrice,
-    image: flyerImage,
+    image: productImages[slug] ?? flyerImage,
+    images: [productImages[slug] ?? flyerImage, ...(extraImages[slug] ?? [])],
     description: tagline,
     tagline,
     configurations: productConfigurations ?? configurations(power, startingPrice),
