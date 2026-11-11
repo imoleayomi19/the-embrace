@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { FloatingCalculatorButton } from './components/FloatingCalculatorButton';
 import { Home } from './pages/Home';
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
@@ -11,6 +12,8 @@ import { About } from './pages/About';
 import { Projects } from './pages/Projects';
 import { Contact } from './pages/Contact';
 import { Shop } from './pages/Shop';
+import { PrivacyPolicy } from './pages/PrivacyPolicy';
+const SolarCalculator = lazy(() => import('./pages/SolarCalculator').then(({ SolarCalculator: page }) => ({ default: page })));
 import { CartProvider } from './context/CartContext';
 
 // Inner component so we can use useLocation inside Router context
@@ -35,9 +38,19 @@ function AppShell() {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/shop/:slug" element={<Shop />} />
+          <Route
+            path="/solar-calculator"
+            element={
+              <Suspense fallback={<div className="min-h-[60vh] bg-slate-50" aria-label="Loading solar calculator" />}>
+                <SolarCalculator />
+              </Suspense>
+            }
+          />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </div>
+      <FloatingCalculatorButton />
       <WhatsAppButton />
       <Footer />
     </div>

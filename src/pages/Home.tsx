@@ -14,8 +14,6 @@ import {
   GraduationCap,
   ShoppingBag,
   ShieldCheck,
-  MapPin,
-  CheckCircle2,
 } from "lucide-react";
 
 // Custom Solar Panel with Settings Icon
@@ -1113,6 +1111,13 @@ export function Home() {
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3 font-poppins text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-primary sm:px-8 sm:text-lg"
             >
               Request Free Consultation
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              to="/solar-calculator"
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-sm bg-secondary px-6 py-3 font-poppins text-base font-semibold text-primary shadow-lg transition-all duration-300 hover:bg-white sm:px-8 sm:text-lg"
+            >
+              Calculate Your Solar System
               <ArrowRight className="h-5 w-5" />
             </Link>
 

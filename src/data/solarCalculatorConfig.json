@@ -1,0 +1,53 @@
+{
+  "batteryVoltage": 48,
+  "sunHoursPerDay": 5,
+  "daysPerMonth": 30,
+  "petrolGeneratorEfficiencyKwhPerLitre": 3.2,
+  "inverters": [
+    { "watts": 1000, "name": "1 kW Hybrid Inverter", "price": 350000 },
+    { "watts": 1500, "name": "1.5 kW Hybrid Inverter", "price": 475000 },
+    { "watts": 2000, "name": "2 kW Hybrid Inverter", "price": 600000 },
+    { "watts": 3000, "name": "3 kW Hybrid Inverter", "price": 850000 },
+    { "watts": 5000, "name": "5 kW Hybrid Inverter", "price": 1250000 },
+    { "watts": 8000, "name": "8 kW Hybrid Inverter", "price": 1950000 },
+    { "watts": 10000, "name": "10 kW Hybrid Inverter", "price": 2450000 },
+    { "watts": 15000, "name": "15 kW Hybrid Inverter", "price": 3600000 },
+    { "watts": 20000, "name": "20 kW Hybrid Inverter", "price": 4800000 },
+    { "watts": 30000, "name": "30 kW Hybrid Inverter", "price": 6900000 }
+  ],
+  "batteries": [
+    { "ampHours": 100, "name": "48 V 100 Ah Battery Storage", "price": 950000 },
+    { "ampHours": 200, "name": "48 V 200 Ah Battery Storage", "price": 1850000 },
+    { "ampHours": 300, "name": "48 V 300 Ah Battery Storage", "price": 2750000 },
+    { "ampHours": 400, "name": "48 V 400 Ah Battery Storage", "price": 3600000 },
+    { "ampHours": 600, "name": "48 V 600 Ah Battery Storage", "price": 5350000 },
+    { "ampHours": 800, "name": "48 V 800 Ah Battery Storage", "price": 7000000 },
+    { "ampHours": 1000, "name": "48 V 1000 Ah Battery Storage", "price": 8650000 }
+  ],
+  "panels": [
+    { "watts": 450, "price": 125000 },
+    { "watts": 550, "price": 145000 },
+    { "watts": 600, "price": 160000 },
+    { "watts": 650, "price": 175000 }
+  ],
+  "appliances": [
+    { "name": "Fan", "watts": 75, "hoursPerDay": 6, "icon": "fan" },
+    { "name": "Bulb", "watts": 10, "hoursPerDay": 6, "icon": "bulb" },
+    { "name": "Water Heater", "watts": 2000, "hoursPerDay": 1, "icon": "heater" },
+    { "name": "Refrigerator", "watts": 150, "hoursPerDay": 10, "icon": "refrigerator" },
+    { "name": "Washing Machine", "watts": 500, "hoursPerDay": 1, "icon": "washingMachine" },
+    { "name": "Television", "watts": 100, "hoursPerDay": 5, "icon": "television" },
+    { "name": "Air Conditioner", "watts": 1500, "hoursPerDay": 6, "icon": "airConditioner" },
+    { "name": "LED Lights", "watts": 10, "hoursPerDay": 6, "icon": "bulb" },
+    { "name": "Pumping Machine", "watts": 750, "hoursPerDay": 2, "icon": "pump" },
+    { "name": "Pressing Iron", "watts": 1000, "hoursPerDay": 1, "icon": "iron" },
+    { "name": "Drone", "watts": 100, "hoursPerDay": 1, "icon": "drone" },
+    { "name": "Laptop", "watts": 65, "hoursPerDay": 6, "icon": "laptop" },
+    { "name": "Pressure Cooker", "watts": 1000, "hoursPerDay": 1, "icon": "cooker" },
+    { "name": "Microwave", "watts": 1200, "hoursPerDay": 1, "icon": "microwave" },
+    { "name": "Water Dispenser", "watts": 500, "hoursPerDay": 4, "icon": "water" },
+    { "name": "Freezer", "watts": 250, "hoursPerDay": 10, "icon": "freezer" },
+    { "name": "Home Theatre", "watts": 200, "hoursPerDay": 4, "icon": "speaker" },
+    { "name": "Cooler", "watts": 200, "hoursPerDay": 6, "icon": "cooler" }
+  ]
+}
