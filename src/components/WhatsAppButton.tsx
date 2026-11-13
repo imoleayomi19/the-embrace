@@ -17,27 +17,25 @@ export function WhatsAppButton() {
   }, []);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2 font-montserrat pointer-events-none">
+    <div className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-3 font-montserrat pointer-events-none">
       {/* Tooltip */}
       <AnimatePresence>
         {showTooltip && (
           <motion.div
-            initial={{ opacity: 0, y: 15, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            initial={{ opacity: 0, x: 15, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: 10, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="bg-white text-slate-800 px-4 py-3 rounded-sm shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-slate-100 flex items-start gap-3 max-w-[260px] relative md:max-w-xs pointer-events-auto"
+            className="bg-white text-slate-800 px-3.5 py-2 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-slate-100 flex items-center gap-2.5 relative pointer-events-auto whitespace-nowrap"
           >
-            {/* Tooltip Arrow */}
-            <div className="absolute right-6 -bottom-1.5 w-3 h-3 bg-white border-r border-b border-slate-100 rotate-45" />
+            {/* Tooltip Arrow pointing right towards WhatsApp */}
+            <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-white border-t border-r border-slate-100 rotate-45" />
 
-            <div className="flex-1 text-xs md:text-sm font-medium leading-relaxed">
-              <p className="font-bold text-primary mb-0.5">Chat with us</p>
-            </div>
+            <p className="font-bold text-primary text-xs sm:text-sm">Chat with us</p>
 
             <button
               onClick={() => setShowTooltip(false)}
-              className="text-slate-400 hover:text-slate-600 transition-colors text-lg p-0.5 leading-none focus:outline-none"
+              className="text-slate-400 hover:text-slate-600 transition-colors text-base p-0.5 leading-none focus:outline-none ml-1"
               aria-label="Close tooltip"
             >
               &times;

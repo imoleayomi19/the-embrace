@@ -148,10 +148,10 @@ export function Footer() {
                 <Mail className="w-5 h-5 text-secondary shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a
-                    href="mailto:Info@embracetechng.com"
+                    href="mailto:info@embracetechng.com"
                     className="transition-colors hover:text-secondary break-all font-poppins font-normal text-slate-300"
                   >
-                    Info@embracetechng.com
+                    info@embracetechng.com
                   </a>
                 </div>
               </li>

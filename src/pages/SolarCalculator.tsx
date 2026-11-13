@@ -1,846 +1,1037 @@
-import { useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useMemo, useRef, useState, type FormEvent } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  AirVent,
-  BatteryCharging,
   Check,
-  CookingPot,
-  Droplets,
-  Fan,
-  GlassWater,
-  Heater,
-  Laptop,
-  Lightbulb,
-  Microwave,
-  Minus,
-  Plane,
   Plus,
-  Refrigerator,
-  Snowflake,
-  Speaker,
-  Sun,
-  Trash2,
-  Tv,
-  WashingMachine,
-  Zap,
-  type LucideIcon,
+  Minus,
+  ShoppingCart,
+  MessageCircle,
+  HelpCircle,
+  X,
+  Sparkles,
+  ArrowRight,
 } from "lucide-react";
 import { useCart } from "../context/cartStore";
 import calculatorConfig from "../data/solarCalculatorConfig.json";
 
+// Type definitions
 type Appliance = {
   id: string;
   name: string;
   quantity: number;
   watts: number;
   hoursPerDay: number;
-  icon: string;
+  iconKey: string;
 };
 
-type AppliancePreset = (typeof calculatorConfig.appliances)[number];
-type PricedItem = { name: string; price: number } | null;
-
-const iconByName: Record<string, LucideIcon> = {
-  fan: Fan,
-  bulb: Lightbulb,
-  heater: Heater,
-  refrigerator: Refrigerator,
-  washingMachine: WashingMachine,
-  television: Tv,
-  airConditioner: AirVent,
-  pump: Droplets,
-  iron: Zap,
-  drone: Plane,
-  laptop: Laptop,
-  cooker: CookingPot,
-  microwave: Microwave,
-  water: GlassWater,
-  freezer: Snowflake,
-  speaker: Speaker,
-  cooler: Fan,
+type Preset = {
+  name: string;
+  watts: number;
+  hoursPerDay: number;
+  iconKey: string;
 };
 
-const backupOptions = ["Petrol Generator", "Diesel Generator", "Grid Only", "No Backup"] as const;
-type BackupOption = (typeof backupOptions)[number];
+// Preset catalog corresponding to Image 1
+const APPLIANCE_PRESETS: Preset[] = [
+  { name: "Fan", watts: 75, hoursPerDay: 8, iconKey: "fan" },
+  { name: "Bulbs", watts: 15, hoursPerDay: 8, iconKey: "bulbs" },
+  { name: "Water Heater", watts: 2000, hoursPerDay: 1, iconKey: "waterHeater" },
+  { name: "Refrigerator", watts: 250, hoursPerDay: 10, iconKey: "refrigerator" },
+  { name: "Washing Machine", watts: 500, hoursPerDay: 1, iconKey: "washingMachine" },
+  { name: "Television", watts: 120, hoursPerDay: 6, iconKey: "television" },
+  { name: "Air Conditioner", watts: 1500, hoursPerDay: 6, iconKey: "airConditioner" },
+  { name: "WiFi Modem", watts: 20, hoursPerDay: 24, iconKey: "wifiModem" },
+  { name: "Pressing Iron", watts: 1000, hoursPerDay: 1, iconKey: "pressingIron" },
+  { name: "Drone", watts: 100, hoursPerDay: 1, iconKey: "drone" },
+  { name: "Laptop", watts: 65, hoursPerDay: 8, iconKey: "laptop" },
+  { name: "Pressure Pump", watts: 750, hoursPerDay: 1, iconKey: "pressurePump" },
+  { name: "Microwave", watts: 1200, hoursPerDay: 0.5, iconKey: "microwave" },
+  { name: "Water Pump", watts: 1000, hoursPerDay: 1, iconKey: "waterPump" },
+  { name: "Freezer", watts: 250, hoursPerDay: 12, iconKey: "freezer" },
+  { name: "Home Theatre", watts: 150, hoursPerDay: 4, iconKey: "homeTheatre" },
+  { name: "Decoder", watts: 30, hoursPerDay: 8, iconKey: "decoder" },
+  { name: "Water Dispenser", watts: 500, hoursPerDay: 4, iconKey: "waterDispenser" },
+];
 
-const backupLabels: Record<BackupOption, string> = {
-  "Petrol Generator": "Petrol generator",
-  "Diesel Generator": "Diesel generator",
-  "Grid Only": "Grid only",
-  "No Backup": "Nothing yet",
-};
+// Vector Appliance Graphics matching real home appliances
+function ApplianceGraphic({ iconKey }: { iconKey: string }) {
+  switch (iconKey) {
+    case "fan":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <circle cx="24" cy="24" r="18" stroke="#002060" strokeWidth="2" strokeDasharray="3 3" opacity="0.3" />
+          <circle cx="24" cy="24" r="5" fill="#002060" />
+          <path d="M24 19C24 14 28 10 32 10C32 14 28 19 24 19Z" fill="#fd8d07" opacity="0.9" />
+          <path d="M28 27C33 27 37 31 37 35C33 35 28 31 28 27Z" fill="#fd8d07" opacity="0.9" />
+          <path d="M19 26C16 30 11 31 9 28C10 24 15 23 19 26Z" fill="#fd8d07" opacity="0.9" />
+          <path d="M24 29V42M18 42H30" stroke="#002060" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+      );
+    case "bulbs":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <path d="M16 18C16 13.58 19.58 10 24 10C28.42 10 32 13.58 32 18C32 21.5 30 23.5 28.5 26C27.5 27.5 27 29 27 31H21C21 29 20.5 27.5 19.5 26C18 23.5 16 21.5 16 18Z" fill="#fef08a" stroke="#fd8d07" strokeWidth="2" />
+          <path d="M21 31H27V34H21V31ZM22 34H26V36H22V34Z" fill="#94a3b8" stroke="#475569" strokeWidth="1.5" />
+          <path d="M24 15V22M21 18L27 18" stroke="#ea580c" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="24" cy="18" r="8" fill="#fdba74" opacity="0.2" />
+        </svg>
+      );
+    case "waterHeater":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="15" y="8" width="18" height="28" rx="4" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <rect x="18" y="12" width="12" height="6" rx="1.5" fill="#e2e8f0" />
+          <circle cx="24" cy="24" r="3.5" fill="#ef4444" opacity="0.8" />
+          <path d="M21 36V42M27 36V42M19 42H23M25 42H29" stroke="#64748b" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "refrigerator":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="15" y="6" width="18" height="36" rx="3" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <line x1="15" y1="18" x2="33" y2="18" stroke="#002060" strokeWidth="2" />
+          <line x1="18" y1="11" x2="18" y2="15" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+          <line x1="18" y1="22" x2="18" y2="30" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "washingMachine":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="13" y="7" width="22" height="34" rx="3" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <line x1="13" y1="15" x2="35" y2="15" stroke="#002060" strokeWidth="1.5" />
+          <circle cx="18" cy="11" r="1.5" fill="#0284c7" />
+          <circle cx="22" cy="11" r="1.5" fill="#fd8d07" />
+          <circle cx="24" cy="27" r="8" fill="#e0f2fe" stroke="#0284c7" strokeWidth="2" />
+          <circle cx="24" cy="27" r="4.5" fill="#38bdf8" opacity="0.6" />
+        </svg>
+      );
+    case "television":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="9" y="10" width="30" height="22" rx="2" fill="#1e293b" stroke="#002060" strokeWidth="2" />
+          <rect x="11" y="12" width="26" height="18" fill="#38bdf8" opacity="0.25" />
+          <path d="M21 32L18 40M27 32L30 40M16 40H32" stroke="#002060" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "airConditioner":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="8" y="14" width="32" height="16" rx="3" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <rect x="11" y="23" width="26" height="4" rx="1" fill="#e2e8f0" />
+          <circle cx="34" cy="18" r="1.5" fill="#10b981" />
+          <path d="M14 34Q16 38 18 34M22 34Q24 38 26 34M30 34Q32 38 34 34" stroke="#38bdf8" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      );
+    case "wifiModem":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="11" y="25" width="26" height="12" rx="2" fill="#1e293b" stroke="#002060" strokeWidth="2" />
+          <line x1="15" y1="10" x2="15" y2="25" stroke="#475569" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="33" y1="10" x2="33" y2="25" stroke="#475569" strokeWidth="2.5" strokeLinecap="round" />
+          <circle cx="17" cy="31" r="1.5" fill="#10b981" />
+          <circle cx="22" cy="31" r="1.5" fill="#10b981" />
+          <circle cx="27" cy="31" r="1.5" fill="#38bdf8" />
+        </svg>
+      );
+    case "pressingIron":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <path d="M10 32C10 26 15 22 24 22H36C38 22 40 24 38 27L35 32H10Z" fill="#0284c7" stroke="#002060" strokeWidth="2" />
+          <path d="M8 33H40V35H8V33Z" fill="#94a3b8" />
+          <path d="M14 22V14H30V22" stroke="#002060" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "drone":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <line x1="12" y1="14" x2="36" y2="34" stroke="#002060" strokeWidth="2.5" />
+          <line x1="36" y1="14" x2="12" y2="34" stroke="#002060" strokeWidth="2.5" />
+          <circle cx="24" cy="24" r="5" fill="#1e293b" stroke="#002060" strokeWidth="1.5" />
+          <ellipse cx="12" cy="14" rx="5" ry="2" stroke="#fd8d07" strokeWidth="1.5" />
+          <ellipse cx="36" cy="14" rx="5" ry="2" stroke="#fd8d07" strokeWidth="1.5" />
+          <ellipse cx="12" cy="34" rx="5" ry="2" stroke="#fd8d07" strokeWidth="1.5" />
+          <ellipse cx="36" cy="34" rx="5" ry="2" stroke="#fd8d07" strokeWidth="1.5" />
+        </svg>
+      );
+    case "laptop":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="13" y="11" width="22" height="17" rx="1.5" fill="#1e293b" stroke="#002060" strokeWidth="2" />
+          <rect x="15" y="13" width="18" height="13" fill="#38bdf8" opacity="0.3" />
+          <path d="M9 31C9 30 11 29 13 29H35C37 29 39 30 39 31L41 35H7L9 31Z" fill="#94a3b8" stroke="#002060" strokeWidth="1.5" />
+        </svg>
+      );
+    case "pressurePump":
+    case "waterPump":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="12" y="17" width="18" height="16" rx="2" fill="#0284c7" stroke="#002060" strokeWidth="2" />
+          <circle cx="34" cy="25" r="7" fill="#64748b" stroke="#002060" strokeWidth="2" />
+          <rect x="10" y="33" width="26" height="4" fill="#334155" />
+          <path d="M34 14V18M38 25H42" stroke="#002060" strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+      );
+    case "microwave":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="9" y="13" width="30" height="22" rx="2.5" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <rect x="13" y="17" width="16" height="14" rx="1.5" fill="#1e293b" />
+          <rect x="31" y="17" width="5" height="14" rx="1" fill="#e2e8f0" />
+          <circle cx="33.5" cy="20" r="1.5" fill="#10b981" />
+        </svg>
+      );
+    case "freezer":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="9" y="14" width="30" height="24" rx="2" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <line x1="9" y1="19" x2="39" y2="19" stroke="#002060" strokeWidth="1.5" />
+          <line x1="20" y1="16.5" x2="28" y2="16.5" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case "homeTheatre":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="10" y="8" width="6" height="32" rx="1.5" fill="#1e293b" stroke="#002060" strokeWidth="1.5" />
+          <rect x="32" y="8" width="6" height="32" rx="1.5" fill="#1e293b" stroke="#002060" strokeWidth="1.5" />
+          <rect x="18" y="24" width="12" height="16" rx="2" fill="#334155" stroke="#002060" strokeWidth="1.5" />
+          <circle cx="24" cy="32" r="3.5" fill="#002060" />
+        </svg>
+      );
+    case "decoder":
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="10" y="20" width="28" height="10" rx="2" fill="#1e293b" stroke="#002060" strokeWidth="2" />
+          <rect x="14" y="23" width="8" height="4" rx="1" fill="#0284c7" opacity="0.6" />
+          <circle cx="32" cy="25" r="1.5" fill="#10b981" />
+        </svg>
+      );
+    case "waterDispenser":
+    default:
+      return (
+        <svg viewBox="0 0 48 48" className="w-11 h-11 text-slate-700" fill="none">
+          <rect x="16" y="20" width="16" height="22" rx="2" fill="#f8fafc" stroke="#002060" strokeWidth="2" />
+          <path d="M19 20V12C19 9 29 9 29 12V20H19Z" fill="#38bdf8" opacity="0.7" stroke="#0284c7" strokeWidth="1.5" />
+          <circle cx="21" cy="27" r="1.5" fill="#ef4444" />
+          <circle cx="27" cy="27" r="1.5" fill="#0284c7" />
+        </svg>
+      );
+  }
+}
 
 function formatCurrency(value: number) {
   return `₦${Math.round(value).toLocaleString("en-NG")}`;
 }
 
-function makeAppliance(preset: AppliancePreset, quantity = 1): Appliance {
-  return {
-    id: `${preset.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-${crypto.randomUUID()}`,
-    name: preset.name,
-    quantity,
-    watts: preset.watts,
-    hoursPerDay: preset.hoursPerDay,
-    icon: preset.icon,
-  };
-}
-
-function findInverter(requiredWatts: number): PricedItem {
-  const inverter = calculatorConfig.inverters.find((item) => item.watts >= requiredWatts);
-  return inverter ? { name: inverter.name, price: inverter.price } : null;
-}
-
-function findBattery(requiredAmpHours: number): PricedItem {
-  const battery = calculatorConfig.batteries.find((item) => item.ampHours >= requiredAmpHours);
-  return battery ? { name: battery.name, price: battery.price } : null;
-}
-
-function findPanel(dailyEnergyWh: number) {
-  const requiredPanelWatts = dailyEnergyWh / calculatorConfig.sunHoursPerDay;
-  const options = calculatorConfig.panels.map((panel) => {
-    const quantity = Math.ceil(requiredPanelWatts / panel.watts);
-    return { panel, quantity, totalPrice: quantity * panel.price };
-  });
-  const recommendation = options.reduce((best, option) =>
-    option.totalPrice < best.totalPrice ||
-      (option.totalPrice === best.totalPrice && option.panel.watts > best.panel.watts)
-      ? option
-      : best
-  );
-  const { panel: selectedPanel, quantity } = recommendation;
-  return {
-    name: `${quantity} × ${selectedPanel.watts} W Solar Panels`,
-    price: quantity * selectedPanel.price,
-    quantity,
-    watts: selectedPanel.watts,
-  };
-}
-
 export function SolarCalculator() {
   const { addToCart } = useCart();
-  const [appliances, setAppliances] = useState<Appliance[]>([]);
-  const [backup, setBackup] = useState<BackupOption>("Petrol Generator");
-  const [fuelPrice, setFuelPrice] = useState(1000);
-  const [hasCalculated, setHasCalculated] = useState(false);
-  const [showOtherForm, setShowOtherForm] = useState(false);
-  const [otherName, setOtherName] = useState("");
-  const [otherWatts, setOtherWatts] = useState(100);
-  const [otherHours, setOtherHours] = useState(6);
-  const resultRef = useRef<HTMLElement>(null);
 
+  // State
+  const [appliances, setAppliances] = useState<Appliance[]>([
+    {
+      id: "preset-refrigerator",
+      name: "Refrigerator",
+      quantity: 1,
+      watts: 250,
+      hoursPerDay: 10,
+      iconKey: "refrigerator",
+    },
+    {
+      id: "preset-water-heater",
+      name: "Water Heater",
+      quantity: 1,
+      watts: 2000,
+      hoursPerDay: 1,
+      iconKey: "waterHeater",
+    },
+  ]);
+
+  const [backup, setBackup] = useState<string>("Petrol Generator");
+  const [fuelPrice, setFuelPrice] = useState<number>(1000);
+  const [hasCalculated, setHasCalculated] = useState<boolean>(true);
+  const [backupHoursAdjustment, setBackupHoursAdjustment] = useState<number>(0);
+  const [cartSuccess, setCartSuccess] = useState<boolean>(false);
+
+  // Custom appliance inline modal
+  const [showAddCustom, setShowAddCustom] = useState<boolean>(false);
+  const [customName, setCustomName] = useState<string>("");
+  const [customWatts, setCustomWatts] = useState<number>(150);
+  const [customHours, setCustomHours] = useState<number>(6);
+
+  const step3Ref = useRef<HTMLDivElement>(null);
+
+  // Calculations
   const totals = useMemo(() => {
-    const runningWatts = appliances.reduce((total, item) => total + item.quantity * item.watts, 0);
+    const runningWatts = appliances.reduce((sum, item) => sum + item.quantity * item.watts, 0);
     const dailyEnergyWh = appliances.reduce(
-      (total, item) => total + item.quantity * item.watts * item.hoursPerDay,
+      (sum, item) => sum + item.quantity * item.watts * item.hoursPerDay,
       0
     );
-    const inverter = runningWatts > 0 ? findInverter(runningWatts * 1.25) : null;
-    const batteryAmpHours = (dailyEnergyWh * 1.2) / calculatorConfig.batteryVoltage;
-    const battery = dailyEnergyWh > 0 ? findBattery(batteryAmpHours) : null;
-    const panels = dailyEnergyWh > 0 ? findPanel(dailyEnergyWh) : null;
-    const completeSystemCost = (inverter?.price ?? 0) + (battery?.price ?? 0) + (panels?.price ?? 0);
+
+    // Inverter sizing: Peak Load * 1.25 safety factor
+    const requiredInverterWatts = runningWatts * 1.25;
+    const inverter =
+      calculatorConfig.inverters.find((item) => item.watts >= requiredInverterWatts) ||
+      calculatorConfig.inverters[calculatorConfig.inverters.length - 1];
+
+    // Battery sizing: (Daily Energy * 1.2) / 48V
+    const requiredAmpHours = (dailyEnergyWh * 1.2) / (calculatorConfig.batteryVoltage || 48);
+    const battery =
+      calculatorConfig.batteries.find((item) => item.ampHours >= requiredAmpHours) ||
+      calculatorConfig.batteries[calculatorConfig.batteries.length - 1];
+
+    // Solar panels: Daily Energy / 5 sun hours
+    const requiredPanelWatts = dailyEnergyWh / (calculatorConfig.sunHoursPerDay || 5);
+    const bestPanel = calculatorConfig.panels[calculatorConfig.panels.length - 2] || calculatorConfig.panels[0];
+    const rawCount = Math.max(2, Math.ceil(requiredPanelWatts / bestPanel.watts));
+    const panelCount = rawCount % 2 === 0 ? rawCount : rawCount + 1; // even count for strings
+    const panels = {
+      name: `${panelCount}x Solar Panel ${bestPanel.watts}W Mono`,
+      watts: bestPanel.watts,
+      quantity: panelCount,
+      price: bestPanel.price * panelCount,
+    };
+
+    const completeSystemCost =
+      (inverter?.price || 0) + (battery?.price || 0) + (panels?.price || 0);
+
+    // Fuel generator comparison
     const monthlyFuelSavings =
       backup === "Petrol Generator"
-        ? (dailyEnergyWh / 1000 / calculatorConfig.petrolGeneratorEfficiencyKwhPerLitre) *
-        calculatorConfig.daysPerMonth *
-        fuelPrice
+        ? (dailyEnergyWh / 1000 / (calculatorConfig.petrolGeneratorEfficiencyKwhPerLitre || 3.2)) *
+          (calculatorConfig.daysPerMonth || 30) *
+          fuelPrice
+        : backup === "Diesel Generator"
+        ? (dailyEnergyWh / 1000 / 3.8) * (calculatorConfig.daysPerMonth || 30) * (fuelPrice * 1.2)
         : 0;
+
+    const paybackMonths =
+      monthlyFuelSavings > 0 ? completeSystemCost / monthlyFuelSavings : null;
+
+    // Estimated backup time (hours)
+    const batteryCapacityWh = (battery?.ampHours || 100) * 48 * 0.85; // 85% depth of discharge
+    const calculatedBackupHours = runningWatts > 0 ? batteryCapacityWh / runningWatts : 4;
+    const finalBackupHours = Math.max(
+      1,
+      Math.min(24, Math.round((calculatedBackupHours + backupHoursAdjustment) * 10) / 10)
+    );
 
     return {
       runningWatts,
       dailyEnergyWh,
       inverter,
       battery,
-      batteryAmpHours,
       panels,
       completeSystemCost,
       monthlyFuelSavings,
-      paybackMonths: monthlyFuelSavings > 0 ? completeSystemCost / monthlyFuelSavings : null,
+      paybackMonths,
+      finalBackupHours,
     };
-  }, [appliances, backup, fuelPrice]);
+  }, [appliances, backup, fuelPrice, backupHoursAdjustment]);
 
-  const itemCount = appliances.reduce((total, item) => total + item.quantity, 0);
-
-  function addPreset(preset: AppliancePreset) {
-    setAppliances((current) => {
-      const selected = current.find((item) => item.name === preset.name && !item.id.startsWith("other-"));
-      return selected
-        ? current.map((item) => (item.id === selected.id ? { ...item, quantity: item.quantity + 1 } : item))
-        : [...current, makeAppliance(preset)];
+  // Click to add preset
+  function handleAddPreset(preset: Preset) {
+    setAppliances((prev) => {
+      const existing = prev.find((item) => item.name.toLowerCase() === preset.name.toLowerCase());
+      if (existing) {
+        return prev.map((item) =>
+          item.id === existing.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [
+        ...prev,
+        {
+          id: `appliance-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+          name: preset.name,
+          quantity: 1,
+          watts: preset.watts,
+          hoursPerDay: preset.hoursPerDay,
+          iconKey: preset.iconKey,
+        },
+      ];
     });
   }
 
-  function decrementPreset(name: string) {
-    setAppliances((current) =>
-      current.flatMap((item) => {
-        if (item.name !== name || item.id.startsWith("other-")) return [item];
-        return item.quantity > 1 ? [{ ...item, quantity: item.quantity - 1 }] : [];
-      })
-    );
+  // Click red badge to reduce
+  function handleReducePreset(presetName: string) {
+    setAppliances((prev) => {
+      const existing = prev.find((item) => item.name.toLowerCase() === presetName.toLowerCase());
+      if (!existing) return prev;
+      if (existing.quantity <= 1) {
+        return prev.filter((item) => item.id !== existing.id);
+      }
+      return prev.map((item) =>
+        item.id === existing.id ? { ...item, quantity: item.quantity - 1 } : item
+      );
+    });
   }
 
-  function updateAppliance(id: string, field: "quantity" | "watts" | "hoursPerDay", value: number) {
-    const safeValue = Number.isFinite(value) ? value : 0;
-    setAppliances((current) =>
-      current.map((item) =>
-        item.id === id
-          ? {
-            ...item,
-            [field]:
-              field === "quantity"
-                ? Math.max(1, Math.floor(safeValue))
-                : field === "hoursPerDay"
-                  ? Math.max(0, Math.min(24, safeValue))
-                  : Math.max(0, safeValue),
-          }
-          : item
-      )
-    );
+  // Get active quantity for badge display
+  function getQuantity(presetName: string): number {
+    const found = appliances.find((item) => item.name.toLowerCase() === presetName.toLowerCase());
+    return found ? found.quantity : 0;
   }
 
-  function addOtherAppliance(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const name = otherName.trim();
-    if (!name) return;
-    setAppliances((current) => [
-      ...current,
+  // Clear all
+  function handleClearAll() {
+    setAppliances([]);
+    setBackupHoursAdjustment(0);
+  }
+
+  // Add custom appliance
+  function handleAddCustomAppliance(e: FormEvent) {
+    e.preventDefault();
+    if (!customName.trim()) return;
+
+    setAppliances((prev) => [
+      ...prev,
       {
-        id: `other-${crypto.randomUUID()}`,
-        name,
+        id: `custom-${Date.now()}`,
+        name: customName.trim(),
         quantity: 1,
-        watts: Number.isFinite(otherWatts) ? Math.max(0, otherWatts) : 0,
-        hoursPerDay: Number.isFinite(otherHours) ? Math.max(0, Math.min(24, otherHours)) : 0,
-        icon: "appliance",
+        watts: customWatts || 100,
+        hoursPerDay: customHours || 6,
+        iconKey: "bulb",
       },
     ]);
-    setOtherName("");
-    setShowOtherForm(false);
+
+    setCustomName("");
+    setShowAddCustom(false);
   }
 
-  function adjustHours(adjustment: number) {
-    setAppliances((current) =>
-      current.map((item) => ({
-        ...item,
-        hoursPerDay: Math.max(0, Math.min(24, item.hoursPerDay + adjustment)),
-      }))
+  // Remove single row in Step 2
+  function handleRemoveAppliance(id: string) {
+    setAppliances((prev) => prev.filter((item) => item.id !== id));
+  }
+
+  // Update row in Step 2
+  function handleUpdateRow(id: string, field: "name" | "quantity" | "watts" | "hoursPerDay", value: string | number) {
+    setAppliances((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item))
     );
   }
 
-  function calculate() {
+  // Calculate & scroll to Step 3
+  function handleCalculate() {
     setHasCalculated(true);
-    window.setTimeout(() => resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 0);
+    setTimeout(() => {
+      step3Ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
   }
 
-  function addAvailableItemsToCart() {
+  // Add to cart
+  function handleAddToCart() {
     if (totals.inverter) {
       addToCart({
-        id: `solar-calculator-inverter-${totals.inverter.name}`,
+        id: `inv-${totals.inverter.name}`,
         productName: totals.inverter.name,
-        configurationName: "Solar calculator recommendation",
+        configurationName: "Solar Load Calculator Recommendation",
         price: totals.inverter.price,
       });
     }
     if (totals.battery) {
       addToCart({
-        id: `solar-calculator-battery-${totals.battery.name}`,
+        id: `bat-${totals.battery.name}`,
         productName: totals.battery.name,
-        configurationName: "Solar calculator recommendation",
+        configurationName: "Solar Load Calculator Recommendation",
         price: totals.battery.price,
       });
     }
     if (totals.panels) {
       addToCart({
-        id: `solar-calculator-panels-${totals.panels.watts}`,
-        productName: `${totals.panels.quantity} × ${totals.panels.watts} W Solar Panels`,
-        configurationName: "Solar calculator recommendation",
+        id: `pan-${totals.panels.watts}-${totals.panels.quantity}`,
+        productName: totals.panels.name,
+        configurationName: "Solar Load Calculator Recommendation",
         price: totals.panels.price,
       });
     }
+
+    setCartSuccess(true);
+    setTimeout(() => setCartSuccess(false), 3500);
   }
 
-  function checkoutOnWhatsApp() {
-    const applianceList = appliances.map(
-      (item) => `• ${item.name}: ${item.quantity} × ${item.watts} W, ${item.hoursPerDay} hrs/day`
-    );
-    const message = [
-      "Hello EmbraceTech, I used the Solar Load Calculator and would like a quote.",
-      "",
-      "Selected appliances:",
-      ...applianceList,
-      "",
-      "Recommended system:",
-      `• Inverter: ${totals.inverter?.name ?? "Custom size — quote required"} (${totals.inverter ? formatCurrency(totals.inverter.price) : "Quote required"})`,
-      `• Battery: ${totals.battery?.name ?? `${Math.ceil(totals.batteryAmpHours)} Ah — quote required`} (${totals.battery ? formatCurrency(totals.battery.price) : "Quote required"})`,
-      `• Solar panels: ${totals.panels?.name ?? "Not calculated"} (${totals.panels ? formatCurrency(totals.panels.price) : "—"})`,
-      `Estimated complete-item system cost: ${formatCurrency(totals.completeSystemCost)}`,
-      `Estimated monthly fuel savings: ${formatCurrency(totals.monthlyFuelSavings)}`,
-      `Estimated payback: ${totals.paybackMonths === null ? "Not available" : `${totals.paybackMonths.toFixed(1)} months`}`,
-    ].join("\n");
-    window.open(`https://wa.me/2347061451583?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-  }
-
-  const inputClass =
-    "w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 font-poppins text-sm text-slate-800 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/15";
-  const primaryButton =
-    "inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-montserrat text-sm font-bold text-white transition hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary disabled:cursor-not-allowed disabled:opacity-50";
-  const quietButton =
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 font-montserrat text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-40";
+  // WhatsApp order text
+  const whatsappText = encodeURIComponent(
+    `Hello Embrace Technologies! I used your Solar Load Calculator.\n\n` +
+      `📊 Load Summary:\n` +
+      `• Peak Load: ${totals.runningWatts.toLocaleString()} W\n` +
+      `• Daily Energy: ${totals.dailyEnergyWh.toLocaleString()} Wh\n\n` +
+      `⚡ Recommended System:\n` +
+      `• Inverter: ${totals.inverter?.name}\n` +
+      `• Battery Storage: ${totals.battery?.name}\n` +
+      `• Solar Panels: ${totals.panels?.name}\n` +
+      `• Estimated System Cost: ${formatCurrency(totals.completeSystemCost)}\n\n` +
+      `I would like to speak with an engineer to order this system.`
+  );
+  const whatsappUrl = `https://wa.me/2347061451583?text=${whatsappText}`;
 
   return (
-    <main className="min-h-screen bg-slate-50 pb-28 pt-20 sm:pt-24 lg:pb-16">
-      {/* Intro */}
-      <header className="bg-primary text-white">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.3fr_1fr] md:items-center md:py-16">
-          <div>
-            <p className="mb-3 font-montserrat text-sm font-semibold text-secondary">EmbraceTech solar planner</p>
-            <h1 className="font-anton text-3xl leading-tight tracking-wide text-white sm:text-4xl md:text-5xl">
-              Find the right solar system for your home or business
+    <>
+      <Helmet>
+        <title>Solar Load Calculator | Embrace Technologies Limited</title>
+        <meta
+          name="description"
+          content="Calculate your home or office solar energy requirement, peak load, battery storage, and generator fuel savings with the EmbraceTech Solar Load Calculator."
+        />
+        <link rel="canonical" href="https://embracetechng.com/solar-calculator" />
+      </Helmet>
+
+      <main className="min-h-screen bg-slate-100/80 py-8 sm:py-12 md:py-16 px-3 sm:px-6">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-slate-200/80 font-montserrat">
+          {/* HEADER BANNER */}
+          <header className="bg-gradient-to-r from-primary via-[#002b80] to-primary text-white text-center pt-8 pb-7 px-4 relative overflow-hidden">
+            {/* Ambient pattern */}
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold italic tracking-wide text-white drop-shadow-sm">
+              EmbraceTech Solar Load Calculator
             </h1>
-            <p className="mt-4 max-w-xl font-poppins text-sm leading-7 text-white/85 sm:text-base">
-              Pick the appliances you want to power. We'll size your inverter, batteries and panels, then show how
-              much you could save on fuel.
+            <p className="font-poppins italic text-xs sm:text-sm text-slate-200 mt-2 font-normal max-w-xl mx-auto leading-relaxed">
+              Follow the steps below to find your perfect power system &amp; calculate ROI
             </p>
-          </div>
+          </header>
 
-          <ol className="space-y-3 rounded-xl bg-white/10 p-5 font-poppins text-sm text-white/90 backdrop-blur-sm">
-            {[
-              ["Choose what you power", "Tap your appliances"],
-              ["Check the details", "Fix any numbers that look off"],
-              ["See your system", "Get sizes, prices and savings"],
-            ].map(([title, hint], index) => (
-              <li key={title} className="flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-secondary font-montserrat text-xs font-bold text-primary">
-                  {index + 1}
+          <div className="p-4 sm:p-7 md:p-9 space-y-10 sm:space-y-12">
+            {/* ========================================================================= */}
+            {/* STEP 1: APPLIANCE SELECTION GRID */}
+            {/* ========================================================================= */}
+            <section aria-labelledby="step-1-heading" className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
+                  STEP 1
                 </span>
-                <span>
-                  <span className="block font-montserrat font-semibold text-white">{title}</span>
-                  <span className="text-white/70">{hint}</span>
-                </span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </header>
-
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:grid-cols-[1fr_300px]">
-        <div className="min-w-0 space-y-8">
-          {/* Step 1 */}
-          <Panel step={1} title="What do you want to power?" hint="Tap an appliance to add it. Use + and − to change how many you have.">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-              {calculatorConfig.appliances.map((preset) => {
-                const quantity =
-                  appliances.find((item) => item.name === preset.name && !item.id.startsWith("other-"))?.quantity ?? 0;
-                const Icon = iconByName[preset.icon] ?? Zap;
-                const selected = quantity > 0;
-                return (
-                  <div
-                    key={preset.name}
-                    className={`flex flex-col overflow-hidden rounded-xl border-2 transition ${selected ? "border-primary bg-primary/5" : "border-slate-200 bg-white hover:border-secondary"
-                      }`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => addPreset(preset)}
-                      aria-label={`Add ${preset.name}${selected ? `, ${quantity} selected` : ""}`}
-                      className="flex flex-1 items-center gap-3 p-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-secondary"
-                    >
-                      <span
-                        className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${selected ? "bg-primary text-secondary" : "bg-slate-100 text-primary"
-                          }`}
-                      >
-                        <Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-                      </span>
-                      <span className="min-w-0">
-                        <span className="block font-montserrat text-sm font-semibold leading-tight text-slate-800">
-                          {preset.name}
-                        </span>
-                        <span className="block font-poppins text-xs text-slate-500">about {preset.watts} W</span>
-                      </span>
-                    </button>
-                    <div
-                      className={`flex items-center justify-between border-t px-2 py-1.5 ${selected ? "border-primary/15" : "border-slate-100"
-                        }`}
-                    >
-                      {selected ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() => decrementPreset(preset.name)}
-                            aria-label={`Remove one ${preset.name}`}
-                            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-primary hover:bg-primary/10"
-                          >
-                            <Minus className="h-4 w-4" />
-                          </button>
-                          <span className="font-montserrat text-sm font-bold text-primary" aria-live="polite">
-                            {quantity} added
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => addPreset(preset)}
-                            aria-label={`Add another ${preset.name}`}
-                            className="inline-flex h-8 w-8 items-center justify-center rounded-md text-primary hover:bg-primary/10"
-                          >
-                            <Plus className="h-4 w-4" />
-                          </button>
-                        </>
-                      ) : (
-                        <span className="w-full py-1 text-center font-poppins text-xs text-slate-400">Tap to add</span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-6 rounded-xl border border-dashed border-slate-300 p-4">
-              {showOtherForm ? (
-                <form onSubmit={addOtherAppliance} className="grid gap-3 sm:grid-cols-[1.5fr_1fr_1fr_auto] sm:items-end">
-                  <label className="font-montserrat text-xs font-semibold text-slate-700">
-                    What is it called?
-                    <input
-                      required
-                      value={otherName}
-                      onChange={(event) => setOtherName(event.target.value)}
-                      placeholder="e.g. Blender"
-                      className={`${inputClass} mt-1`}
-                    />
-                  </label>
-                  <label className="font-montserrat text-xs font-semibold text-slate-700">
-                    Power (watts)
-                    <input
-                      type="number"
-                      min="0"
-                      value={otherWatts}
-                      onChange={(event) => setOtherWatts(Number(event.target.value))}
-                      className={`${inputClass} mt-1`}
-                    />
-                  </label>
-                  <label className="font-montserrat text-xs font-semibold text-slate-700">
-                    Hours used daily
-                    <input
-                      type="number"
-                      min="0"
-                      max="24"
-                      step="0.5"
-                      value={otherHours}
-                      onChange={(event) => setOtherHours(Number(event.target.value))}
-                      className={`${inputClass} mt-1`}
-                    />
-                  </label>
-                  <div className="flex gap-2">
-                    <button type="submit" className={primaryButton}>
-                      Add
-                    </button>
-                    <button type="button" onClick={() => setShowOtherForm(false)} className={quietButton}>
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
-                  <p className="font-poppins text-sm text-slate-600">Can't see your appliance? Add it yourself.</p>
-                  <button type="button" onClick={() => setShowOtherForm(true)} className={quietButton}>
-                    <Plus className="h-4 w-4" /> Add your own
-                  </button>
-                </div>
-              )}
-            </div>
-          </Panel>
-
-          {/* Step 2 */}
-          <Panel
-            step={2}
-            title="Check the details"
-            hint="We've filled in typical figures. Change them if your appliances are different. The watts are usually on the appliance label."
-          >
-            {appliances.length === 0 ? (
-              <div className="rounded-xl bg-slate-50 px-4 py-8 text-center">
-                <p className="font-montserrat text-sm font-semibold text-slate-700">Nothing added yet</p>
-                <p className="mt-1 font-poppins text-sm text-slate-500">
-                  Go back to step 1 and tap the appliances you use.
-                </p>
+                <h2
+                  id="step-1-heading"
+                  className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                >
+                  Click to add, click the red number to reduce
+                </h2>
               </div>
-            ) : (
-              <ul className="space-y-3">
-                {appliances.map((item) => {
-                  const Icon = iconByName[item.icon] ?? Zap;
+
+              {/* Grid of 18 Real Home Appliances */}
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-2.5 sm:gap-3 pt-1">
+                {APPLIANCE_PRESETS.map((preset) => {
+                  const qty = getQuantity(preset.name);
+                  const isSelected = qty > 0;
+
                   return (
-                    <li key={item.id} className="rounded-xl border border-slate-200 bg-white p-3 sm:p-4">
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex min-w-0 items-center gap-3">
-                          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-primary">
-                            <Icon className="h-4 w-4" aria-hidden="true" />
-                          </span>
-                          <p className="truncate font-montserrat text-sm font-semibold text-slate-800">{item.name}</p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setAppliances((current) => current.filter((appliance) => appliance.id !== item.id))}
-                          aria-label={`Remove ${item.name}`}
-                          className="inline-flex items-center gap-1 rounded-md px-2 py-1.5 font-poppins text-xs text-slate-500 transition hover:bg-slate-100 hover:text-primary"
+                    <div
+                      key={preset.name}
+                      onClick={() => handleAddPreset(preset)}
+                      className={`relative p-2 sm:p-2.5 rounded-xl border transition-all duration-200 flex flex-col items-center justify-between min-h-[105px] sm:min-h-[114px] cursor-pointer select-none group text-center ${
+                        isSelected
+                          ? "bg-amber-50/40 border-secondary ring-1 ring-secondary/30 shadow-sm"
+                          : "bg-white border-slate-200/90 hover:border-primary/50 hover:shadow-md"
+                      }`}
+                      title={`Click to add ${preset.name} (${preset.watts}W)`}
+                    >
+                      {/* Red Number Badge (Click to Reduce) */}
+                      {isSelected && (
+                        <span
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleReducePreset(preset.name);
+                          }}
+                          title="Click to reduce"
+                          className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-red-600 text-white font-montserrat font-black text-[11px] sm:text-xs flex items-center justify-center shadow-md hover:bg-red-700 hover:scale-110 active:scale-95 transition-transform z-10 cursor-pointer"
                         >
-                          <Trash2 className="h-4 w-4" /> Remove
-                        </button>
+                          {qty}
+                        </span>
+                      )}
+
+                      {/* Graphic Icon (Medium Size) */}
+                      <div className="w-12 h-12 sm:w-13 sm:h-13 flex items-center justify-center my-auto transition-transform group-hover:scale-105">
+                        <ApplianceGraphic iconKey={preset.iconKey} />
                       </div>
-                      <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-3">
-                        <Field label="How many">
-                          <input
-                            aria-label={`${item.name} quantity`}
-                            type="number"
-                            min="1"
-                            value={item.quantity}
-                            onChange={(event) => updateAppliance(item.id, "quantity", Number(event.target.value))}
-                            className={inputClass}
-                          />
-                        </Field>
-                        <Field label="Power (watts)">
-                          <input
-                            aria-label={`${item.name} watts`}
-                            type="number"
-                            min="0"
-                            value={item.watts}
-                            onChange={(event) => updateAppliance(item.id, "watts", Number(event.target.value))}
-                            className={inputClass}
-                          />
-                        </Field>
-                        <Field label="Hours used daily">
-                          <input
-                            aria-label={`${item.name} hours per day`}
-                            type="number"
-                            min="0"
-                            max="24"
-                            step="0.5"
-                            value={item.hoursPerDay}
-                            onChange={(event) => updateAppliance(item.id, "hoursPerDay", Number(event.target.value))}
-                            className={inputClass}
-                          />
-                        </Field>
-                      </div>
-                    </li>
+
+                      {/* Appliance Name */}
+                      <span className="text-[10px] sm:text-[11px] font-poppins font-medium text-slate-700 text-center leading-tight line-clamp-2 mt-1 group-hover:text-primary transition-colors">
+                        {preset.name}
+                      </span>
+                    </div>
                   );
                 })}
-              </ul>
-            )}
+              </div>
 
-            <div className="mt-6 grid gap-5 border-t border-slate-100 pt-6 md:grid-cols-[1.4fr_1fr]">
-              <fieldset>
-                <legend className="font-montserrat text-sm font-semibold text-slate-800">
-                  What do you use when the grid is off?
-                </legend>
-                <p className="mt-1 font-poppins text-xs text-slate-500">
-                  We use this to work out how much you could save.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {backupOptions.map((option) => (
-                    <label
-                      key={option}
-                      className={`cursor-pointer rounded-full border px-4 py-2 font-montserrat text-xs font-semibold transition focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-secondary ${backup === option
-                          ? "border-primary bg-primary text-white"
-                          : "border-slate-300 bg-white text-slate-700 hover:border-primary"
-                        }`}
+              {/* Bottom Buttons: Add Other Appliance & Clear All */}
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+                <button
+                  type="button"
+                  onClick={() => setShowAddCustom((prev) => !prev)}
+                  className="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white font-montserrat font-bold text-xs tracking-wide shadow-sm transition-colors flex items-center gap-1.5"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  Add Other Appliance
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClearAll}
+                  className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-montserrat font-semibold text-xs transition-colors"
+                >
+                  Clear All
+                </button>
+              </div>
+
+              {/* Collapsible Custom Appliance Form */}
+              <AnimatePresence>
+                {showAddCustom && (
+                  <motion.form
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    onSubmit={handleAddCustomAppliance}
+                    className="overflow-hidden bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 mt-3 max-w-lg mx-auto"
+                  >
+                    <h3 className="font-montserrat font-bold text-xs sm:text-sm text-slate-800 mb-3">
+                      Add Custom Appliance
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-poppins">
+                      <div className="sm:col-span-3">
+                        <label className="block text-slate-500 mb-1">Appliance Name</label>
+                        <input
+                          type="text"
+                          required
+                          value={customName}
+                          onChange={(e) => setCustomName(e.target.value)}
+                          placeholder="e.g. Deep Fryer, CCTV NVR"
+                          className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-slate-500 mb-1">Watts (W)</label>
+                        <input
+                          type="number"
+                          min="1"
+                          required
+                          value={customWatts}
+                          onChange={(e) => setCustomWatts(Number(e.target.value))}
+                          className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-slate-500 mb-1">Daily Hours (Hrs)</label>
+                        <input
+                          type="number"
+                          min="0.5"
+                          max="24"
+                          step="0.5"
+                          required
+                          value={customHours}
+                          onChange={(e) => setCustomHours(Number(e.target.value))}
+                          className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                        />
+                      </div>
+                      <div className="flex items-end">
+                        <button
+                          type="submit"
+                          className="w-full py-2 bg-primary hover:bg-primary/90 text-white font-montserrat font-bold rounded-lg text-xs"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </section>
+
+            {/* ========================================================================= */}
+            {/* STEP 2: VERIFY LOAD & CALCULATE ROI */}
+            {/* ========================================================================= */}
+            <section aria-labelledby="step-2-heading" className="space-y-4 pt-6 border-t border-slate-200">
+              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
+                  STEP 2
+                </span>
+                <h2
+                  id="step-2-heading"
+                  className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                >
+                  Verify Load &amp; Calculate Return on Investment
+                </h2>
+              </div>
+
+              {/* Table / List of Selected Appliances */}
+              {appliances.length === 0 ? (
+                <div className="py-8 px-4 rounded-xl border border-dashed border-slate-300 bg-slate-50/80 text-center font-poppins text-xs sm:text-sm text-slate-500">
+                  No appliances selected yet. Click any appliance in Step 1 above to add it to your calculation.
+                </div>
+              ) : (
+                <div className="space-y-2.5">
+                  {appliances.map((item) => (
+                    <div
+                      key={item.id}
+                      className="grid grid-cols-12 gap-2 sm:gap-3 items-center bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 rounded-xl text-xs font-poppins"
                     >
-                      <input
-                        type="radio"
-                        name="backup"
-                        value={option}
-                        checked={backup === option}
-                        onChange={() => setBackup(option)}
-                        className="sr-only"
-                      />
-                      {backupLabels[option]}
-                    </label>
+                      {/* Appliance Name */}
+                      <div className="col-span-12 sm:col-span-5">
+                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                          Appliance
+                        </label>
+                        <input
+                          type="text"
+                          value={item.name}
+                          onChange={(e) => handleUpdateRow(item.id, "name", e.target.value)}
+                          className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                        />
+                      </div>
+
+                      {/* Qty */}
+                      <div className="col-span-3 sm:col-span-2">
+                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                          Qty
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={item.quantity}
+                          onChange={(e) =>
+                            handleUpdateRow(item.id, "quantity", Math.max(1, Number(e.target.value)))
+                          }
+                          className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                        />
+                      </div>
+
+                      {/* Watts */}
+                      <div className="col-span-4 sm:col-span-2">
+                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                          Watts
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={item.watts}
+                          onChange={(e) =>
+                            handleUpdateRow(item.id, "watts", Math.max(1, Number(e.target.value)))
+                          }
+                          className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                        />
+                      </div>
+
+                      {/* Hours/Day */}
+                      <div className="col-span-4 sm:col-span-2">
+                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                          Hrs/Day
+                        </label>
+                        <input
+                          type="number"
+                          min="0.5"
+                          max="24"
+                          step="0.5"
+                          value={item.hoursPerDay}
+                          onChange={(e) =>
+                            handleUpdateRow(
+                              item.id,
+                              "hoursPerDay",
+                              Math.max(0.5, Math.min(24, Number(e.target.value)))
+                            )
+                          }
+                          className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                        />
+                      </div>
+
+                      {/* Remove Row */}
+                      <div className="col-span-1 text-center">
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveAppliance(item.id)}
+                          className="text-red-500 hover:text-red-700 hover:scale-125 transition-transform font-bold text-lg leading-none p-1"
+                          title="Remove item"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </fieldset>
-              <label className="font-montserrat text-sm font-semibold text-slate-800">
-                Petrol price today
-                <span className="mt-1 block font-poppins text-xs font-normal text-slate-500">Naira per litre</span>
-                <span className="relative mt-3 block">
-                  <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 font-poppins text-sm text-slate-500">
-                    ₦
-                  </span>
+              )}
+
+              {/* Generator & Fuel Price Inputs */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 font-poppins">
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    What do you currently use for Backup Power?
+                  </label>
+                  <select
+                    value={backup}
+                    onChange={(e) => setBackup(e.target.value)}
+                    className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
+                  >
+                    <option value="Petrol Generator">Petrol Generator</option>
+                    <option value="Diesel Generator">Diesel Generator</option>
+                    <option value="Grid Only">Grid Only</option>
+                    <option value="No Backup">No Backup</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    Current Fuel Price (₦ per Liter)
+                  </label>
                   <input
                     type="number"
-                    min="0"
+                    min="100"
+                    step="10"
                     value={fuelPrice}
-                    onChange={(event) => setFuelPrice(Math.max(0, Number(event.target.value)))}
-                    className={`${inputClass} pl-8`}
-                  />
-                </span>
-              </label>
-            </div>
-
-            <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="font-poppins text-sm text-slate-500">
-                {appliances.length === 0 ? "Add at least one appliance to continue." : "Happy with the list? Let's size your system."}
-              </p>
-              <button type="button" onClick={calculate} disabled={appliances.length === 0} className={primaryButton}>
-                Show my recommended system
-              </button>
-            </div>
-          </Panel>
-
-          {/* Step 3 */}
-          {hasCalculated && (
-            <section ref={resultRef} className="scroll-mt-24" aria-labelledby="step-3-title">
-              <Panel step={3} title="Your recommended system" hint="Based on the appliances above." headingId="step-3-title">
-                <div className="grid gap-3 md:grid-cols-3">
-                  <SystemCard
-                    icon={Zap}
-                    label="Inverter"
-                    description="Turns stored power into electricity your appliances can use."
-                    item={totals.inverter}
-                    fallback="Larger than our standard sizes. Ask us for a quote."
-                  />
-                  <SystemCard
-                    icon={BatteryCharging}
-                    label="Batteries"
-                    description="Store power so you have light at night and when it's cloudy."
-                    item={totals.battery}
-                    fallback={`You need about ${Math.ceil(totals.batteryAmpHours).toLocaleString("en-NG")} Ah. Ask us for a quote.`}
-                  />
-                  <SystemCard
-                    icon={Sun}
-                    label="Solar panels"
-                    description="Collect sunlight and turn it into power."
-                    item={totals.panels ? { name: totals.panels.name, price: totals.panels.price } : null}
-                    fallback="Add appliances to see panels."
+                    onChange={(e) => setFuelPrice(Number(e.target.value))}
+                    className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
                   />
                 </div>
+              </div>
 
-                <div className="mt-5 flex flex-wrap items-end justify-between gap-3 rounded-xl bg-primary p-5 text-white">
-                  <div>
-                    <p className="font-montserrat text-sm font-semibold text-white/80">Estimated total cost</p>
-                    <p className="font-poppins text-xs text-white/60">Includes only the items priced above</p>
-                  </div>
-                  <p className="font-anton text-3xl tracking-wide text-secondary">
-                    {formatCurrency(totals.completeSystemCost)}
-                  </p>
-                </div>
-
-                {(totals.inverter === null || totals.battery === null) && (
-                  <p className="mt-3 rounded-lg bg-slate-50 px-4 py-3 font-poppins text-xs leading-5 text-slate-600">
-                    Part of this system is bigger than our standard price list, so it isn't in the total. Message us for a
-                    full quote.
-                  </p>
-                )}
-
-                {/* Savings */}
-                <div className="mt-8 rounded-xl border border-secondary/60 bg-secondary/10 p-5 sm:p-6">
-                  <h3 className="font-montserrat text-lg font-bold normal-case tracking-normal text-primary">
-                    What you could save
-                  </h3>
-                  {backup === "Petrol Generator" ? (
-                    <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <p className="font-poppins text-xs text-slate-600">You spend on petrol each month</p>
-                        <p className="font-anton text-3xl tracking-wide text-primary">
-                          {formatCurrency(totals.monthlyFuelSavings)}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="font-poppins text-xs text-slate-600">Solar pays for itself in about</p>
-                        <p className="font-anton text-3xl tracking-wide text-primary">
-                          {totals.paybackMonths === null ? "—" : `${totals.paybackMonths.toFixed(1)} months`}
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    <p className="mt-3 font-poppins text-sm leading-6 text-slate-700">
-                      Savings are worked out from petrol spending. You chose “{backupLabels[backup]}”, so choose “Petrol
-                      generator” in step 2 if you'd like to see them.
-                    </p>
-                  )}
-
-                  <div className="mt-5 border-t border-secondary/40 pt-4">
-                    <p className="font-montserrat text-sm font-semibold text-slate-800">Want to test a different routine?</p>
-                    <p className="font-poppins text-xs text-slate-600">
-                      This changes the daily hours of every appliance in your list.
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => adjustHours(-1)}
-                        disabled={appliances.every((item) => item.hoursPerDay <= 0)}
-                        className={quietButton}
-                      >
-                        <Minus className="h-4 w-4" /> 1 hour less a day
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => adjustHours(1)}
-                        disabled={appliances.every((item) => item.hoursPerDay >= 24)}
-                        className={quietButton}
-                      >
-                        <Plus className="h-4 w-4" /> 1 hour more a day
-                      </button>
-                    </div>
-                  </div>
-                  <p className="mt-4 font-poppins text-[11px] leading-5 text-slate-500">
-                    We assume a generator gives about {calculatorConfig.petrolGeneratorEfficiencyKwhPerLitre} kWh per litre.
-                    Real fuel use varies.
-                  </p>
-                </div>
-
-                <div className="mt-8">
-                  <h3 className="font-montserrat text-lg font-bold normal-case tracking-normal text-primary">
-                    Ready to go ahead?
-                  </h3>
-                  <p className="mt-1 font-poppins text-sm text-slate-600">
-                    Prices are estimates. Your final quote may differ.
-                  </p>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <button
-                      type="button"
-                      onClick={addAvailableItemsToCart}
-                      disabled={!totals.inverter && !totals.battery && !totals.panels}
-                      className={primaryButton}
-                    >
-                      <Check className="h-4 w-4" /> Add these items to my cart
-                    </button>
-                    <button
-                      type="button"
-                      onClick={checkoutOnWhatsApp}
-                      disabled={appliances.length === 0}
-                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-secondary px-6 py-3 font-montserrat text-sm font-bold text-primary transition hover:bg-secondary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      <svg aria-hidden="true" className="h-5 w-5 fill-current" viewBox="0 0 24 24">
-                        <path d="M12.04 2a9.9 9.9 0 0 0-8.51 14.96L2 22l5.2-1.36A9.93 9.93 0 1 0 12.04 2Zm0 18.05a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.09.81.82-3.01-.2-.31a8.13 8.13 0 1 1 6.9 3.82Zm4.46-6.08c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.23-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.23-.01-.36.1-.48.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.46-.4-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.43-.58 1.63-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
-                      </svg>
-                      Get a quote on WhatsApp
-                    </button>
-                  </div>
-                </div>
-              </Panel>
+              {/* Calculate System Requirement Button */}
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={handleCalculate}
+                  disabled={appliances.length === 0}
+                  className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-secondary via-alternativeO to-secondary text-white font-montserrat font-black text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:brightness-105 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  <Sparkles className="w-5 h-5 text-amber-200" />
+                  CALCULATE SYSTEM REQUIREMENT
+                </button>
+              </div>
             </section>
-          )}
-        </div>
 
-        {/* Live summary (desktop) */}
-        <aside className="hidden lg:block" aria-label="Your power summary">
-          <div className="sticky top-28 rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="font-montserrat text-base font-bold text-primary">Your power needs</h2>
-            <p className="mt-1 font-poppins text-xs text-slate-500">Updates as you add appliances.</p>
-            <dl className="mt-5 space-y-4">
-              <SummaryRow label="Appliances" value={itemCount.toLocaleString("en-NG")} />
-              <SummaryRow label="Power at once" value={`${totals.runningWatts.toLocaleString("en-NG")} W`} />
-              <SummaryRow label="Energy used daily" value={`${(totals.dailyEnergyWh / 1000).toLocaleString("en-NG", { maximumFractionDigits: 1 })} kWh`} />
-            </dl>
-            <button
-              type="button"
-              onClick={calculate}
-              disabled={appliances.length === 0}
-              className={`${primaryButton} mt-6 w-full`}
-            >
-              Show my system
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setAppliances([]);
-                setHasCalculated(false);
-              }}
-              disabled={appliances.length === 0}
-              className={`${quietButton} mt-2 w-full`}
-            >
-              Start over
-            </button>
+            {/* ========================================================================= */}
+            {/* STEP 3: REVIEW PERFORMANCE, ROI & CHECKOUT */}
+            {/* ========================================================================= */}
+            {hasCalculated && appliances.length > 0 && (
+              <section
+                ref={step3Ref}
+                aria-labelledby="step-3-heading"
+                className="space-y-6 pt-6 border-t border-slate-200 scroll-mt-24"
+              >
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                  <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
+                    STEP 3
+                  </span>
+                  <h2
+                    id="step-3-heading"
+                    className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                  >
+                    Review Performance, ROI &amp; Checkout
+                  </h2>
+                </div>
+
+                {/* 3 Metric Summary Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
+                  {/* Metric 1: Peak Load */}
+                  <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-alternativeR shadow-sm flex flex-col justify-between">
+                    <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
+                      PEAK LOAD
+                    </span>
+                    <div className="my-2">
+                      <span className="text-2xl sm:text-3xl font-montserrat font-black text-slate-900">
+                        {totals.runningWatts.toLocaleString()}
+                      </span>
+                      <span className="text-sm font-bold text-slate-600 ml-1">W</span>
+                    </div>
+                    <span className="text-[11px] font-poppins text-slate-400">
+                      Running simultaneously
+                    </span>
+                  </div>
+
+                  {/* Metric 2: Daily Energy */}
+                  <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-secondary shadow-sm flex flex-col justify-between">
+                    <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
+                      DAILY ENERGY
+                    </span>
+                    <div className="my-2">
+                      <span className="text-2xl sm:text-3xl font-montserrat font-black text-slate-900">
+                        {totals.dailyEnergyWh.toLocaleString()}
+                      </span>
+                      <span className="text-sm font-bold text-slate-600 ml-1">Wh</span>
+                    </div>
+                    <span className="text-[11px] font-poppins text-slate-400">
+                      Total power needed daily
+                    </span>
+                  </div>
+
+                  {/* Metric 3: Est. Backup Time */}
+                  <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-emerald-500 shadow-sm flex flex-col justify-between">
+                    <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
+                      EST. BACKUP TIME
+                    </span>
+                    <div className="my-1.5 flex items-center justify-between">
+                      <div>
+                        <span className="text-2xl sm:text-3xl font-montserrat font-black text-emerald-600">
+                          {totals.finalBackupHours.toFixed(1)}
+                        </span>
+                        <span className="text-sm font-bold text-slate-600 ml-1">hrs</span>
+                      </div>
+
+                      {/* Stepper adjustment */}
+                      <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1 text-[11px] font-semibold text-slate-600">
+                        <button
+                          type="button"
+                          onClick={() => setBackupHoursAdjustment((prev) => prev - 0.5)}
+                          className="w-5 h-5 rounded hover:bg-white text-slate-700 flex items-center justify-center font-bold"
+                          title="Reduce backup target"
+                        >
+                          -
+                        </button>
+                        <span className="text-[10px] uppercase font-bold text-slate-400 px-1">ADJUST</span>
+                        <button
+                          type="button"
+                          onClick={() => setBackupHoursAdjustment((prev) => prev + 0.5)}
+                          className="w-5 h-5 rounded hover:bg-white text-slate-700 flex items-center justify-center font-bold"
+                          title="Increase backup target"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <span className="text-[11px] font-poppins text-slate-400">
+                      Running at max load without sun
+                    </span>
+                  </div>
+                </div>
+
+                {/* Recommended System Configuration Header */}
+                <div className="pt-2">
+                  <h3 className="font-montserrat font-extrabold italic text-lg sm:text-xl text-slate-900 mb-3.5">
+                    Recommended System Configuration
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 font-poppins">
+                    {/* 1. Inverter */}
+                    <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+                      <div>
+                        <span className="font-montserrat font-bold text-slate-900 text-sm block">
+                          1. Inverter
+                        </span>
+                        <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                          {totals.inverter?.name || "5 kW Hybrid Inverter"}
+                        </p>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                          <Check className="w-3 h-3" /> In Stock
+                        </span>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
+                        {formatCurrency(totals.inverter?.price || 1250000)}
+                      </div>
+                    </div>
+
+                    {/* 2. Battery Storage */}
+                    <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+                      <div>
+                        <span className="font-montserrat font-bold text-slate-900 text-sm block">
+                          2. Battery Storage
+                        </span>
+                        <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                          {totals.battery?.name || "48 V 200 Ah Battery Storage"}
+                        </p>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                          <Check className="w-3 h-3" /> In Stock
+                        </span>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
+                        {formatCurrency(totals.battery?.price || 1850000)}
+                      </div>
+                    </div>
+
+                    {/* 3. Solar Panels */}
+                    <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+                      <div>
+                        <span className="font-montserrat font-bold text-slate-900 text-sm block">
+                          3. Solar Panels
+                        </span>
+                        <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                          {totals.panels?.name || "6x Solar Panel 550W Mono"}
+                        </p>
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                          <Check className="w-3 h-3" /> In Stock
+                        </span>
+                      </div>
+                      <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
+                        {formatCurrency(totals.panels?.price || 870000)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Dark Banner: Estimated System Cost */}
+                <div className="bg-slate-800 text-white rounded-xl p-5 text-center shadow-md">
+                  <span className="font-poppins italic text-xs text-slate-300 block">
+                    Estimated System Cost (Available Items Only)
+                  </span>
+                  <span className="font-montserrat font-extrabold text-2xl sm:text-3xl text-white tracking-wide block mt-1">
+                    {formatCurrency(totals.completeSystemCost)}
+                  </span>
+                </div>
+
+                {/* Green Banner: Your Estimated Savings */}
+                <div className="bg-emerald-50 border border-emerald-200/90 rounded-2xl p-5 sm:p-7 text-center space-y-2.5 font-poppins">
+                  <div className="flex items-center justify-center gap-1.5 font-montserrat font-bold text-emerald-900 text-sm sm:text-base">
+                    <span>💡</span>
+                    <span>Your Estimated Savings</span>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-700">
+                    Running this load on a <strong className="text-slate-900">{backup}</strong> currently costs you approx.{" "}
+                    <strong className="text-alternativeR font-montserrat font-bold">
+                      {formatCurrency(totals.monthlyFuelSavings)} / month
+                    </strong>{" "}
+                    in fuel.
+                  </p>
+
+                  <p className="text-xs sm:text-sm text-slate-700 italic">
+                    This Solar System will pay for itself in fuel savings in just
+                  </p>
+
+                  <div className="py-1">
+                    <span className="text-2xl sm:text-3xl font-montserrat font-black italic text-emerald-600 tracking-wide">
+                      {totals.paybackMonths ? `${totals.paybackMonths.toFixed(1)} Months!` : "12.0 Months!"}
+                    </span>
+                  </div>
+
+                  <p className="text-[11px] sm:text-xs text-slate-400 font-normal">
+                    (Free electricity after that!)
+                  </p>
+                </div>
+
+                {/* Action Buttons: Add Available Items to Cart & Chat via WhatsApp */}
+                <div className="space-y-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={handleAddToCart}
+                    className="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-montserrat font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+                  >
+                    <ShoppingCart className="w-5 h-5" />
+                    Add Available Items to Cart
+                  </button>
+
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-montserrat font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+                  >
+                    <MessageCircle className="w-5 h-5 fill-current" />
+                    Chat &amp; Order via WhatsApp
+                  </a>
+                </div>
+
+                {/* Cart Success Toast */}
+                <AnimatePresence>
+                  {cartSuccess && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="p-3 bg-emerald-100 border border-emerald-300 rounded-xl text-center text-emerald-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
+                    >
+                      <Check className="w-4 h-4 text-emerald-600" />
+                      Recommended items added to your cart! You can view them in the cart drawer.
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </section>
+            )}
           </div>
-        </aside>
-      </div>
-
-      {/* Live summary (mobile) */}
-      {appliances.length > 0 && (
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 px-4 py-3 shadow-[0_-4px_16px_rgba(0,0,0,0.06)] backdrop-blur lg:hidden">
-          <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
-            <div className="font-poppins text-xs text-slate-600">
-              <p className="font-montserrat text-sm font-bold text-primary">
-                {itemCount} {itemCount === 1 ? "appliance" : "appliances"}
-              </p>
-              <p>{totals.runningWatts.toLocaleString("en-NG")} W at once</p>
-            </div>
-            <button type="button" onClick={calculate} className={`${primaryButton} min-h-11 px-4 py-2`}>
-              Show my system
-            </button>
-          </div>
         </div>
-      )}
-    </main>
-  );
-}
-
-function Panel({
-  step,
-  title,
-  hint,
-  headingId,
-  children,
-}: {
-  step: number;
-  title: string;
-  hint: string;
-  headingId?: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
-      <div className="mb-6 flex items-start gap-4">
-        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary font-anton text-lg text-primary">
-          {step}
-        </span>
-        <div>
-          <h2 id={headingId} className="m-0 font-montserrat text-xl font-bold normal-case tracking-normal text-primary">
-            {title}
-          </h2>
-          <p className="mt-1 max-w-2xl font-poppins text-sm leading-6 text-slate-600">{hint}</p>
-        </div>
-      </div>
-      {children}
-    </section>
-  );
-}
-
-function Field({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <label className="block font-montserrat text-[11px] font-semibold text-slate-600 sm:text-xs">
-      <span className="mb-1 block">{label}</span>
-      {children}
-    </label>
-  );
-}
-
-function SummaryRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-baseline justify-between gap-3 border-b border-slate-100 pb-3 last:border-0 last:pb-0">
-      <dt className="font-poppins text-sm text-slate-600">{label}</dt>
-      <dd className="font-anton text-xl tracking-wide text-primary">{value}</dd>
-    </div>
-  );
-}
-
-function SystemCard({
-  icon: Icon,
-  label,
-  description,
-  item,
-  fallback,
-}: {
-  icon: LucideIcon;
-  label: string;
-  description: string;
-  item: PricedItem;
-  fallback: string;
-}) {
-  return (
-    <div className="flex flex-col rounded-xl border border-slate-200 bg-slate-50 p-5">
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-secondary">
-        <Icon className="h-5 w-5" aria-hidden="true" />
-      </span>
-      <h4 className="mt-4 font-montserrat text-base font-bold text-primary">{label}</h4>
-      <p className="mt-1 font-poppins text-xs leading-5 text-slate-500">{description}</p>
-      <p className="mt-4 font-poppins text-sm font-medium text-slate-800">{item?.name ?? fallback}</p>
-      <p className="mt-auto pt-3 font-anton text-xl tracking-wide text-primary">
-        {item ? formatCurrency(item.price) : "Price on request"}
-      </p>
-    </div>
+      </main>
+    </>
   );
 }
