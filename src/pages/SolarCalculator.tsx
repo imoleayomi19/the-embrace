@@ -510,35 +510,23 @@ export function SolarCalculator() {
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
           <h1
-            className="relative flex flex-wrap items-center justify-center gap-x-2.5 sm:gap-x-3 gap-y-1.5 font-extrabold tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] text-center text-base sm:text-lg md:text-2xl lg:text-3xl"
+            className="relative flex flex-col items-center gap-2.5 sm:gap-3 font-extrabold tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] text-center text-xl sm:text-3xl md:text-4xl lg:text-5xl"
             style={{ textTransform: "none" }}
           >
-            {/* EMBRACE TECHNOLOGIES LIMITED: uppercase, underlined with orange line */}
+            {/* Line 1: EMBRACE TECHNOLOGIES LIMITED, uppercase, underlined with an orange line */}
             <span
-              className="inline-block pb-1 sm:pb-1.5 border-b-2 sm:border-b-[3px] border-[#fd8d07]"
+              className="inline-block pb-1.5 sm:pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07]"
               style={{ textTransform: "uppercase" }}
             >
               EMBRACE TECHNOLOGIES LIMITED
             </span>
-            {/* Separator */}
-            <span
-              className="text-[#fd8d07] font-bold select-none px-1"
-              style={{ textTransform: "none" }}
-            >
-              |
-            </span>
-            {/* Solar Load Calculator: Solar (S uppercase), Load (L uppercase), Calculator (C uppercase) */}
-            <span
-              className="text-white font-extrabold"
-              style={{ textTransform: "none" }}
-            >
-              Solar Load Calculator
-            </span>
+            {/* Line 2: Solar Load Calculator */}
+            <span style={{ textTransform: "none" }}>Solar Load Calculator</span>
           </h1>
-          {/* Subtitle */}
+          {/* Line 3: subtitle, always on one straight line ending in ROI */}
           <p
-            className="relative font-poppins text-slate-200 mt-4 sm:mt-5 font-normal mx-auto leading-relaxed"
-            style={{ fontSize: "clamp(12px, 2.2vw, 15px)" }}
+            className="relative font-poppins text-slate-200 mt-4 sm:mt-5 font-normal mx-auto leading-relaxed whitespace-nowrap"
+            style={{ fontSize: "clamp(8px, 2.5vw, 16px)", textTransform: "none" }}
           >
             Follow the steps below to find your perfect power system &amp; calculate ROI
           </p>
