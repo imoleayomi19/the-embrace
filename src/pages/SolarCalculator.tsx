@@ -480,15 +480,21 @@ export function SolarCalculator() {
           {/* Ambient pattern */}
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
-          <h1 className="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-3 sm:gap-y-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold montserrat tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] normal-case">
-            {/* Orange line is a real border, so it can never collide with a wrapped line */}
-            <span className="uppercase inline-block pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07]">
+          <h1 className="relative flex flex-col items-center gap-3 sm:gap-4 font-extrabold montserrat tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] normal-case">
+            {/* Line 1: company name, uppercase, underlined with an orange border */}
+            <span className="uppercase montserrat inline-block pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07] text-xl sm:text-3xl md:text-4xl lg:text-5xl">
               Embrace Technologies Limited
             </span>
-            <span className="hidden sm:inline">|</span>
-            <span className="normal-case">Solar load calculator</span>
+            {/* Line 2: calculator title, only the first letter uppercase */}
+            <span className="normal-case montserrat text-xl sm:text-3xl md:text-4xl lg:text-5xl">
+              Solar load calculator
+            </span>
           </h1>
-          <p className="relative font-poppins italic text-xs sm:text-sm md:text-base text-slate-200 mt-4 sm:mt-5 font-normal max-w-xl mx-auto leading-relaxed">
+          {/* Line 3: subtitle, always one straight line (font shrinks on small screens) */}
+          <p
+            className="relative font-poppins text-slate-200 mt-4 sm:mt-5 font-normal mx-auto leading-relaxed whitespace-nowrap"
+            style={{ fontSize: "clamp(8px, 2.5vw, 16px)" }}
+          >
             Follow the steps below to find your perfect power system &amp; calculate ROI
           </p>
         </header>

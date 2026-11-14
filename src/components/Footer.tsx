@@ -179,13 +179,13 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-4 flex flex-col gap-3 items-center md:flex-row md:items-center md:justify-between text-slate-500 text-xs font-poppins font-normal text-center md:text-left">
+        <div className="pt-4 pb-20 md:pb-0 md:pr-36 flex flex-col gap-3 items-center md:flex-row md:items-center md:justify-between text-slate-500 text-sm md:text-base font-poppins font-normal text-center md:text-left">
           <p>© {new Date().getFullYear()} Embrace Technologies Ltd. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4">
-            <Link to="/privacy-policy" className="transition-colors hover:text-white font-montserrat font-medium">
+            <Link to="/privacy-policy" className="transition-colors hover:text-white font-montserrat text-sm md:text-base">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="transition-colors hover:text-white font-montserrat font-medium">
+            <Link to="/terms-of-service" className="transition-colors hover:text-white font-montserrat text-sm md:text-base">
               Terms of Service
             </Link>
           </div>
