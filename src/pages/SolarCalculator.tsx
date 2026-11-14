@@ -4,13 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Check,
   Plus,
-  Minus,
   ShoppingCart,
   MessageCircle,
-  HelpCircle,
-  X,
   Sparkles,
-  ArrowRight,
 } from "lucide-react";
 import { useCart } from "../context/cartStore";
 import calculatorConfig from "../data/solarCalculatorConfig.json";
@@ -476,559 +472,569 @@ export function SolarCalculator() {
         <link rel="canonical" href="https://embracetechng.com/solar-calculator" />
       </Helmet>
 
-      <main className="min-h-screen bg-slate-100/80 py-8 sm:py-12 md:py-16 px-3 sm:px-6">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-slate-200/80 font-montserrat">
-          {/* HEADER BANNER */}
-          <header className="bg-gradient-to-r from-primary via-[#002b80] to-primary text-white text-center pt-8 pb-7 px-4 relative overflow-hidden">
-            {/* Ambient pattern */}
-            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
+      <main className="min-h-screen bg-slate-100/80 pb-8 sm:pb-12 md:pb-16">
+        {/* ========================================================================= */}
+        {/* HERO SECTION: full width, with top margin */}
+        {/* ========================================================================= */}
+        <header className="w-full mt-8 sm:mt-12 md:mt-16 bg-gradient-to-r from-primary via-[#002b80] to-primary text-white text-center py-10 sm:py-14 md:py-16 px-4 relative overflow-hidden">
+          {/* Ambient pattern */}
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold italic tracking-wide text-white drop-shadow-sm">
-              EmbraceTech Solar Load Calculator
-            </h1>
-            <p className="font-poppins italic text-xs sm:text-sm text-slate-200 mt-2 font-normal max-w-xl mx-auto leading-relaxed">
-              Follow the steps below to find your perfect power system &amp; calculate ROI
-            </p>
-          </header>
+          <h1 className="relative flex flex-wrap items-center justify-center gap-x-3 gap-y-3 sm:gap-y-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold montserrat tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] normal-case">
+            {/* Orange line is a real border, so it can never collide with a wrapped line */}
+            <span className="uppercase inline-block pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07]">
+              Embrace Technologies Limited
+            </span>
+            <span className="hidden sm:inline">|</span>
+            <span className="normal-case">Solar load calculator</span>
+          </h1>
+          <p className="relative font-poppins italic text-xs sm:text-sm md:text-base text-slate-200 mt-4 sm:mt-5 font-normal max-w-xl mx-auto leading-relaxed">
+            Follow the steps below to find your perfect power system &amp; calculate ROI
+          </p>
+        </header>
 
-          <div className="p-4 sm:p-7 md:p-9 space-y-10 sm:space-y-12">
-            {/* ========================================================================= */}
-            {/* STEP 1: APPLIANCE SELECTION GRID */}
-            {/* ========================================================================= */}
-            <section aria-labelledby="step-1-heading" className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-                <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
-                  STEP 1
-                </span>
-                <h2
-                  id="step-1-heading"
-                  className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
-                >
-                  Click to add, click the red number to reduce
-                </h2>
-              </div>
-
-              {/* Grid of 18 Real Home Appliances */}
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-2.5 sm:gap-3 pt-1">
-                {APPLIANCE_PRESETS.map((preset) => {
-                  const qty = getQuantity(preset.name);
-                  const isSelected = qty > 0;
-
-                  return (
-                    <div
-                      key={preset.name}
-                      onClick={() => handleAddPreset(preset)}
-                      className={`relative p-2 sm:p-2.5 rounded-xl border transition-all duration-200 flex flex-col items-center justify-between min-h-[105px] sm:min-h-[114px] cursor-pointer select-none group text-center ${
-                        isSelected
-                          ? "bg-amber-50/40 border-secondary ring-1 ring-secondary/30 shadow-sm"
-                          : "bg-white border-slate-200/90 hover:border-primary/50 hover:shadow-md"
-                      }`}
-                      title={`Click to add ${preset.name} (${preset.watts}W)`}
-                    >
-                      {/* Red Number Badge (Click to Reduce) */}
-                      {isSelected && (
-                        <span
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleReducePreset(preset.name);
-                          }}
-                          title="Click to reduce"
-                          className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-red-600 text-white font-montserrat font-black text-[11px] sm:text-xs flex items-center justify-center shadow-md hover:bg-red-700 hover:scale-110 active:scale-95 transition-transform z-10 cursor-pointer"
-                        >
-                          {qty}
-                        </span>
-                      )}
-
-                      {/* Graphic Icon (Medium Size) */}
-                      <div className="w-12 h-12 sm:w-13 sm:h-13 flex items-center justify-center my-auto transition-transform group-hover:scale-105">
-                        <ApplianceGraphic iconKey={preset.iconKey} />
-                      </div>
-
-                      {/* Appliance Name */}
-                      <span className="text-[10px] sm:text-[11px] font-poppins font-medium text-slate-700 text-center leading-tight line-clamp-2 mt-1 group-hover:text-primary transition-colors">
-                        {preset.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Bottom Buttons: Add Other Appliance & Clear All */}
-              <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
-                <button
-                  type="button"
-                  onClick={() => setShowAddCustom((prev) => !prev)}
-                  className="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white font-montserrat font-bold text-xs tracking-wide shadow-sm transition-colors flex items-center gap-1.5"
-                >
-                  <Plus className="w-3.5 h-3.5" />
-                  Add Other Appliance
-                </button>
-                <button
-                  type="button"
-                  onClick={handleClearAll}
-                  className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-montserrat font-semibold text-xs transition-colors"
-                >
-                  Clear All
-                </button>
-              </div>
-
-              {/* Collapsible Custom Appliance Form */}
-              <AnimatePresence>
-                {showAddCustom && (
-                  <motion.form
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    onSubmit={handleAddCustomAppliance}
-                    className="overflow-hidden bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 mt-3 max-w-lg mx-auto"
-                  >
-                    <h3 className="font-montserrat font-bold text-xs sm:text-sm text-slate-800 mb-3">
-                      Add Custom Appliance
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-poppins">
-                      <div className="sm:col-span-3">
-                        <label className="block text-slate-500 mb-1">Appliance Name</label>
-                        <input
-                          type="text"
-                          required
-                          value={customName}
-                          onChange={(e) => setCustomName(e.target.value)}
-                          placeholder="e.g. Deep Fryer, CCTV NVR"
-                          className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-slate-500 mb-1">Watts (W)</label>
-                        <input
-                          type="number"
-                          min="1"
-                          required
-                          value={customWatts}
-                          onChange={(e) => setCustomWatts(Number(e.target.value))}
-                          className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-slate-500 mb-1">Daily Hours (Hrs)</label>
-                        <input
-                          type="number"
-                          min="0.5"
-                          max="24"
-                          step="0.5"
-                          required
-                          value={customHours}
-                          onChange={(e) => setCustomHours(Number(e.target.value))}
-                          className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
-                        />
-                      </div>
-                      <div className="flex items-end">
-                        <button
-                          type="submit"
-                          className="w-full py-2 bg-primary hover:bg-primary/90 text-white font-montserrat font-bold rounded-lg text-xs"
-                        >
-                          Add
-                        </button>
-                      </div>
-                    </div>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </section>
-
-            {/* ========================================================================= */}
-            {/* STEP 2: VERIFY LOAD & CALCULATE ROI */}
-            {/* ========================================================================= */}
-            <section aria-labelledby="step-2-heading" className="space-y-4 pt-6 border-t border-slate-200">
-              <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-                <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
-                  STEP 2
-                </span>
-                <h2
-                  id="step-2-heading"
-                  className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
-                >
-                  Verify Load &amp; Calculate Return on Investment
-                </h2>
-              </div>
-
-              {/* Table / List of Selected Appliances */}
-              {appliances.length === 0 ? (
-                <div className="py-8 px-4 rounded-xl border border-dashed border-slate-300 bg-slate-50/80 text-center font-poppins text-xs sm:text-sm text-slate-500">
-                  No appliances selected yet. Click any appliance in Step 1 above to add it to your calculation.
-                </div>
-              ) : (
-                <div className="space-y-2.5">
-                  {appliances.map((item) => (
-                    <div
-                      key={item.id}
-                      className="grid grid-cols-12 gap-2 sm:gap-3 items-center bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 rounded-xl text-xs font-poppins"
-                    >
-                      {/* Appliance Name */}
-                      <div className="col-span-12 sm:col-span-5">
-                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                          Appliance
-                        </label>
-                        <input
-                          type="text"
-                          value={item.name}
-                          onChange={(e) => handleUpdateRow(item.id, "name", e.target.value)}
-                          className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                      </div>
-
-                      {/* Qty */}
-                      <div className="col-span-3 sm:col-span-2">
-                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                          Qty
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          value={item.quantity}
-                          onChange={(e) =>
-                            handleUpdateRow(item.id, "quantity", Math.max(1, Number(e.target.value)))
-                          }
-                          className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                      </div>
-
-                      {/* Watts */}
-                      <div className="col-span-4 sm:col-span-2">
-                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                          Watts
-                        </label>
-                        <input
-                          type="number"
-                          min="1"
-                          value={item.watts}
-                          onChange={(e) =>
-                            handleUpdateRow(item.id, "watts", Math.max(1, Number(e.target.value)))
-                          }
-                          className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                      </div>
-
-                      {/* Hours/Day */}
-                      <div className="col-span-4 sm:col-span-2">
-                        <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                          Hrs/Day
-                        </label>
-                        <input
-                          type="number"
-                          min="0.5"
-                          max="24"
-                          step="0.5"
-                          value={item.hoursPerDay}
-                          onChange={(e) =>
-                            handleUpdateRow(
-                              item.id,
-                              "hoursPerDay",
-                              Math.max(0.5, Math.min(24, Number(e.target.value)))
-                            )
-                          }
-                          className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
-                        />
-                      </div>
-
-                      {/* Remove Row */}
-                      <div className="col-span-1 text-center">
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveAppliance(item.id)}
-                          className="text-red-500 hover:text-red-700 hover:scale-125 transition-transform font-bold text-lg leading-none p-1"
-                          title="Remove item"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Generator & Fuel Price Inputs */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 font-poppins">
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    What do you currently use for Backup Power?
-                  </label>
-                  <select
-                    value={backup}
-                    onChange={(e) => setBackup(e.target.value)}
-                    className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
-                  >
-                    <option value="Petrol Generator">Petrol Generator</option>
-                    <option value="Diesel Generator">Diesel Generator</option>
-                    <option value="Grid Only">Grid Only</option>
-                    <option value="No Backup">No Backup</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                    Current Fuel Price (₦ per Liter)
-                  </label>
-                  <input
-                    type="number"
-                    min="100"
-                    step="10"
-                    value={fuelPrice}
-                    onChange={(e) => setFuelPrice(Number(e.target.value))}
-                    className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
-                  />
-                </div>
-              </div>
-
-              {/* Calculate System Requirement Button */}
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={handleCalculate}
-                  disabled={appliances.length === 0}
-                  className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-secondary via-alternativeO to-secondary text-white font-montserrat font-black text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:brightness-105 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  <Sparkles className="w-5 h-5 text-amber-200" />
-                  CALCULATE SYSTEM REQUIREMENT
-                </button>
-              </div>
-            </section>
-
-            {/* ========================================================================= */}
-            {/* STEP 3: REVIEW PERFORMANCE, ROI & CHECKOUT */}
-            {/* ========================================================================= */}
-            {hasCalculated && appliances.length > 0 && (
-              <section
-                ref={step3Ref}
-                aria-labelledby="step-3-heading"
-                className="space-y-6 pt-6 border-t border-slate-200 scroll-mt-24"
-              >
+        {/* CALCULATOR CARD */}
+        <div className="px-3 sm:px-6 mt-6 sm:mt-8">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-slate-200/80 font-montserrat">
+            <div className="p-4 sm:p-7 md:p-9 space-y-10 sm:space-y-12">
+              {/* ========================================================================= */}
+              {/* STEP 1: APPLIANCE SELECTION GRID */}
+              {/* ========================================================================= */}
+              <section aria-labelledby="step-1-heading" className="space-y-4">
                 <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                   <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
-                    STEP 3
+                    STEP 1
                   </span>
                   <h2
-                    id="step-3-heading"
+                    id="step-1-heading"
                     className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
                   >
-                    Review Performance, ROI &amp; Checkout
+                    Click to add, click the red number to reduce
                   </h2>
                 </div>
 
-                {/* 3 Metric Summary Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
-                  {/* Metric 1: Peak Load */}
-                  <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-alternativeR shadow-sm flex flex-col justify-between">
-                    <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
-                      PEAK LOAD
-                    </span>
-                    <div className="my-2">
-                      <span className="text-2xl sm:text-3xl font-montserrat font-black text-slate-900">
-                        {totals.runningWatts.toLocaleString()}
-                      </span>
-                      <span className="text-sm font-bold text-slate-600 ml-1">W</span>
-                    </div>
-                    <span className="text-[11px] font-poppins text-slate-400">
-                      Running simultaneously
-                    </span>
-                  </div>
+                {/* Grid of 18 Real Home Appliances */}
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-2.5 sm:gap-3 pt-1">
+                  {APPLIANCE_PRESETS.map((preset) => {
+                    const qty = getQuantity(preset.name);
+                    const isSelected = qty > 0;
 
-                  {/* Metric 2: Daily Energy */}
-                  <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-secondary shadow-sm flex flex-col justify-between">
-                    <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
-                      DAILY ENERGY
-                    </span>
-                    <div className="my-2">
-                      <span className="text-2xl sm:text-3xl font-montserrat font-black text-slate-900">
-                        {totals.dailyEnergyWh.toLocaleString()}
-                      </span>
-                      <span className="text-sm font-bold text-slate-600 ml-1">Wh</span>
-                    </div>
-                    <span className="text-[11px] font-poppins text-slate-400">
-                      Total power needed daily
-                    </span>
-                  </div>
+                    return (
+                      <div
+                        key={preset.name}
+                        onClick={() => handleAddPreset(preset)}
+                        className={`relative p-2 sm:p-2.5 rounded-xl border transition-all duration-200 flex flex-col items-center justify-between min-h-[105px] sm:min-h-[114px] cursor-pointer select-none group text-center ${
+                          isSelected
+                            ? "bg-amber-50/40 border-secondary ring-1 ring-secondary/30 shadow-sm"
+                            : "bg-white border-slate-200/90 hover:border-primary/50 hover:shadow-md"
+                        }`}
+                        title={`Click to add ${preset.name} (${preset.watts}W)`}
+                      >
+                        {/* Red Number Badge (Click to Reduce) */}
+                        {isSelected && (
+                          <span
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleReducePreset(preset.name);
+                            }}
+                            title="Click to reduce"
+                            className="absolute -top-2 -right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-orange-600 text-white font-montserrat font-black text-[11px] sm:text-xs flex items-center justify-center shadow-md hover:bg-orange-600 hover:scale-110 active:scale-95 transition-transform z-10 cursor-pointer"
+                          >
+                            {qty}
+                          </span>
+                        )}
 
-                  {/* Metric 3: Est. Backup Time */}
-                  <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-emerald-500 shadow-sm flex flex-col justify-between">
-                    <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
-                      EST. BACKUP TIME
-                    </span>
-                    <div className="my-1.5 flex items-center justify-between">
-                      <div>
-                        <span className="text-2xl sm:text-3xl font-montserrat font-black text-emerald-600">
-                          {totals.finalBackupHours.toFixed(1)}
+                        {/* Graphic Icon (Medium Size) */}
+                        <div className="w-12 h-12 sm:w-13 sm:h-13 flex items-center justify-center my-auto transition-transform group-hover:scale-105">
+                          <ApplianceGraphic iconKey={preset.iconKey} />
+                        </div>
+
+                        {/* Appliance Name */}
+                        <span className="text-[10px] sm:text-[11px] font-poppins font-medium text-slate-700 text-center leading-tight line-clamp-2 mt-1 group-hover:text-primary transition-colors">
+                          {preset.name}
                         </span>
-                        <span className="text-sm font-bold text-slate-600 ml-1">hrs</span>
                       </div>
-
-                      {/* Stepper adjustment */}
-                      <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1 text-[11px] font-semibold text-slate-600">
-                        <button
-                          type="button"
-                          onClick={() => setBackupHoursAdjustment((prev) => prev - 0.5)}
-                          className="w-5 h-5 rounded hover:bg-white text-slate-700 flex items-center justify-center font-bold"
-                          title="Reduce backup target"
-                        >
-                          -
-                        </button>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 px-1">ADJUST</span>
-                        <button
-                          type="button"
-                          onClick={() => setBackupHoursAdjustment((prev) => prev + 0.5)}
-                          className="w-5 h-5 rounded hover:bg-white text-slate-700 flex items-center justify-center font-bold"
-                          title="Increase backup target"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <span className="text-[11px] font-poppins text-slate-400">
-                      Running at max load without sun
-                    </span>
-                  </div>
+                    );
+                  })}
                 </div>
 
-                {/* Recommended System Configuration Header */}
-                <div className="pt-2">
-                  <h3 className="font-montserrat font-extrabold italic text-lg sm:text-xl text-slate-900 mb-3.5">
-                    Recommended System Configuration
-                  </h3>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 font-poppins">
-                    {/* 1. Inverter */}
-                    <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
-                      <div>
-                        <span className="font-montserrat font-bold text-slate-900 text-sm block">
-                          1. Inverter
-                        </span>
-                        <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
-                          {totals.inverter?.name || "5 kW Hybrid Inverter"}
-                        </p>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
-                          <Check className="w-3 h-3" /> In Stock
-                        </span>
-                      </div>
-                      <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
-                        {formatCurrency(totals.inverter?.price || 1250000)}
-                      </div>
-                    </div>
-
-                    {/* 2. Battery Storage */}
-                    <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
-                      <div>
-                        <span className="font-montserrat font-bold text-slate-900 text-sm block">
-                          2. Battery Storage
-                        </span>
-                        <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
-                          {totals.battery?.name || "48 V 200 Ah Battery Storage"}
-                        </p>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
-                          <Check className="w-3 h-3" /> In Stock
-                        </span>
-                      </div>
-                      <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
-                        {formatCurrency(totals.battery?.price || 1850000)}
-                      </div>
-                    </div>
-
-                    {/* 3. Solar Panels */}
-                    <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
-                      <div>
-                        <span className="font-montserrat font-bold text-slate-900 text-sm block">
-                          3. Solar Panels
-                        </span>
-                        <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
-                          {totals.panels?.name || "6x Solar Panel 550W Mono"}
-                        </p>
-                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
-                          <Check className="w-3 h-3" /> In Stock
-                        </span>
-                      </div>
-                      <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
-                        {formatCurrency(totals.panels?.price || 870000)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dark Banner: Estimated System Cost */}
-                <div className="bg-slate-800 text-white rounded-xl p-5 text-center shadow-md">
-                  <span className="font-poppins italic text-xs text-slate-300 block">
-                    Estimated System Cost (Available Items Only)
-                  </span>
-                  <span className="font-montserrat font-extrabold text-2xl sm:text-3xl text-white tracking-wide block mt-1">
-                    {formatCurrency(totals.completeSystemCost)}
-                  </span>
-                </div>
-
-                {/* Green Banner: Your Estimated Savings */}
-                <div className="bg-emerald-50 border border-emerald-200/90 rounded-2xl p-5 sm:p-7 text-center space-y-2.5 font-poppins">
-                  <div className="flex items-center justify-center gap-1.5 font-montserrat font-bold text-emerald-900 text-sm sm:text-base">
-                    <span>💡</span>
-                    <span>Your Estimated Savings</span>
-                  </div>
-
-                  <p className="text-xs sm:text-sm text-slate-700">
-                    Running this load on a <strong className="text-slate-900">{backup}</strong> currently costs you approx.{" "}
-                    <strong className="text-alternativeR font-montserrat font-bold">
-                      {formatCurrency(totals.monthlyFuelSavings)} / month
-                    </strong>{" "}
-                    in fuel.
-                  </p>
-
-                  <p className="text-xs sm:text-sm text-slate-700 italic">
-                    This Solar System will pay for itself in fuel savings in just
-                  </p>
-
-                  <div className="py-1">
-                    <span className="text-2xl sm:text-3xl font-montserrat font-black italic text-emerald-600 tracking-wide">
-                      {totals.paybackMonths ? `${totals.paybackMonths.toFixed(1)} Months!` : "12.0 Months!"}
-                    </span>
-                  </div>
-
-                  <p className="text-[11px] sm:text-xs text-slate-400 font-normal">
-                    (Free electricity after that!)
-                  </p>
-                </div>
-
-                {/* Action Buttons: Add Available Items to Cart & Chat via WhatsApp */}
-                <div className="space-y-3 pt-2">
+                {/* Bottom Buttons: Add Other Appliance & Clear All */}
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
                   <button
                     type="button"
-                    onClick={handleAddToCart}
-                    className="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-montserrat font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+                    onClick={() => setShowAddCustom((prev) => !prev)}
+                    className="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-800 text-white font-montserrat font-bold text-xs tracking-wide shadow-sm transition-colors flex items-center gap-1.5"
                   >
-                    <ShoppingCart className="w-5 h-5" />
-                    Add Available Items to Cart
+                    <Plus className="w-3.5 h-3.5" />
+                    Add Other Appliance
                   </button>
-
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-montserrat font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+                  <button
+                    type="button"
+                    onClick={handleClearAll}
+                    className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-montserrat font-semibold text-xs transition-colors"
                   >
-                    <MessageCircle className="w-5 h-5 fill-current" />
-                    Chat &amp; Order via WhatsApp
-                  </a>
+                    Clear All
+                  </button>
                 </div>
 
-                {/* Cart Success Toast */}
+                {/* Collapsible Custom Appliance Form */}
                 <AnimatePresence>
-                  {cartSuccess && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      className="p-3 bg-emerald-100 border border-emerald-300 rounded-xl text-center text-emerald-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
+                  {showAddCustom && (
+                    <motion.form
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      onSubmit={handleAddCustomAppliance}
+                      className="overflow-hidden bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 mt-3 max-w-lg mx-auto"
                     >
-                      <Check className="w-4 h-4 text-emerald-600" />
-                      Recommended items added to your cart! You can view them in the cart drawer.
-                    </motion.div>
+                      <h3 className="font-montserrat font-bold text-xs sm:text-sm text-slate-800 mb-3">
+                        Add Custom Appliance
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-poppins">
+                        <div className="sm:col-span-3">
+                          <label className="block text-slate-500 mb-1">Appliance Name</label>
+                          <input
+                            type="text"
+                            required
+                            value={customName}
+                            onChange={(e) => setCustomName(e.target.value)}
+                            placeholder="e.g. Deep Fryer, CCTV NVR"
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-slate-500 mb-1">Watts (W)</label>
+                          <input
+                            type="number"
+                            min="1"
+                            required
+                            value={customWatts}
+                            onChange={(e) => setCustomWatts(Number(e.target.value))}
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-slate-500 mb-1">Daily Hours (Hrs)</label>
+                          <input
+                            type="number"
+                            min="0.5"
+                            max="24"
+                            step="0.5"
+                            required
+                            value={customHours}
+                            onChange={(e) => setCustomHours(Number(e.target.value))}
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                          />
+                        </div>
+                        <div className="flex items-end">
+                          <button
+                            type="submit"
+                            className="w-full py-2 bg-primary hover:bg-primary/90 text-white font-montserrat font-bold rounded-lg text-xs"
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </motion.form>
                   )}
                 </AnimatePresence>
               </section>
-            )}
+
+              {/* ========================================================================= */}
+              {/* STEP 2: VERIFY LOAD & CALCULATE ROI */}
+              {/* ========================================================================= */}
+              <section aria-labelledby="step-2-heading" className="space-y-4 pt-6 border-t border-slate-200">
+                <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                  <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
+                    STEP 2
+                  </span>
+                  <h2
+                    id="step-2-heading"
+                    className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                  >
+                    Verify Load &amp; Calculate Return on Investment
+                  </h2>
+                </div>
+
+                {/* Table / List of Selected Appliances */}
+                {appliances.length === 0 ? (
+                  <div className="py-8 px-4 rounded-xl border border-dashed border-slate-300 bg-slate-50/80 text-center font-poppins text-xs sm:text-sm text-slate-500">
+                    No appliances selected yet. Click any appliance in Step 1 above to add it to your calculation.
+                  </div>
+                ) : (
+                  <div className="space-y-2.5">
+                    {appliances.map((item) => (
+                      <div
+                        key={item.id}
+                        className="grid grid-cols-12 gap-2 sm:gap-3 items-center bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 rounded-xl text-xs font-poppins"
+                      >
+                        {/* Appliance Name */}
+                        <div className="col-span-12 sm:col-span-5">
+                          <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                            Appliance
+                          </label>
+                          <input
+                            type="text"
+                            value={item.name}
+                            onChange={(e) => handleUpdateRow(item.id, "name", e.target.value)}
+                            className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                          />
+                        </div>
+
+                        {/* Qty */}
+                        <div className="col-span-3 sm:col-span-2">
+                          <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                            Qty
+                          </label>
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              handleUpdateRow(item.id, "quantity", Math.max(1, Number(e.target.value)))
+                            }
+                            className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                          />
+                        </div>
+
+                        {/* Watts */}
+                        <div className="col-span-4 sm:col-span-2">
+                          <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                            Watts
+                          </label>
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.watts}
+                            onChange={(e) =>
+                              handleUpdateRow(item.id, "watts", Math.max(1, Number(e.target.value)))
+                            }
+                            className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                          />
+                        </div>
+
+                        {/* Hours/Day */}
+                        <div className="col-span-4 sm:col-span-2">
+                          <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                            Hrs/Day
+                          </label>
+                          <input
+                            type="number"
+                            min="0.5"
+                            max="24"
+                            step="0.5"
+                            value={item.hoursPerDay}
+                            onChange={(e) =>
+                              handleUpdateRow(
+                                item.id,
+                                "hoursPerDay",
+                                Math.max(0.5, Math.min(24, Number(e.target.value)))
+                              )
+                            }
+                            className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                          />
+                        </div>
+
+                        {/* Remove Row */}
+                        <div className="col-span-1 text-center">
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveAppliance(item.id)}
+                            className="text-red-500 hover:text-red-700 hover:scale-125 transition-transform font-bold text-lg leading-none p-1"
+                            title="Remove item"
+                          >
+                            ×
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Generator & Fuel Price Inputs */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 font-poppins">
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      What do you currently use for Backup Power?
+                    </label>
+                    <select
+                      value={backup}
+                      onChange={(e) => setBackup(e.target.value)}
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
+                    >
+                      <option value="Petrol Generator">Petrol Generator</option>
+                      <option value="Diesel Generator">Diesel Generator</option>
+                      <option value="Grid Only">Grid Only</option>
+                      <option value="No Backup">No Backup</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      Current Fuel Price (₦ per Liter)
+                    </label>
+                    <input
+                      type="number"
+                      min="100"
+                      step="10"
+                      value={fuelPrice}
+                      onChange={(e) => setFuelPrice(Number(e.target.value))}
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 shadow-sm"
+                    />
+                  </div>
+                </div>
+
+                {/* Calculate System Requirement Button */}
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={handleCalculate}
+                    disabled={appliances.length === 0}
+                    className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-secondary via-alternativeO to-secondary text-white font-montserrat font-black text-sm sm:text-base uppercase tracking-wider shadow-lg hover:shadow-xl hover:brightness-105 active:scale-[0.99] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    <Sparkles className="w-5 h-5 text-amber-200" />
+                    CALCULATE SYSTEM REQUIREMENT
+                  </button>
+                </div>
+              </section>
+
+              {/* ========================================================================= */}
+              {/* STEP 3: REVIEW PERFORMANCE, ROI & CHECKOUT */}
+              {/* ========================================================================= */}
+              {hasCalculated && appliances.length > 0 && (
+                <section
+                  ref={step3Ref}
+                  aria-labelledby="step-3-heading"
+                  className="space-y-6 pt-6 border-t border-slate-200 scroll-mt-24"
+                >
+                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+                    <span className="px-2.5 py-0.5 rounded bg-alternativeR text-white font-montserrat font-bold text-xs uppercase tracking-wider shadow-sm">
+                      STEP 3
+                    </span>
+                    <h2
+                      id="step-3-heading"
+                      className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                    >
+                      Review Performance, ROI &amp; Checkout
+                    </h2>
+                  </div>
+
+                  {/* 3 Metric Summary Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
+                    {/* Metric 1: Peak Load */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-alternativeR shadow-sm flex flex-col justify-between">
+                      <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
+                        PEAK LOAD
+                      </span>
+                      <div className="my-2">
+                        <span className="text-2xl sm:text-3xl font-montserrat font-black text-slate-900">
+                          {totals.runningWatts.toLocaleString()}
+                        </span>
+                        <span className="text-sm font-bold text-slate-600 ml-1">W</span>
+                      </div>
+                      <span className="text-[11px] font-poppins text-slate-400">
+                        Running simultaneously
+                      </span>
+                    </div>
+
+                    {/* Metric 2: Daily Energy */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-secondary shadow-sm flex flex-col justify-between">
+                      <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
+                        DAILY ENERGY
+                      </span>
+                      <div className="my-2">
+                        <span className="text-2xl sm:text-3xl font-montserrat font-black text-slate-900">
+                          {totals.dailyEnergyWh.toLocaleString()}
+                        </span>
+                        <span className="text-sm font-bold text-slate-600 ml-1">Wh</span>
+                      </div>
+                      <span className="text-[11px] font-poppins text-slate-400">
+                        Total power needed daily
+                      </span>
+                    </div>
+
+                    {/* Metric 3: Est. Backup Time */}
+                    <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 border-l-4 border-l-emerald-500 shadow-sm flex flex-col justify-between">
+                      <span className="text-[11px] font-montserrat font-bold text-slate-400 uppercase tracking-wider">
+                        EST. BACKUP TIME
+                      </span>
+                      <div className="my-1.5 flex items-center justify-between">
+                        <div>
+                          <span className="text-2xl sm:text-3xl font-montserrat font-black text-emerald-600">
+                            {totals.finalBackupHours.toFixed(1)}
+                          </span>
+                          <span className="text-sm font-bold text-slate-600 ml-1">hrs</span>
+                        </div>
+
+                        {/* Stepper adjustment */}
+                        <div className="flex items-center gap-1 bg-slate-100 rounded-lg p-1 text-[11px] font-semibold text-slate-600">
+                          <button
+                            type="button"
+                            onClick={() => setBackupHoursAdjustment((prev) => prev - 0.5)}
+                            className="w-5 h-5 rounded hover:bg-white text-slate-700 flex items-center justify-center font-bold"
+                            title="Reduce backup target"
+                          >
+                            -
+                          </button>
+                          <span className="text-[10px] uppercase font-bold text-slate-400 px-1">ADJUST</span>
+                          <button
+                            type="button"
+                            onClick={() => setBackupHoursAdjustment((prev) => prev + 0.5)}
+                            className="w-5 h-5 rounded hover:bg-white text-slate-700 flex items-center justify-center font-bold"
+                            title="Increase backup target"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <span className="text-[11px] font-poppins text-slate-400">
+                        Running at max load without sun
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Recommended System Configuration Header */}
+                  <div className="pt-2">
+                    <h3 className="font-montserrat font-extrabold italic text-lg sm:text-xl text-slate-900 mb-3.5">
+                      Recommended System Configuration
+                    </h3>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 font-poppins">
+                      {/* 1. Inverter */}
+                      <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+                        <div>
+                          <span className="font-montserrat font-bold text-slate-900 text-sm block">
+                            1. Inverter
+                          </span>
+                          <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                            {totals.inverter?.name || "5 kW Hybrid Inverter"}
+                          </p>
+                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                            <Check className="w-3 h-3" /> In Stock
+                          </span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
+                          {formatCurrency(totals.inverter?.price || 1250000)}
+                        </div>
+                      </div>
+
+                      {/* 2. Battery Storage */}
+                      <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+                        <div>
+                          <span className="font-montserrat font-bold text-slate-900 text-sm block">
+                            2. Battery Storage
+                          </span>
+                          <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                            {totals.battery?.name || "48 V 200 Ah Battery Storage"}
+                          </p>
+                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                            <Check className="w-3 h-3" /> In Stock
+                          </span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
+                          {formatCurrency(totals.battery?.price || 1850000)}
+                        </div>
+                      </div>
+
+                      {/* 3. Solar Panels */}
+                      <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+                        <div>
+                          <span className="font-montserrat font-bold text-slate-900 text-sm block">
+                            3. Solar Panels
+                          </span>
+                          <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                            {totals.panels?.name || "6x Solar Panel 550W Mono"}
+                          </p>
+                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                            <Check className="w-3 h-3" /> In Stock
+                          </span>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
+                          {formatCurrency(totals.panels?.price || 870000)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dark Banner: Estimated System Cost */}
+                  <div className="bg-slate-800 text-white rounded-xl p-5 text-center shadow-md">
+                    <span className="font-poppins italic text-xs text-slate-300 block">
+                      Estimated System Cost (Available Items Only)
+                    </span>
+                    <span className="font-montserrat font-extrabold text-2xl sm:text-3xl text-white tracking-wide block mt-1">
+                      {formatCurrency(totals.completeSystemCost)}
+                    </span>
+                  </div>
+
+                  {/* Green Banner: Your Estimated Savings */}
+                  <div className="bg-emerald-50 border border-emerald-200/90 rounded-2xl p-5 sm:p-7 text-center space-y-2.5 font-poppins">
+                    <div className="flex items-center justify-center gap-1.5 font-montserrat font-bold text-emerald-900 text-sm sm:text-base">
+                      <span>💡</span>
+                      <span>Your Estimated Savings</span>
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-slate-700">
+                      Running this load on a <strong className="text-slate-900">{backup}</strong> currently costs you approx.{" "}
+                      <strong className="text-alternativeR font-montserrat font-bold">
+                        {formatCurrency(totals.monthlyFuelSavings)} / month
+                      </strong>{" "}
+                      in fuel.
+                    </p>
+
+                    <p className="text-xs sm:text-sm text-slate-700 italic">
+                      This Solar System will pay for itself in fuel savings in just
+                    </p>
+
+                    <div className="py-1">
+                      <span className="text-2xl sm:text-3xl font-montserrat font-black italic text-emerald-600 tracking-wide">
+                        {totals.paybackMonths ? `${totals.paybackMonths.toFixed(1)} Months!` : "12.0 Months!"}
+                      </span>
+                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-slate-400 font-normal">
+                      (Free electricity after that!)
+                    </p>
+                  </div>
+
+                  {/* Action Buttons: Add Available Items to Cart & Chat via WhatsApp */}
+                  <div className="space-y-3 pt-2">
+                    <button
+                      type="button"
+                      onClick={handleAddToCart}
+                      className="w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-montserrat font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+                    >
+                      <ShoppingCart className="w-5 h-5" />
+                      Add Available Items to Cart
+                    </button>
+
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-montserrat font-bold text-sm sm:text-base tracking-wide flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-[0.99]"
+                    >
+                      <MessageCircle className="w-5 h-5 fill-current" />
+                      Chat &amp; Order via WhatsApp
+                    </a>
+                  </div>
+
+                  {/* Cart Success Toast */}
+                  <AnimatePresence>
+                    {cartSuccess && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="p-3 bg-emerald-100 border border-emerald-300 rounded-xl text-center text-emerald-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2"
+                      >
+                        <Check className="w-4 h-4 text-emerald-600" />
+                        Recommended items added to your cart! You can view them in the cart drawer.
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </section>
+              )}
+            </div>
           </div>
         </div>
       </main>
