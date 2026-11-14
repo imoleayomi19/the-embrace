@@ -227,6 +227,9 @@ const WATTS_PER_UNIT: Record<PowerUnit, number> = {
   HP: 746,
   "BTU/h": 0.293071,
 };
+const INVERTER_SAFETY_FACTOR = 1.25;
+const INVERTER_EFFICIENCY = 0.8;
+const INVERTER_POWER_FACTOR = 0.8;
 
 function powerToWatts(value: number, unit: PowerUnit): number {
   return value * WATTS_PER_UNIT[unit];
@@ -240,27 +243,8 @@ function wattsToPower(watts: number, unit: PowerUnit): number {
 export function SolarCalculator() {
   const { addToCart } = useCart();
 
-  // State
-  const [appliances, setAppliances] = useState<Appliance[]>([
-    {
-      id: "preset-refrigerator",
-      name: "Refrigerator",
-      quantity: 1,
-      watts: 250,
-      powerUnit: "W",
-      hoursPerDay: 10,
-      iconKey: "refrigerator",
-    },
-    {
-      id: "preset-water-heater",
-      name: "Water Heater",
-      quantity: 1,
-      watts: 2000,
-      powerUnit: "W",
-      hoursPerDay: 1,
-      iconKey: "waterHeater",
-    },
-  ]);
+  // State: starts empty so nothing is pre-selected when the page loads
+  const [appliances, setAppliances] = useState<Appliance[]>([]);
 
   const [backup, setBackup] = useState<string>("Petrol Generator");
   const [fuelPrice, setFuelPrice] = useState<number>(1000);
@@ -285,8 +269,11 @@ export function SolarCalculator() {
       0
     );
 
-    // Inverter sizing: Peak Load * 1.25 safety factor
-    const requiredInverterWatts = runningWatts * 1.25;
+    const requiredInverterKva =
+      (runningWatts * INVERTER_SAFETY_FACTOR) /
+      (INVERTER_EFFICIENCY * INVERTER_POWER_FACTOR * 1000);
+    const requiredInverterKw = requiredInverterKva * INVERTER_POWER_FACTOR;
+    const requiredInverterWatts = requiredInverterKw * 1000;
     const inverter =
       calculatorConfig.inverters.find((item) => item.watts >= requiredInverterWatts) ||
       calculatorConfig.inverters[calculatorConfig.inverters.length - 1];
@@ -335,6 +322,8 @@ export function SolarCalculator() {
 
     return {
       runningWatts,
+      requiredInverterKva,
+      requiredInverterKw,
       dailyEnergyWh,
       inverter,
       battery,
@@ -493,6 +482,7 @@ export function SolarCalculator() {
     `• Daily Energy: ${totals.dailyEnergyWh.toLocaleString()} Wh\n\n` +
     `⚡ Recommended System:\n` +
     `• Inverter: ${totals.inverter?.name}\n` +
+    `• Calculated inverter capacity: ${totals.requiredInverterKva.toFixed(2)} kVA (~${totals.requiredInverterKw.toFixed(2)} kW)\n` +
     `• Battery Storage: ${totals.battery?.name}\n` +
     `• Solar Panels: ${totals.panels?.name}\n` +
     `• Estimated System Cost: ${formatCurrency(totals.completeSystemCost)}\n\n` +
@@ -519,15 +509,15 @@ export function SolarCalculator() {
           {/* Ambient pattern */}
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
-          <h1 className="relative flex flex-col items-center gap-3 sm:gap-4 font-extrabold montserrat tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] normal-case">
-            {/* Line 1: company name, uppercase, underlined with an orange
-             border */}
-            <span className="uppercase montserrat inline-block pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07] text-xl sm:text-3xl md:text-4xl lg:text-5xl">
+          <h1 className="relative flex flex-col items-center gap-3 sm:gap-4 font-extrabold tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] normal-case">
+            {/* Line 1: company name, uppercase, underlined with an orange border */}
+            <span className="uppercase inline-block pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07] text-xl sm:text-3xl md:text-4xl lg:text-5xl">
               Embrace Technologies Limited
             </span>
             {/* Line 2: calculator title, only the first letter uppercase */}
-            <span className="normal-case montserrat text-xl sm:text-3xl md:text-4xl lg:text-5xl">
-              Solar load calculator
+            <span className="!normal-case text-xl sm:text-3xl md:text-4xl lg:text-5xl">
+              <span className="!uppercase">S</span>
+              <span className="!lowercase">olar load calculator</span>
             </span>
           </h1>
           {/* Line 3: subtitle, always one straight line (font shrinks on small screens) */}
@@ -553,7 +543,7 @@ export function SolarCalculator() {
                   </span>
                   <h2
                     id="step-1-heading"
-                    className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                    className="normal-case font-poppins text-xs sm:text-sm font-semibold text-slate-800"
                   >
                     Click to add, click the red number to reduce
                   </h2>
@@ -632,7 +622,7 @@ export function SolarCalculator() {
                       onSubmit={handleAddCustomAppliance}
                       className="overflow-hidden bg-slate-50 border border-slate-200 rounded-xl p-4 sm:p-5 mt-3 max-w-lg mx-auto"
                     >
-                      <h3 className="font-montserrat font-bold text-xs sm:text-sm text-slate-800 mb-3">
+                      <h3 className="normal-case font-montserrat font-bold text-xs sm:text-sm text-slate-800 mb-3">
                         Add Custom Appliance
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs font-poppins">
@@ -716,7 +706,7 @@ export function SolarCalculator() {
                   </span>
                   <h2
                     id="step-2-heading"
-                    className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                    className="normal-case font-poppins text-xs sm:text-sm font-semibold text-slate-800"
                   >
                     Verify Load &amp; Calculate Return on Investment
                   </h2>
@@ -912,7 +902,7 @@ export function SolarCalculator() {
                     </span>
                     <h2
                       id="step-3-heading"
-                      className="font-poppins text-xs sm:text-sm font-semibold text-slate-800"
+                      className="normal-case font-poppins text-xs sm:text-sm font-semibold text-slate-800"
                     >
                       Review Performance, ROI &amp; Checkout
                     </h2>
@@ -994,7 +984,7 @@ export function SolarCalculator() {
 
                   {/* Recommended System Configuration Header */}
                   <div className="pt-2">
-                    <h3 className="font-montserrat font-extrabold italic text-lg sm:text-xl text-slate-900 mb-3.5">
+                    <h3 className="normal-case font-montserrat font-extrabold italic text-lg sm:text-xl text-slate-900 mb-3.5">
                       Recommended System Configuration
                     </h3>
 
@@ -1006,11 +996,28 @@ export function SolarCalculator() {
                             1. Inverter
                           </span>
                           <p className="font-poppins italic text-xs text-slate-700 font-medium mt-1">
+                            {(totals.inverter?.watts ?? 0) < totals.requiredInverterKw * 1000 &&
+                              "Largest listed: "}
                             {totals.inverter?.name || "5 kW Hybrid Inverter"}
                           </p>
-                          <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
-                            <Check className="w-3 h-3" /> In Stock
-                          </span>
+                          <p className="font-poppins text-[11px] text-slate-600 mt-2">
+                            Required size: {totals.requiredInverterKva.toFixed(2)} kVA
+                            {" "}({totals.requiredInverterKw.toFixed(2)} kW at 0.8 PF)
+                          </p>
+                          <p className="font-poppins text-[10px] leading-relaxed text-slate-500 mt-1">
+                            Uses a 1.25 safety factor and 80% inverter efficiency.
+                          </p>
+                          {(totals.inverter?.watts ?? 0) < totals.requiredInverterKw * 1000 && (
+                            <p className="font-poppins text-[10px] leading-relaxed text-red-600 mt-1">
+                              The required size is above the largest inverter listed. Please request
+                              a custom recommendation.
+                            </p>
+                          )}
+                          {(totals.inverter?.watts ?? 0) >= totals.requiredInverterKw * 1000 && (
+                            <span className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mt-2">
+                              <Check className="w-3 h-3" /> In Stock
+                            </span>
+                          )}
                         </div>
                         <div className="mt-4 pt-3 border-t border-slate-200 font-montserrat font-bold text-sm text-alternativeR">
                           {formatCurrency(totals.inverter?.price || 1250000)}
