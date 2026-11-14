@@ -12,11 +12,14 @@ import { useCart } from "../context/cartStore";
 import calculatorConfig from "../data/solarCalculatorConfig.json";
 
 // Type definitions
+type PowerUnit = "W" | "HP" | "BTU/h";
+
 type Appliance = {
   id: string;
   name: string;
   quantity: number;
   watts: number;
+  powerUnit: PowerUnit;
   hoursPerDay: number;
   iconKey: string;
 };
@@ -219,6 +222,21 @@ function formatCurrency(value: number) {
   return `₦${Math.round(value).toLocaleString("en-NG")}`;
 }
 
+const WATTS_PER_UNIT: Record<PowerUnit, number> = {
+  W: 1,
+  HP: 746,
+  "BTU/h": 0.293071,
+};
+
+function powerToWatts(value: number, unit: PowerUnit): number {
+  return value * WATTS_PER_UNIT[unit];
+}
+
+function wattsToPower(watts: number, unit: PowerUnit): number {
+  const value = watts / WATTS_PER_UNIT[unit];
+  return Number(value.toFixed(unit === "BTU/h" ? 0 : 2));
+}
+
 export function SolarCalculator() {
   const { addToCart } = useCart();
 
@@ -229,6 +247,7 @@ export function SolarCalculator() {
       name: "Refrigerator",
       quantity: 1,
       watts: 250,
+      powerUnit: "W",
       hoursPerDay: 10,
       iconKey: "refrigerator",
     },
@@ -237,6 +256,7 @@ export function SolarCalculator() {
       name: "Water Heater",
       quantity: 1,
       watts: 2000,
+      powerUnit: "W",
       hoursPerDay: 1,
       iconKey: "waterHeater",
     },
@@ -252,6 +272,7 @@ export function SolarCalculator() {
   const [showAddCustom, setShowAddCustom] = useState<boolean>(false);
   const [customName, setCustomName] = useState<string>("");
   const [customWatts, setCustomWatts] = useState<number>(150);
+  const [customPowerUnit, setCustomPowerUnit] = useState<PowerUnit>("W");
   const [customHours, setCustomHours] = useState<number>(6);
 
   const step3Ref = useRef<HTMLDivElement>(null);
@@ -295,11 +316,11 @@ export function SolarCalculator() {
     const monthlyFuelSavings =
       backup === "Petrol Generator"
         ? (dailyEnergyWh / 1000 / (calculatorConfig.petrolGeneratorEfficiencyKwhPerLitre || 3.2)) *
-          (calculatorConfig.daysPerMonth || 30) *
-          fuelPrice
+        (calculatorConfig.daysPerMonth || 30) *
+        fuelPrice
         : backup === "Diesel Generator"
-        ? (dailyEnergyWh / 1000 / 3.8) * (calculatorConfig.daysPerMonth || 30) * (fuelPrice * 1.2)
-        : 0;
+          ? (dailyEnergyWh / 1000 / 3.8) * (calculatorConfig.daysPerMonth || 30) * (fuelPrice * 1.2)
+          : 0;
 
     const paybackMonths =
       monthlyFuelSavings > 0 ? completeSystemCost / monthlyFuelSavings : null;
@@ -341,6 +362,7 @@ export function SolarCalculator() {
           name: preset.name,
           quantity: 1,
           watts: preset.watts,
+          powerUnit: "W",
           hoursPerDay: preset.hoursPerDay,
           iconKey: preset.iconKey,
         },
@@ -386,6 +408,7 @@ export function SolarCalculator() {
         name: customName.trim(),
         quantity: 1,
         watts: customWatts || 100,
+        powerUnit: customPowerUnit,
         hoursPerDay: customHours || 6,
         iconKey: "bulb",
       },
@@ -401,9 +424,25 @@ export function SolarCalculator() {
   }
 
   // Update row in Step 2
-  function handleUpdateRow(id: string, field: "name" | "quantity" | "watts" | "hoursPerDay", value: string | number) {
+  function handleUpdateRow(
+    id: string,
+    field: "name" | "quantity" | "watts" | "hoursPerDay",
+    value: string | number
+  ) {
     setAppliances((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, [field]: value } : item))
+      prev.map((item) => {
+        if (item.id !== id) return item;
+        if (field === "watts") {
+          return { ...item, watts: powerToWatts(Number(value), item.powerUnit) };
+        }
+        return { ...item, [field]: value };
+      })
+    );
+  }
+
+  function handleUpdatePowerUnit(id: string, powerUnit: PowerUnit) {
+    setAppliances((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, powerUnit } : item))
     );
   }
 
@@ -449,15 +488,15 @@ export function SolarCalculator() {
   // WhatsApp order text
   const whatsappText = encodeURIComponent(
     `Hello Embrace Technologies! I used your Solar Load Calculator.\n\n` +
-      `📊 Load Summary:\n` +
-      `• Peak Load: ${totals.runningWatts.toLocaleString()} W\n` +
-      `• Daily Energy: ${totals.dailyEnergyWh.toLocaleString()} Wh\n\n` +
-      `⚡ Recommended System:\n` +
-      `• Inverter: ${totals.inverter?.name}\n` +
-      `• Battery Storage: ${totals.battery?.name}\n` +
-      `• Solar Panels: ${totals.panels?.name}\n` +
-      `• Estimated System Cost: ${formatCurrency(totals.completeSystemCost)}\n\n` +
-      `I would like to speak with an engineer to order this system.`
+    `📊 Load Summary:\n` +
+    `• Peak Load: ${totals.runningWatts.toLocaleString()} W\n` +
+    `• Daily Energy: ${totals.dailyEnergyWh.toLocaleString()} Wh\n\n` +
+    `⚡ Recommended System:\n` +
+    `• Inverter: ${totals.inverter?.name}\n` +
+    `• Battery Storage: ${totals.battery?.name}\n` +
+    `• Solar Panels: ${totals.panels?.name}\n` +
+    `• Estimated System Cost: ${formatCurrency(totals.completeSystemCost)}\n\n` +
+    `I would like to speak with an engineer to order this system.`
   );
   const whatsappUrl = `https://wa.me/2347061451583?text=${whatsappText}`;
 
@@ -481,7 +520,8 @@ export function SolarCalculator() {
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#fd8d07_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none" />
 
           <h1 className="relative flex flex-col items-center gap-3 sm:gap-4 font-extrabold montserrat tracking-wide text-white drop-shadow-sm font-montserrat !leading-[1.25] normal-case">
-            {/* Line 1: company name, uppercase, underlined with an orange border */}
+            {/* Line 1: company name, uppercase, underlined with an orange
+             border */}
             <span className="uppercase montserrat inline-block pb-2 border-b-[3px] sm:border-b-4 border-[#fd8d07] text-xl sm:text-3xl md:text-4xl lg:text-5xl">
               Embrace Technologies Limited
             </span>
@@ -529,11 +569,10 @@ export function SolarCalculator() {
                       <div
                         key={preset.name}
                         onClick={() => handleAddPreset(preset)}
-                        className={`relative p-2 sm:p-2.5 rounded-xl border transition-all duration-200 flex flex-col items-center justify-between min-h-[105px] sm:min-h-[114px] cursor-pointer select-none group text-center ${
-                          isSelected
-                            ? "bg-amber-50/40 border-secondary ring-1 ring-secondary/30 shadow-sm"
-                            : "bg-white border-slate-200/90 hover:border-primary/50 hover:shadow-md"
-                        }`}
+                        className={`relative p-2 sm:p-2.5 rounded-xl border transition-all duration-200 flex flex-col items-center justify-between min-h-[105px] sm:min-h-[114px] cursor-pointer select-none group text-center ${isSelected
+                          ? "bg-amber-50/40 border-secondary ring-1 ring-secondary/30 shadow-sm"
+                          : "bg-white border-slate-200/90 hover:border-primary/50 hover:shadow-md"
+                          }`}
                         title={`Click to add ${preset.name} (${preset.watts}W)`}
                       >
                         {/* Red Number Badge (Click to Reduce) */}
@@ -596,8 +635,8 @@ export function SolarCalculator() {
                       <h3 className="font-montserrat font-bold text-xs sm:text-sm text-slate-800 mb-3">
                         Add Custom Appliance
                       </h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-poppins">
-                        <div className="sm:col-span-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 text-xs font-poppins">
+                        <div className="sm:col-span-5">
                           <label className="block text-slate-500 mb-1">Appliance Name</label>
                           <input
                             type="text"
@@ -609,18 +648,33 @@ export function SolarCalculator() {
                           />
                         </div>
                         <div>
-                          <label className="block text-slate-500 mb-1">Watts (W)</label>
+                          <label className="block text-slate-500 mb-1">Power per item</label>
                           <input
                             type="number"
-                            min="1"
+                            min="0.01"
+                            step="any"
                             required
-                            value={customWatts}
-                            onChange={(e) => setCustomWatts(Number(e.target.value))}
+                            value={wattsToPower(customWatts, customPowerUnit)}
+                            onChange={(e) =>
+                              setCustomWatts(powerToWatts(Number(e.target.value), customPowerUnit))
+                            }
                             className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
                           />
                         </div>
                         <div>
-                          <label className="block text-slate-500 mb-1">Daily Hours (Hrs)</label>
+                          <label className="block text-slate-500 mb-1">Unit of measurement</label>
+                          <select
+                            value={customPowerUnit}
+                            onChange={(e) => setCustomPowerUnit(e.target.value as PowerUnit)}
+                            className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
+                          >
+                            <option value="W">Watts (W)</option>
+                            <option value="HP">Horsepower (HP)</option>
+                            <option value="BTU/h">BTU per hour (BTU/h)</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-slate-500 mb-1">Hours used per day</label>
                           <input
                             type="number"
                             min="0.5"
@@ -632,6 +686,12 @@ export function SolarCalculator() {
                             className="w-full px-3 py-2 rounded-lg border border-slate-300 text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary/40 text-xs"
                           />
                         </div>
+                        <p className="sm:col-span-5 text-[10px] leading-relaxed text-slate-500">
+                          Calculations use watts automatically (1 HP ≈ 746 W; 1 BTU/h ≈ 0.293 W).
+                          BTU/h and horsepower on air conditioners describe cooling capacity, not
+                          electrical input. Use the electrical input rating if available;
+                          conversions are estimates.
+                        </p>
                         <div className="flex items-end">
                           <button
                             type="submit"
@@ -669,15 +729,29 @@ export function SolarCalculator() {
                   </div>
                 ) : (
                   <div className="space-y-2.5">
+                    <p className="font-poppins text-[11px] leading-relaxed text-slate-500">
+                      Enter the number of items, each item&apos;s power rating, and how many hours
+                      you use it daily. Select the unit shown on its label; power is converted to
+                      watts for the calculation. For air conditioners, BTU/h and HP describe
+                      cooling capacity, so use the electrical input rating if available.
+                    </p>
+                    <div className="hidden sm:grid grid-cols-12 gap-2 sm:gap-3 items-center px-2.5 sm:px-3 border border-transparent text-[11px] font-semibold text-slate-500">
+                      <span className="col-span-4 pl-3">Appliance name</span>
+                      <span className="col-span-1 text-center">Number</span>
+                      <span className="col-span-2 text-center">Power per item</span>
+                      <span className="col-span-2 text-center">Unit</span>
+                      <span className="col-span-2 text-center">Hours per day</span>
+                      <span className="col-span-1" aria-hidden="true" />
+                    </div>
                     {appliances.map((item) => (
                       <div
                         key={item.id}
-                        className="grid grid-cols-12 gap-2 sm:gap-3 items-center bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 rounded-xl text-xs font-poppins"
+                        className="grid grid-cols-6 sm:grid-cols-12 gap-2 sm:gap-3 items-center bg-slate-50/90 border border-slate-200/90 p-2.5 sm:p-3 rounded-xl text-xs font-poppins"
                       >
                         {/* Appliance Name */}
-                        <div className="col-span-12 sm:col-span-5">
+                        <div className="col-span-6 sm:col-span-4">
                           <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                            Appliance
+                            Appliance name
                           </label>
                           <input
                             type="text"
@@ -688,9 +762,9 @@ export function SolarCalculator() {
                         </div>
 
                         {/* Qty */}
-                        <div className="col-span-3 sm:col-span-2">
+                        <div className="col-span-2 sm:col-span-1">
                           <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                            Qty
+                            Number of items
                           </label>
                           <input
                             type="number"
@@ -703,26 +777,45 @@ export function SolarCalculator() {
                           />
                         </div>
 
-                        {/* Watts */}
-                        <div className="col-span-4 sm:col-span-2">
+                        {/* Power per item */}
+                        <div className="col-span-2 sm:col-span-2">
                           <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                            Watts
+                            Power per item
                           </label>
                           <input
                             type="number"
-                            min="1"
-                            value={item.watts}
+                            min="0.01"
+                            step="any"
+                            value={wattsToPower(item.watts, item.powerUnit)}
                             onChange={(e) =>
-                              handleUpdateRow(item.id, "watts", Math.max(1, Number(e.target.value)))
+                              handleUpdateRow(item.id, "watts", Math.max(0.01, Number(e.target.value)))
                             }
                             className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
                           />
                         </div>
 
-                        {/* Hours/Day */}
-                        <div className="col-span-4 sm:col-span-2">
+                        {/* Unit of measurement */}
+                        <div className="col-span-2 sm:col-span-2">
                           <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
-                            Hrs/Day
+                            Unit
+                          </label>
+                          <select
+                            value={item.powerUnit}
+                            onChange={(e) =>
+                              handleUpdatePowerUnit(item.id, e.target.value as PowerUnit)
+                            }
+                            className="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-center text-slate-800 font-medium focus:outline-none focus:ring-1 focus:ring-primary"
+                          >
+                            <option value="W">W</option>
+                            <option value="HP">HP</option>
+                            <option value="BTU/h">BTU/h</option>
+                          </select>
+                        </div>
+
+                        {/* Hours/Day */}
+                        <div className="col-span-3 sm:col-span-2">
+                          <label className="text-[10px] text-slate-400 font-semibold block sm:hidden">
+                            Hours used per day
                           </label>
                           <input
                             type="number"
@@ -742,7 +835,7 @@ export function SolarCalculator() {
                         </div>
 
                         {/* Remove Row */}
-                        <div className="col-span-1 text-center">
+                        <div className="col-span-3 sm:col-span-1 text-center">
                           <button
                             type="button"
                             onClick={() => handleRemoveAppliance(item.id)}
