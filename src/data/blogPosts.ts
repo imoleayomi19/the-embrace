@@ -13,14 +13,203 @@ export type BlogPost = {
   content: string;
 };
 
-export const blogPosts: BlogPost[] = [
+export const blogPosts: BlogPost[] = [// Paste these two entries at the TOP of the blogPosts array (above id: 17).
+  // Rename the image paths to match the files you upload to /public.
+
+  {
+    id: 19,
+    slug: "cheap-solar-vs-professional-solar-nigeria",
+    title: "Cheap Solar vs Professional Solar: They May Look the Same, But They Don't Behave the Same",
+    seoTitle: "Cheap Solar vs Professional Solar in Nigeria",
+    date: "November 17, 2026",
+    image: "/blogpost-19.webp",
+    imageAlt: "Cheap solar installation with tangled cables on a rusty roof compared with a professional installation with neat conduits and a protection box.",
+    keywords: "cheap solar vs professional solar Nigeria, solar system design, solar cable sizing, solar protection, solar battery lifespan, solar panel string configuration, solar installation Lagos",
+    description: "Two solar systems can look identical on the roof and perform very differently. Here are the 5 hidden differences between cheap solar and professional solar in Nigeria.",
+    metaDescription: "Cheap solar vs professional solar in Nigeria: compare system design, cable engineering, protection, panel configuration and battery choice before you pay for an installation.",
+    content: `
+      <p>Put two solar installations side by side and, from the street, they can look the same. Same panels on the roof. Same inverter on the wall.</p>
+      <p>But they don't behave the same.</p>
+      <p>One runs quietly for years. The other struggles daily, trips at night, overheats and needs repairs. The difference is rarely the brand on the panel. It is the engineering you cannot see.</p>
+      <p>Here are the <strong>5 hidden differences between cheap solar and professional solar.</strong></p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">System Design: The Hidden Difference</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Cheap solar is built around your budget. Professional solar is built around your load profile.</p>
+      <p>A professional installer calculates:</p>
+      <ul>
+        <li><strong>Surge load:</strong> the extra power appliances like ACs and pumping machines need to start.</li>
+        <li><strong>Night usage pattern:</strong> what you actually run after sunset, and for how long.</li>
+        <li><strong>Battery depth of discharge:</strong> how much of the battery can safely be used each day.</li>
+      </ul>
+      <p>Cheap installers guess, and the system struggles daily.</p>
+      <figure class="my-6 sm:float-right sm:ml-6 sm:w-56 mx-auto max-w-xs">
+        <img src="/cheap-system-design.png" alt="Group of solar panels of different sizes" class="w-full h-40 object-cover rounded-xl shadow-md" loading="lazy" />
+        <figcaption class="mt-2 text-center text-xs italic text-slate-500">Panels are only one part of the design.</figcaption>
+      </figure>
+      <div class="clear-both"></div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Cable Engineering: The Silent Killer</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Cheap installs use cables that "fit the budget."</p>
+      <p>Professionals size cables based on:</p>
+      <ul>
+        <li><strong>Current (Amps):</strong> how much current the cable must carry.</li>
+        <li><strong>Distance:</strong> a voltage drop calculation for the length of the run.</li>
+        <li><strong>Heat tolerance:</strong> the temperature the cable and insulation can safely handle.</li>
+      </ul>
+      <p>Undersized cables mean heat buildup, power loss and inverter stress. You will not notice it on day one, which is exactly why it is dangerous.</p>
+      <figure class="my-6 sm:float-right sm:ml-6 sm:w-56 mx-auto max-w-xs">
+        <img src="/cheap-cable-engineering.png" alt="Colored copper cables with exposed strands" class="w-full h-40 object-cover rounded-xl shadow-md" loading="lazy" />
+        <figcaption class="mt-2 text-center text-xs italic text-slate-500">Cable size must match current, distance and heat.</figcaption>
+      </figure>
+      <div class="clear-both"></div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Protection Philosophy</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Cheap solar removes protection to reduce cost.</p>
+      <p>A professional system includes:</p>
+      <ul>
+        <li>A <strong>DC isolator</strong></li>
+        <li>A <strong>surge protection device (SPD)</strong></li>
+        <li>A <strong>battery breaker</strong></li>
+        <li><strong>Proper earthing</strong></li>
+      </ul>
+      <p>These parts don't produce power, but they prevent failure. When a surge or fault arrives, they are what stand between the event and your inverter.</p>
+      <figure class="my-6 sm:float-right sm:ml-6 sm:w-56 mx-auto max-w-xs">
+        <img src="/cheap-protection-spd.png" alt="DC surge protection device (SPD) for a solar system" class="w-full h-40 object-contain rounded-xl shadow-md bg-white" loading="lazy" />
+        <figcaption class="mt-2 text-center text-xs italic text-slate-500">A DC surge protection device.</figcaption>
+      </figure>
+      <div class="clear-both"></div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Panel Configuration (Advanced Detail)</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Cheap installers mix panels without checking.</p>
+      <p>What gets skipped:</p>
+      <ul>
+        <li>Voltage compatibility</li>
+        <li>String balance</li>
+        <li>Shading impact</li>
+      </ul>
+      <p>Professionals design panel strings to ensure balanced voltage, optimal MPPT tracking and maximum output.</p>
+      <p>Poor configuration means wasted sunlight. You paid for the panels, but you don't get everything they can produce.</p>
+      <figure class="my-6 sm:float-right sm:ml-6 sm:w-56 mx-auto max-w-xs">
+        <img src="/cheap-panel-configuration.png" alt="Solar panel with testing instruments such as a thermal camera, multimeter and clamp meter" class="w-full h-40 object-contain rounded-xl shadow-md bg-white" loading="lazy" />
+        <figcaption class="mt-2 text-center text-xs italic text-slate-500">Professionals measure and verify, not assume.</figcaption>
+      </figure>
+      <div class="clear-both"></div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Battery Truth: What They Don't Tell You</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Cheap systems use batteries rated on paper, not real performance.</p>
+      <p>Professional setups consider:</p>
+      <ul>
+        <li><strong>Usable capacity,</strong> not total capacity.</li>
+        <li><strong>Discharge rate (C-rate).</strong></li>
+        <li><strong>Cycle life at real usage,</strong> not at ideal lab conditions.</li>
+      </ul>
+      <p>That is why one battery can last 2 years while another lasts 6 years or more.</p>
+      <figure class="my-6 sm:float-right sm:ml-6 sm:w-56 mx-auto max-w-xs">
+        <img src="/cheap-battery-truth.png" alt="Tubular solar battery with red lid and white case" class="w-full h-40 object-contain rounded-xl shadow-md bg-white" loading="lazy" />
+        <figcaption class="mt-2 text-center text-xs italic text-slate-500">Rated capacity is not the same as real performance.</figcaption>
+      </figure>
+      <div class="clear-both"></div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
+      <p><strong>Solar is not expensive. Bad solar is expensive.</strong></p>
+      <p>If the system is not properly designed, protected and installed, you are not saving money. You are delaying cost.</p>
+      <p>At Embrace Technologies Limited, every system starts with your load profile and ends with testing. If you already have a system and you are not sure how it was done, we can review it for you.</p>
+      <p>You may also want to read <a href="/blog/5-red-flags-solar-installer-installation-mistakes-nigeria" class="font-bold text-[#EA6936] hover:underline">5 red flags your installer may have missed</a> and <a href="/blog/why-inverters-burn-nigeria-causes-and-prevention" class="font-bold text-[#EA6936] hover:underline">why inverters burn</a>.</p>
+
+      <div class="my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 shadow-sm">
+        <h3 class="text-[#1E3A5F] font-montserrat font-bold text-xl mb-3">Get a Professionally Designed Solar System</h3>
+        <p class="mb-5 text-slate-700">Send us your appliance list and we will design around your real load, not your budget alone.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact" class="inline-flex items-center justify-center rounded-xl bg-[#EA6936] px-6 py-3.5 text-base font-bold text-white shadow-md transition-all hover:opacity-90 hover:shadow-lg">Contact Us</a>
+          <a href="https://wa.me/2347061451583?text=Hello%20Embrace%20Technologies%2C%20I%20would%20like%20a%20professionally%20designed%20solar%20system." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-[#20ba59] hover:shadow-lg">Chat on WhatsApp</a>
+        </div>
+      </div>
+    `
+  },
+  {
+    id: 18,
+    slug: "why-inverters-burn-nigeria-causes-and-prevention",
+    title: "Why Inverters Burn: 8 Causes and the Warning Signs You Shouldn't Ignore",
+    seoTitle: "Why Inverters Burn in Nigeria: 8 Causes and Warning Signs",
+    date: "November 13, 2026",
+    image: "/blogpost-18.webp",
+    imageAlt: "Burnt solar inverter mounted on a wall with melted casing and soot marks.",
+    keywords: "why inverters burn, inverter overheating Nigeria, burnt inverter causes, solar surge protection, solar earthing, inverter backfeed generator, solar safety Nigeria",
+    description: "Your inverter didn't just burn. Something in your setup was quietly overheating. Here are 8 common causes and the early warning signs to watch for.",
+    metaDescription: "Why do inverters burn in Nigeria? Learn 8 common causes, from thin cables and overloading to no surge protection, loose terminals and generator backfeed, plus early warning signs.",
+    content: `
+      <p>Your inverter didn't just burn. It was overloaded, poorly wired or unprotected, and something in your setup was quietly overheating.</p>
+      <p>Most burnt inverters were not hit by a sudden, unlucky failure. The damage built up slowly, until one day something gave way.</p>
+      <p>Here are the <strong>8 most common causes</strong>, and what each one does inside your system.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Wrong Cable Sizing</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Thin cables carry heavy current, heat builds up and insulation melts.</p>
+      <p>Cables must be sized for the current they carry and the distance they run. Undersized cables turn into heaters.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Overloading the Inverter</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">AC, pumping machine and freezer all at once, and the inverter struggles.</p>
+      <p>When the load is higher than the inverter can handle, components overheat. Startup surge from motors makes it worse.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">No Surge Protection</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">A sudden voltage spike from NEPA or a generator, and the internal boards take the hit.</p>
+      <p>Without a surge protection device, nothing absorbs the spike before it reaches your inverter.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Poor Battery Connection</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Weak contact increases resistance, and resistance creates heat at the terminals.</p>
+      <p>A connection that looks fine can still be loose enough to heat up under load.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Loose Terminals</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Sparking starts silently, and the plastic casing begins to melt from inside.</p>
+      <p>Loose terminals are easy to miss and easy to fix, which is why regular inspection matters.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Mixing Old and New Batteries</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Voltage imbalance forces the inverter to compensate, and constant stress shortens its lifespan.</p>
+      <p>Batteries in one bank should match in type, capacity and age.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">No Proper Earthing</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Fault current has nowhere to go, so the inverter absorbs the damage.</p>
+      <p>Good earthing gives fault current a safe path away from your equipment.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-2">Generator and Inverter Backfeed</h2>
+      <p class="text-slate-600 font-medium italic -mt-1 mb-4">Two power sources collide, the inverter receives unstable input and the system overheats fast.</p>
+      <p>Generators and inverters must be connected through a correct changeover arrangement, never wired in together.</p>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-8 mb-4">Early Warning Signs</h2>
+      <p>If your inverter area feels hot, smells burnt or trips often, your system is already under stress. These are not small issues. They are early warning signs.</p>
+      <ul>
+        <li>The inverter area feels unusually hot</li>
+        <li>A burnt smell near the inverter, battery or cables</li>
+        <li>Frequent tripping or shutdowns</li>
+      </ul>
+
+      <div class="my-8 rounded-r-xl border-l-4 border-[#EA6936] bg-slate-50 p-6 shadow-sm">
+        <p class="m-0 text-base md:text-lg text-slate-800 font-medium">
+          <strong>Safety first:</strong> If you notice smoke, a burning smell or unusual heat, switch off what you safely can, keep away from the equipment and contact a qualified solar professional. Do not touch damaged electrical equipment. If there is an active fire, evacuate and call the emergency services.
+        </p>
+      </div>
+
+      <h2 class="text-[#1E3A5F] font-montserrat font-bold mt-10 mb-3">Final Word:</h2>
+      <p>Most burnt inverters didn't fail suddenly. They overheated slowly until something finally gave way.</p>
+      <p>The good news is that every cause above can be prevented with correct sizing, proper protection and a careful installation. If your inverter is running hot or tripping, don't wait for it to burn. Get it checked.</p>
+      <p>Related reading: <a href="/blog/causes-of-solar-fire-outbreaks-and-how-to-prevent-them" class="font-bold text-[#EA6936] hover:underline">causes of solar fire outbreaks and how to prevent them</a> and <a href="/blog/cheap-solar-vs-professional-solar-nigeria" class="font-bold text-[#EA6936] hover:underline">cheap solar vs professional solar</a>.</p>
+
+      <div class="my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 md:p-8 shadow-sm">
+        <h3 class="text-[#1E3A5F] font-montserrat font-bold text-xl mb-3">Is Your Inverter Running Hot?</h3>
+        <p class="mb-5 text-slate-700">Let our engineers inspect your cables, terminals, protection and earthing before it becomes a bigger problem.</p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact" class="inline-flex items-center justify-center rounded-xl bg-[#EA6936] px-6 py-3.5 text-base font-bold text-white shadow-md transition-all hover:opacity-90 hover:shadow-lg">Contact Us</a>
+          <a href="https://wa.me/2347061451583?text=Hello%20Embrace%20Technologies%2C%20my%20inverter%20is%20overheating%20and%20I%20would%20like%20an%20inspection." target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-6 py-3.5 text-base font-bold text-white shadow-md transition-all hover:bg-[#20ba59] hover:shadow-lg">Chat on WhatsApp</a>
+        </div>
+      </div>
+    `
+  },
   {
     id: 17,
     slug: "5-red-flags-solar-installer-installation-mistakes-nigeria",
     title: "If Your Installer Did Any of These 5 Things, Be Worried",
     seoTitle: "5 Solar Installation Red Flags to Check in Nigeria",
     date: "November 9, 2026",
-    image: "/11.png",
+    image: "/blogpost-17.webp",
     imageAlt: "Solar installation red flags: thin cables, missing protection box and messy wiring.",
     keywords: "solar installation mistakes Nigeria, solar installer red flags, solar load calculation, solar cable size, solar protection box, solar system testing, solar installation Lagos",
     description: "Small mistakes in solar installation can cost you millions later. Check these 5 red flags before you pay your installer in full.",
@@ -36,7 +225,7 @@ export const blogPosts: BlogPost[] = [
       <p>They must also calculate your <strong>running watts</strong> versus your <strong>surge watts</strong>. Surge watts is the extra power that appliances like an AC, fridge or pumping machine need for a few seconds to start.</p>
       <p>If they skipped this, your system will probably be too small. And guesswork leads to overload, shutdowns and battery damage.</p>
       <figure class="my-6 mx-auto max-w-md">
-        <img src="/22.png" alt="Solar engineer using a tablet to complete a load calculation sheet" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
+        <img src="/blogpost-17-engineer.webp" alt="Solar engineer using a tablet to complete a load calculation sheet" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
         <figcaption class="mt-2 text-center text-xs sm:text-sm italic text-slate-500">A proper installer starts with a written load calculation, not a guess.</figcaption>
       </figure>
 
@@ -45,7 +234,7 @@ export const blogPosts: BlogPost[] = [
       <p>Thin cables cannot carry the current your system needs. They get hot, they waste energy, and in the worst cases they can melt.</p>
       <p>Good solar is not where you cut corners. The cable size must match your inverter and battery capacity. Always ask your installer what cable size they used, and why.</p>
       <figure class="my-6 mx-auto max-w-md">
-        <img src="/33.png" alt="Comparison of thick copper solar cables and thin undersized cables" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
+        <img src="/blogpost-17-cables.webp" alt="Comparison of thick copper solar cables and thin undersized cables" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
         <figcaption class="mt-2 text-center text-xs sm:text-sm italic text-slate-500">Thick, correctly rated cables on one side. Thin cables that will overheat on the other.</figcaption>
       </figure>
 
@@ -54,7 +243,7 @@ export const blogPosts: BlogPost[] = [
       <p>That means your inverter and batteries are exposed to voltage spikes and short circuits. One power surge can wipe everything out.</p>
       <p>A complete protection box must have a <strong>DC surge protector</strong>, a <strong>DC breaker</strong>, an <strong>AC breaker</strong>, and clear labels for each connection. If your system does not have this, it is not complete.</p>
       <figure class="my-6 mx-auto max-w-md">
-        <img src="/66.png" alt="Solar protection box with surge protector and labelled breakers" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
+        <img src="/blogpost-17-box.webp" alt="Solar protection box with surge protector and labelled breakers" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
         <figcaption class="mt-2 text-center text-xs sm:text-sm italic text-slate-500">A complete protection box with surge protection, breakers and labels.</figcaption>
       </figure>
 
@@ -63,7 +252,7 @@ export const blogPosts: BlogPost[] = [
       <p>Neat wiring is not for aesthetics. It is for safety, troubleshooting and system longevity.</p>
       <p>When wiring is neat and labeled, any engineer can trace a fault in minutes. When it is messy, a small fault can take hours to find, and it can even cause a short circuit.</p>
       <figure class="my-6 mx-auto max-w-md">
-        <img src="/55.png" alt="Neat labelled solar wiring compared with messy disorganised wiring" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
+        <img src="/blogpost-17-wiring.webp" alt="Neat labelled solar wiring compared with messy disorganised wiring" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
         <figcaption class="mt-2 text-center text-xs sm:text-sm italic text-slate-500">Neat, labelled wiring (good) versus tangled wiring (a problem waiting to happen).</figcaption>
       </figure>
 
@@ -72,7 +261,7 @@ export const blogPosts: BlogPost[] = [
       <p>If they installed and left immediately, that is a red flag.</p>
       <p>A professional installer must test the system under full load, confirm the battery is charging correctly, and show you how to monitor it before they leave.</p>
       <figure class="my-6 mx-auto max-w-md">
-        <img src="/44.png" alt="Multimeter and clamp meter used to test a solar installation" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
+        <img src="/blogpost-17-tools.webp" alt="Multimeter and clamp meter used to test a solar installation" class="w-full h-48 sm:h-56 object-cover rounded-xl shadow-md" loading="lazy" />
         <figcaption class="mt-2 text-center text-xs sm:text-sm italic text-slate-500">Testing tools such as a multimeter and clamp meter should be used before handover.</figcaption>
       </figure>
 
@@ -518,7 +707,7 @@ export const blogPosts: BlogPost[] = [
     slug: "6-warning-signs-your-solar-battery-is-about-to-fail",
     title: "6 Warning Signs Your Solar Battery Is About to Fail",
     date: "October 16, 2026",
-    image: "/blog-post.webp",
+    image: "/blogpost-13.webp",
     description: "Most batteries don't die suddenly. They warn you first. Learn the 6 warning signs that your solar battery is declining, and what to do before it fails completely.",
     metaDescription: "Learn the 6 warning signs your solar battery is about to fail, from shrinking backup time and overheating to swelling and leaks, and what to do next in Nigeria.",
     content: `
@@ -591,7 +780,7 @@ export const blogPosts: BlogPost[] = [
     slug: "how-solar-panels-create-electricity-sunlight-to-socket",
     title: "From Sunlight to Socket: How Your Solar Panels Actually Create Electricity",
     date: "October 14, 2026",
-    image: "/sunlight.webp",
+    image: "/blogpost-12.webp",
     description: "How does the Lagos sun on your roof become the power for your AC, fridge and lights at night? Here is the simple science behind every solar panel.",
     metaDescription: "How do solar panels create electricity? Learn how sunlight becomes usable power through the photovoltaic effect, the inverter and your battery, explained simply for Nigeria.",
     content: `
@@ -737,7 +926,7 @@ export const blogPosts: BlogPost[] = [
     slug: "causes-of-solar-fire-outbreaks-and-how-to-prevent-them",
     title: "Causes of Solar Fire Outbreaks and How to Prevent Them",
     date: "September 30, 2026",
-    image: "/solar-maintenance-service.webp",
+    image: "/blogpost-12.webp",
     description: "Solar systems are safe when correctly designed and maintained. Learn what can cause a solar fire and how to reduce the risks in your home or business.",
     metaDescription: "Learn the common causes of solar fires, including faulty wiring, poor-quality components and battery issues, plus practical ways to keep your solar system safe in Nigeria.",
     content: `
@@ -782,7 +971,7 @@ export const blogPosts: BlogPost[] = [
     slug: "solar-panel-efficiency-explained-nigeria",
     title: "Solar Panel Efficiency Explained: Why It Matters for You in Nigeria",
     date: "September 25, 2026",
-    image: "/post-2.jpeg",
+    image: "/blogpost-9.jpeg",
     description: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
     metaDescription: "What is solar panel efficiency? Learn why high-efficiency panels save you roof space, money, and give more power in Nigerian weather.",
     content: `
@@ -824,7 +1013,7 @@ export const blogPosts: BlogPost[] = [
     slug: "what-size-solar-system-should-i-choose-nigeria",
     title: "What Size of Solar System Should I Choose for My Home or Business?",
     date: "September 23, 2026",
-    image: "/post.png",
+    image: "/blogpost-8.png",
     description: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
     metaDescription: "Not sure what size solar system you need? Embrace Technologies explains how to choose the right kW size for your home or business in Nigeria.",
     content: `
@@ -861,7 +1050,7 @@ export const blogPosts: BlogPost[] = [
     slug: "solar-power-vs-solar-energy-kw-kwh-explained",
     title: "Solar Power vs Solar Energy: kW and kWh Explained Simply (Nigeria Guide)",
     date: "September 19, 2026",
-    image: "/blog-8.webp",
+    image: "/blogpost-7.webp",
     description: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
     metaDescription: "Confused about kW vs kWh? Learn the difference between solar power and solar energy and how it affects your solar system size and NEPA bill in Nigeria.",
     content: `
@@ -926,7 +1115,7 @@ export const blogPosts: BlogPost[] = [
     slug: "will-n1000000-buy-solar-system-home-nigeria-2026",
     title: "Will #1,000,000 Buy a Solar System for My Home in Nigeria?",
     date: "September 17, 2026",
-    image: "/blog.png",
+    image: "/blogpost-6.png",
     imageFit: "contain",
     description: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
     metaDescription: "Yes! With #1,000,000 you can power your home with solar in Nigeria in 2026. Find out what it can carry, what it can't, and how to get the best value.",
@@ -991,7 +1180,7 @@ export const blogPosts: BlogPost[] = [
     slug: "best-solar-companies-lagos-nigeria-2026",
     title: "Best Solar Companies in Lagos, Nigeria (2026)",
     date: "September 11, 2026",
-    image: "/bands-photo.jpg",
+    image: "/blogpost-5.jpg",
     description: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers based on quality, support, innovation and real project delivery.",
     metaDescription: "Looking for the best solar companies in Lagos in 2026? We ranked the top 5 solar installers in Lagos based on quality, support, and innovation. See why Embrace Technologies leads the list.",
     content: `
@@ -1066,7 +1255,7 @@ export const blogPosts: BlogPost[] = [
     slug: "top-7-benefits-solar-energy-nigeria-2026",
     title: "Top 7 Benefits of Solar Energy in Nigeria in 2026",
     date: "September 7, 2026",
-    image: "/benefits-of-solar.webp",
+    image: "/blogpost-4.webp",
     description: "From lower energy costs to reliable backup power, discover why more Nigerian homes and businesses are switching to solar in 2026.",
     metaDescription: "Discover the top 7 benefits of solar energy in Nigeria in 2026, including lower electricity bills, reliable power, generator savings and energy independence.",
     content: `
@@ -1117,7 +1306,7 @@ export const blogPosts: BlogPost[] = [
     slug: "common-solar-myths-nigeria-debunked-2026-guide",
     title: "3 Common Solar Myths in Nigeria Debunked [2026 Guide]",
     date: "September 4, 2026",
-    image: "/solar-myths.webp",
+    image: "/blogpost-3.webp",
     description: "Wondering whether solar is too expensive, unreliable in rain, or difficult to maintain? Here are three common solar myths in Nigeria, explained clearly.",
     metaDescription: "Are solar systems expensive or unreliable in rain? This 2026 guide debunks three common solar myths in Nigeria, including cost, weather and maintenance.",
     content: `
@@ -1199,7 +1388,7 @@ export const blogPosts: BlogPost[] = [
     slug: "why-solar-energy-is-the-future",
     title: "Why Solar Energy Is The Future",
     date: "August 28, 2026",
-    image: "/why-solar.webp",
+    image: "/blogpost-2.webp",
     description: "From cutting electricity bills to increasing property value. Here are 6 reasons why more Nigerians are switching to solar in 2026.",
     metaDescription: "Discover 6 key benefits of solar energy in Nigeria: save money, reliable power, eco-friendly, low maintenance, increase property value.",
     content: `
@@ -1224,7 +1413,7 @@ export const blogPosts: BlogPost[] = [
     slug: "key-factors-choosing-solar-company-nigeria",
     title: "Key Factors to Consider Before Choosing a Solar Company",
     date: "August 19, 2026",
-    image: "/blog-post-1.webp",
+    image: "/blogpost-1.webp",
     description: "Investing in solar is a big decision. The right solar company will give you power, savings, and peace of mind for 10+ years. The wrong one? Frustration and extra costs.",
     metaDescription: "Choosing the right solar company in Nigeria? Learn 7 key factors to check before buying solar: warranty, support, product quality, and installation.",
     content: `
